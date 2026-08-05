@@ -13,8 +13,11 @@
       "pdfUrl": "https://arxiv.org/pdf/1706.03762",
       "publishedDate": "2017-06-12",
       "processingStatus": "COMPLETED",
-      "authors": ["Ashish Vaswani", "Noam Shazeer", "Niki Parmar"],
-
+      "authors": [
+        "Ashish Vaswani",
+        "Noam Shazeer",
+        "Niki Parmar"
+      ],
       "chunks": [
         {
           "chunkIndex": 0,
@@ -23,7 +26,24 @@
           "content": "Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. Instead of performing a single attention function, we linearly project the queries, keys and values h times with different, learned linear projections.",
           "pageStart": 4,
           "pageEnd": 5,
-          "tokenCount": 96
+          "tokenCount": 96,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/harvardnlp/annotated-transformer",
+              "filePath": "model/attention.py",
+              "symbolName": "forward",
+              "startLine": 42,
+              "reason": "h개 헤드로 선형 프로젝션 → 병렬 attention → concat 후 최종 projection까지 논문 절차와 1:1 대응"
+            },
+            {
+              "githubUrl": "https://github.com/harvardnlp/annotated-transformer",
+              "filePath": "model/attention.py",
+              "symbolName": "attention",
+              "startLine": 12,
+              "reason": "multi-head가 내부적으로 호출하는 단일 attention 함수"
+            }
+          ],
+          "_comment": "mappedCode = 노트 앱에서 이 단락에 분류해둔 코드. 맨 앞이 Top-1 정답."
         },
         {
           "chunkIndex": 1,
@@ -31,10 +51,18 @@
           "content": "We compute the dot products of the query with all keys, divide each by sqrt(d_k), and apply a softmax function to obtain the weights on the values.",
           "pageStart": 3,
           "pageEnd": 4,
-          "tokenCount": 104
+          "tokenCount": 104,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/harvardnlp/annotated-transformer",
+              "filePath": "model/attention.py",
+              "symbolName": "attention",
+              "startLine": 12,
+              "reason": "QK^T / sqrt(d_k) 스케일링과 softmax가 그대로 구현돼 있음"
+            }
+          ]
         }
       ],
-
       "repositories": [
         {
           "githubUrl": "https://github.com/harvardnlp/annotated-transformer",
@@ -47,7 +75,6 @@
           "relationType": "COMMUNITY",
           "isPrimary": true,
           "processingStatus": "COMPLETED",
-
           "codeBlocks": [
             {
               "filePath": "model/attention.py",

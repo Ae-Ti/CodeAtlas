@@ -59,7 +59,10 @@ public class CurationBatchService {
                 FROM paper_chunks pc
                 WHERE pc.embedding IS NOT NULL
                   AND NOT EXISTS (
-                      SELECT 1 FROM paper_code_mappings m WHERE m.paper_chunk_id = pc.id
+                      -- 'AI' 매핑이 없는 chunk만 대상. A가 수동 매핑(MANUAL)을 넣어둔 chunk도
+                      -- AI 근거는 따로 생성해야 하므로 mapping_method까지 봐야 합니다.
+                      SELECT 1 FROM paper_code_mappings m
+                      WHERE m.paper_chunk_id = pc.id AND m.mapping_method = 'AI'
                   )
                 ORDER BY pc.id
                 """);
@@ -120,8 +123,13 @@ public class CurationBatchService {
                     VALUES (?, ?, ?, 'AI', ?, ?, FALSE)
                     ON CONFLICT (paper_chunk_id, code_block_id) DO UPDATE
                         SET similarity_score = EXCLUDED.similarity_score,
-                            mapping_reason   = EXCLUDED.mapping_reason,
                             explanation      = EXCLUDED.explanation,
+                            -- A가 손으로 적어둔 매핑 근거(MANUAL)는 절대 덮어쓰지 않습니다.
+                            -- mapping_method / is_verified 도 SET에 없으므로 그대로 유지됩니다.
+                            mapping_reason   = CASE
+                                WHEN paper_code_mappings.mapping_method = 'MANUAL'
+                                THEN paper_code_mappings.mapping_reason
+                                ELSE EXCLUDED.mapping_reason END,
                             updated_at       = CURRENT_TIMESTAMP
                     """,
                     chunkId, c.codeBlockId(), clampScore(c.similarityScore()),

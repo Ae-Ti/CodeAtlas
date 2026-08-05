@@ -9,6 +9,9 @@ A의 Python 파이프라인은 이 JSON만 만들면 되고, FK 순서·JSONB·C
     python3 scripts/ingest.py out.json --dry-run     # 검증만 하고 DB는 건드리지 않음
     python3 scripts/ingest.py out.json --print-sql   # 생성될 SQL을 눈으로 확인
 
+    # 노트에서 분류한 단락↔코드를 함께 저장하고 정답셋까지 만들기
+    python3 scripts/ingest.py out.json --insert-mappings --eval-csv database/eval_set.csv
+
 추가 패키지가 필요 없습니다 (docker exec psql 사용).
 
 ── 입력 형식 (database/ingest_example.json 참고)
@@ -22,7 +25,14 @@ A의 Python 파이프라인은 이 JSON만 만들면 되고, FK 순서·JSONB·C
       "chunkIndex": 0,                  // 필수, 논문 안에서 0부터 순서대로
       "content": "...",                 // 필수
       "sectionTitle": "...", "subsectionTitle": null,
-      "pageStart": 4, "pageEnd": 5, "tokenCount": 96
+      "pageStart": 4, "pageEnd": 5, "tokenCount": 96,
+
+      // 선택 — 노트에서 이 단락에 분류해둔 코드. 맨 앞이 Top-1 정답.
+      // codeBlocks에 정의된 코드를 (githubUrl, filePath, symbolName, startLine)로 가리킵니다.
+      "mappedCode": [
+        { "githubUrl": "...", "filePath": "...", "symbolName": "forward", "startLine": 42,
+          "reason": "왜 이 코드인지 한 줄" }
+      ]
     }],
     "repositories": [{
       "githubUrl": "https://github.com/...",   // 필수 — 이 값으로 upsert
@@ -110,6 +120,13 @@ def validate(doc):
             errors.append(f'{where}: title 이 필요합니다.')
 
         indexes = set()
+        # 이 논문 안에서 정의된 코드 블록의 자연키 — mappedCode가 이 안을 가리키는지 확인용
+        defined_blocks = {
+            (r.get('githubUrl'), b.get('filePath'), b.get('symbolName'), b.get('startLine'))
+            for r in (p.get('repositories') or [])
+            for b in (r.get('codeBlocks') or [])
+        }
+
         for ci, c in enumerate(p.get('chunks') or []):
             cw = f'{where}.chunks[{ci}]'
             if c.get('chunkIndex') is None:
@@ -124,6 +141,17 @@ def validate(doc):
             ps, pe = c.get('pageStart'), c.get('pageEnd')
             if ps is not None and pe is not None and pe < ps:
                 errors.append(f'{cw}: pageEnd({pe}) < pageStart({ps}) — ck_paper_chunks_page 위반')
+
+            # 수동 분류(단락 ↔ 코드)는 같은 파일 안에 정의된 코드 블록만 가리킬 수 있습니다.
+            # 오타로 엉뚱한 곳을 가리키면 조용히 매핑이 사라지므로 여기서 잡습니다.
+            for mi, m in enumerate(c.get('mappedCode') or []):
+                mw = f'{cw}.mappedCode[{mi}]'
+                key = (m.get('githubUrl'), m.get('filePath'), m.get('symbolName'), m.get('startLine'))
+                if None in (key[0], key[1]):
+                    errors.append(f'{mw}: githubUrl 과 filePath 는 필수입니다.')
+                elif key not in defined_blocks:
+                    errors.append(f'{mw}: 이 논문의 codeBlocks 에 없는 코드를 가리킵니다 — '
+                                  f'githubUrl/filePath/symbolName/startLine 이 정확히 일치해야 합니다. {key}')
 
         for ri, r in enumerate(p.get('repositories') or []):
             rw = f'{where}.repositories[{ri}]'
@@ -237,6 +265,73 @@ ON CONFLICT (repository_id, file_path, symbol_name, start_line) DO UPDATE SET
     return '\n'.join(out)
 
 
+def chunk_ref(arxiv_id, chunk_index):
+    return (f"(SELECT id FROM paper_chunks WHERE chunk_index = {chunk_index}"
+            f" AND paper_id = (SELECT id FROM papers WHERE arxiv_id = {lit(arxiv_id)}))")
+
+
+def block_ref(m):
+    """
+    코드 블록을 자연키로 가리킵니다. symbol_name/start_line은 NULL일 수 있어
+    = 대신 IS NOT DISTINCT FROM 을 씁니다 (NULL = NULL 은 참이 아니라 NULL이라서).
+    """
+    return (f"(SELECT id FROM code_blocks"
+            f" WHERE repository_id = (SELECT id FROM repositories WHERE github_url = {lit(m['githubUrl'])})"
+            f"   AND file_path = {lit(m['filePath'])}"
+            f"   AND symbol_name IS NOT DISTINCT FROM {lit(m.get('symbolName'))}"
+            f"   AND start_line IS NOT DISTINCT FROM {lit(m.get('startLine'))})")
+
+
+def iter_manual_mappings(doc):
+    """(arxivId, chunkIndex, mappedCode) 를 순회합니다."""
+    for p in doc['papers']:
+        for c in p.get('chunks') or []:
+            for m in c.get('mappedCode') or []:
+                yield p['arxivId'], c['chunkIndex'], m
+
+
+def build_manual_mapping_sql(doc):
+    """
+    A가 손으로 분류한 단락↔코드를 mapping_method='MANUAL', is_verified=TRUE 로 저장합니다.
+    AI 큐레이션(mapping_method='AI')과 별개 행이므로 둘이 공존하며,
+    CurationBatchService는 'AI' 매핑이 없는 chunk를 계속 대상으로 삼습니다.
+    """
+    rows = list(iter_manual_mappings(doc))
+    if not rows:
+        return None
+
+    out = ['BEGIN;']
+    for arxiv_id, chunk_index, m in rows:
+        out.append(f"""
+INSERT INTO paper_code_mappings (paper_chunk_id, code_block_id, mapping_method, mapping_reason, is_verified)
+VALUES ({chunk_ref(arxiv_id, chunk_index)}, {block_ref(m)}, 'MANUAL', {lit(m.get('reason'))}, TRUE)
+ON CONFLICT (paper_chunk_id, code_block_id) DO UPDATE SET
+    mapping_method = 'MANUAL', mapping_reason = EXCLUDED.mapping_reason,
+    is_verified = TRUE, updated_at = CURRENT_TIMESTAMP;""")
+    out.append('\nCOMMIT;')
+    return '\n'.join(out)
+
+
+def build_eval_query(doc):
+    """
+    정답셋 CSV(chunk_id,code_block_id)를 만들기 위한 조회 쿼리.
+    각 단락의 mappedCode 중 **첫 번째**가 Top-1 정답입니다 —
+    노트에 적을 때 가장 정확한 코드를 맨 앞에 두세요.
+    """
+    firsts = []
+    seen = set()
+    for arxiv_id, chunk_index, m in iter_manual_mappings(doc):
+        if (arxiv_id, chunk_index) in seen:
+            continue
+        seen.add((arxiv_id, chunk_index))
+        firsts.append((arxiv_id, chunk_index, m))
+
+    if not firsts:
+        return None
+    return '\nUNION ALL\n'.join(
+        f"SELECT {chunk_ref(a, i)} || ',' || {block_ref(m)}" for a, i, m in firsts)
+
+
 def psql(container, db, user, sql, tuples_only=False):
     cmd = ['docker', 'exec', '-i', container, 'psql', '-U', user, '-d', db, '-v', 'ON_ERROR_STOP=1', '-q']
     if tuples_only:
@@ -250,6 +345,10 @@ def main():
     parser.add_argument('json_file', help='적재할 JSON 파일')
     parser.add_argument('--dry-run', action='store_true', help='검증만 하고 DB는 건드리지 않음')
     parser.add_argument('--print-sql', action='store_true', help='생성된 SQL을 출력')
+    parser.add_argument('--insert-mappings', action='store_true',
+                        help="chunks[].mappedCode 를 paper_code_mappings에 MANUAL/검증완료로 저장")
+    parser.add_argument('--eval-csv', metavar='PATH',
+                        help='chunks[].mappedCode 로 정답셋 CSV 생성 (eval_retrieval.py 입력)')
     parser.add_argument('--container', default='codeatlas-postgres')
     parser.add_argument('--db', default='codeatlas')
     parser.add_argument('--user', default='codeatlas')
@@ -270,7 +369,9 @@ def main():
     repos = sum(len(p.get('repositories') or []) for p in papers)
     blocks = sum(len(b.get('codeBlocks') or [])
                  for p in papers for b in (p.get('repositories') or []))
-    print(f'✅ 검증 통과 — 논문 {len(papers)} / chunk {chunks} / repo {repos} / code_block {blocks}')
+    manual = len(list(iter_manual_mappings(doc)))
+    print(f'✅ 검증 통과 — 논문 {len(papers)} / chunk {chunks} / repo {repos} / code_block {blocks}'
+          + (f' / 수동매핑 {manual}' if manual else ''))
 
     sql = build_sql(doc)
     if args.print_sql:
@@ -284,6 +385,34 @@ def main():
         print(f'\n❌ 적재 실패\n{result.stderr}', file=sys.stderr)
         sys.exit(1)
 
+    print('✅ 적재 완료')
+
+    if args.insert_mappings:
+        mapping_sql = build_manual_mapping_sql(doc)
+        if mapping_sql is None:
+            print('   --insert-mappings 를 줬지만 mappedCode 가 하나도 없습니다.')
+        else:
+            r = psql(args.container, args.db, args.user, mapping_sql)
+            if r.returncode != 0:
+                print(f'\n❌ 수동 매핑 저장 실패\n{r.stderr}', file=sys.stderr)
+                sys.exit(1)
+            print(f'✅ 수동 매핑 {manual}건 저장 (mapping_method=MANUAL, is_verified=TRUE)')
+
+    if args.eval_csv:
+        query = build_eval_query(doc)
+        if query is None:
+            print('   --eval-csv 를 줬지만 mappedCode 가 하나도 없습니다.')
+        else:
+            r = psql(args.container, args.db, args.user, query, tuples_only=True)
+            if r.returncode != 0:
+                print(f'\n❌ 정답셋 생성 실패\n{r.stderr}', file=sys.stderr)
+                sys.exit(1)
+            pairs = [ln for ln in r.stdout.splitlines() if ln.strip() and ',' in ln]
+            with open(args.eval_csv, 'w', encoding='utf-8') as f:
+                f.write('chunk_id,code_block_id\n')
+                f.write('\n'.join(pairs) + '\n')
+            print(f'✅ 정답셋 {len(pairs)}쌍 → {args.eval_csv}')
+
     summary = psql(args.container, args.db, args.user, """
 SELECT '  DB 총계: papers ' || (SELECT count(*) FROM papers)
     || ' / chunks ' || (SELECT count(*) FROM paper_chunks)
@@ -293,7 +422,6 @@ UNION ALL
 SELECT '  embedding 미완료: chunk ' || (SELECT count(*) FROM paper_chunks WHERE embedding IS NULL)
     || ' / code_block ' || (SELECT count(*) FROM code_blocks WHERE embedding IS NULL);
 """, tuples_only=True)
-    print('✅ 적재 완료')
     print(summary.stdout.rstrip())
     print('\n다음 단계: 임베딩 채우기')
     print('  cd backend && CODEATLAS_EMBEDDING_BACKFILL=true ./mvnw spring-boot:run')
