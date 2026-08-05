@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: codeatlas-backend
+
+  # Ollama(Qwen3 / nomic-embed-text) 설정은 분리 파일로 관리 — application-ai.yml 참고
+  config:
+    import: application-ai.yml
+
+  datasource:
+    # docker-compose.yml이 컨테이너를 5433으로 노출합니다 (로컬 PostgreSQL 5432와 충돌 방지)
+    url: ${CODEATLAS_DB_URL:jdbc:postgresql://localhost:5433/codeatlas}
+    username: ${CODEATLAS_DB_USER:codeatlas}
+    password: ${CODEATLAS_DB_PASSWORD:codeatlas}
+    hikari:
+      maximum-pool-size: 10
+
+  # 스키마는 database/schema.sql + docker-compose 초기화로 관리 (앱이 DDL을 만들지 않음)
+  sql:
+    init:
+      mode: never
+
+  ai:
+    mcp:
+      server:
+        name: codeatlas-mcp
+        version: 0.0.1
+        # SSE 전송 방식 — 연결: GET /sse, 요청: POST /mcp/message?sessionId=...
+        # (STREAMABLE로 바꾸면 단일 엔드포인트 POST /mcp 를 씁니다)
+        protocol: SSE
+        instructions: >
+          CodeAtlas MCP server. 논문 chunk 검색(SearchPaperChunk), 대응 코드 구현 검색(FindCodeImplementation),
+          논문/repo metadata 자연어 조회(QueryMetadataSQL), context 선별(CurateContext) 도구를 제공합니다.
+
+server:
+  port: 8080
+
+codeatlas:
+  cors:
+    # 프론트(vite dev/preview) 연동용
+    allowed-origins: http://localhost:5173,http://localhost:4173
+  embedding:
+    # true면 기동 시 embedding이 NULL인 paper_chunks/code_blocks를 Ollama로 채웁니다.
+    # A의 임베딩 파이프라인이 완성되면 false로 두세요.
+    backfill-on-startup: ${CODEATLAS_EMBEDDING_BACKFILL:false}
+
+logging:
+  level:
+    com.codeatlas.backend: DEBUG

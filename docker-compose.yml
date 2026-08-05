@@ -1,0 +1,38 @@
+# CodeAtlas 로컬 개발 환경 (공동 관리 파일)
+#
+#   docker compose up -d
+#
+# database/schema.sql, database/seed.sql 는 최초 기동 시 자동 실행됩니다.
+# (postgres 이미지의 /docker-entrypoint-initdb.d 규약 — 파일명 알파벳 순)
+# 이미 볼륨이 만들어진 뒤에는 다시 실행되지 않으므로, 스키마를 바꿨다면
+#   docker compose down -v && docker compose up -d
+# 로 볼륨을 지우고 다시 띄우세요.
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: codeatlas-postgres
+    environment:
+      POSTGRES_DB: codeatlas
+      POSTGRES_USER: codeatlas
+      POSTGRES_PASSWORD: codeatlas
+      # 한글 논문 제목 정렬을 위해 UTF-8 고정
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
+    ports:
+      # 로컬에 이미 PostgreSQL이 5432를 쓰고 있는 경우가 많아 5433으로 노출합니다.
+      # (컨테이너 내부는 5432 그대로 — 접속 URL만 jdbc:postgresql://localhost:5433/codeatlas)
+      - "5433:5432"
+    volumes:
+      - codeatlas-pgdata:/var/lib/postgresql/data
+      - ./database/Script-2.sql:/docker-entrypoint-initdb.d/01-Script-2.sql:ro
+      - ./database/Script-3_pgvector.sql:/docker-entrypoint-initdb.d/02-Script-3_pgvector.sql:ro
+      # A의 실제 seed_dump.sql이 나오면 아래 줄을 교체하세요 (기획서 §2)
+      - ./database/seed_demo.sql:/docker-entrypoint-initdb.d/03-seed_demo.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codeatlas -d codeatlas"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  codeatlas-pgdata:
