@@ -71,6 +71,7 @@ curl -X POST localhost:8080/api/admin/curate-pending
 | POST | `/api/nl2sql` | 자연어 → read-only SQL 조회 | B |
 
 요청/응답 스키마는 [docs/api-spec.md](../docs/api-spec.md) 참고.
+데이터 적재·검증 절차(A 담당)는 [docs/data-pipeline-guide.md](../docs/data-pipeline-guide.md) 참고.
 
 에러 응답은 전부 `{"error": "...", "detail": "..."}` 형태입니다.
 
