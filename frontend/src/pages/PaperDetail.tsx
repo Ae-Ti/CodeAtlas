@@ -37,7 +37,7 @@ function AiExplanation({ paperId, chunkId }: { paperId: number; chunkId: number 
     return (
       <div className="glass-card" style={{ padding: 20, marginBottom: 16 }}>
         <div className="agent-section-title" style={{ marginBottom: 8 }}>
-          <Sparkles size={14} /> AI 근거
+          <Sparkles size={14} /> 1위 매칭 근거
         </div>
         <p style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>
           생성 중… 사전계산되지 않은 chunk면 Qwen3를 지금 호출하므로 수십 초 걸릴 수 있습니다.
@@ -47,13 +47,14 @@ function AiExplanation({ paperId, chunkId }: { paperId: number; chunkId: number 
   }
   if (state.error || !state.data) return null;
 
-  const { explanation, source, mappingReason, tacc } = state.data;
+  const { explanation, source, mappingReason, tacc, results } = state.data;
   const isPrecomputed = source === 'precomputed';
+  const topCode = results[0];
 
   return (
     <div className="glass-card" style={{ padding: 20, marginBottom: 16 }}>
       <div className="agent-section-title" style={{ marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
-        <Sparkles size={14} /> AI 근거
+        <Sparkles size={14} /> 1위 매칭 근거
         <span
           className="badge"
           title={isPrecomputed
@@ -68,10 +69,19 @@ function AiExplanation({ paperId, chunkId }: { paperId: number; chunkId: number 
           {isPrecomputed ? <><Zap size={10} style={{ marginRight: 4 }} />precomputed</> : 'live'}
         </span>
       </div>
+      {/* 이 설명이 어느 코드에 대한 것인지 명시 — 아래 목록 전체에 대한 평가가 아닙니다 */}
+      {topCode && (
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: 8, fontFamily: 'var(--font-mono)' }}>
+          {topCode.repositoryName} / {symbolLabel(topCode)}
+        </div>
+      )}
       <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.7 }}>{explanation}</p>
       <div style={{ marginTop: 10, fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
         {mappingReason ?? `TACC: 후보 ${tacc.initialContexts} → 선택 ${tacc.selectedContexts}`}
       </div>
+      <p style={{ marginTop: 8, fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+        아래 목록의 2위 이하는 pgvector 유사도 순위이며, AI가 따로 판단한 결과가 아닙니다.
+      </p>
     </div>
   );
 }

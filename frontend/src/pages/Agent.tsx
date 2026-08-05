@@ -327,23 +327,36 @@ export default function Agent() {
               {/* Right Column */}
               <div>
                 <div className="agent-section-title">
-                  <MessageSquare size={14} /> AI Response
+                  <MessageSquare size={14} /> AI Response — 1위 매칭 근거
                 </div>
-                <div className="glass-card ai-response" style={{ marginBottom: 24 }}>
+                <div className="glass-card ai-response" style={{ marginBottom: 8 }}>
+                  {result.results[0] && (
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: 8, fontFamily: 'var(--font-mono)' }}>
+                      {result.results[0].repositoryName} / {symbolLabel(result.results[0])}
+                    </div>
+                  )}
                   {result.explanation}
                 </div>
+                <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: 24, lineHeight: 1.6 }}>
+                  Qwen3는 1위 코드에 대해서만 근거를 생성합니다. 2위 이하는 pgvector 유사도 순위입니다.
+                </p>
 
                 <div className="agent-section-title">
                   <Code2 size={14} /> Selected Code ({result.results.length})
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  {result.results.map(code => (
+                  {result.results.map((code, i) => (
                     <div key={code.codeBlockId} className="glass-card" style={{ padding: 16 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                         <FileCode size={12} color="var(--success-light)" />
                         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--success-light)', fontWeight: 600 }}>
                           {symbolLabel(code)}
                         </span>
+                        {i === 0 && (
+                          <span className="badge" style={{ background: 'rgba(139,92,246,0.15)', color: 'var(--accent-light)', fontSize: '0.62rem' }}>
+                            AI 근거 대상
+                          </span>
+                        )}
                         <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: '0.82rem', fontWeight: 700 }}>
                           {code.similarityScore.toFixed(2)}
                         </span>
