@@ -1,32 +1,39 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, BookOpen, Calendar, ExternalLink, ArrowRight } from 'lucide-react';
-import { mockPapers, type Paper } from '../data/papers';
-import { getChunksByPaperId } from '../data/chunks';
+import { Search, BookOpen, Calendar, ExternalLink, ArrowRight, GitBranch } from 'lucide-react';
+import { api, type Paper } from '../api/client';
+import { useApi } from '../hooks/useApi';
+import { Loading, ErrorBox, EmptyState } from '../components/AsyncStates';
 
-const tasks = ['All', 'NLP', 'CV', 'RL', 'Multimodal'] as const;
+const STATUS_FILTERS = ['All', 'COMPLETED', 'PROCESSING', 'PENDING', 'FAILED'] as const;
 
-const taskBadgeClass: Record<string, string> = {
-  NLP: 'badge-nlp',
-  CV: 'badge-cv',
-  RL: 'badge-rl',
-  Multimodal: 'badge-multimodal',
+// Script-2.sql의 processing_status 값에 맞춘 배지 색상.
+// (mock 시절의 task 분류(NLP/CV/RL)는 실제 스키마에 없는 컬럼이라 제거했습니다)
+const statusBadgeClass: Record<string, string> = {
+  COMPLETED: 'badge-nlp',
+  PROCESSING: 'badge-multimodal',
+  PENDING: 'badge-rl',
+  FAILED: 'badge-cv',
 };
 
 export default function Papers() {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
-  const [activeTask, setActiveTask] = useState<string>('All');
+  const [activeStatus, setActiveStatus] = useState<string>('All');
+  const { data, loading, error, reload } = useApi(() => api.papers(), []);
 
   const filtered = useMemo(() => {
-    return mockPapers.filter((p: Paper) => {
-      const matchTask = activeTask === 'All' || p.task === activeTask;
-      const matchSearch = search === '' ||
-        p.title.toLowerCase().includes(search.toLowerCase()) ||
-        p.authors.toLowerCase().includes(search.toLowerCase());
-      return matchTask && matchSearch;
+    if (!data) return [];
+    const q = search.trim().toLowerCase();
+    return data.filter((p: Paper) => {
+      const matchStatus = activeStatus === 'All' || p.processingStatus === activeStatus;
+      const matchSearch = q === '' ||
+        p.title.toLowerCase().includes(q) ||
+        p.authors.some(a => a.toLowerCase().includes(q)) ||
+        (p.arxivId ?? '').toLowerCase().includes(q);
+      return matchStatus && matchSearch;
     });
-  }, [search, activeTask]);
+  }, [data, search, activeStatus]);
 
   return (
     <div className="page">
@@ -46,73 +53,85 @@ export default function Papers() {
             <input
               className="input"
               style={{ paddingLeft: 40 }}
-              placeholder="논문 제목 또는 저자 검색..."
+              placeholder="논문 제목 · 저자 · arXiv ID 검색..."
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
-            {tasks.map(t => (
+            {STATUS_FILTERS.map(s => (
               <button
-                key={t}
-                className={`btn ${activeTask === t ? 'btn-primary' : 'btn-ghost'}`}
+                key={s}
+                className={`btn ${activeStatus === s ? 'btn-primary' : 'btn-ghost'}`}
                 style={{ padding: '8px 16px', fontSize: '0.8rem' }}
-                onClick={() => setActiveTask(t)}
+                onClick={() => setActiveStatus(s)}
               >
-                {t}
+                {s === 'All' ? '전체' : s}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Paper Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 16 }}>
-          {filtered.map((paper, i) => {
-            const chunkCount = getChunksByPaperId(paper.paperId).length;
-            const goToPaper = () => navigate(`/papers/${paper.paperId}`);
-            return (
-              // A <div> (not <Link>) because the card also contains a real
-              // external <a> for the PDF — nesting <a> inside <a> is invalid
-              // HTML and made the PDF link's navigation unpredictable.
-              <div
-                key={paper.paperId}
-                role="link"
-                tabIndex={0}
-                className="glass-card paper-card animate-fade-in-up"
-                style={{ animationDelay: `${i * 60}ms`, opacity: 0 }}
-                onClick={goToPaper}
-                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToPaper(); } }}
-              >
-                <div className="paper-task">
-                  <span className={`badge ${taskBadgeClass[paper.task]}`}>{paper.task}</span>
-                </div>
-                <h3 className="paper-title">{paper.title}</h3>
-                <p className="paper-authors">{paper.authors}</p>
-                <p className="paper-abstract">{paper.abstract}</p>
-                <div className="paper-meta">
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                    <Calendar size={12} /> {paper.year}
-                  </span>
-                  <span>{chunkCount} chunks</span>
-                  <span className="card-hint" style={{ marginLeft: 'auto' }}>
-                    자세히 보기 <ArrowRight size={12} />
-                  </span>
-                </div>
-                <div className="paper-pdf-row">
-                  <a href={paper.pdfUrl} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>
-                    <ExternalLink size={12} /> PDF
-                  </a>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {loading && <Loading message="논문 목록을 불러오는 중..." />}
+        {error && <ErrorBox error={error} onRetry={reload} />}
 
-        {filtered.length === 0 && (
-          <div style={{ textAlign: 'center', padding: 64, color: 'var(--text-tertiary)' }}>
-            <BookOpen size={48} style={{ marginBottom: 16, opacity: 0.3 }} />
-            <p>검색 결과가 없습니다</p>
+        {data && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 16 }}>
+            {filtered.map((paper, i) => {
+              const goToPaper = () => navigate(`/papers/${paper.paperId}`);
+              const year = paper.publishedDate ? paper.publishedDate.slice(0, 4) : '—';
+              return (
+                // <Link>가 아니라 <div role="link"> — 카드 안에 PDF용 실제 <a>가 있어서
+                // <a> 중첩(유효하지 않은 HTML)을 피해야 합니다.
+                <div
+                  key={paper.paperId}
+                  role="link"
+                  tabIndex={0}
+                  className="glass-card paper-card animate-fade-in-up"
+                  style={{ animationDelay: `${i * 60}ms`, opacity: 0 }}
+                  onClick={goToPaper}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToPaper(); } }}
+                >
+                  <div className="paper-task">
+                    <span className={`badge ${statusBadgeClass[paper.processingStatus] ?? 'badge-rl'}`}>
+                      {paper.processingStatus}
+                    </span>
+                  </div>
+                  <h3 className="paper-title">{paper.title}</h3>
+                  <p className="paper-authors">{paper.authors.join(', ') || '저자 정보 없음'}</p>
+                  <p className="paper-abstract">{paper.abstractText ?? '초록이 등록되지 않았습니다.'}</p>
+                  <div className="paper-meta">
+                    <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <Calendar size={12} /> {year}
+                    </span>
+                    <span>{paper.chunkCount} chunks</span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}
+                          title="코드 매핑이 사전계산된 chunk 수">
+                      <GitBranch size={12} /> {paper.mappedChunkCount}/{paper.chunkCount} 매핑
+                    </span>
+                    <span className="card-hint" style={{ marginLeft: 'auto' }}>
+                      자세히 보기 <ArrowRight size={12} />
+                    </span>
+                  </div>
+                  {paper.pdfUrl && (
+                    <div className="paper-pdf-row">
+                      <a href={paper.pdfUrl} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>
+                        <ExternalLink size={12} /> PDF
+                      </a>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
+        )}
+
+        {data && filtered.length === 0 && (
+          <EmptyState
+            icon={<BookOpen size={48} style={{ opacity: 0.3 }} />}
+            title={data.length === 0 ? '적재된 논문이 없습니다.' : '검색 결과가 없습니다'}
+            hint={data.length === 0 ? 'database/seed_demo.sql 이 적재됐는지 확인하세요.' : undefined}
+          />
         )}
       </div>
     </div>
