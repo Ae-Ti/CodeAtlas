@@ -1,0 +1,46 @@
+package com.codeatlas.backend.mcp.port;
+
+import com.codeatlas.backend.mcp.dto.McpDtos.ChunkResult;
+import com.codeatlas.backend.mcp.dto.McpDtos.CodeCandidate;
+import com.codeatlas.backend.mcp.dto.McpDtos.NlSqlResult;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * 포트 인터페이스 모음. 담당자가 서로 다르니 주의:
+ *   - PaperChunkSearchPort, CodeSearchPort → A(Knowledge Retrieval) 구현
+ *   - MetadataSqlPort(NL2SQL) → B(Agent & AI Product) 본인 구현 (RACI표: NL2SQL은 B가 R/A)
+ * B는 이 인터페이스에만 의존해서 MCP tool을 짜면 되고,
+ * A는 pgvector/JPA 기반 실제 구현체를 backend/src/.../paper, .../mapping 패키지 등에 만들면 됩니다.
+ * (같은 Spring Boot 앱 안이면 @Service 구현체를 등록하기만 하면 자동으로 주입됩니다)
+ */
+public final class CodeAtlasPorts {
+
+    private CodeAtlasPorts() {}
+
+    /** paper_chunks 검색 — A의 pgvector 유사도 검색 로직을 감쌈 */
+    public interface PaperChunkSearchPort {
+        List<ChunkResult> search(String queryText, Long paperId, int topK);
+        Optional<ChunkResult> getChunkById(Long paperId, Long chunkId);
+    }
+
+    /** code_blocks 검색 — A의 POST /api/mapping/search 로직을 감쌈 */
+    public interface CodeSearchPort {
+        List<CodeCandidate> findImplementations(Long chunkId, int topK);
+    }
+
+    /** metadata(papers/repositories) 대상 read-only NL2SQL 엔진 — QueryMetadataSQL과 /api/nl2sql이 공유 */
+    public interface MetadataSqlPort {
+        NlSqlResult runReadOnlyQuery(String naturalLanguageQuery);
+    }
+
+    /**
+     * paper_code_mappings에 미리 저장된 결과를 읽는 포트 (B 구현).
+     * 큐레이션 배치가 이미 계산해둔 chunk는 여기서 즉시 반환 — 요청마다 Ollama를 부르지 않음.
+     * 결과가 비어있으면(아직 큐레이션 안 된 chunk) 호출 측이 라이브 경로(CodeSearchPort + CurateContextTool)로 폴백.
+     */
+    public interface MappingReadPort {
+        List<com.codeatlas.backend.mcp.dto.McpDtos.PrecomputedMapping> findMappings(Long chunkId, int topK);
+    }
+}
