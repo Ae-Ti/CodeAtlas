@@ -123,9 +123,14 @@ fi
 echo
 echo "[5/5] 백엔드"
 
-if curl -sf -m 3 "$BACKEND/api/stats" >/dev/null 2>&1; then
+# 생존 확인은 /api/papers 로 합니다. /api/stats 는 프론트 연동 브랜치에서 추가된
+# 엔드포인트라, 그걸로 확인하면 develop에서 멀쩡한 백엔드를 "미기동"으로 오판합니다.
+if curl -sf -m 3 "$BACKEND/api/papers" >/dev/null 2>&1; then
   ok "백엔드 응답 ($BACKEND)"
-  echo "     $(curl -s -m 3 "$BACKEND/api/stats")"
+  stats=$(curl -sf -m 3 "$BACKEND/api/stats" 2>/dev/null)
+  if [ -n "$stats" ] && ! echo "$stats" | grep -q '"status":404'; then
+    echo "     $stats"
+  fi
 else
   warn "백엔드 미기동 ($BACKEND)" "cd backend && ./mvnw spring-boot:run"
 fi
