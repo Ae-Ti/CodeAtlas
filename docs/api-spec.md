@@ -62,6 +62,7 @@
 |---|---|
 | Input | `candidates`(필수), `queryChunkText`(필수), `maxSelected`(선택, 기본 5) |
 | Output | `CuratedContext` — `selectedContexts, initialContexts, removedContexts, explanation` |
+| ⚠️ explanation 범위 | **1위 후보 하나에 대한 설명**입니다 (`selected.get(0)`). 2위 이하는 순수 pgvector 유사도 순위이며 AI가 판단하지 않습니다. `paper_code_mappings.explanation`은 행 단위 컬럼이므로 **1위 행에만 저장**하고 나머지는 NULL로 둡니다 |
 | 내부 구현 | 중복 제거(codeBlockId) → similarityScore 정렬 → 상위 N개 → Qwen3:8b로 근거 생성 |
 | 호출 시점 | ① `CurationBatchService`(배치, 사전계산) ② `AgentQueryController` 라이브 폴백 경로 |
 

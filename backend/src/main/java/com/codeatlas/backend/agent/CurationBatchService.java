@@ -95,6 +95,7 @@ public class CurationBatchService {
         return new BatchResult(pending.size(), curated, skipped, mappingsCreated);
     }
 
+    /** 반환값은 저장(또는 갱신)한 매핑 행 수 */
     private int persist(Long chunkId, CuratedContext curated) {
         // 배치 시점의 TACC 수치를 사람이 읽을 수 있는 형태로 남깁니다.
         // 사전계산 경로 응답에는 정확한 수치를 실을 수 없어(컬럼 없음) 이 문장이 근거 역할을 합니다.
@@ -102,8 +103,16 @@ public class CurationBatchService {
                 .formatted(curated.initialContexts(), curated.removedContexts(),
                         curated.selectedContexts().size());
 
-        int count = 0;
-        for (CodeCandidate c : curated.selectedContexts()) {
+        List<CodeCandidate> selected = curated.selectedContexts();
+        for (int i = 0; i < selected.size(); i++) {
+            CodeCandidate c = selected.get(i);
+
+            // CurateContextTool은 "1위 코드가 왜 이 섹션의 구현인지"만 설명합니다.
+            // explanation은 행(chunk↔code_block) 단위 컬럼이라, 그 문장을 2~5위 행에도
+            // 복사하면 해당 코드에 대한 사실과 다른 설명이 DB에 남습니다.
+            // 따라서 1위 행에만 저장하고 나머지는 NULL로 둡니다.
+            String explanation = (i == 0) ? curated.explanation() : null;
+
             jdbcTemplate.update("""
                     INSERT INTO paper_code_mappings
                         (paper_chunk_id, code_block_id, similarity_score, mapping_method,
@@ -116,10 +125,9 @@ public class CurationBatchService {
                             updated_at       = CURRENT_TIMESTAMP
                     """,
                     chunkId, c.codeBlockId(), clampScore(c.similarityScore()),
-                    mappingReason, curated.explanation());
-            count++;
+                    mappingReason, explanation);
         }
-        return count;
+        return selected.size();
     }
 
     /**

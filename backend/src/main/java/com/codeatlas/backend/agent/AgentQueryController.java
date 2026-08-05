@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 조회 우선순위:
@@ -60,6 +61,11 @@ public class AgentQueryController {
     public record AgentQueryResponse(
             ChunkResult queryChunk,
             List<CodeCandidate> results,
+            /**
+             * "왜 이 코드가 이 논문 섹션의 구현으로 적절한가"에 대한 Qwen3 설명.
+             * 대상은 <b>results의 1위 하나</b>입니다 — 2~5위는 순수 pgvector 유사도 순위일 뿐
+             * AI가 판단한 결과가 아닙니다.
+             */
             String explanation,
             String source,          // "precomputed" | "live"
             String mappingReason,   // 사전계산 경로의 배치 시점 TACC 요약 (live면 null)
@@ -84,10 +90,18 @@ public class AgentQueryController {
             List<CodeCandidate> results = precomputed.stream().map(PrecomputedMapping::candidate).toList();
             PrecomputedMapping top = precomputed.get(0);
 
+            // explanation은 1위 행에만 저장되지만, 부분 적재된 데이터에서도 죽지 않도록
+            // 첫 non-null 값을 찾아 씁니다.
+            String explanation = precomputed.stream()
+                    .map(PrecomputedMapping::explanation)
+                    .filter(Objects::nonNull)
+                    .findFirst()
+                    .orElse("이 매핑에 대한 AI 설명이 아직 생성되지 않았습니다.");
+
             return new AgentQueryResponse(
                     queryChunk,
                     results,
-                    top.explanation(),
+                    explanation,
                     "precomputed",
                     top.mappingReason(),
                     new TaccSummary(null, null, results.size()),
