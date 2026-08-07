@@ -1,0 +1,1426 @@
+{
+  "_comment": "Generated from uploaded markdown. Content and included codeContent are copied verbatim from the uploaded document. Expected-code blocks, blocks without document-backed filePath, non-code fenced text, and duplicate natural keys without startLine were excluded from ingest codeBlocks/mappedCode and recorded in _unresolved.",
+  "_sourceMarkdown": "/Users/ungsik/Downloads/Attention is All You Need 3b30f4e8fef78046bd59ef71457d418f.md",
+  "_unresolved": [
+    {
+      "section": 2,
+      "title": "Encoder-decoder 구조",
+      "docLine": 100,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 3,
+      "title": "Machine translation BLEU 결과",
+      "docLine": 154,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 4,
+      "title": "입력 sequence 전체를 병렬 처리",
+      "docLine": 195,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 6,
+      "title": "Figure 1 전체 Transformer 구조",
+      "docLine": 313,
+      "issue": "Excluded duplicate natural key ('transformer/Models.py', 'Transformer', None); uploaded document did not provide startLine to distinguish snippets."
+    },
+    {
+      "section": 7,
+      "title": "Encoder는 N=6개의 동일한 layer로 구성",
+      "docLine": 380,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 7,
+      "title": "Encoder는 N=6개의 동일한 layer로 구성",
+      "docLine": 396,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 8,
+      "title": "Encoder layer의 두 sub-layer",
+      "docLine": 419,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 9,
+      "title": "Residual connection 후 Layer Normalization",
+      "docLine": 524,
+      "issue": "Excluded duplicate natural key ('transformer/SubLayers.py', 'residual', None); uploaded document did not provide startLine to distinguish snippets."
+    },
+    {
+      "section": 10,
+      "title": "모든 sub-layer의 출력 차원 `d_model=512`",
+      "docLine": 568,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 10,
+      "title": "모든 sub-layer의 출력 차원 `d_model=512`",
+      "docLine": 574,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 10,
+      "title": "모든 sub-layer의 출력 차원 `d_model=512`",
+      "docLine": 582,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 11,
+      "title": "Decoder도 N=6개 layer",
+      "docLine": 613,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 11,
+      "title": "Decoder도 N=6개 layer",
+      "docLine": 629,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 12,
+      "title": "Decoder의 세 sub-layer",
+      "docLine": 651,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 14,
+      "title": "Output embedding을 한 위치 오른쪽으로 이동",
+      "docLine": 793,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 16,
+      "title": "Query·Key·Value matrix를 동시에 처리",
+      "docLine": 919,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 17,
+      "title": "Mask 대상에 `∞` 적용",
+      "docLine": 961,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 19,
+      "title": "8개 head, `dk=dv=64`",
+      "docLine": 1117,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 20,
+      "title": "Encoder self-attention",
+      "docLine": 1141,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 21,
+      "title": "Decoder self-attention",
+      "docLine": 1169,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 21,
+      "title": "Decoder self-attention",
+      "docLine": 1180,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 22,
+      "title": "Encoder-decoder attention",
+      "docLine": 1207,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 23,
+      "title": "Position-wise Feed-Forward Network",
+      "docLine": 1240,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 24,
+      "title": "FFN 차원 `512 → 2048 → 512`",
+      "docLine": 1310,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 24,
+      "title": "FFN 차원 `512 → 2048 → 512`",
+      "docLine": 1315,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 25,
+      "title": "Learned token embedding",
+      "docLine": 1346,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 25,
+      "title": "Learned token embedding",
+      "docLine": 1356,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 26,
+      "title": "Pre-softmax linear transformation",
+      "docLine": 1381,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 26,
+      "title": "Pre-softmax linear transformation",
+      "docLine": 1389,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 26,
+      "title": "Pre-softmax linear transformation",
+      "docLine": 1397,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 27,
+      "title": "Target embedding과 pre-softmax weight sharing",
+      "docLine": 1422,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 28,
+      "title": "Source·target embedding weight sharing",
+      "docLine": 1447,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 29,
+      "title": "Embedding에 \\(\\sqrt{d_{\\text{model}}}\\) 곱하기",
+      "docLine": 1475,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 29,
+      "title": "Embedding에 \\(\\sqrt{d_{\\text{model}}}\\) 곱하기",
+      "docLine": 1488,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 30,
+      "title": "Sinusoidal Positional Encoding",
+      "docLine": 1577,
+      "issue": "Excluded fenced block because it is explanatory text, not repository code."
+    },
+    {
+      "section": 31,
+      "title": "Token embedding과 positional encoding 합산",
+      "docLine": 1613,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 31,
+      "title": "Token embedding과 positional encoding 합산",
+      "docLine": 1624,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 32,
+      "title": "Learned positional embedding 실험",
+      "docLine": 1652,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 32,
+      "title": "Learned positional embedding 실험",
+      "docLine": 1663,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 33,
+      "title": "Self-attention·RNN·convolution complexity 비교",
+      "docLine": 1731,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 35,
+      "title": "비슷한 sequence 길이끼리 batching",
+      "docLine": 1790,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 36,
+      "title": "약 25,000 source token + 25,000 target token batch",
+      "docLine": 1821,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 36,
+      "title": "약 25,000 source token + 25,000 target token batch",
+      "docLine": 1833,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 37,
+      "title": "8개 P100 GPU 학습",
+      "docLine": 1888,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 38,
+      "title": "Base 100,000 steps·Big 300,000 steps",
+      "docLine": 1938,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 38,
+      "title": "Base 100,000 steps·Big 300,000 steps",
+      "docLine": 1950,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 39,
+      "title": "Adam optimizer 설정",
+      "docLine": 1997,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 41,
+      "title": "Warm-up 4000 steps",
+      "docLine": 2112,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 42,
+      "title": "Residual dropout",
+      "docLine": 2142,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 42,
+      "title": "Residual dropout",
+      "docLine": 2154,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 43,
+      "title": "Embedding + positional encoding dropout",
+      "docLine": 2181,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 43,
+      "title": "Embedding + positional encoding dropout",
+      "docLine": 2188,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 44,
+      "title": "Base dropout 0.1",
+      "docLine": 2213,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 45,
+      "title": "Label smoothing 0.1",
+      "docLine": 2235,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 46,
+      "title": "마지막 checkpoint 평균",
+      "docLine": 2319,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 48,
+      "title": "Length penalty \\(\\alpha=0.6\\)",
+      "docLine": 2421,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 48,
+      "title": "Length penalty \\(\\alpha=0.6\\)",
+      "docLine": 2431,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 49,
+      "title": "최대 출력 길이 = 입력 길이 + 50",
+      "docLine": 2467,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 49,
+      "title": "최대 출력 길이 = 입력 길이 + 50",
+      "docLine": 2479,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 50,
+      "title": "Base model 설정",
+      "docLine": 2521,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 50,
+      "title": "Base model 설정",
+      "docLine": 2536,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 50,
+      "title": "Base model 설정",
+      "docLine": 2542,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 51,
+      "title": "Big Transformer 설정",
+      "docLine": 2573,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 53,
+      "title": "English constituency parsing",
+      "docLine": 2639,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 53,
+      "title": "English constituency parsing",
+      "docLine": 2658,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 54,
+      "title": "Parsing beam size 21, α=0.3",
+      "docLine": 2701,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 55,
+      "title": "Transformer의 최종 output probability",
+      "docLine": 2740,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 55,
+      "title": "Transformer의 최종 output probability",
+      "docLine": 2748,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 55,
+      "title": "Transformer의 최종 output probability",
+      "docLine": 2757,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 56,
+      "title": "Layer Normalization",
+      "docLine": 2785,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 57,
+      "title": "Adam",
+      "docLine": 2808,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 58,
+      "title": "Label smoothing",
+      "docLine": 2832,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 60,
+      "title": "Attention weight 시각화",
+      "docLine": 2883,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 60,
+      "title": "Attention weight 시각화",
+      "docLine": 2889,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 60,
+      "title": "Attention weight 시각화",
+      "docLine": 2895,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 60,
+      "title": "Attention weight 시각화",
+      "docLine": 2910,
+      "issue": "Excluded expected code block; not treated as repository codeBlock."
+    },
+    {
+      "section": 61,
+      "title": "Padding mask",
+      "docLine": 2993,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "section": 62,
+      "title": "Beam search translator",
+      "docLine": 3019,
+      "issue": "Excluded fenced block because it is explanatory text, not repository code."
+    },
+    {
+      "section": 62,
+      "title": "Beam search translator",
+      "docLine": 3029,
+      "issue": "Excluded duplicate natural key ('transformer/Translator.py', None, None); uploaded document did not provide startLine to distinguish snippets."
+    },
+    {
+      "section": 63,
+      "title": "Xavier parameter initialization",
+      "docLine": 3059,
+      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "1706.03762",
+      "title": "Attention Is All You Need",
+      "abstract": null,
+      "pdfUrl": "https://arxiv.org/pdf/1706.03762",
+      "publishedDate": "2017-06-12",
+      "authors": [],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "RNN과 convolution 없이 attention만 사용하는 구조",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “The Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.”\n> ",
+          "pageStart": 1,
+          "pageEnd": 1,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "Transformer",
+              "startLine": null,
+              "reason": "`Transformer` 내부에는 RNN, LSTM, GRU, temporal convolution이 없고 encoder·decoder의 attention과 position-wise feed-forward network로 구성됩니다. 저장소도 이 구현 목적을 명시합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 17."
+            }
+          ],
+          "_comment": "Source markdown section 1 at line 5; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "Encoder-decoder 구조",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “The dominant sequence transduction models … include an encoder and a decoder.”\n> ",
+          "pageStart": 1,
+          "pageEnd": 1,
+          "mappedCode": [],
+          "_comment": "Source markdown section 2 at line 88; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "Machine translation BLEU 결과",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- WMT14 English–German: `28.4 BLEU`\n- WMT14 English–French: `41.8 BLEU`\n- 8개 P100 GPU에서 3.5일 학습",
+          "pageStart": 1,
+          "pageEnd": 1,
+          "mappedCode": [],
+          "_comment": "Source markdown section 3 at line 137; 판정: EXPERIMENT / MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "입력 sequence 전체를 병렬 처리",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “The Transformer allows for significantly more parallelization.”\n> ",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "mappedCode": [],
+          "_comment": "Source markdown section 4 at line 183; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "Auto-regressive decoder",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “The decoder generates an output sequence one element at a time.”\n> \n\n> “It consumes the previously generated symbols.”\n> ",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Translator.py",
+              "symbolName": "dec_output___self_model_decoder",
+              "startLine": null,
+              "reason": "학습은 teacher forcing 방식으로 병렬 처리하지만, 실제 생성은 이전에 생성한 token을 이용하는 auto-regressive decoding입니다. 저장소에는 별도의 beam-search Translator가 존재합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Translator.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 260."
+            }
+          ],
+          "_comment": "Source markdown section 5 at line 243; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "Figure 1 전체 Transformer 구조",
+          "subsectionTitle": "논문 텍스트",
+          "content": "페이지 3의 Figure 1은 다음 구조를 보여줍니다.\n\n```\nInput Embedding + Positional Encoding\n→ Encoder N회\n\nOutput Embedding + Positional Encoding\n→ Masked Self-Attention\n→ Encoder-Decoder Attention\n→ Feed Forward\n→ Linear\n→ Softmax\n```",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [],
+          "_comment": "Source markdown section 6 at line 290; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "Encoder는 N=6개의 동일한 layer로 구성",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “The encoder is composed of a stack of N=6 identical layers.”\n> ",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [],
+          "_comment": "Source markdown section 7 at line 368; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "Encoder layer의 두 sub-layer",
+          "subsectionTitle": "논문 텍스트",
+          "content": "1. Multi-head self-attention\n2. Position-wise feed-forward network",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [],
+          "_comment": "Source markdown section 8 at line 407; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "Residual connection 후 Layer Normalization",
+          "subsectionTitle": "논문 텍스트",
+          "content": "\\[\n\\operatorname{LayerNorm}\n\\left(x+\\operatorname{Sublayer}(x)\\right)\n\\]",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "residual",
+              "startLine": null,
+              "reason": "이 저장소는 논문 원본과 같은 **post-normalization**입니다.",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 487."
+            }
+          ],
+          "_comment": "Source markdown section 9 at line 471; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "모든 sub-layer의 출력 차원 `d_model=512`",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “All sub-layers … produce outputs of dimension dmodel=512.”\n> ",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [],
+          "_comment": "Source markdown section 10 at line 556; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "Decoder도 N=6개 layer",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “The decoder is also composed of a stack of N=6 identical layers.”\n> ",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [],
+          "_comment": "Source markdown section 11 at line 601; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "Decoder의 세 sub-layer",
+          "subsectionTitle": "논문 텍스트",
+          "content": "1. Masked self-attention\n2. Encoder-decoder attention\n3. Position-wise FFN",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [],
+          "_comment": "Source markdown section 12 at line 638; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "미래 위치를 보지 못하게 하는 subsequent mask",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Prevent positions from attending to subsequent positions.”\n> ",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "get_subsequent_mask",
+              "startLine": null,
+              "reason": "상삼각 영역을 `False`로 만들어 현재 위치가 미래 token을 참조하지 못하게 합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 736."
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "trg_mask",
+              "startLine": null,
+              "reason": "상삼각 영역을 `False`로 만들어 현재 위치가 미래 token을 참조하지 못하게 합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 762."
+            }
+          ],
+          "_comment": "Source markdown section 13 at line 724; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "Output embedding을 한 위치 오른쪽으로 이동",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “The output embeddings are offset by one position.”\n> ",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "mappedCode": [],
+          "_comment": "Source markdown section 14 at line 779; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "Scaled Dot-Product Attention",
+          "subsectionTitle": "논문 텍스트",
+          "content": "\\[\n\\operatorname{Attention}(Q,K,V)\n=\n\\operatorname{softmax}\n\\left(\n\\frac{QK^T}{\\sqrt{d_k}}\n\\right)V\n\\]",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Modules.py",
+              "symbolName": "ScaledDotProductAttention",
+              "startLine": null,
+              "reason": "코드는 \\(Q\\)를 먼저 \\(\\sqrt{d_k}\\)로 나눈 뒤 \\(K^T\\)와 곱합니다. 수학적으로 전체 dot product를 \\(\\sqrt{d_k}\\)로 나누는 것과 같습니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Modules.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 843."
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Modules.py",
+              "symbolName": "attention",
+              "startLine": null,
+              "reason": "코드는 \\(Q\\)를 먼저 \\(\\sqrt{d_k}\\)로 나눈 뒤 \\(K^T\\)와 곱합니다. 수학적으로 전체 dot product를 \\(\\sqrt{d_k}\\)로 나누는 것과 같습니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Modules.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 894."
+            }
+          ],
+          "_comment": "Source markdown section 15 at line 825; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "Query·Key·Value matrix를 동시에 처리",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Queries are packed into matrix Q. Keys and values are packed into matrices K and V.”\n> ",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "mappedCode": [],
+          "_comment": "Source markdown section 16 at line 907; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "Mask 대상에 `∞` 적용",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Masking out, setting to −∞, all values … corresponding to illegal connections.”\n> ",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "mappedCode": [],
+          "_comment": "Source markdown section 17 at line 949; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "Multi-Head Attention",
+          "subsectionTitle": "논문 텍스트",
+          "content": "\\[\n\\operatorname{MultiHead}(Q,K,V)\n=\n\\operatorname{Concat}\n(\\text{head}_1,\\ldots,\\text{head}_h)\nW^O\n\\]",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "MultiHeadAttention",
+              "startLine": null,
+              "reason": "각 head의 결과를 `view(..., -1)`로 연결한 뒤 `self.fc`로 \\(W^O\\) projection을 수행합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/SubLayers.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 995."
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "q",
+              "startLine": null,
+              "reason": "각 head의 결과를 `view(..., -1)`로 연결한 뒤 `self.fc`로 \\(W^O\\) projection을 수행합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/SubLayers.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 1050."
+            }
+          ],
+          "_comment": "Source markdown section 18 at line 978; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "8개 head, `dk=dv=64`",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- \\(h=8\\)\n- \\(d_k=d_v=64\\)\n- \\(d_{\\text{model}}=512\\)",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 19 at line 1104; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "Encoder self-attention",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “All keys, values and queries come from the same place.”\n> ",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 20 at line 1129; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 20,
+          "sectionTitle": "Decoder self-attention",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Each position … attend to all positions … up to and including that position.”\n> ",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 21 at line 1157; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 21,
+          "sectionTitle": "Encoder-decoder attention",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- Query: 이전 decoder layer 출력\n- Key·Value: encoder 출력",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 22 at line 1195; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 22,
+          "sectionTitle": "Position-wise Feed-Forward Network",
+          "subsectionTitle": "논문 텍스트",
+          "content": "\\[\n\\operatorname{FFN}(x)\n=\n\\max(0,xW_1+b_1)W_2+b_2\n\\]",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 23 at line 1225; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 23,
+          "sectionTitle": "FFN 차원 `512 → 2048 → 512`",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- 입력·출력: `dmodel=512`\n- 내부: `dff=2048`",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 24 at line 1298; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 24,
+          "sectionTitle": "Learned token embedding",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “We use learned embeddings to convert input and output tokens to vectors.”\n> ",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 25 at line 1332; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 25,
+          "sectionTitle": "Pre-softmax linear transformation",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “A learned linear transformation and softmax … to predicted next-token probabilities.”\n> ",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 26 at line 1369; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 26,
+          "sectionTitle": "Target embedding과 pre-softmax weight sharing",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “We share the same weight matrix … and the pre-softmax linear transformation.”\n> ",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 27 at line 1410; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "Source·target embedding weight sharing",
+          "subsectionTitle": "논문 텍스트",
+          "content": "논문은 source·target embedding과 pre-softmax matrix 모두 같은 vocabulary에서 공유합니다.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 28 at line 1436; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 28,
+          "sectionTitle": "Embedding에 \\(\\sqrt{d_{\\text{model}}}\\) 곱하기",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “In the embedding layers, we multiply those weights by √dmodel.”\n> ",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "mappedCode": [],
+          "_comment": "Source markdown section 29 at line 1463; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 29,
+          "sectionTitle": "Sinusoidal Positional Encoding",
+          "subsectionTitle": "논문 텍스트",
+          "content": "\\[\nPE_{(pos,2i)}\n=\n\\sin\n\\left(\n\\frac{pos}{10000^{2i/d_{\\text{model}}}}\n\\right)\n\\]\\[\nPE_{(pos,2i+1)}\n=\n\\cos\n\\left(\n\\frac{pos}{10000^{2i/d_{\\text{model}}}}\n\\right)\n\\]",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "get_position_angle_vec",
+              "startLine": null,
+              "reason": "논문의 fixed sinusoidal encoding을 parameter가 학습되지 않는 embedding table로 미리 계산합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 1533."
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "position_enc",
+              "startLine": null,
+              "reason": "논문의 fixed sinusoidal encoding을 parameter가 학습되지 않는 embedding table로 미리 계산합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 1585."
+            }
+          ],
+          "_comment": "Source markdown section 30 at line 1508; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 30,
+          "sectionTitle": "Token embedding과 positional encoding 합산",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “The positional encodings have the same dimension … so that the two can be summed.”\n> ",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "mappedCode": [],
+          "_comment": "Source markdown section 31 at line 1601; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 31,
+          "sectionTitle": "Learned positional embedding 실험",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “We also experimented with using learned positional embeddings.”\n> ",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "mappedCode": [],
+          "_comment": "Source markdown section 32 at line 1638; 판정: MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 32,
+          "sectionTitle": "Self-attention·RNN·convolution complexity 비교",
+          "subsectionTitle": "논문 텍스트",
+          "content": "페이지 6 Table 1:\n\n| Layer | Complexity | Sequential operations | Maximum path |\n| --- | --- | --- | --- |\n| Self-attention | \\(O(n^2d)\\) | \\(O(1)\\) | \\(O(1)\\) |\n| Recurrent | \\(O(nd^2)\\) | \\(O(n)\\) | \\(O(n)\\) |\n| Convolution | \\(O(knd^2)\\) | \\(O(1)\\) | \\(O(\\log_k n)\\) |",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "mappedCode": [],
+          "_comment": "Source markdown section 33 at line 1710; 판정: ANALYSIS / MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 33,
+          "sectionTitle": "WMT14 BPE 약 37,000 vocabulary",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Byte-pair encoding … shared source-target vocabulary of about 37000 tokens.”\n> ",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "mappedCode": [],
+          "_comment": "Source markdown section 34 at line 1753; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 34,
+          "sectionTitle": "비슷한 sequence 길이끼리 batching",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Sentence pairs were batched together by approximate sequence length.”\n> ",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "mappedCode": [],
+          "_comment": "Source markdown section 35 at line 1774; 판정: DIRECT-CONCEPTUAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 35,
+          "sectionTitle": "약 25,000 source token + 25,000 target token batch",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Each training batch contained approximately 25000 source tokens and 25000 target tokens.”\n> ",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "mappedCode": [],
+          "_comment": "Source markdown section 36 at line 1807; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 36,
+          "sectionTitle": "8개 P100 GPU 학습",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “We trained our models on one machine with 8 NVIDIA P100 GPUs.”\n> ",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "mappedCode": [],
+          "_comment": "Source markdown section 37 at line 1872; 판정: MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 37,
+          "sectionTitle": "Base 100,000 steps·Big 300,000 steps",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- Base: `100K steps`\n- Big: `300K steps`",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "mappedCode": [],
+          "_comment": "Source markdown section 38 at line 1924; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 38,
+          "sectionTitle": "Adam optimizer 설정",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- \\(\\beta_1=0.9\\)\n- \\(\\beta_2=0.98\\)\n- \\(\\epsilon=10^{-9}\\)",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "mappedCode": [],
+          "_comment": "Source markdown section 39 at line 1984; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 39,
+          "sectionTitle": "Learning-rate schedule",
+          "subsectionTitle": "논문 텍스트",
+          "content": "\\[\n\\text{lrate}\n=\nd_{\\text{model}}^{-0.5}\n\\min\n\\left(\n\\text{step}^{-0.5},\n\\text{step}\\cdot\n\\text{warmup}^{-1.5}\n\\right)\n\\]",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Optim.py",
+              "symbolName": "ScheduledOptim",
+              "startLine": null,
+              "reason": ", 단 추가 multiplier 존재",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 2034."
+            }
+          ],
+          "_comment": "Source markdown section 40 at line 2013; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 40,
+          "sectionTitle": "Warm-up 4000 steps",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “We used warmup_steps=4000.”\n> ",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "mappedCode": [],
+          "_comment": "Source markdown section 41 at line 2100; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 41,
+          "sectionTitle": "Residual dropout",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Dropout to the output of each sub-layer, before it is added.”\n> ",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "mappedCode": [],
+          "_comment": "Source markdown section 42 at line 2128; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 42,
+          "sectionTitle": "Embedding + positional encoding dropout",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Dropout to the sums of embeddings and positional encodings.”\n> ",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "mappedCode": [],
+          "_comment": "Source markdown section 43 at line 2169; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 43,
+          "sectionTitle": "Base dropout 0.1",
+          "subsectionTitle": "논문 텍스트",
+          "content": "\\[\nP_{\\text{drop}}=0.1\n\\]",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "mappedCode": [],
+          "_comment": "Source markdown section 44 at line 2200; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 44,
+          "sectionTitle": "Label smoothing 0.1",
+          "subsectionTitle": "논문 텍스트",
+          "content": "\\[\n\\epsilon_{ls}=0.1\n\\]",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "mappedCode": [],
+          "_comment": "Source markdown section 45 at line 2222; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 45,
+          "sectionTitle": "마지막 checkpoint 평균",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- Base: 마지막 5개 checkpoint 평균\n- Big: 마지막 20개 checkpoint 평균",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "mappedCode": [],
+          "_comment": "Source markdown section 46 at line 2303; 판정: MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 46,
+          "sectionTitle": "Beam search size 4",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Beam size of 4.”\n> ",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Translator.py",
+              "symbolName": "beam_size",
+              "startLine": null,
+              "reason": "Translator 생성 시 `beam_size=4`를 전달해야 논문 설정과 일치합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Translator.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 2384."
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Translator.py",
+              "symbolName": null,
+              "startLine": null,
+              "reason": "Translator 생성 시 `beam_size=4`를 전달해야 논문 설정과 일치합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Translator.py)",
+              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 2390."
+            }
+          ],
+          "_comment": "Source markdown section 47 at line 2370; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 47,
+          "sectionTitle": "Length penalty \\(\\alpha=0.6\\)",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Length penalty α=0.6.”\n> ",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "mappedCode": [],
+          "_comment": "Source markdown section 48 at line 2409; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 48,
+          "sectionTitle": "최대 출력 길이 = 입력 길이 + 50",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Maximum output length … input length + 50.”\n> ",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "mappedCode": [],
+          "_comment": "Source markdown section 49 at line 2453; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 49,
+          "sectionTitle": "Base model 설정",
+          "subsectionTitle": "논문 텍스트",
+          "content": "| Parameter | 값 |\n| --- | --- |\n| N | 6 |\n| dmodel | 512 |\n| dff | 2048 |\n| h | 8 |\n| dk | 64 |\n| dv | 64 |\n| dropout | 0.1 |\n| label smoothing | 0.1 |\n| steps | 100K |",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "mappedCode": [],
+          "_comment": "Source markdown section 50 at line 2500; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 50,
+          "sectionTitle": "Big Transformer 설정",
+          "subsectionTitle": "논문 텍스트",
+          "content": "| Parameter | 값 |\n| --- | --- |\n| N | 6 |\n| dmodel | 1024 |\n| dff | 4096 |\n| h | 16 |\n| dropout | 0.3 |\n| steps | 300K |",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "mappedCode": [],
+          "_comment": "Source markdown section 51 at line 2553; 판정: DIRECT-CONFIGURABLE. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 51,
+          "sectionTitle": "Learned positional embedding variation",
+          "subsectionTitle": "논문 텍스트",
+          "content": "> “Positional embedding instead of sinusoids.”\n> ",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "mappedCode": [],
+          "_comment": "Source markdown section 52 at line 2598; 판정: MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 52,
+          "sectionTitle": "English constituency parsing",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- 4-layer Transformer\n- `dmodel=1024`\n- WSJ Penn Treebank\n- 16K 또는 32K vocabulary",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "mappedCode": [],
+          "_comment": "Source markdown section 53 at line 2621; 판정: MISSING-BUT-PROVIDED-PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 53,
+          "sectionTitle": "Parsing beam size 21, α=0.3",
+          "subsectionTitle": "논문 텍스트",
+          "content": "- Beam size: `21`\n- Length penalty: `0.3`\n- 최대 길이: 입력 + `300`",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 54 at line 2686; 판정: DIRECT-CONFIGURABLE. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 54,
+          "sectionTitle": "Transformer의 최종 output probability",
+          "subsectionTitle": "논문 텍스트",
+          "content": "페이지 3 Figure 1 최상단:\n\n```\nLinear → Softmax → Output Probabilities\n```",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 55 at line 2723; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 55,
+          "sectionTitle": "Layer Normalization",
+          "subsectionTitle": "논문 참고문헌",
+          "content": "Jimmy Lei Ba 외, Layer Normalization.",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 56 at line 2774; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting."
+        },
+        {
+          "chunkIndex": 56,
+          "sectionTitle": "Adam",
+          "subsectionTitle": "논문 참고문헌",
+          "content": "Kingma와 Ba의 Adam optimizer.",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 57 at line 2797; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting."
+        },
+        {
+          "chunkIndex": 57,
+          "sectionTitle": "Label smoothing",
+          "subsectionTitle": "논문 참고문헌",
+          "content": "Szegedy 외의 label smoothing.",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 58 at line 2821; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting."
+        },
+        {
+          "chunkIndex": 58,
+          "sectionTitle": "BPE",
+          "subsectionTitle": "논문 참고문헌",
+          "content": "Sennrich 외의 subword unit 방식.",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 59 at line 2844; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting."
+        },
+        {
+          "chunkIndex": 59,
+          "sectionTitle": "Attention weight 시각화",
+          "subsectionTitle": "논문 텍스트",
+          "content": "페이지 13~15의 Figure 3~5는 서로 다른 attention head가 다음을 학습하는 사례를 보여줍니다.\n\n- 장거리 의존성\n- 대명사와 선행사 관계\n- 문장 구조와 관련된 서로 다른 패턴",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 60 at line 2864; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting."
+        },
+        {
+          "chunkIndex": 60,
+          "sectionTitle": "Padding mask",
+          "subsectionTitle": "논문 대응",
+          "content": "논문은 padding mask 구현식을 자세히 제시하지 않습니다.",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 61 at line 2982; 판정: EXTRA / IMPLEMENTATION DETAIL. Content copied from uploaded markdown ### 논문 대응 block without rewriting."
+        },
+        {
+          "chunkIndex": 61,
+          "sectionTitle": "Beam search translator",
+          "subsectionTitle": "논문 대응",
+          "content": "논문은 beam size와 length penalty를 설명하지만 전체 beam search algorithm을 코드 수준으로 제시하지 않습니다.",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 62 at line 3008; 판정: EXTRA / DIRECTLY SUPPORTS PAPER INFERENCE. Content copied from uploaded markdown ### 논문 대응 block without rewriting."
+        },
+        {
+          "chunkIndex": 62,
+          "sectionTitle": "Xavier parameter initialization",
+          "subsectionTitle": "논문 대응",
+          "content": "논문은 Transformer parameter 전체에 대한 Xavier initialization을 명시적으로 설명하지 않습니다.",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "mappedCode": [],
+          "_comment": "Source markdown section 63 at line 3048; 판정: EXTRA. Content copied from uploaded markdown ### 논문 대응 block without rewriting."
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+          "repositoryName": "attention-is-all-you-need-pytorch",
+          "ownerName": "jadore801120",
+          "defaultBranch": "master",
+          "licenseName": null,
+          "primaryLanguage": "Python",
+          "starCount": 0,
+          "relationType": "COMMUNITY",
+          "isPrimary": true,
+          "codeBlocks": [
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "Transformer",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "class Transformer(nn.Module):\n\n    def __init__(\n        self,\n        n_src_vocab,\n        n_trg_vocab,\n        src_pad_idx,\n        trg_pad_idx,\n        d_word_vec=512,\n        d_model=512,\n        d_inner=2048,\n        n_layers=6,\n        n_head=8,\n        d_k=64,\n        d_v=64,\n        dropout=0.1,\n        n_position=200,\n        trg_emb_prj_weight_sharing=True,\n        emb_src_trg_weight_sharing=True,\n        scale_emb_or_prj='prj'\n    ):\n        super().__init__()\n\n        self.src_pad_idx = src_pad_idx\n        self.trg_pad_idx = trg_pad_idx\n\n        self.encoder = Encoder(\n            n_src_vocab=n_src_vocab,\n            d_word_vec=d_word_vec,\n            n_layers=n_layers,\n            n_head=n_head,\n            d_k=d_k,\n            d_v=d_v,\n            d_model=d_model,\n            d_inner=d_inner,\n            pad_idx=src_pad_idx,\n            n_position=n_position,\n            dropout=dropout,\n            scale_emb=False\n        )\n\n        self.decoder = Decoder(\n            n_trg_vocab=n_trg_vocab,\n            d_word_vec=d_word_vec,\n            n_layers=n_layers,\n            n_head=n_head,\n            d_k=d_k,\n            d_v=d_v,\n            d_model=d_model,\n            d_inner=d_inner,\n            pad_idx=trg_pad_idx,\n            n_position=n_position,\n            dropout=dropout,\n            scale_emb=False\n        )\n\n        self.trg_word_prj = nn.Linear(\n            d_model,\n            n_trg_vocab,\n            bias=False\n        )",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers."
+            },
+            {
+              "filePath": "transformer/Translator.py",
+              "symbolName": "dec_output___self_model_decoder",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "dec_output, *_ = self.model.decoder(\n    trg_seq,\n    trg_mask,\n    enc_output,\n    src_mask\n)\n\nseq_logit = self.model.trg_word_prj(\n    dec_output\n)\n\nbest_k_probs, best_k_idx = seq_logit[\n    :,\n    -1,\n    :\n].log_softmax(dim=1).topk(\n    beam_size\n)",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers.",
+              "_symbolComment": "symbolName inferred from first uploaded code line because repository symbol metadata was not present in the document."
+            },
+            {
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "residual",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "residual = q\n\nq = self.w_qs(q).view(\n    sz_b,\n    len_q,\n    n_head,\n    d_k\n)\n\nq, attn = self.attention(\n    q,\n    k,\n    v,\n    mask=mask\n)\n\nq = q.transpose(\n    1,\n    2\n).contiguous().view(\n    sz_b,\n    len_q,\n    -1\n)\n\nq = self.dropout(\n    self.fc(q)\n)\n\nq += residual\n\nq = self.layer_norm(q)",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers.",
+              "_symbolComment": "symbolName inferred from assignment in uploaded document because repository line metadata was not present in the document."
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "get_subsequent_mask",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "def get_subsequent_mask(seq):\n    \"\"\"For masking out the subsequent info.\"\"\"\n\n    sz_b, len_s = seq.size()\n\n    subsequent_mask = (\n        1\n        - torch.triu(\n            torch.ones(\n                (\n                    1,\n                    len_s,\n                    len_s\n                ),\n                device=seq.device\n            ),\n            diagonal=1\n        )\n    ).bool()\n\n    return subsequent_mask",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers."
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "trg_mask",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "trg_mask = (\n    get_pad_mask(\n        trg_seq,\n        self.trg_pad_idx\n    )\n    & get_subsequent_mask(trg_seq)\n)",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers.",
+              "_symbolComment": "symbolName inferred from assignment in uploaded document because repository line metadata was not present in the document."
+            },
+            {
+              "filePath": "transformer/Modules.py",
+              "symbolName": "ScaledDotProductAttention",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "class ScaledDotProductAttention(nn.Module):\n\n    def __init__(\n        self,\n        temperature,\n        attn_dropout=0.1\n    ):\n        super().__init__()\n\n        self.temperature = temperature\n\n        self.dropout = nn.Dropout(\n            attn_dropout\n        )\n\n    def forward(\n        self,\n        q,\n        k,\n        v,\n        mask=None\n    ):\n        attn = torch.matmul(\n            q / self.temperature,\n            k.transpose(2, 3)\n        )\n\n        if mask is not None:\n            attn = attn.masked_fill(\n                mask == 0,\n                -1e9\n            )\n\n        attn = self.dropout(\n            F.softmax(\n                attn,\n                dim=-1\n            )\n        )\n\n        output = torch.matmul(\n            attn,\n            v\n        )\n\n        return output, attn",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers."
+            },
+            {
+              "filePath": "transformer/Modules.py",
+              "symbolName": "attention",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "self.attention = ScaledDotProductAttention(\n    temperature=d_k ** 0.5\n)",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers.",
+              "_symbolComment": "symbolName inferred from assignment in uploaded document because repository line metadata was not present in the document."
+            },
+            {
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "MultiHeadAttention",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "class MultiHeadAttention(nn.Module):\n\n    def __init__(\n        self,\n        n_head,\n        d_model,\n        d_k,\n        d_v,\n        dropout=0.1\n    ):\n        super().__init__()\n\n        self.n_head = n_head\n        self.d_k = d_k\n        self.d_v = d_v\n\n        self.w_qs = nn.Linear(\n            d_model,\n            n_head * d_k,\n            bias=False\n        )\n\n        self.w_ks = nn.Linear(\n            d_model,\n            n_head * d_k,\n            bias=False\n        )\n\n        self.w_vs = nn.Linear(\n            d_model,\n            n_head * d_v,\n            bias=False\n        )\n\n        self.fc = nn.Linear(\n            n_head * d_v,\n            d_model,\n            bias=False\n        )\n\n        self.attention = ScaledDotProductAttention(\n            temperature=d_k ** 0.5\n        )\n\n        self.dropout = nn.Dropout(dropout)\n\n        self.layer_norm = nn.LayerNorm(\n            d_model,\n            eps=1e-6\n        )",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers."
+            },
+            {
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "q",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "q = self.w_qs(q).view(\n    sz_b,\n    len_q,\n    n_head,\n    d_k\n)\n\nk = self.w_ks(k).view(\n    sz_b,\n    len_k,\n    n_head,\n    d_k\n)\n\nv = self.w_vs(v).view(\n    sz_b,\n    len_v,\n    n_head,\n    d_v\n)\n\nq = q.transpose(1, 2)\nk = k.transpose(1, 2)\nv = v.transpose(1, 2)\n\nq, attn = self.attention(\n    q,\n    k,\n    v,\n    mask=mask\n)\n\nq = q.transpose(\n    1,\n    2\n).contiguous().view(\n    sz_b,\n    len_q,\n    -1\n)\n\nq = self.dropout(\n    self.fc(q)\n)",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers.",
+              "_symbolComment": "symbolName inferred from assignment in uploaded document because repository line metadata was not present in the document."
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "get_position_angle_vec",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "def get_position_angle_vec(\n    position\n):\n    return [\n        position\n        / np.power(\n            10000,\n            2 * (hid_j // 2)\n            / d_hid\n        )\n        for hid_j in range(d_hid)\n    ]\n\nsinusoid_table = np.array([\n    get_position_angle_vec(\n        pos_i\n    )\n    for pos_i in range(n_position)\n])\n\nsinusoid_table[\n    :,\n    0::2\n] = np.sin(\n    sinusoid_table[\n        :,\n        0::2\n    ]\n)\n\nsinusoid_table[\n    :,\n    1::2\n] = np.cos(\n    sinusoid_table[\n        :,\n        1::2\n    ]\n)",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers."
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "position_enc",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "self.position_enc = nn.Embedding.from_pretrained(\n    torch.FloatTensor(\n        sinusoid_table\n    ),\n    freeze=True\n)",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers.",
+              "_symbolComment": "symbolName inferred from assignment in uploaded document because repository line metadata was not present in the document."
+            },
+            {
+              "filePath": "transformer/Optim.py",
+              "symbolName": "ScheduledOptim",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "class ScheduledOptim:\n\n    def __init__(\n        self,\n        optimizer,\n        lr_mul,\n        d_model,\n        n_warmup_steps\n    ):\n        self._optimizer = optimizer\n\n        self.lr_mul = lr_mul\n        self.d_model = d_model\n\n        self.n_warmup_steps = (\n            n_warmup_steps\n        )\n\n        self.n_steps = 0\n\n    def step_and_update_lr(self):\n        self._update_learning_rate()\n        self._optimizer.step()\n\n    def zero_grad(self):\n        self._optimizer.zero_grad()\n\n    def _get_lr_scale(self):\n        d_model = self.d_model\n\n        n_steps = self.n_steps\n\n        n_warmup_steps = (\n            self.n_warmup_steps\n        )\n\n        return (\n            d_model ** -0.5\n        ) * min(\n            n_steps ** -0.5,\n            n_steps\n            * n_warmup_steps ** -1.5\n        )\n\n    def _update_learning_rate(self):\n        self.n_steps += 1\n\n        lr = (\n            self.lr_mul\n            * self._get_lr_scale()\n        )\n\n        for param_group in (\n            self._optimizer.param_groups\n        ):\n            param_group[\"lr\"] = lr",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers."
+            },
+            {
+              "filePath": "transformer/Translator.py",
+              "symbolName": "beam_size",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "self.beam_size = beam_size",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers.",
+              "_symbolComment": "symbolName inferred from assignment in uploaded document because repository line metadata was not present in the document."
+            },
+            {
+              "filePath": "transformer/Translator.py",
+              "symbolName": null,
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": null,
+              "endLine": null,
+              "codeContent": "best_k_probs, best_k_idx = (\n    seq_logit[\n        :,\n        -1,\n        :\n    ]\n    .log_softmax(dim=1)\n    .topk(beam_size)\n)",
+              "_comment": "codeContent copied verbatim from the uploaded markdown code block. startLine/endLine are null because the uploaded document did not provide repository line numbers.",
+              "_symbolComment": "No stable symbolName was present in the uploaded document."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

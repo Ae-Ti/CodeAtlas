@@ -1,0 +1,105 @@
+{
+  "_comment": [
+    "scripts/ingest.py 입력 형식 예시입니다. A의 Python 파이프라인이 이 모양으로 뽑아주면 됩니다.",
+    "실행:  python3 scripts/ingest.py database/ingest_example.json --dry-run",
+    "embedding은 넣지 않습니다 — 적재 후 백엔드를 backfill 모드로 띄우면 채워집니다.",
+    "_ 로 시작하는 키는 무시되므로 주석처럼 써도 됩니다."
+  ],
+  "papers": [
+    {
+      "arxivId": "1706.03762",
+      "title": "Attention Is All You Need",
+      "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+      "pdfUrl": "https://arxiv.org/pdf/1706.03762",
+      "publishedDate": "2017-06-12",
+      "processingStatus": "COMPLETED",
+      "authors": [
+        "Ashish Vaswani",
+        "Noam Shazeer",
+        "Niki Parmar"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "Multi-Head Attention",
+          "subsectionTitle": null,
+          "content": "Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. Instead of performing a single attention function, we linearly project the queries, keys and values h times with different, learned linear projections.",
+          "pageStart": 4,
+          "pageEnd": 5,
+          "tokenCount": 96,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/harvardnlp/annotated-transformer",
+              "filePath": "model/attention.py",
+              "symbolName": "forward",
+              "startLine": 42,
+              "reason": "h개 헤드로 선형 프로젝션 → 병렬 attention → concat 후 최종 projection까지 논문 절차와 1:1 대응"
+            },
+            {
+              "githubUrl": "https://github.com/harvardnlp/annotated-transformer",
+              "filePath": "model/attention.py",
+              "symbolName": "attention",
+              "startLine": 12,
+              "reason": "multi-head가 내부적으로 호출하는 단일 attention 함수"
+            }
+          ],
+          "_comment": "mappedCode = 노트 앱에서 이 단락에 분류해둔 코드. 맨 앞이 Top-1 정답."
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "Scaled Dot-Product Attention",
+          "content": "We compute the dot products of the query with all keys, divide each by sqrt(d_k), and apply a softmax function to obtain the weights on the values.",
+          "pageStart": 3,
+          "pageEnd": 4,
+          "tokenCount": 104,
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/harvardnlp/annotated-transformer",
+              "filePath": "model/attention.py",
+              "symbolName": "attention",
+              "startLine": 12,
+              "reason": "QK^T / sqrt(d_k) 스케일링과 softmax가 그대로 구현돼 있음"
+            }
+          ]
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/harvardnlp/annotated-transformer",
+          "ownerName": "harvardnlp",
+          "repositoryName": "annotated-transformer",
+          "defaultBranch": "master",
+          "licenseName": "MIT",
+          "primaryLanguage": "Python",
+          "starCount": 6200,
+          "relationType": "COMMUNITY",
+          "isPrimary": true,
+          "processingStatus": "COMPLETED",
+          "codeBlocks": [
+            {
+              "filePath": "model/attention.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "MultiHeadedAttention",
+              "programmingLanguage": "Python",
+              "startLine": 42,
+              "endLine": 89,
+              "codeContent": "def forward(self, query, key, value, mask=None):\n    \"Implements Figure 2\"\n    if mask is not None:\n        mask = mask.unsqueeze(1)\n    nbatches = query.size(0)\n    query, key, value = [\n        lin(x).view(nbatches, -1, self.h, self.d_k).transpose(1, 2)\n        for lin, x in zip(self.linears, (query, key, value))\n    ]\n    x, self.attn = attention(query, key, value, mask=mask, dropout=self.dropout)\n    x = x.transpose(1, 2).contiguous().view(nbatches, -1, self.h * self.d_k)\n    return self.linears[-1](x)"
+            },
+            {
+              "_comment": "따옴표·백슬래시·$·유니코드가 섞인 케이스 — dollar-quoting 검증용",
+              "filePath": "model/attention.py",
+              "symbolName": "attention",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 12,
+              "endLine": 24,
+              "codeContent": "def attention(query, key, value, mask=None, dropout=None):\n    \"\"\"Compute 'Scaled Dot Product Attention'.\n    수식: softmax(QK^T / √d_k)V   # 100$ 짜리 주석, path='C:\\\\tmp'\n    \"\"\"\n    d_k = query.size(-1)\n    scores = torch.matmul(query, key.transpose(-2, -1)) / math.sqrt(d_k)\n    if mask is not None:\n        scores = scores.masked_fill(mask == 0, -1e9)\n    p_attn = scores.softmax(dim=-1)\n    if dropout is not None:\n        p_attn = dropout(p_attn)\n    return torch.matmul(p_attn, value), p_attn"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

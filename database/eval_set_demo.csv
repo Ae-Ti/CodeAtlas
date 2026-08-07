@@ -1,0 +1,10 @@
+# CodeAtlas 검색 품질 평가용 정답셋 (demo seed 기준 예시)
+# A가 로드맵 2주차에 30쌍으로 확장할 파일의 형식 예시입니다.
+# chunk_id: paper_chunks.id / code_block_id: code_blocks.id (사람이 수동 검수한 정답 1개)
+chunk_id,code_block_id
+101,501
+102,502
+103,503
+104,504
+201,506
+301,507
