@@ -85,6 +85,47 @@ if curl -sf -m 3 "$OLLAMA/api/tags" >/dev/null 2>&1; then
     if echo "$models" | grep -q "\"$m"; then ok "모델 $m"
     else bad "모델 $m 없음" "ollama pull $m"; fi
   done
+
+  # /api/tags 는 메타데이터만 돌려줍니다. 추론 엔진이 멈춰도 200이 나오므로
+  # (실제로 겪었습니다 — 큐레이션 배치가 조용히 멈춰 있었습니다)
+  # 임베딩과 생성을 한 번씩 실제로 호출해서 확인합니다.
+  emb=$(curl -s -m 20 "$OLLAMA/api/embed" \
+        -d '{"model":"nomic-embed-text","input":"healthcheck"}' 2>/dev/null)
+  dims=$(echo "$emb" | python3 -c \
+         "import json,sys; print(len(json.load(sys.stdin)['embeddings'][0]))" 2>/dev/null)
+  if [ "$dims" = "768" ]; then
+    ok "임베딩 생성 확인 (768차원)"
+  elif [ -n "$dims" ]; then
+    bad "임베딩 차원이 $dims — 768이어야 함" \
+        "Script-3_pgvector.sql 의 vector(768) 과 맞지 않습니다"
+  else
+    bad "임베딩 생성 실패" "ollama serve 를 재시작하세요"
+  fi
+
+  # 생성 모델은 큐레이션 배치가 점유하고 있으면 응답이 한참 밀립니다.
+  # "멈춤"과 "바쁨"은 밖에서 구분할 수 없으므로, 임베딩이 살아 있는지를 함께 봅니다.
+  # 임베딩은 다른 러너라서 qwen3 가 바쁜 동안에도 응답합니다.
+  #   임베딩 ❌            → 추론 엔진 전체가 멈춤 (재시작 필요)
+  #   임베딩 ✅ + 생성 ❌   → 점유 중일 가능성이 큼 (경고만)
+  gen_timeout="${CODEATLAS_OLLAMA_GEN_TIMEOUT:-90}"
+  gen_start=$(date +%s)
+  if curl -sf -m "$gen_timeout" "$OLLAMA/api/generate" \
+       -d '{"model":"qwen3:8b","prompt":"ping","stream":false,"options":{"num_predict":1}}' \
+       >/dev/null 2>&1; then
+    gen_sec=$(( $(date +%s) - gen_start ))
+    if [ "$gen_sec" -le 30 ]; then
+      ok "텍스트 생성 확인 (${gen_sec}초)"
+    else
+      warn "텍스트 생성이 ${gen_sec}초 걸림" \
+           "모델 최초 로딩이면 정상입니다. 반복되면 ollama serve 재시작"
+    fi
+  elif [ "$dims" = "768" ]; then
+    warn "텍스트 생성이 ${gen_timeout}초 안에 응답 없음 (임베딩은 정상)" \
+         "큐레이션 배치가 qwen3 를 점유 중일 수 있습니다. 배치가 없는데도 이러면 ollama serve 재시작"
+  else
+    bad "텍스트 생성·임베딩 모두 응답 없음" \
+        "/api/tags 가 200 이어도 추론이 멈춰 있습니다. ollama serve 를 재시작하세요"
+  fi
 else
   bad "Ollama 응답 없음 ($OLLAMA)" "ollama serve  (미설치면 https://ollama.com)"
 fi
