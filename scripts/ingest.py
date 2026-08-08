@@ -193,6 +193,64 @@ def validate(doc):
     return errors
 
 
+# ── 경고 ──────────────────────────────────────────────────────
+def warnings_for(doc):
+    """
+    적재 자체는 되지만 나중에 문제가 되는 것들. 차단하지 않고 알리기만 합니다.
+
+    validate()가 "지금 실패할 것"을 잡는다면, 여기는 "다음 번에 실패할 것"과
+    "조용히 데이터를 잃는 것"을 잡습니다.
+    """
+    warns = []
+
+    for pi, p in enumerate(doc.get('papers') or []):
+        where = f'papers[{pi}]'
+        arxiv = p.get('arxivId')
+
+        # papers는 arxiv_id로 UPSERT합니다. 빈 값으로 덮으면 이미 들어 있던 메타데이터가
+        # 조용히 사라집니다 (lit()이 빈 문자열을 NULL로 바꿉니다).
+        if not (p.get('abstract') or '').strip():
+            warns.append(f'{where}: abstract 가 비어 있습니다 — 이미 적재된 논문이라면 '
+                         f'기존 초록을 NULL로 덮어씁니다 (arxivId={arxiv})')
+        if not (p.get('authors') or []):
+            warns.append(f'{where}: authors 가 비어 있습니다 — 이미 적재된 논문이라면 '
+                         f'기존 저자 목록을 []로 덮어씁니다 (arxivId={arxiv})')
+
+        for ri, r in enumerate(p.get('repositories') or []):
+            rw = f'{where}.repositories[{ri}]'
+            blocks = r.get('codeBlocks') or []
+
+            # uq_code_blocks_location 은 (repository_id, file_path, symbol_name, start_line) 인데
+            # PostgreSQL의 UNIQUE는 NULL을 서로 다른 값으로 봅니다. start_line 이 NULL이면
+            # ON CONFLICT 가 걸리지 않아 재적재 때마다 같은 블록이 새 행으로 쌓이고,
+            # 그 다음 --insert-mappings 의 block_ref() 서브쿼리가 2행을 반환해 실패합니다.
+            no_line = [bi for bi, b in enumerate(blocks) if b.get('startLine') is None]
+            if no_line:
+                warns.append(
+                    f'{rw}: codeBlocks {len(no_line)}/{len(blocks)} 건에 startLine 이 없습니다 '
+                    f'(index {fmt_idx(no_line)}) — uq_code_blocks_location 이 NULL을 서로 다른 값으로 '
+                    f'취급하므로 ON CONFLICT 가 걸리지 않습니다. 두 번째 적재부터 code_blocks 가 '
+                    f'중복되고 --insert-mappings 가 "more than one row returned by a subquery" 로 '
+                    f'실패합니다.\n'
+                    f'     → GitHub 원본 기준 startLine/endLine 을 채우거나, '
+                    f'적재 전 scripts/reset_db.sh 로 초기화하세요.')
+
+            no_symbol = [bi for bi, b in enumerate(blocks) if not b.get('symbolName')]
+            if no_symbol:
+                warns.append(
+                    f'{rw}: codeBlocks {len(no_symbol)} 건에 symbolName 이 없습니다 '
+                    f'(index {fmt_idx(no_symbol)}) — 자연키가 filePath 하나로 좁아져 '
+                    f'같은 파일의 다른 심볼과 구분되지 않습니다.')
+
+    return warns
+
+
+def fmt_idx(idxs, limit=8):
+    """인덱스 목록을 짧게 — 많으면 뒤를 생략합니다."""
+    head = ', '.join(str(i) for i in idxs[:limit])
+    return head if len(idxs) <= limit else f'{head}, … (+{len(idxs) - limit})'
+
+
 # ── SQL 생성 ──────────────────────────────────────────────────
 def build_sql(doc):
     out = ['BEGIN;']
@@ -372,6 +430,14 @@ def main():
     manual = len(list(iter_manual_mappings(doc)))
     print(f'✅ 검증 통과 — 논문 {len(papers)} / chunk {chunks} / repo {repos} / code_block {blocks}'
           + (f' / 수동매핑 {manual}' if manual else ''))
+
+    # 경고는 적재를 막지 않습니다 — 종료 코드도 바꾸지 않습니다.
+    warns = warnings_for(doc)
+    if warns:
+        print(f'\n⚠️  경고 {len(warns)}건 (적재는 진행됩니다)')
+        for w in warns:
+            print(f'  · {w}')
+        print()
 
     sql = build_sql(doc)
     if args.print_sql:
