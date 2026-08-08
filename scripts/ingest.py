@@ -370,24 +370,37 @@ ON CONFLICT (paper_chunk_id, code_block_id) DO UPDATE SET
     return '\n'.join(out)
 
 
-def build_eval_query(doc):
+def build_eval_query(doc, include_alternates=False):
     """
     정답셋 CSV(chunk_id,code_block_id)를 만들기 위한 조회 쿼리.
+
     각 단락의 mappedCode 중 **첫 번째**가 Top-1 정답입니다 —
     노트에 적을 때 가장 정확한 코드를 맨 앞에 두세요.
-    """
-    firsts = []
-    seen = set()
-    for arxiv_id, chunk_index, m in iter_manual_mappings(doc):
-        if (arxiv_id, chunk_index) in seen:
-            continue
-        seen.add((arxiv_id, chunk_index))
-        firsts.append((arxiv_id, chunk_index, m))
 
-    if not firsts:
+    include_alternates=True 면 mappedCode 전체를 내보냅니다. 같은 chunk 가 여러 행이
+    되는데, eval_retrieval.py 는 첫 행을 Top-1 정답으로 보고 나머지는 --multi-gold
+    일 때만 인정합니다. 즉 한 파일로 엄격/완화 두 기준을 다 잴 수 있습니다.
+
+    순서가 의미를 가지므로(첫 행 = Top-1) 정렬 키를 함께 실어 보냅니다 —
+    UNION ALL 의 행 순서는 보장되지 않습니다.
+    """
+    order, seq = {}, {}      # chunk 등장 순서 / chunk 안에서의 순번(0 = Top-1)
+    selects = []
+    for arxiv_id, chunk_index, m in iter_manual_mappings(doc):
+        key = (arxiv_id, chunk_index)
+        if key not in order:
+            order[key], seq[key] = len(order), 0
+        elif include_alternates:
+            seq[key] += 1
+        else:
+            continue
+        selects.append((order[key], seq[key], arxiv_id, chunk_index, m))
+
+    if not selects:
         return None
     return '\nUNION ALL\n'.join(
-        f"SELECT {chunk_ref(a, i)} || ',' || {block_ref(m)}" for a, i, m in firsts)
+        f"SELECT {ci} || '|' || {sq} || '|' || {chunk_ref(a, i)} || ',' || {block_ref(m)}"
+        for ci, sq, a, i, m in selects)
 
 
 def psql(container, db, user, sql, tuples_only=False):
@@ -407,6 +420,9 @@ def main():
                         help="chunks[].mappedCode 를 paper_code_mappings에 MANUAL/검증완료로 저장")
     parser.add_argument('--eval-csv', metavar='PATH',
                         help='chunks[].mappedCode 로 정답셋 CSV 생성 (eval_retrieval.py 입력)')
+    parser.add_argument('--eval-all', action='store_true',
+                        help='--eval-csv 에 mappedCode 전체를 기록 (chunk 당 여러 행, 첫 행이 Top-1). '
+                             'eval_retrieval.py --multi-gold 로 완화 기준을 잴 수 있습니다')
     parser.add_argument('--container', default='codeatlas-postgres')
     parser.add_argument('--db', default='codeatlas')
     parser.add_argument('--user', default='codeatlas')
@@ -465,7 +481,7 @@ def main():
             print(f'✅ 수동 매핑 {manual}건 저장 (mapping_method=MANUAL, is_verified=TRUE)')
 
     if args.eval_csv:
-        query = build_eval_query(doc)
+        query = build_eval_query(doc, include_alternates=args.eval_all)
         if query is None:
             print('   --eval-csv 를 줬지만 mappedCode 가 하나도 없습니다.')
         else:
@@ -473,11 +489,19 @@ def main():
             if r.returncode != 0:
                 print(f'\n❌ 정답셋 생성 실패\n{r.stderr}', file=sys.stderr)
                 sys.exit(1)
-            pairs = [ln for ln in r.stdout.splitlines() if ln.strip() and ',' in ln]
+            # 'chunk순서|chunk내순번|chunk_id,block_id' — 순서가 의미를 가지므로 정렬 후 키를 뗍니다.
+            rows = []
+            for ln in r.stdout.splitlines():
+                parts = ln.strip().split('|')
+                if len(parts) == 3 and ',' in parts[2]:
+                    rows.append((int(parts[0]), int(parts[1]), parts[2]))
+            rows.sort()
+            chunks = len({r[0] for r in rows})
             with open(args.eval_csv, 'w', encoding='utf-8') as f:
                 f.write('chunk_id,code_block_id\n')
-                f.write('\n'.join(pairs) + '\n')
-            print(f'✅ 정답셋 {len(pairs)}쌍 → {args.eval_csv}')
+                f.write('\n'.join(pair for _, _, pair in rows) + '\n')
+            note = ' (mappedCode 전체)' if args.eval_all else ' (chunk 당 Top-1만)'
+            print(f'✅ 정답셋 chunk {chunks}개 / {len(rows)}행{note} → {args.eval_csv}')
 
     summary = psql(args.container, args.db, args.user, """
 SELECT '  DB 총계: papers ' || (SELECT count(*) FROM papers)
