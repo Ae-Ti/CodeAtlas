@@ -15,11 +15,14 @@ public class PaperCatalogService {
     public record PaperSummary(
             Long paperId,
             String title,
+            String abstractText,
             List<String> authors,
             String arxivId,
             String pdfUrl,
             LocalDate publishedDate,
-            String processingStatus
+            String processingStatus,
+            int chunkCount,
+            int mappedChunkCount
     ) {}
 
     public record ChunkSummary(
@@ -39,7 +42,7 @@ public class PaperCatalogService {
      * 500으로 죽는 것을 막아줍니다.
      */
     private static final String PAPER_SELECT = """
-            SELECT p.id, p.title, p.arxiv_id, p.pdf_url, p.published_date, p.processing_status,
+            SELECT p.id, p.title, p.abstract, p.arxiv_id, p.pdf_url, p.published_date, p.processing_status,
                    COALESCE(
                        CASE WHEN jsonb_typeof(p.authors) = 'array' THEN (
                            SELECT array_agg(a->>'name' ORDER BY ord)
@@ -47,7 +50,12 @@ public class PaperCatalogService {
                            WHERE a->>'name' IS NOT NULL
                        ) END,
                        ARRAY[]::text[]
-                   ) AS author_names
+                   ) AS author_names,
+                   (SELECT count(*) FROM paper_chunks pc WHERE pc.paper_id = p.id) AS chunk_count,
+                   (SELECT count(DISTINCT m.paper_chunk_id)
+                    FROM paper_code_mappings m
+                    JOIN paper_chunks pc2 ON pc2.id = m.paper_chunk_id
+                    WHERE pc2.paper_id = p.id) AS mapped_chunk_count
             FROM papers p
             ORDER BY p.id
             """;
@@ -55,11 +63,14 @@ public class PaperCatalogService {
     private static final RowMapper<PaperSummary> PAPER_MAPPER = (rs, rowNum) -> new PaperSummary(
             rs.getLong("id"),
             rs.getString("title"),
+            rs.getString("abstract"),
             toList(rs.getArray("author_names")),
             rs.getString("arxiv_id"),
             rs.getString("pdf_url"),
             rs.getObject("published_date", LocalDate.class),
-            rs.getString("processing_status")
+            rs.getString("processing_status"),
+            rs.getInt("chunk_count"),
+            rs.getInt("mapped_chunk_count")
     );
 
     private static final RowMapper<ChunkSummary> CHUNK_MAPPER = (rs, rowNum) -> new ChunkSummary(

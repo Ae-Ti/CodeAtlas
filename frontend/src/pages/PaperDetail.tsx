@@ -1,61 +1,125 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, Code2, ExternalLink, X, FileCode } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, Code2, ExternalLink, X, FileCode, Sparkles, Zap } from 'lucide-react';
 import Editor, { type OnMount } from '@monaco-editor/react';
-import { mockPapers } from '../data/papers';
-import { getChunksByPaperId } from '../data/chunks';
-import { getCodeBlocksForChunk, type CodeBlock } from '../data/codeBlocks';
+import { api, symbolLabel, type CodeMatch, type AgentQueryResponse } from '../api/client';
+import { useApi } from '../hooks/useApi';
+import { Loading, ErrorBox, EmptyState } from '../components/AsyncStates';
 
-const chunkTypeColors: Record<string, string> = {
-  method: 'var(--primary)',
-  architecture: 'var(--accent)',
-  training: 'var(--warning)',
-  evaluation: 'var(--success)',
-};
-
-// Deterministic mock "keyword overlap" so the similarity score is explainable
+// Deterministic "keyword overlap" so the similarity score is explainable
 // (vector similarity vs. how many chunk keywords also appear in the code).
-function computeKeywordOverlap(chunkText: string, code: CodeBlock): number {
+function computeKeywordOverlap(chunkText: string, code: CodeMatch): number {
   const stopWords = new Set(['that', 'this', 'with', 'from', 'into', 'were', 'have', 'each', 'they', 'their']);
   const chunkWords = Array.from(new Set(
     chunkText.toLowerCase().match(/[a-z]{4,}/g)?.filter(w => !stopWords.has(w)) ?? []
   ));
   if (chunkWords.length === 0) return 0;
-  const codeCorpus = `${code.codeText} ${code.explanation} ${code.functionName} ${code.className ?? ''}`.toLowerCase();
-  const matches = chunkWords.filter(w => codeCorpus.includes(w)).length;
+  const corpus = `${code.codeContent} ${code.filePath} ${code.symbolName ?? ''} ${code.parentSymbolName ?? ''}`.toLowerCase();
+  const matches = chunkWords.filter(w => corpus.includes(w)).length;
   return Math.min(1, matches / chunkWords.length);
 }
 
-export default function PaperDetail() {
-  const { paperId } = useParams<{ paperId: string }>();
-  const [searchParams] = useSearchParams();
-  const paper = mockPapers.find(p => p.paperId === Number(paperId));
-  const chunks = useMemo(() => getChunksByPaperId(Number(paperId)), [paperId]);
+/** 선택된 chunk의 AI 근거. 사전계산돼 있으면 즉시, 아니면 그 자리에서 Qwen3를 부른다. */
+function AiExplanation({ paperId, chunkId }: { paperId: number; chunkId: number }) {
+  const [state, setState] = useState<{ data: AgentQueryResponse | null; loading: boolean; error: string | null }>(
+    { data: null, loading: true, error: null });
 
-  const chunkIdParam = searchParams.get('chunkId');
-  const [activeChunkId, setActiveChunkId] = useState<number | null>(() => {
-    const parsed = chunkIdParam ? Number(chunkIdParam) : null;
-    if (parsed && chunks.some(c => c.chunkId === parsed)) return parsed;
-    return chunks[0]?.chunkId || null;
-  });
-  const [viewingCode, setViewingCode] = useState<CodeBlock | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    setState({ data: null, loading: true, error: null });
+    api.agentQuery('이 섹션은 코드로 어떻게 구현됐어?', paperId, chunkId)
+      .then(d => { if (!cancelled) setState({ data: d, loading: false, error: null }); })
+      .catch((e: Error) => { if (!cancelled) setState({ data: null, loading: false, error: e.message }); });
+    return () => { cancelled = true; };
+  }, [paperId, chunkId]);
+
+  if (state.loading) {
+    return (
+      <div className="glass-card" style={{ padding: 20, marginBottom: 16 }}>
+        <div className="agent-section-title" style={{ marginBottom: 8 }}>
+          <Sparkles size={14} /> 1위 매칭 근거
+        </div>
+        <p style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>
+          생성 중… 사전계산되지 않은 chunk면 Qwen3를 지금 호출하므로 수십 초 걸릴 수 있습니다.
+        </p>
+      </div>
+    );
+  }
+  if (state.error || !state.data) return null;
+
+  const { explanation, source, mappingReason, tacc, results } = state.data;
+  const isPrecomputed = source === 'precomputed';
+  const topCode = results[0];
+
+  return (
+    <div className="glass-card" style={{ padding: 20, marginBottom: 16 }}>
+      <div className="agent-section-title" style={{ marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Sparkles size={14} /> 1위 매칭 근거
+        <span
+          className="badge"
+          title={isPrecomputed
+            ? '큐레이션 배치가 미리 계산해둔 결과 — Ollama를 호출하지 않았습니다'
+            : '사전계산 결과가 없어 이 요청에서 Qwen3를 직접 호출했습니다'}
+          style={{
+            marginLeft: 'auto',
+            background: isPrecomputed ? 'rgba(16,185,129,0.15)' : 'rgba(245,158,11,0.15)',
+            color: isPrecomputed ? 'var(--success-light)' : 'var(--warning)',
+          }}
+        >
+          {isPrecomputed ? <><Zap size={10} style={{ marginRight: 4 }} />precomputed</> : 'live'}
+        </span>
+      </div>
+      {/* 이 설명이 어느 코드에 대한 것인지 명시 — 아래 목록 전체에 대한 평가가 아닙니다 */}
+      {topCode && (
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: 8, fontFamily: 'var(--font-mono)' }}>
+          {topCode.repositoryName} / {symbolLabel(topCode)}
+        </div>
+      )}
+      <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.7 }}>{explanation}</p>
+      <div style={{ marginTop: 10, fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+        {mappingReason ?? `TACC: 후보 ${tacc.initialContexts} → 선택 ${tacc.selectedContexts}`}
+      </div>
+      <p style={{ marginTop: 8, fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+        아래 목록의 2위 이하는 pgvector 유사도 순위이며, AI가 따로 판단한 결과가 아닙니다.
+      </p>
+    </div>
+  );
+}
+
+export default function PaperDetail() {
+  const { paperId: paperIdParam } = useParams<{ paperId: string }>();
+  const paperId = Number(paperIdParam);
+  const [searchParams] = useSearchParams();
+
+  const papersState = useApi(() => api.papers(), []);
+  const chunksState = useApi(() => api.chunks(paperId), [paperId]);
+
+  const paper = papersState.data?.find(p => p.paperId === paperId) ?? null;
+  const chunks = useMemo(() => chunksState.data ?? [], [chunksState.data]);
+
+  const [activeChunkId, setActiveChunkId] = useState<number | null>(null);
+  const [viewingCode, setViewingCode] = useState<CodeMatch | null>(null);
+
+  // chunk 목록이 도착한 뒤에 초기 선택을 정한다 (?chunkId= 우선, 없으면 첫 chunk)
+  useEffect(() => {
+    if (!chunks.length) return;
+    const requested = Number(searchParams.get('chunkId'));
+    const valid = chunks.some(c => c.chunkId === requested);
+    setActiveChunkId(valid ? requested : chunks[0].chunkId);
+  }, [chunks, searchParams]);
 
   const activeChunk = useMemo(
     () => chunks.find(c => c.chunkId === activeChunkId) ?? null,
     [chunks, activeChunkId]
   );
 
-  const codeResults = useMemo(() => {
-    if (!activeChunkId) return [];
-    return getCodeBlocksForChunk(activeChunkId);
-  }, [activeChunkId]);
-
-  // Chunks in this paper that already have code mappings, for the empty-state suggestion.
-  const mappedChunks = useMemo(
-    () => chunks.filter(c => getCodeBlocksForChunk(c.chunkId).length > 0),
-    [chunks]
+  const mappingState = useApi(
+    () => activeChunkId
+      ? api.mappingSearch(paperId, activeChunkId, 5)
+      : Promise.resolve({ queryChunk: null as never, results: [] as CodeMatch[] }),
+    [paperId, activeChunkId]
   );
-  const suggestedChunk = mappedChunks.find(c => c.chunkId !== activeChunkId) ?? null;
+  const codeResults = mappingState.data?.results ?? [];
 
   const handleCloseModal = useCallback(() => setViewingCode(null), []);
   const handleEditorMount: OnMount = useCallback((editor) => {
@@ -64,6 +128,16 @@ export default function PaperDetail() {
     requestAnimationFrame(() => editor.layout());
   }, []);
 
+  if (papersState.loading || chunksState.loading) {
+    return <div className="page"><div className="container"><Loading message="논문을 불러오는 중..." padding={80} /></div></div>;
+  }
+  if (papersState.error || chunksState.error) {
+    return (
+      <div className="page"><div className="container" style={{ paddingTop: 40 }}>
+        <ErrorBox error={papersState.error ?? chunksState.error!} onRetry={() => { papersState.reload(); chunksState.reload(); }} />
+      </div></div>
+    );
+  }
   if (!paper) {
     return (
       <div className="page">
@@ -77,6 +151,8 @@ export default function PaperDetail() {
     );
   }
 
+  const year = paper.publishedDate ? paper.publishedDate.slice(0, 4) : '—';
+
   return (
     <div className="page paper-detail-page">
       <div className="container">
@@ -87,7 +163,8 @@ export default function PaperDetail() {
           </Link>
           <h1 className="page-title" style={{ fontSize: '1.6rem' }}>{paper.title}</h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-            {paper.authors} · {paper.year} · <span className={`badge badge-${paper.task.toLowerCase()}`} style={{ marginLeft: 4 }}>{paper.task}</span>
+            {paper.authors.join(', ') || '저자 정보 없음'} · {year}
+            {paper.arxivId && <> · <span style={{ fontFamily: 'var(--font-mono)' }}>arXiv:{paper.arxivId}</span></>}
           </p>
         </div>
 
@@ -106,14 +183,16 @@ export default function PaperDetail() {
                   onClick={() => setActiveChunkId(chunk.chunkId)}
                 >
                   <div className="chunk-type">
-                    <span className="badge" style={{
-                      background: `${chunkTypeColors[chunk.chunkType]}20`,
-                      color: chunkTypeColors[chunk.chunkType],
-                    }}>
-                      {chunk.chunkType}
+                    <span className="badge" style={{ background: 'rgba(139,92,246,0.15)', color: 'var(--accent-light)' }}>
+                      #{chunk.chunkIndex}
                     </span>
+                    {chunk.subsectionTitle && (
+                      <span style={{ marginLeft: 6, fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+                        {chunk.subsectionTitle}
+                      </span>
+                    )}
                   </div>
-                  <div className="chunk-section">{chunk.sectionTitle}</div>
+                  <div className="chunk-section">{chunk.sectionTitle ?? '(제목 없음)'}</div>
                   <div className="chunk-text">{chunk.chunkText}</div>
                   {activeChunkId !== chunk.chunkId && (
                     <div className="chunk-hint">코드 매칭 보기 <ArrowRight size={10} /></div>
@@ -125,37 +204,31 @@ export default function PaperDetail() {
 
           {/* Right: Code Results */}
           <div className="split-right">
-            {/* Full text of the selected chunk — the left list only shows a 2-line preview */}
             {activeChunk && (
               <div className="glass-card active-chunk-panel">
-                <div className="active-chunk-title">{activeChunk.sectionTitle}</div>
+                <div className="active-chunk-title">{activeChunk.sectionTitle ?? '(제목 없음)'}</div>
                 <div className="active-chunk-text">{activeChunk.chunkText}</div>
               </div>
             )}
 
+            {activeChunkId && <AiExplanation paperId={paperId} chunkId={activeChunkId} />}
+
             <div className="agent-section-title">
               <Code2 size={14} /> Code Implementations ({codeResults.length})
             </div>
-            {codeResults.length === 0 ? (
-              <div className="glass-card" style={{ padding: 48, textAlign: 'center' }}>
-                <Code2 size={40} color="var(--text-muted)" style={{ marginBottom: 12 }} />
-                <p style={{ color: 'var(--text-tertiary)', marginBottom: 8 }}>
-                  이 chunk는 아직 코드 매핑이 진행되지 않았습니다.
-                </p>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-                  다른 chunk를 선택하면 매핑된 코드 구현체를 볼 수 있습니다.
-                </p>
-                {suggestedChunk && (
-                  <button
-                    className="btn btn-ghost"
-                    style={{ marginTop: 20 }}
-                    onClick={() => setActiveChunkId(suggestedChunk.chunkId)}
-                  >
-                    {suggestedChunk.sectionTitle} 보기 <ArrowRight size={14} />
-                  </button>
-                )}
-              </div>
-            ) : (
+
+            {mappingState.loading && <Loading message="코드 검색 중..." padding={32} />}
+            {mappingState.error && <ErrorBox error={mappingState.error} onRetry={mappingState.reload} />}
+
+            {!mappingState.loading && !mappingState.error && codeResults.length === 0 && (
+              <EmptyState
+                icon={<Code2 size={40} />}
+                title="이 chunk에 매칭된 코드 구현체가 없습니다."
+                hint="code_blocks 임베딩이 채워졌는지 확인하세요 (CODEATLAS_EMBEDDING_BACKFILL=true)."
+              />
+            )}
+
+            {codeResults.length > 0 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 {codeResults.map((code, i) => {
                   const keywordOverlap = activeChunk ? computeKeywordOverlap(activeChunk.chunkText, code) : 0;
@@ -168,8 +241,10 @@ export default function PaperDetail() {
                     >
                       <div className="result-header">
                         <div>
-                          <div className="result-repo">{code.repoName}</div>
-                          <div className="result-file">{code.filePath}:{code.startLine}-{code.endLine}</div>
+                          <div className="result-repo">{code.repositoryName}</div>
+                          <div className="result-file">
+                            {code.filePath}{code.startLine != null ? `:${code.startLine}-${code.endLine}` : ''}
+                          </div>
                         </div>
                         <div>
                           <div className="similarity-bar-wrapper" style={{ width: 140 }}>
@@ -178,7 +253,7 @@ export default function PaperDetail() {
                             </div>
                             <span className="similarity-score">{code.similarityScore.toFixed(2)}</span>
                           </div>
-                          <div className="similarity-breakdown" title="벡터 유사도와 chunk-코드 키워드 매칭 비율의 합성 점수입니다">
+                          <div className="similarity-breakdown" title="pgvector 코사인 유사도와 chunk-코드 키워드 매칭 비율입니다">
                             벡터 {code.similarityScore.toFixed(2)} · 키워드 {Math.round(keywordOverlap * 100)}%
                           </div>
                         </div>
@@ -186,14 +261,13 @@ export default function PaperDetail() {
 
                       <div className="result-func">
                         <FileCode size={12} />
-                        {code.className ? `${code.className}.` : ''}{code.functionName}
+                        {symbolLabel(code)}
+                        <span style={{ marginLeft: 6, fontSize: '0.68rem', color: 'var(--text-muted)' }}>{code.symbolType}</span>
                       </div>
 
                       <pre className="result-code-preview">
-                        {code.codeText.split('\n').slice(0, 6).join('\n')}{code.codeText.split('\n').length > 6 ? '\n...' : ''}
+                        {code.codeContent.split('\n').slice(0, 6).join('\n')}{code.codeContent.split('\n').length > 6 ? '\n...' : ''}
                       </pre>
-
-                      <div className="result-explanation">{code.explanation}</div>
 
                       <div className="result-actions">
                         <button
@@ -203,9 +277,11 @@ export default function PaperDetail() {
                         >
                           <FileCode size={12} /> 코드 뷰어 열기
                         </button>
-                        <a href={code.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{ padding: '6px 12px', fontSize: '0.75rem' }} onClick={e => e.stopPropagation()}>
-                          <ExternalLink size={12} /> GitHub
-                        </a>
+                        {code.githubUrl && (
+                          <a href={code.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{ padding: '6px 12px', fontSize: '0.75rem' }} onClick={e => e.stopPropagation()}>
+                            <ExternalLink size={12} /> GitHub
+                          </a>
+                        )}
                       </div>
                     </div>
                   );
@@ -223,10 +299,10 @@ export default function PaperDetail() {
             <div className="modal-header">
               <h3>
                 <span style={{ color: 'var(--success-light)', fontFamily: 'var(--font-mono)' }}>
-                  {viewingCode.className ? `${viewingCode.className}.` : ''}{viewingCode.functionName}
+                  {symbolLabel(viewingCode)}
                 </span>
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginLeft: 8 }}>
-                  {viewingCode.repoName} / {viewingCode.filePath}
+                  {viewingCode.repositoryName} / {viewingCode.filePath}
                 </span>
               </h3>
               <button className="modal-close" onClick={handleCloseModal}>
@@ -238,14 +314,14 @@ export default function PaperDetail() {
                 height={500}
                 language="python"
                 theme="vs-dark"
-                value={viewingCode.codeText}
+                value={viewingCode.codeContent}
                 onMount={handleEditorMount}
                 options={{
                   readOnly: true,
                   minimap: { enabled: false },
                   fontSize: 14,
                   fontFamily: "'JetBrains Mono', monospace",
-                  lineNumbers: (n: number) => String(n + viewingCode.startLine - 1),
+                  lineNumbers: (n: number) => String(n + (viewingCode.startLine ?? 1) - 1),
                   scrollBeyondLastLine: false,
                   padding: { top: 16 },
                   renderLineHighlight: 'all',

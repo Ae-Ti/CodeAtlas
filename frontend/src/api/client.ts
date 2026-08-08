@@ -1,0 +1,193 @@
+/**
+ * CodeAtlas 백엔드 API 클라이언트.
+ *
+ * 타입은 backend의 응답 record와 1:1로 맞춰져 있습니다.
+ * 백엔드 DTO를 바꾸면 여기도 같이 바꿔야 합니다 — docs/api-spec.md 참고.
+ *
+ * dev에서는 vite proxy가 /api를 localhost:8080으로 넘깁니다 (vite.config.ts).
+ * 배포 시에는 VITE_API_BASE로 절대 URL을 넣을 수 있습니다.
+ */
+const BASE = import.meta.env.VITE_API_BASE ?? '';
+
+/** 백엔드가 내려주는 공통 에러 형식 — { error, detail } */
+export class ApiError extends Error {
+  // tsconfig의 erasableSyntaxOnly 때문에 생성자 파라미터 프로퍼티는 쓸 수 없습니다
+  status: number;
+  code: string;
+
+  constructor(status: number, code: string, detail: string) {
+    super(detail);
+    this.name = 'ApiError';
+    this.status = status;
+    this.code = code;
+  }
+}
+
+async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  let res: Response;
+  try {
+    res = await fetch(`${BASE}${path}`, {
+      headers: { 'Content-Type': 'application/json' },
+      ...init,
+    });
+  } catch {
+    // fetch 자체가 실패 = 서버가 안 떠 있거나 네트워크 문제
+    throw new ApiError(0, 'NETWORK', '백엔드에 연결할 수 없습니다. localhost:8080에서 서버가 실행 중인지 확인하세요.');
+  }
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new ApiError(res.status, body?.error ?? 'UNKNOWN', body?.detail ?? `요청 실패 (${res.status})`);
+  }
+  return res.json() as Promise<T>;
+}
+
+const post = <T>(path: string, body: unknown) =>
+  request<T>(path, { method: 'POST', body: JSON.stringify(body) });
+
+// ─────────────────────────────────────────────────────────
+// 타입
+// ─────────────────────────────────────────────────────────
+
+export interface Paper {
+  paperId: number;
+  title: string;
+  abstractText: string | null;
+  authors: string[];
+  arxivId: string | null;
+  pdfUrl: string | null;
+  publishedDate: string | null;   // ISO date
+  processingStatus: string;
+  chunkCount: number;
+  mappedChunkCount: number;
+}
+
+export interface PaperChunk {
+  chunkId: number;
+  sectionTitle: string | null;
+  subsectionTitle: string | null;
+  chunkIndex: number;
+  chunkText: string;
+}
+
+/** MCP ChunkResult — 검색 결과에는 유사도 score가 붙는다 */
+export interface ChunkResult {
+  chunkId: number;
+  paperId: number;
+  sectionTitle: string | null;
+  chunkText: string;
+  score: number;
+}
+
+/** /api/mapping/search 결과 — MCP CodeCandidate + 라인번호/GitHub URL */
+export interface CodeMatch {
+  codeBlockId: number;
+  repositoryName: string;
+  filePath: string;
+  symbolName: string | null;
+  symbolType: string;
+  parentSymbolName: string | null;
+  startLine: number | null;
+  endLine: number | null;
+  codeContent: string;
+  similarityScore: number;
+  githubUrl: string | null;
+}
+
+/** /api/agent/query 결과 — 라인번호·GitHub URL은 없다 */
+export interface CodeCandidate {
+  codeBlockId: number;
+  repositoryName: string;
+  filePath: string;
+  symbolName: string | null;
+  symbolType: string;
+  parentSymbolName: string | null;
+  codeContent: string;
+  similarityScore: number;
+}
+
+export interface ToolTiming {
+  toolName: string;
+  status: string;
+  latencyMs: number;
+}
+
+export interface TaccSummary {
+  /** 사전계산 경로에서는 배치 시점 수치가 DB에 없어 null */
+  initialContexts: number | null;
+  removedContexts: number | null;
+  selectedContexts: number;
+}
+
+export interface AgentQueryResponse {
+  queryChunk: ChunkResult;
+  results: CodeCandidate[];
+  explanation: string;
+  source: 'precomputed' | 'live';
+  mappingReason: string | null;
+  tacc: TaccSummary;
+  mcpTools: ToolTiming[];
+}
+
+export interface NlSqlResult {
+  generatedSql: string;
+  columns: string[];
+  rows: Record<string, string | number | boolean | null>[];
+  isReadOnly: boolean;
+}
+
+export interface Stats {
+  papers: number;
+  chunks: number;
+  repositories: number;
+  codeBlocks: number;
+  mappings: number;
+}
+
+export interface MappingRow {
+  paperId: number;
+  paperTitle: string;
+  chunkId: number;
+  sectionTitle: string | null;
+  codeBlockId: number;
+  repositoryName: string;
+  filePath: string;
+  symbolName: string | null;
+  parentSymbolName: string | null;
+  similarityScore: number;
+  verified: boolean;
+}
+
+// ─────────────────────────────────────────────────────────
+// 엔드포인트
+// ─────────────────────────────────────────────────────────
+
+export const api = {
+  stats: () => request<Stats>('/api/stats'),
+
+  mappings: (limit = 50) => request<MappingRow[]>(`/api/mappings?limit=${limit}`),
+
+  papers: () => request<Paper[]>('/api/papers'),
+
+  chunks: (paperId: number) => request<PaperChunk[]>(`/api/papers/${paperId}/chunks`),
+
+  /** SearchPaperChunk MCP tool과 같은 엔진 */
+  searchChunks: (queryText: string, topK = 5, paperId?: number) =>
+    post<ChunkResult[]>('/api/papers/chunks/search', { queryText, topK, paperId }),
+
+  /** 순수 벡터 검색 — AI 설명 없음, 항상 빠름 */
+  mappingSearch: (paperId: number, chunkId: number, topK = 5) =>
+    post<{ queryChunk: ChunkResult; results: CodeMatch[] }>('/api/mapping/search', { paperId, chunkId, topK }),
+
+  /** 사전계산 결과가 있으면 즉시, 없으면 Qwen3를 그 자리에서 호출 (수십 초 소요 가능) */
+  agentQuery: (query: string, paperId: number, chunkId: number) =>
+    post<AgentQueryResponse>('/api/agent/query', { query, paperId, chunkId }),
+
+  nl2sql: (query: string) => post<NlSqlResult>('/api/nl2sql', { query }),
+};
+
+/** METHOD면 `MultiHeadedAttention.forward` 형태로 표시 */
+export function symbolLabel(c: { symbolName: string | null; parentSymbolName: string | null }): string {
+  if (!c.symbolName) return '(unnamed)';
+  return c.parentSymbolName ? `${c.parentSymbolName}.${c.symbolName}` : c.symbolName;
+}
