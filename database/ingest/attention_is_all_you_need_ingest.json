@@ -1,5 +1,5 @@
 {
-  "_comment": "Generated from uploaded markdown. Content and included codeContent are copied verbatim from the uploaded document. Expected-code blocks, blocks without document-backed filePath, non-code fenced text, and duplicate natural keys without startLine were excluded from ingest codeBlocks/mappedCode and recorded in _unresolved. [2026-08-08 갱신] abstract·authors를 arXiv 원본으로 채움. codeBlocks는 저장소 원문(@132907d)으로 교체하고 실제 startLine/endLine을 부여함 — 업로드 마크다운의 코드는 재포맷된 상태였음. MultiHeadAttention.forward를 가리키던 블록 2건은 자연키가 같아 1건으로 병합(14→13). [2026-08-08 갱신2] chunk content에 논문 원문 문단을 덧붙이고(ar5iv 1706.03762), sectionTitle을 논문 실제 섹션명으로 교체, 기존 한국어 제목은 subsectionTitle로 이동.",
+  "_comment": "Generated from uploaded markdown. Content and included codeContent are copied verbatim from the uploaded document. Expected-code blocks, blocks without document-backed filePath, non-code fenced text, and duplicate natural keys without startLine were excluded from ingest codeBlocks/mappedCode and recorded in _unresolved. [2026-08-08 갱신] abstract·authors를 arXiv 원본으로 채움. codeBlocks는 저장소 원문(@132907d)으로 교체하고 실제 startLine/endLine을 부여함 — 업로드 마크다운의 코드는 재포맷된 상태였음. MultiHeadAttention.forward를 가리키던 블록 2건은 자연키가 같아 1건으로 병합(14→13). [2026-08-08 갱신2] chunk content에 논문 원문 문단을 덧붙이고(ar5iv 1706.03762), sectionTitle을 논문 실제 섹션명으로 교체, 기존 한국어 제목은 subsectionTitle로 이동. [§4] 리프 심볼 기준으로 codeBlocks 재구성(33개) — 같은 파일에서 부모·자식을 동시에 인덱싱하지 않음. Transformer/MultiHeadAttention/ScheduledOptim 클래스 블록은 자식 메서드로 대체하고 정답을 재지정. 매핑 대상 chunk를 9개 → 43개로 확대.",
   "_sourceMarkdown": "/Users/ungsik/Downloads/Attention is All You Need 3b30f4e8fef78046bd59ef71457d418f.md",
   "_unresolved": [
     {
@@ -512,10 +512,9 @@
             {
               "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
               "filePath": "transformer/Models.py",
-              "symbolName": "Transformer",
-              "startLine": 128,
-              "reason": "`Transformer` 내부에는 RNN, LSTM, GRU, temporal convolution이 없고 encoder·decoder의 attention과 position-wise feed-forward network로 구성됩니다. 저장소도 이 구현 목적을 명시합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 17."
+              "symbolName": "forward",
+              "startLine": 187,
+              "reason": "encoder→decoder→linear 흐름 전체가 recurrence·convolution 없이 attention 모듈만으로 구성됨"
             }
           ],
           "_comment": "Source markdown section 1 at line 5; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §Abstract."
@@ -527,7 +526,22 @@
           "content": "> “The dominant sequence transduction models … include an encoder and a decoder.”\n>\n\nThe dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
           "pageStart": 1,
           "pageEnd": 1,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "startLine": 187,
+              "reason": "enc_output을 만들고 그것을 decoder에 넘기는 encoder-decoder 구조가 그대로 드러남"
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 131,
+              "reason": "Encoder와 Decoder를 각각 생성해 하나의 모델로 묶는 부분"
+            }
+          ],
           "_comment": "Source markdown section 2 at line 88; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §Abstract."
         },
         {
@@ -537,7 +551,6 @@
           "content": "- WMT14 English–German: `28.4 BLEU`\n- WMT14 English–French: `41.8 BLEU`\n- 8개 P100 GPU에서 3.5일 학습\n\nOn the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big) in Table 2) outperforms the best previously reported models (including ensembles) by more than 2.0 BLEU, establishing a new state-of-the-art BLEU score of 28.4 . The configuration of this model is listed in the bottom line of Table 3. Training took 3.5 days on 8 P100 GPUs. Even our base model surpasses all previously published models and ensembles, at a fraction of the training cost of any of the competitive models.",
           "pageStart": 1,
           "pageEnd": 1,
-          "mappedCode": [],
           "_comment": "Source markdown section 3 at line 137; 판정: EXPERIMENT / MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.1 Machine Translation."
         },
         {
@@ -547,7 +560,15 @@
           "content": "> “The Transformer allows for significantly more parallelization.”\n>\n\nIn this work we propose the Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output. The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as twelve hours on eight P100 GPUs.",
           "pageStart": 2,
           "pageEnd": 2,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "startLine": 67,
+              "reason": "src_seq 전체를 한 번에 layer stack에 통과시켜 위치별 순차 처리가 없음"
+            }
+          ],
           "_comment": "Source markdown section 4 at line 183; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §1 Introduction."
         },
         {
@@ -563,8 +584,7 @@
               "filePath": "transformer/Translator.py",
               "symbolName": "_model_decode",
               "startLine": 39,
-              "reason": "학습은 teacher forcing 방식으로 병렬 처리하지만, 실제 생성은 이전에 생성한 token을 이용하는 auto-regressive decoding입니다. 저장소에는 별도의 beam-search Translator가 존재합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Translator.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 260."
+              "reason": "이전까지 생성된 trg_seq를 다시 입력으로 받아 다음 토큰 분포를 구하는 auto-regressive 디코딩"
             }
           ],
           "_comment": "Source markdown section 5 at line 243; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3 Model Architecture."
@@ -576,7 +596,15 @@
           "content": "페이지 3의 Figure 1은 다음 구조를 보여줍니다.\n\n```\nInput Embedding + Positional Encoding\n→ Encoder N회\n\nOutput Embedding + Positional Encoding\n→ Masked Self-Attention\n→ Encoder-Decoder Attention\n→ Feed Forward\n→ Linear\n→ Softmax\n```\n\nThe Transformer follows this overall architecture using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1, respectively.",
           "pageStart": 3,
           "pageEnd": 3,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 131,
+              "reason": "Figure 1의 좌우 절반인 Encoder·Decoder와 최종 trg_word_prj까지 한 자리에서 구성"
+            }
+          ],
           "_comment": "Source markdown section 6 at line 290; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3 Model Architecture."
         },
         {
@@ -586,7 +614,15 @@
           "content": "> “The encoder is composed of a stack of N=6 identical layers.”\n>\n\nThe encoder is composed of a stack of N=6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-wise fully connected feed-forward network. We employ a residual connection [11] around each of the two sub-layers, followed by layer normalization [1]. That is, the output of each sub-layer is \\mathrm{LayerNorm}(x+\\mathrm{Sublayer}(x)) , where \\mathrm{Sublayer}(x) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding layers, produce outputs of dimension d_{\\text{model}}=512 .",
           "pageStart": 3,
           "pageEnd": 3,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 51,
+              "reason": "n_layers만큼 EncoderLayer를 복제해 stack을 만드는 부분 (기본값 6)"
+            }
+          ],
           "_comment": "Source markdown section 7 at line 368; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.1 Encoder and Decoder Stacks (Encoder)."
         },
         {
@@ -596,7 +632,15 @@
           "content": "1. Multi-head self-attention\n2. Position-wise feed-forward network\n\nThe encoder is composed of a stack of N=6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-wise fully connected feed-forward network. We employ a residual connection [11] around each of the two sub-layers, followed by layer normalization [1]. That is, the output of each sub-layer is \\mathrm{LayerNorm}(x+\\mathrm{Sublayer}(x)) , where \\mathrm{Sublayer}(x) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding layers, produce outputs of dimension d_{\\text{model}}=512 .",
           "pageStart": 3,
           "pageEnd": 3,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Layers.py",
+              "symbolName": "__init__",
+              "startLine": 13,
+              "reason": "self-attention과 position-wise FFN 두 sub-layer만으로 EncoderLayer를 구성"
+            }
+          ],
           "_comment": "Source markdown section 8 at line 407; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.1 Encoder and Decoder Stacks (Encoder)."
         },
         {
@@ -612,8 +656,7 @@
               "filePath": "transformer/SubLayers.py",
               "symbolName": "forward",
               "startLine": 30,
-              "reason": "이 저장소는 논문 원본과 같은 **post-normalization**입니다.",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 487."
+              "reason": "residual 저장 후 attention 출력에 더하고 layer_norm을 적용하는 순서가 논문과 일치"
             }
           ],
           "_comment": "Source markdown section 9 at line 471; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.1 Encoder and Decoder Stacks (Encoder)."
@@ -625,7 +668,15 @@
           "content": "> “All sub-layers … produce outputs of dimension dmodel=512.”\n>\n\nThe encoder is composed of a stack of N=6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-wise fully connected feed-forward network. We employ a residual connection [11] around each of the two sub-layers, followed by layer normalization [1]. That is, the output of each sub-layer is \\mathrm{LayerNorm}(x+\\mathrm{Sublayer}(x)) , where \\mathrm{Sublayer}(x) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding layers, produce outputs of dimension d_{\\text{model}}=512 .",
           "pageStart": 3,
           "pageEnd": 3,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 131,
+              "reason": "d_word_vec·d_model 기본값이 모두 512로 맞춰져 sub-layer 출력 차원이 통일됨"
+            }
+          ],
           "_comment": "Source markdown section 10 at line 556; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.1 Encoder and Decoder Stacks (Encoder)."
         },
         {
@@ -635,7 +686,15 @@
           "content": "> “The decoder is also composed of a stack of N=6 identical layers.”\n>\n\nThe decoder is also composed of a stack of N=6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack. Similar to the encoder, we employ residual connections around each of the sub-layers, followed by layer normalization. We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position i can depend only on the known outputs at positions less than i .",
           "pageStart": 3,
           "pageEnd": 3,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 90,
+              "reason": "n_layers만큼 DecoderLayer를 복제해 stack을 만드는 부분 (기본값 6)"
+            }
+          ],
           "_comment": "Source markdown section 11 at line 601; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.1 Encoder and Decoder Stacks (Decoder)."
         },
         {
@@ -645,7 +704,15 @@
           "content": "1. Masked self-attention\n2. Encoder-decoder attention\n3. Position-wise FFN\n\nThe decoder is also composed of a stack of N=6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack. Similar to the encoder, we employ residual connections around each of the sub-layers, followed by layer normalization. We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position i can depend only on the known outputs at positions less than i .",
           "pageStart": 3,
           "pageEnd": 3,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Layers.py",
+              "symbolName": "__init__",
+              "startLine": 28,
+              "reason": "slf_attn·enc_attn·pos_ffn 세 sub-layer로 DecoderLayer를 구성"
+            }
+          ],
           "_comment": "Source markdown section 12 at line 638; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.1 Encoder and Decoder Stacks (Decoder)."
         },
         {
@@ -661,16 +728,14 @@
               "filePath": "transformer/Models.py",
               "symbolName": "get_subsequent_mask",
               "startLine": 15,
-              "reason": "상삼각 영역을 `False`로 만들어 현재 위치가 미래 token을 참조하지 못하게 합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 736."
+              "reason": "상삼각 행렬로 이후 위치를 가리는 mask를 생성"
             },
             {
               "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
               "filePath": "transformer/Models.py",
               "symbolName": "forward",
               "startLine": 187,
-              "reason": "상삼각 영역을 `False`로 만들어 현재 위치가 미래 token을 참조하지 못하게 합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 762."
+              "reason": "pad mask와 subsequent mask를 AND로 결합해 decoder에 전달"
             }
           ],
           "_comment": "Source markdown section 13 at line 724; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.1 Encoder and Decoder Stacks (Decoder)."
@@ -682,7 +747,15 @@
           "content": "> “The output embeddings are offset by one position.”\n>\n\nThe decoder is also composed of a stack of N=6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack. Similar to the encoder, we employ residual connections around each of the sub-layers, followed by layer normalization. We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position i can depend only on the known outputs at positions less than i .",
           "pageStart": 3,
           "pageEnd": 3,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "train.py",
+              "symbolName": "patch_trg",
+              "startLine": 66,
+              "reason": "trg[:, :-1]로 입력을, trg[:, 1:]로 정답을 잘라 한 위치 shift를 구현"
+            }
+          ],
           "_comment": "Source markdown section 14 at line 779; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.1 Encoder and Decoder Stacks (Decoder)."
         },
         {
@@ -698,16 +771,14 @@
               "filePath": "transformer/Modules.py",
               "symbolName": "ScaledDotProductAttention",
               "startLine": 7,
-              "reason": "코드는 \\(Q\\)를 먼저 \\(\\sqrt{d_k}\\)로 나눈 뒤 \\(K^T\\)와 곱합니다. 수학적으로 전체 dot product를 \\(\\sqrt{d_k}\\)로 나누는 것과 같습니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Modules.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 843."
+              "reason": "QK^T를 temperature(√d_k)로 나누고 softmax 후 V와 곱하는 절차가 수식과 1:1"
             },
             {
               "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
               "filePath": "transformer/SubLayers.py",
               "symbolName": "__init__",
               "startLine": 12,
-              "reason": "코드는 \\(Q\\)를 먼저 \\(\\sqrt{d_k}\\)로 나눈 뒤 \\(K^T\\)와 곱합니다. 수학적으로 전체 dot product를 \\(\\sqrt{d_k}\\)로 나누는 것과 같습니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Modules.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 894."
+              "reason": "temperature=d_k ** 0.5로 √d_k 스케일링을 주입하는 지점"
             }
           ],
           "_comment": "Source markdown section 15 at line 825; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.2.1 Scaled Dot-Product Attention."
@@ -719,7 +790,15 @@
           "content": "> “Queries are packed into matrix Q. Keys and values are packed into matrices K and V.”\n>\n\nIn practice, we compute the attention function on a set of queries simultaneously, packed together into a matrix Q . The keys and values are also packed together into matrices K and V . We compute the matrix of outputs as:",
           "pageStart": 4,
           "pageEnd": 4,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "forward",
+              "startLine": 30,
+              "reason": "q·k·v를 한 번에 projection하고 transpose해 batch 단위 행렬 연산으로 처리"
+            }
+          ],
           "_comment": "Source markdown section 16 at line 907; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.2.1 Scaled Dot-Product Attention."
         },
         {
@@ -729,7 +808,15 @@
           "content": "> “Masking out, setting to −∞, all values … corresponding to illegal connections.”\n>\n\nSimilarly, self-attention layers in the decoder allow each position in the decoder to attend to all positions in the decoder up to and including that position. We need to prevent leftward information flow in the decoder to preserve the auto-regressive property. We implement this inside of scaled dot-product attention by masking out (setting to -\\infty ) all values in the input of the softmax which correspond to illegal connections. See Figure 2.",
           "pageStart": 4,
           "pageEnd": 4,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Modules.py",
+              "symbolName": "ScaledDotProductAttention",
+              "startLine": 7,
+              "reason": "mask==0 위치를 -1e9로 채워 softmax 후 0에 수렴시키는 −∞ 마스킹"
+            }
+          ],
           "_comment": "Source markdown section 17 at line 949; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.2.3 Applications of Attention in our Model."
         },
         {
@@ -743,18 +830,16 @@
             {
               "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
               "filePath": "transformer/SubLayers.py",
-              "symbolName": "MultiHeadAttention",
-              "startLine": 9,
-              "reason": "각 head의 결과를 `view(..., -1)`로 연결한 뒤 `self.fc`로 \\(W^O\\) projection을 수행합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/SubLayers.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 995."
+              "symbolName": "forward",
+              "startLine": 30,
+              "reason": "h개 head로 나눠 병렬 attention 후 concat하고 최종 projection까지 수식 순서 그대로"
             },
             {
               "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
               "filePath": "transformer/SubLayers.py",
-              "symbolName": "forward",
-              "startLine": 30,
-              "reason": "각 head의 결과를 `view(..., -1)`로 연결한 뒤 `self.fc`로 \\(W^O\\) projection을 수행합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/SubLayers.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 1050."
+              "symbolName": "__init__",
+              "startLine": 12,
+              "reason": "W^Q·W^K·W^V·W^O에 해당하는 네 linear layer 정의"
             }
           ],
           "_comment": "Source markdown section 18 at line 978; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.2.2 Multi-Head Attention."
@@ -766,7 +851,15 @@
           "content": "- \\(h=8\\)\n- \\(d_k=d_v=64\\)\n- \\(d_{\\text{model}}=512\\)\n\nIn this work we employ h=8 parallel attention layers, or heads. For each of these we use d_{k}=d_{v}=d_{\\text{model}}/h=64 .\nDue to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "__init__",
+              "startLine": 12,
+              "reason": "n_head·d_k·d_v를 받아 head 수와 head별 차원을 결정 (논문 8, 64, 64)"
+            }
+          ],
           "_comment": "Source markdown section 19 at line 1104; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.2.2 Multi-Head Attention."
         },
         {
@@ -776,7 +869,15 @@
           "content": "> “All keys, values and queries come from the same place.”\n>\n\nThe encoder contains self-attention layers. In a self-attention layer all of the keys, values and queries come from the same place, in this case, the output of the previous layer in the encoder. Each position in the encoder can attend to all positions in the previous layer of the encoder.",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Layers.py",
+              "symbolName": "forward",
+              "startLine": 18,
+              "reason": "enc_input을 query·key·value에 동일하게 넣는 encoder self-attention"
+            }
+          ],
           "_comment": "Source markdown section 20 at line 1129; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.2.3 Applications of Attention in our Model."
         },
         {
@@ -786,7 +887,15 @@
           "content": "> “Each position … attend to all positions … up to and including that position.”\n>\n\nSimilarly, self-attention layers in the decoder allow each position in the decoder to attend to all positions in the decoder up to and including that position. We need to prevent leftward information flow in the decoder to preserve the auto-regressive property. We implement this inside of scaled dot-product attention by masking out (setting to -\\infty ) all values in the input of the softmax which correspond to illegal connections. See Figure 2.",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Layers.py",
+              "symbolName": "forward",
+              "startLine": 34,
+              "reason": "dec_input을 query·key·value에 동일하게 넣고 slf_attn_mask로 미래를 가림"
+            }
+          ],
           "_comment": "Source markdown section 21 at line 1157; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.2.3 Applications of Attention in our Model."
         },
         {
@@ -796,7 +905,15 @@
           "content": "- Query: 이전 decoder layer 출력\n- Key·Value: encoder 출력\n\nIn \"encoder-decoder attention\" layers, the queries come from the previous decoder layer, and the memory keys and values come from the output of the encoder. This allows every position in the decoder to attend over all positions in the input sequence. This mimics the typical encoder-decoder attention mechanisms in sequence-to-sequence models such as [38, 2, 9].",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Layers.py",
+              "symbolName": "forward",
+              "startLine": 34,
+              "reason": "query는 decoder 출력, key·value는 enc_output인 encoder-decoder attention"
+            }
+          ],
           "_comment": "Source markdown section 22 at line 1195; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.2.3 Applications of Attention in our Model."
         },
         {
@@ -806,7 +923,15 @@
           "content": "\\[\n\\operatorname{FFN}(x)\n=\n\\max(0,xW_1+b_1)W_2+b_2\n\\]\n\nIn addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically. This consists of two linear transformations with a ReLU activation in between.",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "forward",
+              "startLine": 72,
+              "reason": "w_1 → relu → w_2 순서가 max(0, xW1+b1)W2+b2와 일치"
+            }
+          ],
           "_comment": "Source markdown section 23 at line 1225; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.3 Position-wise Feed-Forward Networks."
         },
         {
@@ -816,7 +941,15 @@
           "content": "- 입력·출력: `dmodel=512`\n- 내부: `dff=2048`\n\nWhile the linear transformations are the same across different positions, they use different parameters from layer to layer. Another way of describing this is as two convolutions with kernel size 1. The dimensionality of input and output is d_{\\text{model}}=512 , and the inner-layer has dimensionality d_{ff}=2048 .",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "__init__",
+              "startLine": 65,
+              "reason": "d_in→d_hid→d_in 두 linear로 512→2048→512 차원 변화를 구현"
+            }
+          ],
           "_comment": "Source markdown section 24 at line 1298; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.3 Position-wise Feed-Forward Networks."
         },
         {
@@ -826,7 +959,15 @@
           "content": "> “We use learned embeddings to convert input and output tokens to vectors.”\n>\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 51,
+              "reason": "nn.Embedding으로 token embedding을 학습 파라미터로 두는 부분"
+            }
+          ],
           "_comment": "Source markdown section 25 at line 1332; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
         },
         {
@@ -836,7 +977,6 @@
           "content": "> “A learned linear transformation and softmax … to predicted next-token probabilities.”\n>\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
           "_comment": "Source markdown section 26 at line 1369; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
         },
         {
@@ -846,7 +986,15 @@
           "content": "> “We share the same weight matrix … and the pre-softmax linear transformation.”\n>\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 131,
+              "reason": "trg_emb_prj_weight_sharing으로 target embedding과 pre-softmax weight를 공유"
+            }
+          ],
           "_comment": "Source markdown section 27 at line 1410; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
         },
         {
@@ -856,7 +1004,6 @@
           "content": "논문은 source·target embedding과 pre-softmax matrix 모두 같은 vocabulary에서 공유합니다.\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
           "_comment": "Source markdown section 28 at line 1436; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
         },
         {
@@ -866,7 +1013,15 @@
           "content": "> “In the embedding layers, we multiply those weights by √dmodel.”\n>\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 5,
           "pageEnd": 5,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "startLine": 67,
+              "reason": "scale_emb일 때 embedding에 d_model ** 0.5를 곱함"
+            }
+          ],
           "_comment": "Source markdown section 29 at line 1463; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
         },
         {
@@ -882,16 +1037,14 @@
               "filePath": "transformer/Models.py",
               "symbolName": "_get_sinusoid_encoding_table",
               "startLine": 31,
-              "reason": "논문의 fixed sinusoidal encoding을 parameter가 학습되지 않는 embedding table로 미리 계산합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 1533."
+              "reason": "sin·cos 주기 함수로 위치별 encoding 표를 생성"
             },
             {
               "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
               "filePath": "transformer/Models.py",
               "symbolName": "__init__",
               "startLine": 25,
-              "reason": "논문의 fixed sinusoidal encoding을 parameter가 학습되지 않는 embedding table로 미리 계산합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Models.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 1585."
+              "reason": "생성한 표를 buffer로 등록"
             }
           ],
           "_comment": "Source markdown section 30 at line 1508; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.5 Positional Encoding."
@@ -903,7 +1056,15 @@
           "content": "> “The positional encodings have the same dimension … so that the two can be summed.”\n>\n\nSince our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence. To this end, we add \"positional encodings\" to the input embeddings at the bottoms of the encoder and decoder stacks. The positional encodings have the same dimension d_{\\text{model}} as the embeddings, so that the two can be summed. There are many choices of positional encodings, learned and fixed [9].",
           "pageStart": 6,
           "pageEnd": 6,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "startLine": 44,
+              "reason": "token embedding에 pos_table을 그대로 더해 두 값을 합산"
+            }
+          ],
           "_comment": "Source markdown section 31 at line 1601; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.5 Positional Encoding."
         },
         {
@@ -913,7 +1074,15 @@
           "content": "> “We also experimented with using learned positional embeddings.”\n>\n\nWe also experimented with using learned positional embeddings [9] instead, and found that the two versions produced nearly identical results (see Table 3 row (E)). We chose the sinusoidal version because it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training.",
           "pageStart": 6,
           "pageEnd": 6,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 25,
+              "reason": "nn.Embedding 대신 register_buffer로 고정 표를 쓰는 선택 지점"
+            }
+          ],
           "_comment": "Source markdown section 32 at line 1638; 판정: MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.5 Positional Encoding."
         },
         {
@@ -923,7 +1092,6 @@
           "content": "페이지 6 Table 1:\n\n| Layer | Complexity | Sequential operations | Maximum path |\n| --- | --- | --- | --- |\n| Self-attention | \\(O(n^2d)\\) | \\(O(1)\\) | \\(O(1)\\) |\n| Recurrent | \\(O(nd^2)\\) | \\(O(n)\\) | \\(O(n)\\) |\n| Convolution | \\(O(knd^2)\\) | \\(O(1)\\) | \\(O(\\log_k n)\\) |\n\nAs noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires O(n) sequential operations.\nIn terms of computational complexity, self-attention layers are faster than recurrent layers when the sequence length n is smaller than the representation dimensionality d , which is most often the case with sentence representations used by state-of-the-art models in machine translations, such as word-piece [38] and byte-pair [31] representations.\nTo improve computational performance for tasks involving very long sequences, self-attention could be restricted to considering only a neighborhood of size r in the input sequence centered around the respective output position. This would increase the maximum path length to O(n/r) . We plan to investigate this approach further in future work.",
           "pageStart": 6,
           "pageEnd": 6,
-          "mappedCode": [],
           "_comment": "Source markdown section 33 at line 1710; 판정: ANALYSIS / MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §4 Why Self-Attention."
         },
         {
@@ -933,7 +1101,15 @@
           "content": "> “Byte-pair encoding … shared source-target vocabulary of about 37000 tokens.”\n>\n\nWe trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million sentence pairs. Sentences were encoded using byte-pair encoding [3], which has a shared source-target vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT 2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece vocabulary [38]. Sentence pairs were batched together by approximate sequence length. Each training batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000 target tokens.",
           "pageStart": 7,
           "pageEnd": 7,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "train.py",
+              "symbolName": "prepare_dataloaders_from_bpe_files",
+              "startLine": 305,
+              "reason": "BPE로 사전 처리된 파일에서 공유 vocabulary를 읽어오는 부분"
+            }
+          ],
           "_comment": "Source markdown section 34 at line 1753; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.1 Training Data and Batching."
         },
         {
@@ -943,7 +1119,15 @@
           "content": "> “Sentence pairs were batched together by approximate sequence length.”\n>\n\nWe trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million sentence pairs. Sentences were encoded using byte-pair encoding [3], which has a shared source-target vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT 2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece vocabulary [38]. Sentence pairs were batched together by approximate sequence length. Each training batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000 target tokens.",
           "pageStart": 7,
           "pageEnd": 7,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "train.py",
+              "symbolName": "prepare_dataloaders_from_bpe_files",
+              "startLine": 305,
+              "reason": "BucketIterator 계열 설정으로 비슷한 길이끼리 묶는 batching"
+            }
+          ],
           "_comment": "Source markdown section 35 at line 1774; 판정: DIRECT-CONCEPTUAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.1 Training Data and Batching."
         },
         {
@@ -953,7 +1137,6 @@
           "content": "> “Each training batch contained approximately 25000 source tokens and 25000 target tokens.”\n>\n\nWe trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million sentence pairs. Sentences were encoded using byte-pair encoding [3], which has a shared source-target vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT 2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece vocabulary [38]. Sentence pairs were batched together by approximate sequence length. Each training batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000 target tokens.",
           "pageStart": 7,
           "pageEnd": 7,
-          "mappedCode": [],
           "_comment": "Source markdown section 36 at line 1807; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.1 Training Data and Batching."
         },
         {
@@ -963,7 +1146,6 @@
           "content": "> “We trained our models on one machine with 8 NVIDIA P100 GPUs.”\n>\n\nWe trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using the hyperparameters described throughout the paper, each training step took about 0.4 seconds. We trained the base models for a total of 100,000 steps or 12 hours. For our big models,(described on the bottom line of table 3), step time was 1.0 seconds. The big models were trained for 300,000 steps (3.5 days).",
           "pageStart": 7,
           "pageEnd": 7,
-          "mappedCode": [],
           "_comment": "Source markdown section 37 at line 1872; 판정: MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.2 Hardware and Schedule."
         },
         {
@@ -973,7 +1155,6 @@
           "content": "- Base: `100K steps`\n- Big: `300K steps`\n\nWe trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using the hyperparameters described throughout the paper, each training step took about 0.4 seconds. We trained the base models for a total of 100,000 steps or 12 hours. For our big models,(described on the bottom line of table 3), step time was 1.0 seconds. The big models were trained for 300,000 steps (3.5 days).",
           "pageStart": 7,
           "pageEnd": 7,
-          "mappedCode": [],
           "_comment": "Source markdown section 38 at line 1924; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.2 Hardware and Schedule."
         },
         {
@@ -983,7 +1164,15 @@
           "content": "- \\(\\beta_1=0.9\\)\n- \\(\\beta_2=0.98\\)\n- \\(\\epsilon=10^{-9}\\)\n\nWe used the Adam optimizer [20] with \\beta_{1}=0.9 , \\beta_{2}=0.98 and \\epsilon=10^{-9} . We varied the learning rate over the course of training, according to the formula:",
           "pageStart": 7,
           "pageEnd": 7,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Optim.py",
+              "symbolName": "__init__",
+              "startLine": 7,
+              "reason": "Adam optimizer를 받아 lr_mul·d_model·n_warmup_steps로 감싸는 부분"
+            }
+          ],
           "_comment": "Source markdown section 39 at line 1984; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.3 Optimizer."
         },
         {
@@ -997,10 +1186,16 @@
             {
               "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
               "filePath": "transformer/Optim.py",
-              "symbolName": "ScheduledOptim",
-              "startLine": 4,
-              "reason": ", 단 추가 multiplier 존재",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 2034."
+              "symbolName": "_get_lr_scale",
+              "startLine": 26,
+              "reason": "d_model^-0.5 × min(step^-0.5, step × warmup^-1.5)가 수식 그대로"
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Optim.py",
+              "symbolName": "_update_learning_rate",
+              "startLine": 32,
+              "reason": "step마다 계산된 lr을 param_group에 반영"
             }
           ],
           "_comment": "Source markdown section 40 at line 2013; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.3 Optimizer."
@@ -1012,7 +1207,22 @@
           "content": "> “We used warmup_steps=4000.”\n>\n\nThis corresponds to increasing the learning rate linearly for the first warmup\\_steps training steps, and decreasing it thereafter proportionally to the inverse square root of the step number. We used warmup\\_steps=4000 .",
           "pageStart": 7,
           "pageEnd": 7,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Optim.py",
+              "symbolName": "__init__",
+              "startLine": 7,
+              "reason": "n_warmup_steps를 생성자에서 받아 보관 (논문 4000)"
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Optim.py",
+              "symbolName": "_get_lr_scale",
+              "startLine": 26,
+              "reason": "warmup 구간과 이후 구간을 min으로 전환"
+            }
+          ],
           "_comment": "Source markdown section 41 at line 2100; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.3 Optimizer."
         },
         {
@@ -1022,7 +1232,15 @@
           "content": "> “Dropout to the output of each sub-layer, before it is added.”\n>\n\nWe apply dropout [33] to the output of each sub-layer, before it is added to the sub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of P_{drop}=0.1 .",
           "pageStart": 8,
           "pageEnd": 8,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "forward",
+              "startLine": 72,
+              "reason": "sub-layer 출력에 dropout을 적용한 뒤 residual에 더함"
+            }
+          ],
           "_comment": "Source markdown section 42 at line 2128; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.4 Regularization (Residual Dropout)."
         },
         {
@@ -1032,7 +1250,15 @@
           "content": "> “Dropout to the sums of embeddings and positional encodings.”\n>\n\nWe apply dropout [33] to the output of each sub-layer, before it is added to the sub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of P_{drop}=0.1 .",
           "pageStart": 8,
           "pageEnd": 8,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "startLine": 67,
+              "reason": "token embedding + positional encoding 합에 dropout을 적용"
+            }
+          ],
           "_comment": "Source markdown section 43 at line 2169; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.4 Regularization (Residual Dropout)."
         },
         {
@@ -1042,7 +1268,15 @@
           "content": "\\[\nP_{\\text{drop}}=0.1\n\\]\n\nWe apply dropout [33] to the output of each sub-layer, before it is added to the sub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of P_{drop}=0.1 .",
           "pageStart": 8,
           "pageEnd": 8,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Layers.py",
+              "symbolName": "__init__",
+              "startLine": 13,
+              "reason": "dropout 기본값이 0.1로 지정됨"
+            }
+          ],
           "_comment": "Source markdown section 44 at line 2200; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.4 Regularization (Residual Dropout)."
         },
         {
@@ -1052,7 +1286,15 @@
           "content": "\\[\n\\epsilon_{ls}=0.1\n\\]\n\nDuring training, we employed label smoothing of value \\epsilon_{ls}=0.1 [36]. This hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.",
           "pageStart": 8,
           "pageEnd": 8,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "train.py",
+              "symbolName": "cal_loss",
+              "startLine": 40,
+              "reason": "eps=0.1로 one-hot을 완화하는 label smoothing 구현"
+            }
+          ],
           "_comment": "Source markdown section 45 at line 2222; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.4 Regularization (Label Smoothing)."
         },
         {
@@ -1062,7 +1304,6 @@
           "content": "- Base: 마지막 5개 checkpoint 평균\n- Big: 마지막 20개 checkpoint 평균\n\nFor the base models, we used a single model obtained by averaging the last 5 checkpoints, which were written at 10-minute intervals. For the big models, we averaged the last 20 checkpoints. We used beam search with a beam size of 4 and length penalty \\alpha=0.6 [38]. These hyperparameters were chosen after experimentation on the development set. We set the maximum output length during inference to input length + 50 , but terminate early when possible [38].",
           "pageStart": 8,
           "pageEnd": 8,
-          "mappedCode": [],
           "_comment": "Source markdown section 46 at line 2303; 판정: MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.1 Machine Translation."
         },
         {
@@ -1078,16 +1319,14 @@
               "filePath": "transformer/Translator.py",
               "symbolName": "__init__",
               "startLine": 12,
-              "reason": "Translator 생성 시 `beam_size=4`를 전달해야 논문 설정과 일치합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Translator.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 2384."
+              "reason": "beam_size를 받아 beam search 상태를 초기화"
             },
             {
               "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
               "filePath": "transformer/Translator.py",
               "symbolName": "_get_the_best_score_and_idx",
               "startLine": 60,
-              "reason": "Translator 생성 시 `beam_size=4`를 전달해야 논문 설정과 일치합니다. [GitHub](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/transformer/Translator.py)",
-              "_comment": "판정: DIRECT. startLine is null because the uploaded document did not provide repository line numbers. Uploaded markdown code starts at line 2390."
+              "reason": "beam_size만큼 상위 후보를 유지하는 부분"
             }
           ],
           "_comment": "Source markdown section 47 at line 2370; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.1 Machine Translation."
@@ -1099,7 +1338,6 @@
           "content": "> “Length penalty α=0.6.”\n>\n\nFor the base models, we used a single model obtained by averaging the last 5 checkpoints, which were written at 10-minute intervals. For the big models, we averaged the last 20 checkpoints. We used beam search with a beam size of 4 and length penalty \\alpha=0.6 [38]. These hyperparameters were chosen after experimentation on the development set. We set the maximum output length during inference to input length + 50 , but terminate early when possible [38].",
           "pageStart": 8,
           "pageEnd": 8,
-          "mappedCode": [],
           "_comment": "Source markdown section 48 at line 2409; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.1 Machine Translation."
         },
         {
@@ -1109,7 +1347,15 @@
           "content": "> “Maximum output length … input length + 50.”\n>\n\nFor the base models, we used a single model obtained by averaging the last 5 checkpoints, which were written at 10-minute intervals. For the big models, we averaged the last 20 checkpoints. We used beam search with a beam size of 4 and length penalty \\alpha=0.6 [38]. These hyperparameters were chosen after experimentation on the development set. We set the maximum output length during inference to input length + 50 , but terminate early when possible [38].",
           "pageStart": 8,
           "pageEnd": 8,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Translator.py",
+              "symbolName": "translate_sentence",
+              "startLine": 86,
+              "reason": "max_seq_len까지만 디코딩 루프를 도는 출력 길이 제한"
+            }
+          ],
           "_comment": "Source markdown section 49 at line 2453; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.1 Machine Translation."
         },
         {
@@ -1119,7 +1365,6 @@
           "content": "| Parameter | 값 |\n| --- | --- |\n| N | 6 |\n| dmodel | 512 |\n| dff | 2048 |\n| h | 8 |\n| dk | 64 |\n| dv | 64 |\n| dropout | 0.1 |\n| label smoothing | 0.1 |\n| steps | 100K |\n\nTo evaluate the importance of different components of the Transformer, we varied our base model in different ways, measuring the change in performance on English-to-German translation on the development set, newstest2013. We used beam search as described in the previous section, but no checkpoint averaging. We present these results in Table 3.",
           "pageStart": 9,
           "pageEnd": 9,
-          "mappedCode": [],
           "_comment": "Source markdown section 50 at line 2500; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.2 Model Variations."
         },
         {
@@ -1129,7 +1374,6 @@
           "content": "| Parameter | 값 |\n| --- | --- |\n| N | 6 |\n| dmodel | 1024 |\n| dff | 4096 |\n| h | 16 |\n| dropout | 0.3 |\n| steps | 300K |\n\nTable 2 summarizes our results and compares our translation quality and training costs to other model architectures from the literature. We estimate the number of floating point operations used to train a model by multiplying the training time, the number of GPUs used, and an estimate of the sustained single-precision floating-point capacity of each GPU 222We used values of 2.8, 3.7, 6.0 and 9.5 TFLOPS for K80, K40, M40 and P100, respectively..",
           "pageStart": 9,
           "pageEnd": 9,
-          "mappedCode": [],
           "_comment": "Source markdown section 51 at line 2553; 판정: DIRECT-CONFIGURABLE. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.1 Machine Translation."
         },
         {
@@ -1139,7 +1383,6 @@
           "content": "> “Positional embedding instead of sinusoids.”\n>\n\nWe also experimented with using learned positional embeddings [9] instead, and found that the two versions produced nearly identical results (see Table 3 row (E)). We chose the sinusoidal version because it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training.",
           "pageStart": 9,
           "pageEnd": 9,
-          "mappedCode": [],
           "_comment": "Source markdown section 52 at line 2598; 판정: MISSING-BUT-PROVIDED. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.5 Positional Encoding."
         },
         {
@@ -1149,7 +1392,6 @@
           "content": "- 4-layer Transformer\n- `dmodel=1024`\n- WSJ Penn Treebank\n- 16K 또는 32K vocabulary\n\nWe trained a 4-layer transformer with d_{model}=1024 on the Wall Street Journal (WSJ) portion of the Penn Treebank [25], about 40K training sentences. We also trained it in a semi-supervised setting, using the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences [37]. We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens for the semi-supervised setting.",
           "pageStart": 9,
           "pageEnd": 9,
-          "mappedCode": [],
           "_comment": "Source markdown section 53 at line 2621; 판정: MISSING-BUT-PROVIDED-PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.3 English Constituency Parsing."
         },
         {
@@ -1159,7 +1401,6 @@
           "content": "- Beam size: `21`\n- Length penalty: `0.3`\n- 최대 길이: 입력 + `300`\n\nWe performed only a small number of experiments to select the dropout, both attention and residual (section 5.4), learning rates and beam size on the Section 22 development set, all other parameters remained unchanged from the English-to-German base translation model. During inference, we increased the maximum output length to input length + 300 . We used a beam size of 21 and \\alpha=0.3 for both WSJ only and the semi-supervised setting.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
           "_comment": "Source markdown section 54 at line 2686; 판정: DIRECT-CONFIGURABLE. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.3 English Constituency Parsing."
         },
         {
@@ -1169,7 +1410,6 @@
           "content": "페이지 3 Figure 1 최상단:\n\n```\nLinear → Softmax → Output Probabilities\n```\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
           "_comment": "Source markdown section 55 at line 2723; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
         },
         {
@@ -1179,7 +1419,6 @@
           "content": "Jimmy Lei Ba 외, Layer Normalization.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
           "_comment": "Source markdown section 56 at line 2774; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
         },
         {
@@ -1189,7 +1428,6 @@
           "content": "Kingma와 Ba의 Adam optimizer.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
           "_comment": "Source markdown section 57 at line 2797; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
         },
         {
@@ -1199,7 +1437,6 @@
           "content": "Szegedy 외의 label smoothing.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
           "_comment": "Source markdown section 58 at line 2821; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
         },
         {
@@ -1209,7 +1446,6 @@
           "content": "Sennrich 외의 subword unit 방식.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
           "_comment": "Source markdown section 59 at line 2844; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
         },
         {
@@ -1219,7 +1455,6 @@
           "content": "페이지 13~15의 Figure 3~5는 서로 다른 attention head가 다음을 학습하는 사례를 보여줍니다.\n\n- 장거리 의존성\n- 대명사와 선행사 관계\n- 문장 구조와 관련된 서로 다른 패턴\n\nAs side benefit, self-attention could yield more interpretable models. We inspect attention distributions from our models and present and discuss examples in the appendix. Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
           "_comment": "Source markdown section 60 at line 2864; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §4 Why Self-Attention."
         },
         {
@@ -1229,7 +1464,15 @@
           "content": "논문은 padding mask 구현식을 자세히 제시하지 않습니다.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "get_pad_mask",
+              "startLine": 11,
+              "reason": "pad_idx와 다른 위치만 True로 만드는 padding mask"
+            }
+          ],
           "_comment": "Source markdown section 61 at line 2982; 판정: EXTRA / IMPLEMENTATION DETAIL. Content copied from uploaded markdown ### 논문 대응 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
         },
         {
@@ -1239,7 +1482,22 @@
           "content": "논문은 beam size와 length penalty를 설명하지만 전체 beam search algorithm을 코드 수준으로 제시하지 않습니다.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Translator.py",
+              "symbolName": "translate_sentence",
+              "startLine": 86,
+              "reason": "beam 상태를 갱신하며 문장을 생성하는 beam search 본체"
+            },
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Translator.py",
+              "symbolName": "_get_init_state",
+              "startLine": 45,
+              "reason": "beam 초기 상태를 만드는 부분"
+            }
+          ],
           "_comment": "Source markdown section 62 at line 3008; 판정: EXTRA / DIRECTLY SUPPORTS PAPER INFERENCE. Content copied from uploaded markdown ### 논문 대응 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
         },
         {
@@ -1249,7 +1507,15 @@
           "content": "논문은 Transformer parameter 전체에 대한 Xavier initialization을 명시적으로 설명하지 않습니다.",
           "pageStart": 10,
           "pageEnd": 10,
-          "mappedCode": [],
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 131,
+              "reason": "xavier_uniform_으로 전체 파라미터를 초기화"
+            }
+          ],
           "_comment": "Source markdown section 63 at line 3048; 판정: EXTRA. Content copied from uploaded markdown ### 논문 대응 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
         }
       ],
@@ -1267,36 +1533,14 @@
           "codeBlocks": [
             {
               "filePath": "transformer/Models.py",
-              "symbolName": "Transformer",
-              "symbolType": "CLASS",
+              "symbolName": "get_pad_mask",
+              "symbolType": "FUNCTION",
               "parentSymbolName": null,
               "programmingLanguage": "Python",
-              "startLine": 128,
-              "endLine": 198,
-              "codeContent": "class Transformer(nn.Module):\n    ''' A sequence to sequence model with attention mechanism. '''\n\n    def __init__(\n            self, n_src_vocab, n_trg_vocab, src_pad_idx, trg_pad_idx,\n            d_word_vec=512, d_model=512, d_inner=2048,\n            n_layers=6, n_head=8, d_k=64, d_v=64, dropout=0.1, n_position=200,\n            trg_emb_prj_weight_sharing=True, emb_src_trg_weight_sharing=True,\n            scale_emb_or_prj='prj'):\n\n        super().__init__()\n\n        self.src_pad_idx, self.trg_pad_idx = src_pad_idx, trg_pad_idx\n\n        # In section 3.4 of paper \"Attention Is All You Need\", there is such detail:\n        # \"In our model, we share the same weight matrix between the two\n        # embedding layers and the pre-softmax linear transformation...\n        # In the embedding layers, we multiply those weights by \\sqrt{d_model}\".\n        #\n        # Options here:\n        #   'emb': multiply \\sqrt{d_model} to embedding output\n        #   'prj': multiply (\\sqrt{d_model} ^ -1) to linear projection output\n        #   'none': no multiplication\n\n        assert scale_emb_or_prj in ['emb', 'prj', 'none']\n        scale_emb = (scale_emb_or_prj == 'emb') if trg_emb_prj_weight_sharing else False\n        self.scale_prj = (scale_emb_or_prj == 'prj') if trg_emb_prj_weight_sharing else False\n        self.d_model = d_model\n\n        self.encoder = Encoder(\n            n_src_vocab=n_src_vocab, n_position=n_position,\n            d_word_vec=d_word_vec, d_model=d_model, d_inner=d_inner,\n            n_layers=n_layers, n_head=n_head, d_k=d_k, d_v=d_v,\n            pad_idx=src_pad_idx, dropout=dropout, scale_emb=scale_emb)\n\n        self.decoder = Decoder(\n            n_trg_vocab=n_trg_vocab, n_position=n_position,\n            d_word_vec=d_word_vec, d_model=d_model, d_inner=d_inner,\n            n_layers=n_layers, n_head=n_head, d_k=d_k, d_v=d_v,\n            pad_idx=trg_pad_idx, dropout=dropout, scale_emb=scale_emb)\n\n        self.trg_word_prj = nn.Linear(d_model, n_trg_vocab, bias=False)\n\n        for p in self.parameters():\n            if p.dim() > 1:\n                nn.init.xavier_uniform_(p) \n\n        assert d_model == d_word_vec, \\\n        'To facilitate the residual connections, \\\n         the dimensions of all module outputs shall be the same.'\n\n        if trg_emb_prj_weight_sharing:\n            # Share the weight between target word embedding & last dense layer\n            self.trg_word_prj.weight = self.decoder.trg_word_emb.weight\n\n        if emb_src_trg_weight_sharing:\n            self.encoder.src_word_emb.weight = self.decoder.trg_word_emb.weight\n\n\n    def forward(self, src_seq, trg_seq):\n\n        src_mask = get_pad_mask(src_seq, self.src_pad_idx)\n        trg_mask = get_pad_mask(trg_seq, self.trg_pad_idx) & get_subsequent_mask(trg_seq)\n\n        enc_output, *_ = self.encoder(src_seq, src_mask)\n        dec_output, *_ = self.decoder(trg_seq, trg_mask, enc_output, src_mask)\n        seq_logit = self.trg_word_prj(dec_output)\n        if self.scale_prj:\n            seq_logit *= self.d_model ** -0.5\n\n        return seq_logit.view(-1, seq_logit.size(2))",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:128-198. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
-            },
-            {
-              "filePath": "transformer/Translator.py",
-              "symbolName": "_model_decode",
-              "symbolType": "METHOD",
-              "parentSymbolName": "Translator",
-              "programmingLanguage": "Python",
-              "startLine": 39,
-              "endLine": 42,
-              "codeContent": "    def _model_decode(self, trg_seq, enc_output, src_mask):\n        trg_mask = get_subsequent_mask(trg_seq)\n        dec_output, *_ = self.model.decoder(trg_seq, trg_mask, enc_output, src_mask)\n        return F.softmax(self.model.trg_word_prj(dec_output), dim=-1)",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Translator.py:39-42. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
-            },
-            {
-              "filePath": "transformer/SubLayers.py",
-              "symbolName": "forward",
-              "symbolType": "METHOD",
-              "parentSymbolName": "MultiHeadAttention",
-              "programmingLanguage": "Python",
-              "startLine": 30,
-              "endLine": 59,
-              "codeContent": "    def forward(self, q, k, v, mask=None):\n\n        d_k, d_v, n_head = self.d_k, self.d_v, self.n_head\n        sz_b, len_q, len_k, len_v = q.size(0), q.size(1), k.size(1), v.size(1)\n\n        residual = q\n\n        # Pass through the pre-attention projection: b x lq x (n*dv)\n        # Separate different heads: b x lq x n x dv\n        q = self.w_qs(q).view(sz_b, len_q, n_head, d_k)\n        k = self.w_ks(k).view(sz_b, len_k, n_head, d_k)\n        v = self.w_vs(v).view(sz_b, len_v, n_head, d_v)\n\n        # Transpose for attention dot product: b x n x lq x dv\n        q, k, v = q.transpose(1, 2), k.transpose(1, 2), v.transpose(1, 2)\n\n        if mask is not None:\n            mask = mask.unsqueeze(1)   # For head axis broadcasting.\n\n        q, attn = self.attention(q, k, v, mask=mask)\n\n        # Transpose to move the head dimension back: b x lq x n x dv\n        # Combine the last two dimensions to concatenate all the heads together: b x lq x (n*dv)\n        q = q.transpose(1, 2).contiguous().view(sz_b, len_q, -1)\n        q = self.dropout(self.fc(q))\n        q += residual\n\n        q = self.layer_norm(q)\n\n        return q, attn",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/SubLayers.py:30-59. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
+              "startLine": 11,
+              "endLine": 12,
+              "codeContent": "def get_pad_mask(seq, pad_idx):\n    return (seq != pad_idx).unsqueeze(-2)",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:11-12"
             },
             {
               "filePath": "transformer/Models.py",
@@ -1307,62 +1551,7 @@
               "startLine": 15,
               "endLine": 20,
               "codeContent": "def get_subsequent_mask(seq):\n    ''' For masking out the subsequent info. '''\n    sz_b, len_s = seq.size()\n    subsequent_mask = (1 - torch.triu(\n        torch.ones((1, len_s, len_s), device=seq.device), diagonal=1)).bool()\n    return subsequent_mask",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:15-20. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
-            },
-            {
-              "filePath": "transformer/Models.py",
-              "symbolName": "forward",
-              "symbolType": "METHOD",
-              "parentSymbolName": "Transformer",
-              "programmingLanguage": "Python",
-              "startLine": 187,
-              "endLine": 198,
-              "codeContent": "    def forward(self, src_seq, trg_seq):\n\n        src_mask = get_pad_mask(src_seq, self.src_pad_idx)\n        trg_mask = get_pad_mask(trg_seq, self.trg_pad_idx) & get_subsequent_mask(trg_seq)\n\n        enc_output, *_ = self.encoder(src_seq, src_mask)\n        dec_output, *_ = self.decoder(trg_seq, trg_mask, enc_output, src_mask)\n        seq_logit = self.trg_word_prj(dec_output)\n        if self.scale_prj:\n            seq_logit *= self.d_model ** -0.5\n\n        return seq_logit.view(-1, seq_logit.size(2))",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:187-198. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
-            },
-            {
-              "filePath": "transformer/Modules.py",
-              "symbolName": "ScaledDotProductAttention",
-              "symbolType": "CLASS",
-              "parentSymbolName": null,
-              "programmingLanguage": "Python",
-              "startLine": 7,
-              "endLine": 25,
-              "codeContent": "class ScaledDotProductAttention(nn.Module):\n    ''' Scaled Dot-Product Attention '''\n\n    def __init__(self, temperature, attn_dropout=0.1):\n        super().__init__()\n        self.temperature = temperature\n        self.dropout = nn.Dropout(attn_dropout)\n\n    def forward(self, q, k, v, mask=None):\n\n        attn = torch.matmul(q / self.temperature, k.transpose(2, 3))\n\n        if mask is not None:\n            attn = attn.masked_fill(mask == 0, -1e9)\n\n        attn = self.dropout(F.softmax(attn, dim=-1))\n        output = torch.matmul(attn, v)\n\n        return output, attn",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Modules.py:7-25. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
-            },
-            {
-              "filePath": "transformer/SubLayers.py",
-              "symbolName": "__init__",
-              "symbolType": "METHOD",
-              "parentSymbolName": "MultiHeadAttention",
-              "programmingLanguage": "Python",
-              "startLine": 12,
-              "endLine": 27,
-              "codeContent": "    def __init__(self, n_head, d_model, d_k, d_v, dropout=0.1):\n        super().__init__()\n\n        self.n_head = n_head\n        self.d_k = d_k\n        self.d_v = d_v\n\n        self.w_qs = nn.Linear(d_model, n_head * d_k, bias=False)\n        self.w_ks = nn.Linear(d_model, n_head * d_k, bias=False)\n        self.w_vs = nn.Linear(d_model, n_head * d_v, bias=False)\n        self.fc = nn.Linear(n_head * d_v, d_model, bias=False)\n\n        self.attention = ScaledDotProductAttention(temperature=d_k ** 0.5)\n\n        self.dropout = nn.Dropout(dropout)\n        self.layer_norm = nn.LayerNorm(d_model, eps=1e-6)",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/SubLayers.py:12-27. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
-            },
-            {
-              "filePath": "transformer/SubLayers.py",
-              "symbolName": "MultiHeadAttention",
-              "symbolType": "CLASS",
-              "parentSymbolName": null,
-              "programmingLanguage": "Python",
-              "startLine": 9,
-              "endLine": 59,
-              "codeContent": "class MultiHeadAttention(nn.Module):\n    ''' Multi-Head Attention module '''\n\n    def __init__(self, n_head, d_model, d_k, d_v, dropout=0.1):\n        super().__init__()\n\n        self.n_head = n_head\n        self.d_k = d_k\n        self.d_v = d_v\n\n        self.w_qs = nn.Linear(d_model, n_head * d_k, bias=False)\n        self.w_ks = nn.Linear(d_model, n_head * d_k, bias=False)\n        self.w_vs = nn.Linear(d_model, n_head * d_v, bias=False)\n        self.fc = nn.Linear(n_head * d_v, d_model, bias=False)\n\n        self.attention = ScaledDotProductAttention(temperature=d_k ** 0.5)\n\n        self.dropout = nn.Dropout(dropout)\n        self.layer_norm = nn.LayerNorm(d_model, eps=1e-6)\n\n\n    def forward(self, q, k, v, mask=None):\n\n        d_k, d_v, n_head = self.d_k, self.d_v, self.n_head\n        sz_b, len_q, len_k, len_v = q.size(0), q.size(1), k.size(1), v.size(1)\n\n        residual = q\n\n        # Pass through the pre-attention projection: b x lq x (n*dv)\n        # Separate different heads: b x lq x n x dv\n        q = self.w_qs(q).view(sz_b, len_q, n_head, d_k)\n        k = self.w_ks(k).view(sz_b, len_k, n_head, d_k)\n        v = self.w_vs(v).view(sz_b, len_v, n_head, d_v)\n\n        # Transpose for attention dot product: b x n x lq x dv\n        q, k, v = q.transpose(1, 2), k.transpose(1, 2), v.transpose(1, 2)\n\n        if mask is not None:\n            mask = mask.unsqueeze(1)   # For head axis broadcasting.\n\n        q, attn = self.attention(q, k, v, mask=mask)\n\n        # Transpose to move the head dimension back: b x lq x n x dv\n        # Combine the last two dimensions to concatenate all the heads together: b x lq x (n*dv)\n        q = q.transpose(1, 2).contiguous().view(sz_b, len_q, -1)\n        q = self.dropout(self.fc(q))\n        q += residual\n\n        q = self.layer_norm(q)\n\n        return q, attn",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/SubLayers.py:9-59. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
-            },
-            {
-              "filePath": "transformer/Models.py",
-              "symbolName": "_get_sinusoid_encoding_table",
-              "symbolType": "METHOD",
-              "parentSymbolName": "PositionalEncoding",
-              "programmingLanguage": "Python",
-              "startLine": 31,
-              "endLine": 42,
-              "codeContent": "    def _get_sinusoid_encoding_table(self, n_position, d_hid):\n        ''' Sinusoid position encoding table '''\n        # TODO: make it with torch instead of numpy\n\n        def get_position_angle_vec(position):\n            return [position / np.power(10000, 2 * (hid_j // 2) / d_hid) for hid_j in range(d_hid)]\n\n        sinusoid_table = np.array([get_position_angle_vec(pos_i) for pos_i in range(n_position)])\n        sinusoid_table[:, 0::2] = np.sin(sinusoid_table[:, 0::2])  # dim 2i\n        sinusoid_table[:, 1::2] = np.cos(sinusoid_table[:, 1::2])  # dim 2i+1\n\n        return torch.FloatTensor(sinusoid_table).unsqueeze(0)",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:31-42. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:15-20"
             },
             {
               "filePath": "transformer/Models.py",
@@ -1373,18 +1562,227 @@
               "startLine": 25,
               "endLine": 29,
               "codeContent": "    def __init__(self, d_hid, n_position=200):\n        super(PositionalEncoding, self).__init__()\n\n        # Not a parameter\n        self.register_buffer('pos_table', self._get_sinusoid_encoding_table(n_position, d_hid))",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:25-29. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:25-29"
             },
             {
-              "filePath": "transformer/Optim.py",
-              "symbolName": "ScheduledOptim",
+              "filePath": "transformer/Models.py",
+              "symbolName": "_get_sinusoid_encoding_table",
+              "symbolType": "METHOD",
+              "parentSymbolName": "PositionalEncoding",
+              "programmingLanguage": "Python",
+              "startLine": 31,
+              "endLine": 42,
+              "codeContent": "    def _get_sinusoid_encoding_table(self, n_position, d_hid):\n        ''' Sinusoid position encoding table '''\n        # TODO: make it with torch instead of numpy\n\n        def get_position_angle_vec(position):\n            return [position / np.power(10000, 2 * (hid_j // 2) / d_hid) for hid_j in range(d_hid)]\n\n        sinusoid_table = np.array([get_position_angle_vec(pos_i) for pos_i in range(n_position)])\n        sinusoid_table[:, 0::2] = np.sin(sinusoid_table[:, 0::2])  # dim 2i\n        sinusoid_table[:, 1::2] = np.cos(sinusoid_table[:, 1::2])  # dim 2i+1\n\n        return torch.FloatTensor(sinusoid_table).unsqueeze(0)",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:31-42"
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "PositionalEncoding",
+              "programmingLanguage": "Python",
+              "startLine": 44,
+              "endLine": 45,
+              "codeContent": "    def forward(self, x):\n        return x + self.pos_table[:, :x.size(1)].clone().detach()",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:44-45"
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Encoder",
+              "programmingLanguage": "Python",
+              "startLine": 51,
+              "endLine": 65,
+              "codeContent": "    def __init__(\n            self, n_src_vocab, d_word_vec, n_layers, n_head, d_k, d_v,\n            d_model, d_inner, pad_idx, dropout=0.1, n_position=200, scale_emb=False):\n\n        super().__init__()\n\n        self.src_word_emb = nn.Embedding(n_src_vocab, d_word_vec, padding_idx=pad_idx)\n        self.position_enc = PositionalEncoding(d_word_vec, n_position=n_position)\n        self.dropout = nn.Dropout(p=dropout)\n        self.layer_stack = nn.ModuleList([\n            EncoderLayer(d_model, d_inner, n_head, d_k, d_v, dropout=dropout)\n            for _ in range(n_layers)])\n        self.layer_norm = nn.LayerNorm(d_model, eps=1e-6)\n        self.scale_emb = scale_emb\n        self.d_model = d_model",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:51-65"
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Encoder",
+              "programmingLanguage": "Python",
+              "startLine": 67,
+              "endLine": 84,
+              "codeContent": "    def forward(self, src_seq, src_mask, return_attns=False):\n\n        enc_slf_attn_list = []\n\n        # -- Forward\n        enc_output = self.src_word_emb(src_seq)\n        if self.scale_emb:\n            enc_output *= self.d_model ** 0.5\n        enc_output = self.dropout(self.position_enc(enc_output))\n        enc_output = self.layer_norm(enc_output)\n\n        for enc_layer in self.layer_stack:\n            enc_output, enc_slf_attn = enc_layer(enc_output, slf_attn_mask=src_mask)\n            enc_slf_attn_list += [enc_slf_attn] if return_attns else []\n\n        if return_attns:\n            return enc_output, enc_slf_attn_list\n        return enc_output,",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:67-84"
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Decoder",
+              "programmingLanguage": "Python",
+              "startLine": 90,
+              "endLine": 104,
+              "codeContent": "    def __init__(\n            self, n_trg_vocab, d_word_vec, n_layers, n_head, d_k, d_v,\n            d_model, d_inner, pad_idx, n_position=200, dropout=0.1, scale_emb=False):\n\n        super().__init__()\n\n        self.trg_word_emb = nn.Embedding(n_trg_vocab, d_word_vec, padding_idx=pad_idx)\n        self.position_enc = PositionalEncoding(d_word_vec, n_position=n_position)\n        self.dropout = nn.Dropout(p=dropout)\n        self.layer_stack = nn.ModuleList([\n            DecoderLayer(d_model, d_inner, n_head, d_k, d_v, dropout=dropout)\n            for _ in range(n_layers)])\n        self.layer_norm = nn.LayerNorm(d_model, eps=1e-6)\n        self.scale_emb = scale_emb\n        self.d_model = d_model",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:90-104"
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Decoder",
+              "programmingLanguage": "Python",
+              "startLine": 106,
+              "endLine": 125,
+              "codeContent": "    def forward(self, trg_seq, trg_mask, enc_output, src_mask, return_attns=False):\n\n        dec_slf_attn_list, dec_enc_attn_list = [], []\n\n        # -- Forward\n        dec_output = self.trg_word_emb(trg_seq)\n        if self.scale_emb:\n            dec_output *= self.d_model ** 0.5\n        dec_output = self.dropout(self.position_enc(dec_output))\n        dec_output = self.layer_norm(dec_output)\n\n        for dec_layer in self.layer_stack:\n            dec_output, dec_slf_attn, dec_enc_attn = dec_layer(\n                dec_output, enc_output, slf_attn_mask=trg_mask, dec_enc_attn_mask=src_mask)\n            dec_slf_attn_list += [dec_slf_attn] if return_attns else []\n            dec_enc_attn_list += [dec_enc_attn] if return_attns else []\n\n        if return_attns:\n            return dec_output, dec_slf_attn_list, dec_enc_attn_list\n        return dec_output,",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:106-125"
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Transformer",
+              "programmingLanguage": "Python",
+              "startLine": 131,
+              "endLine": 184,
+              "codeContent": "    def __init__(\n            self, n_src_vocab, n_trg_vocab, src_pad_idx, trg_pad_idx,\n            d_word_vec=512, d_model=512, d_inner=2048,\n            n_layers=6, n_head=8, d_k=64, d_v=64, dropout=0.1, n_position=200,\n            trg_emb_prj_weight_sharing=True, emb_src_trg_weight_sharing=True,\n            scale_emb_or_prj='prj'):\n\n        super().__init__()\n\n        self.src_pad_idx, self.trg_pad_idx = src_pad_idx, trg_pad_idx\n\n        # In section 3.4 of paper \"Attention Is All You Need\", there is such detail:\n        # \"In our model, we share the same weight matrix between the two\n        # embedding layers and the pre-softmax linear transformation...\n        # In the embedding layers, we multiply those weights by \\sqrt{d_model}\".\n        #\n        # Options here:\n        #   'emb': multiply \\sqrt{d_model} to embedding output\n        #   'prj': multiply (\\sqrt{d_model} ^ -1) to linear projection output\n        #   'none': no multiplication\n\n        assert scale_emb_or_prj in ['emb', 'prj', 'none']\n        scale_emb = (scale_emb_or_prj == 'emb') if trg_emb_prj_weight_sharing else False\n        self.scale_prj = (scale_emb_or_prj == 'prj') if trg_emb_prj_weight_sharing else False\n        self.d_model = d_model\n\n        self.encoder = Encoder(\n            n_src_vocab=n_src_vocab, n_position=n_position,\n            d_word_vec=d_word_vec, d_model=d_model, d_inner=d_inner,\n            n_layers=n_layers, n_head=n_head, d_k=d_k, d_v=d_v,\n            pad_idx=src_pad_idx, dropout=dropout, scale_emb=scale_emb)\n\n        self.decoder = Decoder(\n            n_trg_vocab=n_trg_vocab, n_position=n_position,\n            d_word_vec=d_word_vec, d_model=d_model, d_inner=d_inner,\n            n_layers=n_layers, n_head=n_head, d_k=d_k, d_v=d_v,\n            pad_idx=trg_pad_idx, dropout=dropout, scale_emb=scale_emb)\n\n        self.trg_word_prj = nn.Linear(d_model, n_trg_vocab, bias=False)\n\n        for p in self.parameters():\n            if p.dim() > 1:\n                nn.init.xavier_uniform_(p) \n\n        assert d_model == d_word_vec, \\\n        'To facilitate the residual connections, \\\n         the dimensions of all module outputs shall be the same.'\n\n        if trg_emb_prj_weight_sharing:\n            # Share the weight between target word embedding & last dense layer\n            self.trg_word_prj.weight = self.decoder.trg_word_emb.weight\n\n        if emb_src_trg_weight_sharing:\n            self.encoder.src_word_emb.weight = self.decoder.trg_word_emb.weight",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:131-184"
+            },
+            {
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Transformer",
+              "programmingLanguage": "Python",
+              "startLine": 187,
+              "endLine": 198,
+              "codeContent": "    def forward(self, src_seq, trg_seq):\n\n        src_mask = get_pad_mask(src_seq, self.src_pad_idx)\n        trg_mask = get_pad_mask(trg_seq, self.trg_pad_idx) & get_subsequent_mask(trg_seq)\n\n        enc_output, *_ = self.encoder(src_seq, src_mask)\n        dec_output, *_ = self.decoder(trg_seq, trg_mask, enc_output, src_mask)\n        seq_logit = self.trg_word_prj(dec_output)\n        if self.scale_prj:\n            seq_logit *= self.d_model ** -0.5\n\n        return seq_logit.view(-1, seq_logit.size(2))",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Models.py:187-198"
+            },
+            {
+              "filePath": "transformer/Modules.py",
+              "symbolName": "ScaledDotProductAttention",
               "symbolType": "CLASS",
               "parentSymbolName": null,
               "programmingLanguage": "Python",
-              "startLine": 4,
+              "startLine": 7,
+              "endLine": 25,
+              "codeContent": "class ScaledDotProductAttention(nn.Module):\n    ''' Scaled Dot-Product Attention '''\n\n    def __init__(self, temperature, attn_dropout=0.1):\n        super().__init__()\n        self.temperature = temperature\n        self.dropout = nn.Dropout(attn_dropout)\n\n    def forward(self, q, k, v, mask=None):\n\n        attn = torch.matmul(q / self.temperature, k.transpose(2, 3))\n\n        if mask is not None:\n            attn = attn.masked_fill(mask == 0, -1e9)\n\n        attn = self.dropout(F.softmax(attn, dim=-1))\n        output = torch.matmul(attn, v)\n\n        return output, attn",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Modules.py:7-25"
+            },
+            {
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "MultiHeadAttention",
+              "programmingLanguage": "Python",
+              "startLine": 12,
+              "endLine": 27,
+              "codeContent": "    def __init__(self, n_head, d_model, d_k, d_v, dropout=0.1):\n        super().__init__()\n\n        self.n_head = n_head\n        self.d_k = d_k\n        self.d_v = d_v\n\n        self.w_qs = nn.Linear(d_model, n_head * d_k, bias=False)\n        self.w_ks = nn.Linear(d_model, n_head * d_k, bias=False)\n        self.w_vs = nn.Linear(d_model, n_head * d_v, bias=False)\n        self.fc = nn.Linear(n_head * d_v, d_model, bias=False)\n\n        self.attention = ScaledDotProductAttention(temperature=d_k ** 0.5)\n\n        self.dropout = nn.Dropout(dropout)\n        self.layer_norm = nn.LayerNorm(d_model, eps=1e-6)",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/SubLayers.py:12-27"
+            },
+            {
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "MultiHeadAttention",
+              "programmingLanguage": "Python",
+              "startLine": 30,
+              "endLine": 59,
+              "codeContent": "    def forward(self, q, k, v, mask=None):\n\n        d_k, d_v, n_head = self.d_k, self.d_v, self.n_head\n        sz_b, len_q, len_k, len_v = q.size(0), q.size(1), k.size(1), v.size(1)\n\n        residual = q\n\n        # Pass through the pre-attention projection: b x lq x (n*dv)\n        # Separate different heads: b x lq x n x dv\n        q = self.w_qs(q).view(sz_b, len_q, n_head, d_k)\n        k = self.w_ks(k).view(sz_b, len_k, n_head, d_k)\n        v = self.w_vs(v).view(sz_b, len_v, n_head, d_v)\n\n        # Transpose for attention dot product: b x n x lq x dv\n        q, k, v = q.transpose(1, 2), k.transpose(1, 2), v.transpose(1, 2)\n\n        if mask is not None:\n            mask = mask.unsqueeze(1)   # For head axis broadcasting.\n\n        q, attn = self.attention(q, k, v, mask=mask)\n\n        # Transpose to move the head dimension back: b x lq x n x dv\n        # Combine the last two dimensions to concatenate all the heads together: b x lq x (n*dv)\n        q = q.transpose(1, 2).contiguous().view(sz_b, len_q, -1)\n        q = self.dropout(self.fc(q))\n        q += residual\n\n        q = self.layer_norm(q)\n\n        return q, attn",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/SubLayers.py:30-59"
+            },
+            {
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "PositionwiseFeedForward",
+              "programmingLanguage": "Python",
+              "startLine": 65,
+              "endLine": 70,
+              "codeContent": "    def __init__(self, d_in, d_hid, dropout=0.1):\n        super().__init__()\n        self.w_1 = nn.Linear(d_in, d_hid) # position-wise\n        self.w_2 = nn.Linear(d_hid, d_in) # position-wise\n        self.layer_norm = nn.LayerNorm(d_in, eps=1e-6)\n        self.dropout = nn.Dropout(dropout)",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/SubLayers.py:65-70"
+            },
+            {
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "PositionwiseFeedForward",
+              "programmingLanguage": "Python",
+              "startLine": 72,
+              "endLine": 82,
+              "codeContent": "    def forward(self, x):\n\n        residual = x\n\n        x = self.w_2(F.relu(self.w_1(x)))\n        x = self.dropout(x)\n        x += residual\n\n        x = self.layer_norm(x)\n\n        return x",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/SubLayers.py:72-82"
+            },
+            {
+              "filePath": "transformer/Layers.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "EncoderLayer",
+              "programmingLanguage": "Python",
+              "startLine": 13,
+              "endLine": 16,
+              "codeContent": "    def __init__(self, d_model, d_inner, n_head, d_k, d_v, dropout=0.1):\n        super(EncoderLayer, self).__init__()\n        self.slf_attn = MultiHeadAttention(n_head, d_model, d_k, d_v, dropout=dropout)\n        self.pos_ffn = PositionwiseFeedForward(d_model, d_inner, dropout=dropout)",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Layers.py:13-16"
+            },
+            {
+              "filePath": "transformer/Layers.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "EncoderLayer",
+              "programmingLanguage": "Python",
+              "startLine": 18,
+              "endLine": 22,
+              "codeContent": "    def forward(self, enc_input, slf_attn_mask=None):\n        enc_output, enc_slf_attn = self.slf_attn(\n            enc_input, enc_input, enc_input, mask=slf_attn_mask)\n        enc_output = self.pos_ffn(enc_output)\n        return enc_output, enc_slf_attn",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Layers.py:18-22"
+            },
+            {
+              "filePath": "transformer/Layers.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "DecoderLayer",
+              "programmingLanguage": "Python",
+              "startLine": 28,
+              "endLine": 32,
+              "codeContent": "    def __init__(self, d_model, d_inner, n_head, d_k, d_v, dropout=0.1):\n        super(DecoderLayer, self).__init__()\n        self.slf_attn = MultiHeadAttention(n_head, d_model, d_k, d_v, dropout=dropout)\n        self.enc_attn = MultiHeadAttention(n_head, d_model, d_k, d_v, dropout=dropout)\n        self.pos_ffn = PositionwiseFeedForward(d_model, d_inner, dropout=dropout)",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Layers.py:28-32"
+            },
+            {
+              "filePath": "transformer/Layers.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "DecoderLayer",
+              "programmingLanguage": "Python",
+              "startLine": 34,
+              "endLine": 42,
+              "codeContent": "    def forward(\n            self, dec_input, enc_output,\n            slf_attn_mask=None, dec_enc_attn_mask=None):\n        dec_output, dec_slf_attn = self.slf_attn(\n            dec_input, dec_input, dec_input, mask=slf_attn_mask)\n        dec_output, dec_enc_attn = self.enc_attn(\n            dec_output, enc_output, enc_output, mask=dec_enc_attn_mask)\n        dec_output = self.pos_ffn(dec_output)\n        return dec_output, dec_slf_attn, dec_enc_attn",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Layers.py:34-42"
+            },
+            {
+              "filePath": "transformer/Optim.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ScheduledOptim",
+              "programmingLanguage": "Python",
+              "startLine": 7,
+              "endLine": 12,
+              "codeContent": "    def __init__(self, optimizer, lr_mul, d_model, n_warmup_steps):\n        self._optimizer = optimizer\n        self.lr_mul = lr_mul\n        self.d_model = d_model\n        self.n_warmup_steps = n_warmup_steps\n        self.n_steps = 0",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Optim.py:7-12"
+            },
+            {
+              "filePath": "transformer/Optim.py",
+              "symbolName": "_get_lr_scale",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ScheduledOptim",
+              "programmingLanguage": "Python",
+              "startLine": 26,
+              "endLine": 29,
+              "codeContent": "    def _get_lr_scale(self):\n        d_model = self.d_model\n        n_steps, n_warmup_steps = self.n_steps, self.n_warmup_steps\n        return (d_model ** -0.5) * min(n_steps ** (-0.5), n_steps * n_warmup_steps ** (-1.5))",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Optim.py:26-29"
+            },
+            {
+              "filePath": "transformer/Optim.py",
+              "symbolName": "_update_learning_rate",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ScheduledOptim",
+              "programmingLanguage": "Python",
+              "startLine": 32,
               "endLine": 39,
-              "codeContent": "class ScheduledOptim():\n    '''A simple wrapper class for learning rate scheduling'''\n\n    def __init__(self, optimizer, lr_mul, d_model, n_warmup_steps):\n        self._optimizer = optimizer\n        self.lr_mul = lr_mul\n        self.d_model = d_model\n        self.n_warmup_steps = n_warmup_steps\n        self.n_steps = 0\n\n\n    def step_and_update_lr(self):\n        \"Step with the inner optimizer\"\n        self._update_learning_rate()\n        self._optimizer.step()\n\n\n    def zero_grad(self):\n        \"Zero out the gradients with the inner optimizer\"\n        self._optimizer.zero_grad()\n\n\n    def _get_lr_scale(self):\n        d_model = self.d_model\n        n_steps, n_warmup_steps = self.n_steps, self.n_warmup_steps\n        return (d_model ** -0.5) * min(n_steps ** (-0.5), n_steps * n_warmup_steps ** (-1.5))\n\n\n    def _update_learning_rate(self):\n        ''' Learning rate scheduling per step '''\n\n        self.n_steps += 1\n        lr = self.lr_mul * self._get_lr_scale()\n\n        for param_group in self._optimizer.param_groups:\n            param_group['lr'] = lr",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Optim.py:4-39. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
+              "codeContent": "    def _update_learning_rate(self):\n        ''' Learning rate scheduling per step '''\n\n        self.n_steps += 1\n        lr = self.lr_mul * self._get_lr_scale()\n\n        for param_group in self._optimizer.param_groups:\n            param_group['lr'] = lr",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Optim.py:32-39"
             },
             {
               "filePath": "transformer/Translator.py",
@@ -1395,7 +1793,29 @@
               "startLine": 12,
               "endLine": 36,
               "codeContent": "    def __init__(\n            self, model, beam_size, max_seq_len,\n            src_pad_idx, trg_pad_idx, trg_bos_idx, trg_eos_idx):\n        \n\n        super(Translator, self).__init__()\n\n        self.alpha = 0.7\n        self.beam_size = beam_size\n        self.max_seq_len = max_seq_len\n        self.src_pad_idx = src_pad_idx\n        self.trg_bos_idx = trg_bos_idx\n        self.trg_eos_idx = trg_eos_idx\n\n        self.model = model\n        self.model.eval()\n\n        self.register_buffer('init_seq', torch.LongTensor([[trg_bos_idx]]))\n        self.register_buffer(\n            'blank_seqs', \n            torch.full((beam_size, max_seq_len), trg_pad_idx, dtype=torch.long))\n        self.blank_seqs[:, 0] = self.trg_bos_idx\n        self.register_buffer(\n            'len_map', \n            torch.arange(1, max_seq_len + 1, dtype=torch.long).unsqueeze(0))",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Translator.py:12-36. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Translator.py:12-36"
+            },
+            {
+              "filePath": "transformer/Translator.py",
+              "symbolName": "_model_decode",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Translator",
+              "programmingLanguage": "Python",
+              "startLine": 39,
+              "endLine": 42,
+              "codeContent": "    def _model_decode(self, trg_seq, enc_output, src_mask):\n        trg_mask = get_subsequent_mask(trg_seq)\n        dec_output, *_ = self.model.decoder(trg_seq, trg_mask, enc_output, src_mask)\n        return F.softmax(self.model.trg_word_prj(dec_output), dim=-1)",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Translator.py:39-42"
+            },
+            {
+              "filePath": "transformer/Translator.py",
+              "symbolName": "_get_init_state",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Translator",
+              "programmingLanguage": "Python",
+              "startLine": 45,
+              "endLine": 57,
+              "codeContent": "    def _get_init_state(self, src_seq, src_mask):\n        beam_size = self.beam_size\n\n        enc_output, *_ = self.model.encoder(src_seq, src_mask)\n        dec_output = self._model_decode(self.init_seq, enc_output, src_mask)\n        \n        best_k_probs, best_k_idx = dec_output[:, -1, :].topk(beam_size)\n\n        scores = torch.log(best_k_probs).view(beam_size)\n        gen_seq = self.blank_seqs.clone().detach()\n        gen_seq[:, 1] = best_k_idx[0]\n        enc_output = enc_output.repeat(beam_size, 1, 1)\n        return enc_output, gen_seq, scores",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Translator.py:45-57"
             },
             {
               "filePath": "transformer/Translator.py",
@@ -1406,7 +1826,73 @@
               "startLine": 60,
               "endLine": 83,
               "codeContent": "    def _get_the_best_score_and_idx(self, gen_seq, dec_output, scores, step):\n        assert len(scores.size()) == 1\n        \n        beam_size = self.beam_size\n\n        # Get k candidates for each beam, k^2 candidates in total.\n        best_k2_probs, best_k2_idx = dec_output[:, -1, :].topk(beam_size)\n\n        # Include the previous scores.\n        scores = torch.log(best_k2_probs).view(beam_size, -1) + scores.view(beam_size, 1)\n\n        # Get the best k candidates from k^2 candidates.\n        scores, best_k_idx_in_k2 = scores.view(-1).topk(beam_size)\n \n        # Get the corresponding positions of the best k candidiates.\n        best_k_r_idxs, best_k_c_idxs = best_k_idx_in_k2 // beam_size, best_k_idx_in_k2 % beam_size\n        best_k_idx = best_k2_idx[best_k_r_idxs, best_k_c_idxs]\n\n        # Copy the corresponding previous tokens.\n        gen_seq[:, :step] = gen_seq[best_k_r_idxs, :step]\n        # Set the best tokens in this beam search step\n        gen_seq[:, step] = best_k_idx\n\n        return gen_seq, scores",
-              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Translator.py:60-83. 업로드 마크다운의 코드는 줄바꿈이 재포맷돼 원본과 달라 저장소 원문으로 교체함."
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Translator.py:60-83"
+            },
+            {
+              "filePath": "transformer/Translator.py",
+              "symbolName": "translate_sentence",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Translator",
+              "programmingLanguage": "Python",
+              "startLine": 86,
+              "endLine": 114,
+              "codeContent": "    def translate_sentence(self, src_seq):\n        # Only accept batch size equals to 1 in this function.\n        # TODO: expand to batch operation.\n        assert src_seq.size(0) == 1\n\n        src_pad_idx, trg_eos_idx = self.src_pad_idx, self.trg_eos_idx \n        max_seq_len, beam_size, alpha = self.max_seq_len, self.beam_size, self.alpha \n\n        with torch.no_grad():\n            src_mask = get_pad_mask(src_seq, src_pad_idx)\n            enc_output, gen_seq, scores = self._get_init_state(src_seq, src_mask)\n\n            ans_idx = 0   # default\n            for step in range(2, max_seq_len):    # decode up to max length\n                dec_output = self._model_decode(gen_seq[:, :step], enc_output, src_mask)\n                gen_seq, scores = self._get_the_best_score_and_idx(gen_seq, dec_output, scores, step)\n\n                # Check if all path finished\n                # -- locate the eos in the generated sequences\n                eos_locs = gen_seq == trg_eos_idx   \n                # -- replace the eos with its position for the length penalty use\n                seq_lens, _ = self.len_map.masked_fill(~eos_locs, max_seq_len).min(1)\n                # -- check if all beams contain eos\n                if (eos_locs.sum(1) > 0).sum(0).item() == beam_size:\n                    # TODO: Try different terminate conditions.\n                    _, ans_idx = scores.div(seq_lens.float() ** alpha).max(0)\n                    ans_idx = ans_idx.item()\n                    break\n        return gen_seq[ans_idx][:seq_lens[ans_idx]].tolist()",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — transformer/Translator.py:86-114"
+            },
+            {
+              "filePath": "train.py",
+              "symbolName": "cal_loss",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 40,
+              "endLine": 58,
+              "codeContent": "def cal_loss(pred, gold, trg_pad_idx, smoothing=False):\n    ''' Calculate cross entropy loss, apply label smoothing if needed. '''\n\n    gold = gold.contiguous().view(-1)\n\n    if smoothing:\n        eps = 0.1\n        n_class = pred.size(1)\n\n        one_hot = torch.zeros_like(pred).scatter(1, gold.view(-1, 1), 1)\n        one_hot = one_hot * (1 - eps) + (1 - one_hot) * eps / (n_class - 1)\n        log_prb = F.log_softmax(pred, dim=1)\n\n        non_pad_mask = gold.ne(trg_pad_idx)\n        loss = -(one_hot * log_prb).sum(dim=1)\n        loss = loss.masked_select(non_pad_mask).sum()  # average later\n    else:\n        loss = F.cross_entropy(pred, gold, ignore_index=trg_pad_idx, reduction='sum')\n    return loss",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — train.py:40-58"
+            },
+            {
+              "filePath": "train.py",
+              "symbolName": "patch_trg",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 66,
+              "endLine": 69,
+              "codeContent": "def patch_trg(trg, pad_idx):\n    trg = trg.transpose(0, 1)\n    trg, gold = trg[:, :-1], trg[:, 1:].contiguous().view(-1)\n    return trg, gold",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — train.py:66-69"
+            },
+            {
+              "filePath": "train.py",
+              "symbolName": "train_epoch",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 72,
+              "endLine": 102,
+              "codeContent": "def train_epoch(model, training_data, optimizer, opt, device, smoothing):\n    ''' Epoch operation in training phase'''\n\n    model.train()\n    total_loss, n_word_total, n_word_correct = 0, 0, 0 \n\n    desc = '  - (Training)   '\n    for batch in tqdm(training_data, mininterval=2, desc=desc, leave=False):\n\n        # prepare data\n        src_seq = patch_src(batch.src, opt.src_pad_idx).to(device)\n        trg_seq, gold = map(lambda x: x.to(device), patch_trg(batch.trg, opt.trg_pad_idx))\n\n        # forward\n        optimizer.zero_grad()\n        pred = model(src_seq, trg_seq)\n\n        # backward and update parameters\n        loss, n_correct, n_word = cal_performance(\n            pred, gold, opt.trg_pad_idx, smoothing=smoothing) \n        loss.backward()\n        optimizer.step_and_update_lr()\n\n        # note keeping\n        n_word_total += n_word\n        n_word_correct += n_correct\n        total_loss += loss.item()\n\n    loss_per_word = total_loss/n_word_total\n    accuracy = n_word_correct/n_word_total\n    return loss_per_word, accuracy",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — train.py:72-102"
+            },
+            {
+              "filePath": "train.py",
+              "symbolName": "prepare_dataloaders_from_bpe_files",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 305,
+              "endLine": 336,
+              "codeContent": "def prepare_dataloaders_from_bpe_files(opt, device):\n    batch_size = opt.batch_size\n    MIN_FREQ = 2\n    if not opt.embs_share_weight:\n        raise\n\n    data = pickle.load(open(opt.data_pkl, 'rb'))\n    MAX_LEN = data['settings'].max_len\n    field = data['vocab']\n    fields = (field, field)\n\n    def filter_examples_with_length(x):\n        return len(vars(x)['src']) <= MAX_LEN and len(vars(x)['trg']) <= MAX_LEN\n\n    train = TranslationDataset(\n        fields=fields,\n        path=opt.train_path, \n        exts=('.src', '.trg'),\n        filter_pred=filter_examples_with_length)\n    val = TranslationDataset(\n        fields=fields,\n        path=opt.val_path, \n        exts=('.src', '.trg'),\n        filter_pred=filter_examples_with_length)\n\n    opt.max_token_seq_len = MAX_LEN + 2\n    opt.src_pad_idx = opt.trg_pad_idx = field.vocab.stoi[Constants.PAD_WORD]\n    opt.src_vocab_size = opt.trg_vocab_size = len(field.vocab)\n\n    train_iterator = BucketIterator(train, batch_size=batch_size, device=device, train=True)\n    val_iterator = BucketIterator(val, batch_size=batch_size, device=device)\n    return train_iterator, val_iterator",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — train.py:305-336"
+            },
+            {
+              "filePath": "translate.py",
+              "symbolName": "load_model",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 14,
+              "endLine": 39,
+              "codeContent": "def load_model(opt, device):\n\n    checkpoint = torch.load(opt.model, map_location=device)\n    model_opt = checkpoint['settings']\n\n    model = Transformer(\n        model_opt.src_vocab_size,\n        model_opt.trg_vocab_size,\n\n        model_opt.src_pad_idx,\n        model_opt.trg_pad_idx,\n\n        trg_emb_prj_weight_sharing=model_opt.proj_share_weight,\n        emb_src_trg_weight_sharing=model_opt.embs_share_weight,\n        d_k=model_opt.d_k,\n        d_v=model_opt.d_v,\n        d_model=model_opt.d_model,\n        d_word_vec=model_opt.d_word_vec,\n        d_inner=model_opt.d_inner_hid,\n        n_layers=model_opt.n_layers,\n        n_head=model_opt.n_head,\n        dropout=model_opt.dropout).to(device)\n\n    model.load_state_dict(checkpoint['model'])\n    print('[Info] Trained model state loaded.')\n    return model ",
+              "_comment": "Verbatim from https://github.com/jadore801120/attention-is-all-you-need-pytorch @ 132907d — translate.py:14-39"
             }
           ],
           "commitHash": "132907dd272e2cc92e3c10e6c4e783a87ff8893d"
