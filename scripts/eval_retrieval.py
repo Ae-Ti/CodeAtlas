@@ -251,7 +251,7 @@ def main():
         scored.sort()
         return [bid for _, _, bid in scored[:args.k]]
 
-    top1 = top3 = 0
+    top1 = top3 = top5 = 0
     reciprocal_ranks = []
     misses = []
 
@@ -267,6 +267,9 @@ def main():
             top1 += 1
         if rank is not None and rank <= 3:
             top3 += 1
+        # 화면(/api/mapping/search)이 Top-5 를 보여주므로 사용자 경험과 맞는 지표입니다.
+        if rank is not None and rank <= 5:
+            top5 += 1
         reciprocal_ranks.append(1.0 / rank if rank else 0.0)
         if rank != 1:
             misses.append((chunk_id, accepted, ranked[0] if ranked else None, rank))
@@ -286,11 +289,25 @@ def main():
         scope.append(f"exclude={len(args.exclude_repo)}개 저장소")
     total_golds = sum(len(v) for v in golds.values())
 
+    # 후보 풀 크기로 랜덤 하한을 계산합니다. 정답셋이 넓어지면 절대 수치는 떨어지는데
+    # (후보가 늘어 문제가 어려워지므로) 하한 대비 배수를 같이 봐야 성능 변화가 드러납니다.
+    pool = int(psql(args.container, args.db, args.user,
+                    f"SELECT count(*) FROM code_blocks cb "
+                    f"WHERE cb.embedding IS NOT NULL {repo_filter}")[0])
+    avg_golds = sum(len(v if args.multi_gold else v[:1]) for v in golds.values()) / n
+    base1 = avg_golds / pool if pool else 0.0
+
+    def ratio(acc, at):
+        floor = min(1.0, base1 * at)
+        return f"랜덤 {floor:.1%} 대비 {acc / floor:.1f}배" if floor else "—"
+
     print(f"정답셋 chunk {n}개 / 매핑 {total_golds}건 (top-{args.k}까지 확인)")
     print(f"  랭킹 기준 : {rank_desc}")
     print(f"  채점 기준 : {mode}" + (f" | 후보 범위: {', '.join(scope)}" if scope else ""))
-    print(f"  Top-1 Accuracy : {top1}/{n}  ({top1 / n:.1%})")
-    print(f"  Top-3 Accuracy : {top3}/{n}  ({top3 / n:.1%})")
+    print(f"  후보 풀   : 코드 블록 {pool}개 / chunk 당 정답 평균 {avg_golds:.2f}개")
+    print(f"  Top-1 Accuracy : {top1}/{n}  ({top1 / n:.1%})   {ratio(top1 / n, 1)}")
+    print(f"  Top-3 Accuracy : {top3}/{n}  ({top3 / n:.1%})   {ratio(top3 / n, 3)}")
+    print(f"  Top-5 Accuracy : {top5}/{n}  ({top5 / n:.1%})   {ratio(top5 / n, 5)}")
     print(f"  MRR            : {sum(reciprocal_ranks) / n:.4f}")
 
     if misses:
