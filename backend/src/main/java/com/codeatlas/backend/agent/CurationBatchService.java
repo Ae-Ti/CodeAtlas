@@ -13,6 +13,8 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * B 구현. FindCodeImplementation(A의 CodeSearchPort)과 CurateContext(TACC+Qwen3)를
@@ -52,8 +54,49 @@ public class CurationBatchService {
 
     public record BatchResult(int chunksPending, int chunksCurated, int chunksSkipped, int mappingsCreated) {}
 
-    /** 아직 paper_code_mappings에 없는 chunk 전체를 대상으로 큐레이션 수행 */
+    /** 진행 중인 배치의 현황. 중복 호출을 거절할 때 응답에 실어 보냅니다. */
+    public record Progress(int done, int total) {}
+
+    /**
+     * 배치는 한 번에 하나만 돕니다.
+     *
+     * HTTP 클라이언트가 끊겨도 서버 핸들러는 계속 돌기 때문에, curl 을 Ctrl-C 하고
+     * "다시 시작"하면 배치가 두 개가 됩니다. 실제로 그렇게 만들어서 chunk 를 두 번씩
+     * 처리하고 Ollama 호출을 두 배로 쓴 적이 있습니다(2026-08-08). 진행률 로그가 각자
+     * 분모를 쓰기 때문에(n/65, n/18) 밖에서는 하나만 도는 것처럼 보입니다.
+     */
+    private final AtomicBoolean running = new AtomicBoolean(false);
+    private final AtomicInteger progressDone = new AtomicInteger();
+    private final AtomicInteger progressTotal = new AtomicInteger();
+
+    /** 배치가 진행 중이면 현황을, 아니면 null 을 돌려줍니다. */
+    public Progress currentProgress() {
+        return running.get() ? new Progress(progressDone.get(), progressTotal.get()) : null;
+    }
+
+    /**
+     * 아직 paper_code_mappings에 없는 chunk 전체를 대상으로 큐레이션 수행.
+     *
+     * @throws IllegalStateException 이미 배치가 돌고 있을 때
+     */
     public BatchResult curateAllPendingChunks(int candidatesPerChunk, int selectedPerChunk) {
+        if (!running.compareAndSet(false, true)) {
+            Progress p = currentProgress();
+            throw new IllegalStateException(p == null
+                    ? "큐레이션 배치가 이미 실행 중입니다."
+                    : "큐레이션 배치가 이미 실행 중입니다 (%d/%d). 진행 상황은 서버 로그를 보세요."
+                            .formatted(p.done(), p.total()));
+        }
+        try {
+            return runBatch(candidatesPerChunk, selectedPerChunk);
+        } finally {
+            running.set(false);
+            progressDone.set(0);
+            progressTotal.set(0);
+        }
+    }
+
+    private BatchResult runBatch(int candidatesPerChunk, int selectedPerChunk) {
         List<Map<String, Object>> pending = jdbcTemplate.queryForList("""
                 SELECT pc.id, pc.content
                 FROM paper_chunks pc
@@ -68,6 +111,8 @@ public class CurationBatchService {
                 """);
 
         log.info("큐레이션 배치 시작: 대상 chunk {}건", pending.size());
+        progressTotal.set(pending.size());
+        progressDone.set(0);
 
         int curated = 0;
         int skipped = 0;
@@ -82,6 +127,7 @@ public class CurationBatchService {
                 // code_blocks가 아직 임베딩되지 않았거나 매칭 후보가 전혀 없는 chunk
                 log.debug("chunk {} 건너뜀 — 후보 없음", chunkId);
                 skipped++;
+                progressDone.incrementAndGet();
                 continue;
             }
 
@@ -90,6 +136,7 @@ public class CurationBatchService {
 
             curated++;
             mappingsCreated += (created != null) ? created : 0;
+            progressDone.incrementAndGet();
             log.info("chunk {} 큐레이션 완료 ({}/{}) — 매핑 {}건",
                     chunkId, curated + skipped, pending.size(), created);
         }
