@@ -6,6 +6,10 @@ backend/target/
 frontend/node_modules/
 frontend/dist/
 
+# Python (scripts/ 도구를 모듈로 import 할 때 생깁니다)
+__pycache__/
+*.pyc
+
 # IDE
 .idea/
 *.iml
