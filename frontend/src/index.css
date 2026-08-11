@@ -1005,7 +1005,8 @@ code, pre {
   padding-right: 8px;
 }
 
-.agent-mock-notice {
+.agent-mock-notice,
+.cross-paper-notice {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -1017,6 +1018,13 @@ code, pre {
   color: var(--warning);
   font-size: 0.8rem;
   line-height: 1.5;
+}
+
+/* 논문에 연결된 저장소가 없어 전체 코퍼스로 폴백했을 때만 노출된다.
+   결과가 전부 다른 논문 코드이므로 아이콘이 결과 위에서 눈에 띄어야 한다. */
+.cross-paper-notice > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 /* --- Agent Page --- */

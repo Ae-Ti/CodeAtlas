@@ -216,6 +216,16 @@ def warnings_for(doc):
             warns.append(f'{where}: authors 가 비어 있습니다 — 이미 적재된 논문이라면 '
                          f'기존 저자 목록을 []로 덮어씁니다 (arxivId={arxiv})')
 
+        # 코드 검색은 그 논문에 연결된 저장소 안에서만 후보를 찾습니다(CodeSearchService).
+        # 저장소가 하나도 없으면 스코프가 비어 전체 코퍼스로 폴백하는데, 그 결과는 정의상
+        # 전부 '다른 논문의 구현'입니다. 적재 자체는 막지 않되 여기서 반드시 알립니다.
+        if not (p.get('repositories') or []):
+            warns.append(f'{where}: repositories 가 비어 있습니다 — 이 논문의 단락을 검색하면 '
+                         f'연결된 저장소가 없어 다른 논문의 코드가 반환됩니다 (arxivId={arxiv})')
+        elif not any((r.get('codeBlocks') or []) for r in p['repositories']):
+            warns.append(f'{where}: 저장소는 있으나 codeBlocks 가 하나도 없습니다 — '
+                         f'검색 후보가 비어 다른 논문의 코드가 반환됩니다 (arxivId={arxiv})')
+
         for ri, r in enumerate(p.get('repositories') or []):
             rw = f'{where}.repositories[{ri}]'
             blocks = r.get('codeBlocks') or []
