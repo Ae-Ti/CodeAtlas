@@ -11,7 +11,6 @@ CodeAtlas는 논문 단락과 실제 구현 코드를 연결해 보여주는 카
 - 각 블록의 출처(저장소·커밋·파일·줄 번호)는 `code_blocks` 테이블과
   `database/seed_manifest.csv` 에 기록돼 있습니다.
 - 라이선스 전문은 `database/licenses/` 에 저장소별 원본 그대로 두었습니다.
-
 ## 인용 현황
 
 | 저장소 | 커밋 | 라이선스 | 블록 | 줄수 |
@@ -24,14 +23,13 @@ CodeAtlas는 논문 단락과 실제 구현 코드를 연결해 보여주는 카
 | [`jadore801120/attention-is-all-you-need-pytorch`](https://github.com/jadore801120/attention-is-all-you-need-pytorch) | `132907d` | MIT | 33 | 491 |
 | [`pjreddie/darknet`](https://github.com/pjreddie/darknet) | `f6afaab` | YOLO LICENSE v2 (public-domain style) | 14 | 476 |
 | [`openai/CLIP`](https://github.com/openai/CLIP) | `d05afc4` | MIT | 13 | 398 |
-| [`Miltos-90/UNet_Biomedical_Image_Segmentation`](https://github.com/Miltos-90/UNet_Biomedical_Image_Segmentation) | `a50669d` | NONE (라이선스 파일 없음) | 15 | 326 |
 | [`mlfoundations/open_clip`](https://github.com/mlfoundations/open_clip) | `602d4af` | MIT | 4 | 264 |
 | [`pytorch/vision`](https://github.com/pytorch/vision) | `0fba2e8` | BSD-3-Clause | 8 | 243 |
-| [`mateuszbuda/brain-segmentation-pytorch`](https://github.com/mateuszbuda/brain-segmentation-pytorch) | `d45f890` | MIT | 6 | 210 |
 | [`KaimingHe/deep-residual-networks`](https://github.com/KaimingHe/deep-residual-networks) | `a7026cb` | MIT | 14 | 148 |
 | [`lucidrains/vit-pytorch`](https://github.com/lucidrains/vit-pytorch) | `bb13e27` | MIT | 6 | 105 |
 
 ## 별도 조건이 붙는 저장소
+
 
 ### Meta Llama 3 Community License — `meta-llama/llama3`
 
@@ -55,18 +53,6 @@ CodeAtlas는 Llama 3 모델을 학습·파인튜닝하거나 서비스에 탑재
 대조해 보여주기 위해 코드 일부를 인용할 뿐입니다. §2의 월간 활성 사용자 7억 명
 조건은 해당하지 않습니다.
 
-### 라이선스가 없는 저장소 — `Miltos-90/UNet_Biomedical_Image_Segmentation`
-
-이 저장소에는 **LICENSE 파일이 없고 README에도 라이선스 표기가 없습니다.**
-따라서 명시적 이용 허락이 없는 상태이며, 기본적으로 저작권자가 모든 권리를 보유합니다.
-
-U-Net 논문(arXiv:1505.04597)은 저자 배포본이 Caffe 바이너리라 공식 소스 저장소가
-존재하지 않고, 노트가 이 재구현 저장소를 기준으로 작성돼 있어 현재 인용 중입니다.
-
-- 인용 범위: 15블록 / 326줄, 출처·커밋·줄 번호 전부 명시
-- 수정 없음, 상업적 이용 없음, 연구·교육 목적 카탈로그
-- **처리 방침 미확정** — 저장소 소유자에게 라이선스 문의 또는 해당 블록 제거를 검토 중입니다
-
 ## 저장소별 고지
 
 ### `google-research/bert`
@@ -74,7 +60,7 @@ U-Net 논문(arXiv:1505.04597)은 저자 배포본이 Caffe 바이너리라 공�
 - 커밋: `eedf5716ce1268e56f0a50264a88cafad334ac61`  (기본 브랜치 `master`)
 - 라이선스: **Apache-2.0** — 전문: [`database/licenses/google-research_bert.txt`](licenses/google-research_bert.txt)
 - 저작권: Copyright 2018 The Google AI Language Team Authors
-- 사용 논문: BERT: Pre-training of Deep Bidirectional
+- 사용 논문: BERT: Pre-training of Deep Bidirectional Tra
 - 인용 파일: `create_pretraining_data.py`, `modeling.py`, `optimization.py`, `run_classifier.py`, `run_pretraining.py`, `run_squad.py`
 
 ### `CompVis/latent-diffusion`
@@ -82,7 +68,7 @@ U-Net 논문(arXiv:1505.04597)은 저자 배포본이 Caffe 바이너리라 공�
 - 커밋: `a506df5756472e2ebaf9078affdde2c4f1502cd4`  (기본 브랜치 `main`)
 - 라이선스: **MIT** — 전문: [`database/licenses/CompVis_latent-diffusion.txt`](licenses/CompVis_latent-diffusion.txt)
 - 저작권: Copyright (c) 2022 Machine Vision and Learning Group, LMU Munich
-- 사용 논문: High-Resolution Image Synthesis with Lat
+- 사용 논문: High-Resolution Image Synthesis with Latent 
 - 인용 파일: `ldm/models/autoencoder.py`, `ldm/models/diffusion/ddim.py`, `ldm/models/diffusion/ddpm.py`, `ldm/modules/attention.py`, `ldm/modules/diffusionmodules/openaimodel.py`, `ldm/modules/distributions/distributions.py`, `ldm/modules/encoders/modules.py`, `ldm/modules/losses/vqperceptual.py` 외 1개
 
 ### `facebookresearch/segment-anything`
@@ -106,7 +92,7 @@ U-Net 논문(arXiv:1505.04597)은 저자 배포본이 Caffe 바이너리라 공�
 - 커밋: `64801f1b3b367b3611cc27a3d45cc22870a36fb3`  (기본 브랜치 `main`)
 - 라이선스: **Apache-2.0** — 전문: [`database/licenses/google-research_vision_transformer.txt`](licenses/google-research_vision_transformer.txt)
 - 저작권: Copyright 2021 Google LLC
-- 사용 논문: An Image is Worth 16x16 Words: Transform
+- 사용 논문: An Image is Worth 16x16 Words: Transformers 
 - 인용 파일: `vit_jax/checkpoint.py`, `vit_jax/input_pipeline.py`, `vit_jax/models_vit.py`, `vit_jax/train.py`
 
 ### `jadore801120/attention-is-all-you-need-pytorch`
@@ -122,7 +108,7 @@ U-Net 논문(arXiv:1505.04597)은 저자 배포본이 Caffe 바이너리라 공�
 - 커밋: `f6afaabcdf85f77e7aff2ec55c020c0e297c77f9`  (기본 브랜치 `master`)
 - 라이선스: **YOLO LICENSE v2 (public-domain style)** — 전문: [`database/licenses/pjreddie_darknet.txt`](licenses/pjreddie_darknet.txt)
 - 저작권: (YOLO LICENSE v2 — 저작권 표시 줄 없음)
-- 사용 논문: You Only Look Once: Unified, Real-Time O
+- 사용 논문: You Only Look Once: Unified, Real-Time Objec
 - 인용 파일: `cfg/t1.test.cfg`, `cfg/tiny.cfg`, `cfg/yolov1-tiny.cfg`, `cfg/yolov1.cfg`, `cfg/yolov3-openimages.cfg`, `examples/detector.c`, `src/activations.c`, `src/box.c` 외 2개
 
 ### `openai/CLIP`
@@ -130,23 +116,15 @@ U-Net 논문(arXiv:1505.04597)은 저자 배포본이 Caffe 바이너리라 공�
 - 커밋: `d05afc436d78f1c48dc0dbf8e5980a9d471f35f6`  (기본 브랜치 `main`)
 - 라이선스: **MIT** — 전문: [`database/licenses/openai_CLIP.txt`](licenses/openai_CLIP.txt)
 - 저작권: Copyright (c) 2021 OpenAI
-- 사용 논문: Learning Transferable Visual Models From
+- 사용 논문: Learning Transferable Visual Models From Nat
 - 인용 파일: `clip/clip.py`, `clip/model.py`, `clip/simple_tokenizer.py`
-
-### `Miltos-90/UNet_Biomedical_Image_Segmentation`
-
-- 커밋: `a50669d1cbbb256b12b05f60817e0e4b37dea9f6`  (기본 브랜치 `main`)
-- 라이선스: **NONE (라이선스 파일 없음)** — 저장소에 라이선스 파일이 없습니다
-- 저작권: (LICENSE 파일 없음 — 저작권자 Miltos-90, 모든 권리 유보 가정)
-- 사용 논문: U-Net: Convolutional Networks for Biomed
-- 인용 파일: `UNet.py`, `engine.py`, `learning_rate_range_test.py`, `utils.py`
 
 ### `mlfoundations/open_clip`
 
 - 커밋: `602d4af74f86df6f2ff81ba0f0a847b0b70ad2e5`  (기본 브랜치 `main`)
 - 라이선스: **MIT** — 전문: [`database/licenses/mlfoundations_open_clip.txt`](licenses/mlfoundations_open_clip.txt)
 - 저작권: Copyright (c) 2012-2021 Gabriel Ilharco, Mitchell Wortsman, Nicholas Carlini, Rohan Taori, Achal Dave, Vaishaal Shankar, John Miller, Hongseok Namkoong, Hannaneh Hajishirzi, Ali Farhadi, Ludwig Schmidt
-- 사용 논문: Learning Transferable Visual Models From
+- 사용 논문: Learning Transferable Visual Models From Nat
 - 인용 파일: `src/open_clip/loss.py`, `src/open_clip_train/data.py`, `src/open_clip_train/train.py`
 
 ### `pytorch/vision`
@@ -154,23 +132,15 @@ U-Net 논문(arXiv:1505.04597)은 저자 배포본이 Caffe 바이너리라 공�
 - 커밋: `0fba2e84fe255a2fcd81bd0b10c74d7fca99a89f`  (기본 브랜치 `main`)
 - 라이선스: **BSD-3-Clause** — 전문: [`database/licenses/pytorch_vision.txt`](licenses/pytorch_vision.txt)
 - 저작권: Copyright (c) Soumith Chintala 2016, All rights reserved.
-- 사용 논문: Deep Residual Learning for Image Recogni
+- 사용 논문: Deep Residual Learning for Image Recognition
 - 인용 파일: `torchvision/models/resnet.py`
-
-### `mateuszbuda/brain-segmentation-pytorch`
-
-- 커밋: `d45f8908ab2f0246ba204c702a6161c9eb25f902`  (기본 브랜치 `master`)
-- 라이선스: **MIT** — 전문: [`database/licenses/mateuszbuda_brain-segmentation-pytorch.txt`](licenses/mateuszbuda_brain-segmentation-pytorch.txt)
-- 저작권: Copyright (c) 2019 mateuszbuda
-- 사용 논문: U-Net: Convolutional Networks for Biomed
-- 인용 파일: `loss.py`, `train.py`, `unet.py`
 
 ### `KaimingHe/deep-residual-networks`
 
 - 커밋: `a7026cb6d478e131b765b898c312e25f9f6dc031`  (기본 브랜치 `master`)
 - 라이선스: **MIT** — 전문: [`database/licenses/KaimingHe_deep-residual-networks.txt`](licenses/KaimingHe_deep-residual-networks.txt)
 - 저작권: Copyright (c) 2016 Shaoqing Ren
-- 사용 논문: Deep Residual Learning for Image Recogni
+- 사용 논문: Deep Residual Learning for Image Recognition
 - 인용 파일: `prototxt/ResNet-101-deploy.prototxt`
 
 ### `lucidrains/vit-pytorch`
@@ -178,6 +148,6 @@ U-Net 논문(arXiv:1505.04597)은 저자 배포본이 Caffe 바이너리라 공�
 - 커밋: `bb13e27ee5b30ddd3e09c2e23c30ec2c17683d35`  (기본 브랜치 `main`)
 - 라이선스: **MIT** — 전문: [`database/licenses/lucidrains_vit-pytorch.txt`](licenses/lucidrains_vit-pytorch.txt)
 - 저작권: Copyright (c) 2020 Phil Wang
-- 사용 논문: An Image is Worth 16x16 Words: Transform
+- 사용 논문: An Image is Worth 16x16 Words: Transformers 
 - 인용 파일: `vit_pytorch/vit.py`
 
