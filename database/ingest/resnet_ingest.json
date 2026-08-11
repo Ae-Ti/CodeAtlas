@@ -219,13 +219,18 @@
     },
     {
       "chunk": "-",
-      "title": "content 보강",
-      "issue": "22개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 9건을 참조 구현/추가 심볼로 매핑"
     },
     {
       "chunk": "-",
       "title": "참조 구현 보강",
-      "issue": "공식 저장소로 대응이 안 되는 chunk 9건을 참조 구현/추가 심볼로 매핑"
+      "issue": "공식 저장소로 대응이 안 되는 chunk 10건을 참조 구현/추가 심볼로 매핑"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 2건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -285,7 +290,16 @@
           "content": "“On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers.”\n\nDeeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth.\nOn the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8 \\times deeper than VGG nets Simonyan2015 but still having lower complexity.\nAn ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task.\nWe also present analysis on CIFAR-10 with 100 and 1000 layers.",
           "pageStart": 1,
           "pageEnd": 1,
-          "_comment": "노트 p1-3 / 판정 `DIRECT`\n\n공식 저장소는 논문의 50·101·152층 원본 Caffe 모델을 제공합니다. [GitHu | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p1-3 / 판정 `DIRECT`\n\n공식 저장소는 논문의 50·101·152층 원본 Caffe 모델을 제공합니다. [GitHu | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "resnet152",
+              "startLine": 800,
+              "reason": "Bottleneck 을 [3,8,36,3] 으로 쌓아 152층을 구성"
+            }
+          ]
         },
         {
           "chunkIndex": 3,
@@ -300,19 +314,19 @@
           "chunkIndex": 4,
           "sectionTitle": "Figure 1 — 20층·56층 plain network 비교",
           "subsectionTitle": "Figure 1 — 20층·56층 plain network 비교",
-          "content": "“The deeper network has higher training error, and thus test error.”",
+          "content": "“The deeper network has higher training error, and thus test error.”\n\nRecent evidence [41, 44] reveals that network depth is of crucial importance, and the leading results [41, 44, 13, 16] on the challenging ImageNet dataset [36] all exploit “very deep” [41] models, with a depth of sixteen [41] to thirty [16]. Many other nontrivial visual recognition tasks [8, 12, 7, 32, 27] have also 1http://image-net.org/challenges/LSVRC/2015/ and http://mscoco.org/dataset/#detections-challenge2015. 0 1 2 3 4 5 60 10 20 iter. (1e4) training error (%) 0 1 2 3 4 5 60 10 20 iter. (1e4) test error (%) 56-layer 20-layer 56-layer 20-layer Figure 1. Training error (left) and test error (right) on CIFAR-10 with 20-layer and 56-layer “plain” networks. The deeper network has higher training error, and thus test error.",
           "pageStart": 1,
           "pageEnd": 1,
-          "_comment": "노트 p1-5 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p1-5 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 보강 (PDF p.1)"
         },
         {
           "chunkIndex": 5,
           "sectionTitle": "Figure 2 — residual building block",
           "subsectionTitle": "Figure 2 — residual building block",
-          "content": "공식 저장소의 모델은 bottleneck block만 포함하므로 Figure 2의 정확한 두 계층 basic block은 없습니다.\n\n공식 bottleneck의 residual branch:\n\n\n\n두 번째 3×3 convolution:\n\n\n\n세 번째 1×1 convolution:\n\n\n\nShortcut과 addition:",
+          "content": "공식 저장소의 모델은 bottleneck block만 포함하므로 Figure 2의 정확한 두 계층 basic block은 없습니다.\n\n공식 bottleneck의 residual branch:\n\n\n\n두 번째 3×3 convolution:\n\n\n\n세 번째 1×1 convolution:\n\n\n\nShortcut과 addition:\n\nidentity weight layer weight layer relu reluF(x)\u0001+\u0001x x F(x) x Figure 2. Residual learning: a building block. are comparably good or better than the constructed solution (or unable to do so in feasible time). In this paper, we address the degradation problem by introducing a deep residual learning framework. Instead of hoping each few stacked layers directly ﬁt a desired underlying mapping, we explicitly let these layers ﬁt a residual mapping. Formally, denoting the desired underlying mapping asH(x), we let the stacked nonlinear layers ﬁt another mapping ofF(x) :=H(x)− x. The original mapping is recast intoF (x)+ x. We hypothesize that it is easier to optimize the residual mapping than to optimize the original, unreferenced mapping.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-6 / 판정 `DIRECT`, 단 공식 저장소는 Figure 2의 2-layer basic block이 아니라 3-lay / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p2-6 / 판정 `DIRECT`, 단 공식 저장소는 Figure 2의 2-layer basic block이 아니라 3-lay / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.2)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
@@ -366,16 +380,25 @@
           "content": "“The entire network can still be trained end-to-end by SGD with backpropagation.”\n\nThe formulation of \\mathcal{F}(\\mathbf{x})+\\mathbf{x} can be realized by feedforward neural networks with “shortcut connections” (Fig. 2). Shortcut connections Bishop1995; Ripley1996; Venables1999 are those skipping one or more layers. In our case, the shortcut connections simply perform identity mapping, and their outputs are added to the outputs of the stacked layers (Fig. 2). Identity shortcut connections add neither extra parameter nor computational complexity. The entire network can still be trained end-to-end by SGD with backpropagation, and can be easily implemented using common libraries (e.g., Caffe Jia2014) without modifying the solvers.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-9 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p2-9 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "references/classification/train.py",
+              "symbolName": "train_one_epoch",
+              "startLine": 19,
+              "reason": "SGD 로 역전파해 전체 network 를 end-to-end 로 갱신하는 루프"
+            }
+          ]
         },
         {
           "chunkIndex": 9,
           "sectionTitle": "Highway network와의 차이",
           "subsectionTitle": "Highway network와의 차이",
-          "content": "ResNet shortcut:\n\n\n\nGate에 해당하는 sigmoid나 multiplication 계층은 존재하지 않습니다.",
+          "content": "ResNet shortcut:\n\n\n\nGate에 해당하는 sigmoid나 multiplication 계층은 존재하지 않습니다.\n\nShortcut Connections. Practices and theories that lead to shortcut connections [2, 34, 49] have been studied for a long time. An early practice of training multi-layer perceptrons (MLPs) is to add a linear layer connected from the network input to the output [34, 49]. In [44, 24], a few intermediate layers are directly connected to auxiliary classiﬁers for addressing vanishing/exploding gradients. The papers of [39, 38, 31, 47] propose methods for centering layer responses, gradients, and propagated errors, implemented by shortcut connections. In [44], an “inception” layer is composed of a shortcut branch and a few deeper branches. Concurrent with our work, “highway networks” [42, 43] present shortcut connections with gating functions [15].",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-10 / 판정 `DIRECT-CONCEPTUAL`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p2-10 / 판정 `DIRECT-CONCEPTUAL`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.2)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
@@ -390,10 +413,10 @@
           "chunkIndex": 10,
           "sectionTitle": "Equation (1)",
           "subsectionTitle": "Equation (1)",
-          "content": "Equation (1)",
+          "content": "Equation (1)\n\n2. Formally, in this paper we consider a building block deﬁned as: y =F (x,{Wi}) + x. (1) Here x and y are the input and output vectors of the layers considered. The function F (x,{Wi}) represents the residual mapping to be learned. For the example in Fig. 2 that has two layers, F = W2σ(W1x) in which σ denotes 2This hypothesis, however, is still an open question. See [28]. ReLU [29] and the biases are omitted for simplifying notations. The operation F + x is performed by a shortcut connection and element-wise addition. We adopt the second nonlinearity after the addition (i.e.,σ(y), see Fig. 2). The shortcut connections in Eqn.(1) introduce neither extra parameter nor computation complexity.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-11 / 판정 `DIRECT`\n\nCaffe `Eltwise`의 기본 operation은 합산이며 두 bottom blob을 / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p3-11 / 판정 `DIRECT`\n\nCaffe `Eltwise`의 기본 operation은 합산이며 두 bottom blob을 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.3, 지정 구절 \"building block de\")",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
@@ -408,10 +431,10 @@
           "chunkIndex": 11,
           "sectionTitle": "두 계층 residual function",
           "subsectionTitle": "두 계층 residual function",
-          "content": "두 계층 residual function",
+          "content": "두 계층 residual function\n\nway networks have not demonstrated accuracy gains with extremely increased depth (e.g., over 100 layers). 3. Deep Residual Learning 3.1. Residual Learning Let us consider H(x) as an underlying mapping to be ﬁt by a few stacked layers (not necessarily the entire net), with x denoting the inputs to the ﬁrst of these layers. If one hypothesizes that multiple nonlinear layers can asymptotically approximate complicated functions 2, then it is equivalent to hypothesize that they can asymptotically approximate the residual functions, i.e.,H(x)− x (assuming that the input and output are of the same dimensions). So rather than expect stacked layers to approximateH(x), we explicitly let these layers approximate a residual function F (x) := H(x)− x.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-12 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p3-12 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.3)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/pytorch/vision",
@@ -444,10 +467,10 @@
           "chunkIndex": 13,
           "sectionTitle": "Equation (2) — projection shortcut",
           "subsectionTitle": "Equation (2) — projection shortcut",
-          "content": "차원이 바뀌는 `res3a` block의 shortcut입니다.\n\n\n\nProjection 결과와 residual branch 합산:",
+          "content": "차원이 바뀌는 `res3a` block의 shortcut입니다.\n\n\n\nProjection 결과와 residual branch 합산:\n\nIn real cases, it is unlikely that identity mappings are optimal, but our reformulation may help to precondition the problem. If the optimal function is closer to an identity mapping than to a zero mapping, it should be easier for the solver to ﬁnd the perturbations with reference to an identity mapping, than to learn the function as a new one. We show by experiments (Fig. 7) that the learned residual functions in general have small responses, suggesting that identity mappings provide reasonable preconditioning. 3.2. Identity Mapping by Shortcuts We adopt residual learning to every few stacked layers. A building block is shown in Fig. 2. Formally, in this paper we consider a building block deﬁned as: y =F (x,{Wi}) + x.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-14 / 판정 `DIRECT`\n\n`1×1 convolution`, `stride=2`로 공간 크기와 채널 수를 동시에 맞춥 / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p3-14 / 판정 `DIRECT`\n\n`1×1 convolution`, `stride=2`로 공간 크기와 채널 수를 동시에 맞춥 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.3)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
@@ -498,10 +521,10 @@
           "chunkIndex": 16,
           "sectionTitle": "Plain network 설계 규칙",
           "subsectionTitle": "Plain network 설계 규칙",
-          "content": "Plain network 설계 규칙",
+          "content": "Plain network 설계 규칙\n\nFormally, in this paper we consider a building block deﬁned as: y =F (x,{Wi}) + x. (1) Here x and y are the input and output vectors of the layers considered. The function F (x,{Wi}) represents the residual mapping to be learned. For the example in Fig. 2 that has two layers, F = W2σ(W1x) in which σ denotes 2This hypothesis, however, is still an open question. See [28]. ReLU [29] and the biases are omitted for simplifying notations. The operation F + x is performed by a shortcut connection and element-wise addition. We adopt the second nonlinearity after the addition (i.e.,σ(y), see Fig. 2). The shortcut connections in Eqn.(1) introduce neither extra parameter nor computation complexity. This is not only attractive in practice but also important in our comparisons between plain and residual networks.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-17 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p3-17 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.3)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/pytorch/vision",
@@ -534,10 +557,10 @@
           "chunkIndex": 18,
           "sectionTitle": "Figure 3 — 첫 7×7 convolution, stride 2",
           "subsectionTitle": "Figure 3 — 첫 7×7 convolution, stride 2",
-          "content": "“7×7 conv, 64, /2”",
+          "content": "“7×7 conv, 64, /2”\n\nTable 1shows more details and other variants. Residual Network. Based on the above plain network, we insert shortcut connections (Fig. 3, right) which turn the network into its counterpart residual version. The identity shortcuts (Eqn.(1)) can be directly used when the input and output are of the same dimensions (solid line shortcuts in Fig. 3). When the dimensions increase (dotted line shortcuts in Fig. 3), we consider two options: (A) The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions. This option introduces no extra parameter; (B) The projection shortcut in Eqn.(2) is used to match dimensions (done by 1×1 convolutions). For both options, when the shortcuts go across feature maps of two sizes, they are performed with a stride of 2.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-19 / 판정 `DIRECT`\n\n---",
+          "_comment": "노트 p4-19 / 판정 `DIRECT`\n\n--- | 논문 원문 보강 (PDF p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
@@ -552,10 +575,10 @@
           "chunkIndex": 19,
           "sectionTitle": "Max pooling stride 2",
           "subsectionTitle": "Max pooling stride 2",
-          "content": "“pool, /2”",
+          "content": "“pool, /2”\n\nTo provide instances for discussion, we describe two models for ImageNet as follows. Plain Network. Our plain baselines (Fig. 3, middle) are mainly inspired by the philosophy of VGG nets [41] (Fig. 3, left). The convolutional layers mostly have 3×3 ﬁlters and follow two simple design rules: (i) for the same output feature map size, the layers have the same number of ﬁlters; and (ii) if the feature map size is halved, the number of ﬁlters is doubled so as to preserve the time complexity per layer. We perform downsampling directly by convolutional layers that have a stride of 2. The network ends with a global average pooling layer and a 1000-way fully-connected layer with softmax.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-20 / 판정 `DIRECT`\n\n논문 Table 1에서 명시한 `3×3 max pool, stride 2`와 일치합니다.\n",
+          "_comment": "노트 p4-20 / 판정 `DIRECT`\n\n논문 Table 1에서 명시한 `3×3 max pool, stride 2`와 일치합니다.\n | 논문 원문 보강 (PDF p.3, 제목 키워드 대조)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
@@ -645,7 +668,16 @@
           "content": "“The image is resized with its shorter side randomly sampled in [256, 480].”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-25 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p4-25 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/transforms/_presets.py",
+              "symbolName": "__init__",
+              "startLine": 40,
+              "reason": "resize·crop 크기를 지정하는 전처리 프리셋"
+            }
+          ]
         },
         {
           "chunkIndex": 25,
@@ -654,7 +686,16 @@
           "content": "“A 224×224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted.”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-26 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p4-26 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/transforms/_presets.py",
+              "symbolName": "forward",
+              "startLine": 58,
+              "reason": "crop 후 정규화(mean subtraction)를 적용하는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 26,
@@ -681,16 +722,34 @@
           "content": "“We use SGD with a mini-batch size of 256.”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-28 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p4-28 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "references/classification/train.py",
+              "symbolName": "main",
+              "startLine": 204,
+              "reason": "batch size 와 optimizer 를 설정해 학습을 시작하는 진입점"
+            }
+          ]
         },
         {
           "chunkIndex": 28,
           "sectionTitle": "Learning rate, weight decay, momentum",
           "subsectionTitle": "Learning rate, weight decay, momentum",
-          "content": "Learning rate, weight decay, momentum",
+          "content": "Learning rate, weight decay, momentum\n\nThe image is resized with its shorter side randomly sampled in [256, 480] for scale augmentation [41]. A 224×224 crop is randomly sampled from an image or its horizontal ﬂip, with the per-pixel mean subtracted [21]. The standard color augmentation in [21] is used. We adopt batch normalization (BN) [16] right after each convolution and before activation, following [16]. We initialize the weights as in [13] and train all plain/residual nets from scratch. We use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60× 104 iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout [14], following the practice in [16].",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-29 / 판정 `MISSING-BUT-PROVIDED` / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p4-29 / 판정 `MISSING-BUT-PROVIDED` / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.4)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "references/classification/train.py",
+              "symbolName": "get_args_parser",
+              "startLine": 393,
+              "reason": "learning rate·weight decay·momentum 기본값이 정의된 곳"
+            }
+          ]
         },
         {
           "chunkIndex": 29,
@@ -723,10 +782,10 @@
           "chunkIndex": 32,
           "sectionTitle": "ResNet-50 bottleneck 반복 수",
           "subsectionTitle": "ResNet-50 bottleneck 반복 수",
-          "content": "첫 conv2 block:\n\n\n\n\n\n\n\n동일 stage의 이름:\n\n\n\nconv3 stage:\n\n\n\nconv4 stage:\n\n\n\nconv5 stage:",
+          "content": "첫 conv2 block:\n\n\n\n\n\n\n\n동일 stage의 이름:\n\n\n\nconv3 stage:\n\n\n\nconv4 stage:\n\n\n\nconv5 stage:\n\nlayer nameoutput size 18-layer 34-layer 50-layer 101-layer 152-layer conv1 112×112 7×7, 64, stride 2 conv2x 56×56 3×3 max pool, stride 2[ 3×3, 643×3, 64 ] ×2 [ 3×3, 643×3, 64 ] ×3   1×1, 643×3, 641×1, 256  ×3   1×1, 643×3, 641×1, 256  ×3   1×1, 643×3, 641×1, 256  ×3 conv3x 28×28 [ 3×3, 1283×3, 128 ] ×2 [ 3×3, 1283×3, 128 ] ×4  1×1, 1283×3, 1281×1, 512  ×4  1×1, 1283×3, 1281×1, 512  ×4  1×1, 1283×3, 1281×1, 512  ×8 conv4x 14×14 [ 3×3, 2563×3, 256 ] ×2 [ 3×3, 2563×3, 256 ] ×6   1×1, 2563×3, 2561×1, 1024  ×6   1×1, 2563×3, 2561×1, 1024  ×23   1×1, 2563×3, 2561×1, 1024  ×36 conv5x 7×7 [ 3×3, 5123×3, 512 ] ×2 [ 3×3, 5123×3, 512 ] ×3   1×1, 5123×3, 5121×1, 2048  ×3   1×1, 5123×3, 5121×1, 2048  ×3   1×1, 5123×3, 5121×1, 2048  ×3 1×1 average pool, 1000-d fc, softmax FLOPs 1.8×109 3.6×109 3.8×109 7.6×109 11.3×109 Table 1.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-33 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p5-33 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.5, 제목 키워드 대조)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
@@ -741,10 +800,10 @@
           "chunkIndex": 33,
           "sectionTitle": "ResNet-101 반복 수",
           "subsectionTitle": "ResNet-101 반복 수",
-          "content": "공식 ResNet-101 prototxt의 conv4 block 이름은 다음 범위를 포함합니다.\n\n\n\n총 23개입니다.",
+          "content": "공식 ResNet-101 prototxt의 conv4 block 이름은 다음 범위를 포함합니다.\n\n\n\n총 23개입니다.\n\nArchitectures for ImageNet. Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked. Downsampling is performed by conv3 1, conv4 1, and conv5 1 with a stride of 2. 0 10 20 30 40 5020 30 40 50 60 iter. (1e4) error (%) plain-18 plain-34 0 10 20 30 40 5020 30 40 50 60 iter. (1e4) error (%) ResNet-18 ResNet-34 18-layer 34-layer 18-layer 34-layer Figure 4. Training on ImageNet. Thin curves denote training error, and bold curves denote validation error of the center crops. Left: plain networks of 18 and 34 layers. Right: ResNets of 18 and 34 layers. In this plot, the residual networks have no extra parameter compared to their plain counterparts. plain ResNet 18 layers 27.94 27.88 34 layers 28.54 25.03 Table 2.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-34 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p5-34 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.5)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/pytorch/vision",
@@ -759,10 +818,10 @@
           "chunkIndex": 34,
           "sectionTitle": "ResNet-152 반복 수",
           "subsectionTitle": "ResNet-152 반복 수",
-          "content": "공식 ResNet-152 prototxt에는 다음 stage들이 구현됩니다.",
+          "content": "공식 ResNet-152 prototxt에는 다음 stage들이 구현됩니다.\n\nlayer nameoutput size 18-layer 34-layer 50-layer 101-layer 152-layer conv1 112×112 7×7, 64, stride 2 conv2x 56×56 3×3 max pool, stride 2[ 3×3, 643×3, 64 ] ×2 [ 3×3, 643×3, 64 ] ×3   1×1, 643×3, 641×1, 256  ×3   1×1, 643×3, 641×1, 256  ×3   1×1, 643×3, 641×1, 256  ×3 conv3x 28×28 [ 3×3, 1283×3, 128 ] ×2 [ 3×3, 1283×3, 128 ] ×4  1×1, 1283×3, 1281×1, 512  ×4  1×1, 1283×3, 1281×1, 512  ×4  1×1, 1283×3, 1281×1, 512  ×8 conv4x 14×14 [ 3×3, 2563×3, 256 ] ×2 [ 3×3, 2563×3, 256 ] ×6   1×1, 2563×3, 2561×1, 1024  ×6   1×1, 2563×3, 2561×1, 1024  ×23   1×1, 2563×3, 2561×1, 1024  ×36 conv5x 7×7 [ 3×3, 5123×3, 512 ] ×2 [ 3×3, 5123×3, 512 ] ×3   1×1, 5123×3, 5121×1, 2048  ×3   1×1, 5123×3, 5121×1, 2048  ×3   1×1, 5123×3, 5121×1, 2048  ×3 1×1 average pool, 1000-d fc, softmax FLOPs 1.8×109 3.6×109 3.8×109 7.6×109 11.3×109 Table 1.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-35 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p5-35 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.5, 지정 구절 \"152-layer\")",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/pytorch/vision",
@@ -777,10 +836,10 @@
           "chunkIndex": 35,
           "sectionTitle": "ResNet-18·34 basic block",
           "subsectionTitle": "ResNet-18·34 basic block",
-          "content": "ResNet-18·34 basic block",
+          "content": "ResNet-18·34 basic block\n\nArchitectures for ImageNet. Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked. Downsampling is performed by conv3 1, conv4 1, and conv5 1 with a stride of 2. 0 10 20 30 40 5020 30 40 50 60 iter. (1e4) error (%) plain-18 plain-34 0 10 20 30 40 5020 30 40 50 60 iter. (1e4) error (%) ResNet-18 ResNet-34 18-layer 34-layer 18-layer 34-layer Figure 4. Training on ImageNet. Thin curves denote training error, and bold curves denote validation error of the center crops. Left: plain networks of 18 and 34 layers. Right: ResNets of 18 and 34 layers. In this plot, the residual networks have no extra parameter compared to their plain counterparts. plain ResNet 18 layers 27.94 27.88 34 layers 28.54 25.03 Table 2.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-36 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p5-36 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.5)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/pytorch/vision",
@@ -795,10 +854,10 @@
           "chunkIndex": 36,
           "sectionTitle": "Option A·B·C",
           "subsectionTitle": "Option A·B·C",
-          "content": "Option A·B·C",
+          "content": "Option A·B·C\n\nNext we investigate projection shortcuts (Eqn.(2)). In Table 3 we compare three options: (A) zero-padding shortcuts are used for increasing dimensions, and all shortcuts are parameterfree (the same as Table 2 and Fig. 4 right); (B) projection shortcuts are used for increasing dimensions, and other shortcuts are identity; and (C) all shortcuts are projections. Table 3 shows that all three options are considerably better than the plain counterpart. B is slightly better than A. We argue that this is because the zero-padded dimensions in A indeed have no residual learning. C is marginally better than B, and we attribute this to the extra parameters introduced by many (thirteen) projection shortcuts.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-37 / 판정 `PARTIAL + 예상코드`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p6-37 / 판정 `PARTIAL + 예상코드`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.6, 지정 구절 \"zero-padding shortcuts\")",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/pytorch/vision",
@@ -849,19 +908,19 @@
           "chunkIndex": 39,
           "sectionTitle": "CIFAR-10 구조",
           "subsectionTitle": "CIFAR-10 구조",
-          "content": "CIFAR-10 구조",
+          "content": "CIFAR-10 구조\n\nOur focus is on the behaviors of extremely deep networks, but not on pushing the state-of-the-art results, so we intentionally use simple architectures as follows. The plain/residual architectures follow the form in Fig. 3 (middle/right). The network inputs are 32×32 images, with the per-pixel mean subtracted. The ﬁrst layer is 3×3 convolutions. Then we use a stack of 6n layers with 3×3 convolutions on the feature maps of sizes{32, 16, 8} respectively, with 2n layers for each feature map size. The numbers of ﬁlters are{16, 32, 64} respectively. The subsampling is performed by convolutions with a stride of 2. The network ends with a global average pooling, a 10-way fully-connected layer, and softmax.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-40 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p7-40 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.7, 지정 구절 \"plain/residual architectures follow the form\")"
         },
         {
           "chunkIndex": 40,
           "sectionTitle": "CIFAR mini-batch·optimizer 설정",
           "subsectionTitle": "CIFAR mini-batch·optimizer 설정",
-          "content": "CIFAR mini-batch·optimizer 설정",
+          "content": "CIFAR mini-batch·optimizer 설정\n\nso our residual models have exactly the same depth, width, and number of parameters as the plain counterparts. We use a weight decay of 0.0001 and momentum of 0.9, and adopt the weight initialization in [13] and BN [16] but with no dropout. These models are trained with a minibatch size of 128 on two GPUs. We start with a learning rate of 0.1, divide it by 10 at 32k and 48k iterations, and terminate training at 64k iterations, which is determined on a 45k/5k train/val split. We follow the simple data augmentation in [24] for training: 4 pixels are padded on each side, and a 32×32 crop is randomly sampled from the padded image or its horizontal ﬂip. For testing, we only evaluate the single view of the original 32×32 image.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-41 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p7-41 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.7, 지정 구절 \"weight decay of 0.0001 and momentum\")"
         },
         {
           "chunkIndex": 41,
@@ -912,19 +971,19 @@
           "chunkIndex": 46,
           "sectionTitle": "Reference 13 — He initialization",
           "subsectionTitle": "Reference 13 — He initialization",
-          "content": "Reference 13 — He initialization",
+          "content": "Reference 13 — He initialization\n\nWe adopt batch normalization (BN) [16] right after each convolution and before activation, following [16]. We initialize the weights as in [13] and train all plain/residual nets from scratch. We use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60× 104 iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout [14], following the practice in [16]. In testing, for comparison studies we adopt the standard 10-crop testing [21]. For best results, we adopt the fullyconvolutional form as in [41, 13], and average the scores at multiple scales (images are resized such that the shorter side is in{224, 256, 384, 480, 640}).",
           "pageStart": 9,
           "pageEnd": 9,
-          "_comment": "노트 p9-47 / 판정 `예상코드`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p9-47 / 판정 `예상코드`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.4, 지정 구절 \"initialize the weights as in\")"
         },
         {
           "chunkIndex": 47,
           "sectionTitle": "Reference 16 — Batch Normalization",
           "subsectionTitle": "Reference 16 — Batch Normalization",
-          "content": "Reference 16 — Batch Normalization",
+          "content": "Reference 16 — Batch Normalization\n\n[11] K. He and J. Sun. Convolutional neural networks at constrained time cost. In CVPR, 2015. [12] K. He, X. Zhang, S. Ren, and J. Sun. Spatial pyramid pooling in deep convolutional networks for visual recognition. In ECCV, 2014. [13] K. He, X. Zhang, S. Ren, and J. Sun. Delving deep into rectiﬁers: Surpassing human-level performance on imagenet classiﬁcation. In ICCV, 2015. [14] G. E. Hinton, N. Srivastava, A. Krizhevsky, I. Sutskever, and R. R. Salakhutdinov. Improving neural networks by preventing coadaptation of feature detectors. arXiv:1207.0580, 2012. [15] S. Hochreiter and J. Schmidhuber. Long short-term memory. Neural computation, 9(8):1735–1780, 1997. [16] S. Ioffe and C. Szegedy. Batch normalization: Accelerating deep network training by reducing internal covariate shift.",
           "pageStart": 9,
           "pageEnd": 9,
-          "_comment": "노트 p9-48 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 p9-48 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.9)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
@@ -939,10 +998,10 @@
           "chunkIndex": 48,
           "sectionTitle": "Reference 19 — Caffe",
           "subsectionTitle": "Reference 19 — Caffe",
-          "content": "Reference 19 — Caffe",
+          "content": "Reference 19 — Caffe\n\nIdentity shortcut connections add neither extra parameter nor computational complexity. The entire network can still be trained end-to-end by SGD with backpropagation, and can be easily implemented using common libraries ( e.g., Caffe [19]) without modifying the solvers. We present comprehensive experiments on ImageNet [36] to show the degradation problem and evaluate our method. We show that: 1) Our extremely deep residual nets are easy to optimize, but the counterpart “plain” nets (that simply stack layers) exhibit higher training error when the depth increases; 2) Our deep residual nets can easily enjoy accuracy gains from greatly increased depth, producing results substantially better than previous networks.",
           "pageStart": 9,
           "pageEnd": 9,
-          "_comment": "노트 p9-49 / 판정 `DIRECT`\n\n공식 저장소는 BVLC Caffe를 submodule 대상으로 지정합니다. [GitExtr / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p9-49 / 판정 `DIRECT`\n\n공식 저장소는 BVLC Caffe를 submodule 대상으로 지정합니다. [GitExtr / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.2, 지정 구절 \"Caffe\")"
         },
         {
           "chunkIndex": 49,
@@ -951,7 +1010,16 @@
           "content": "“We compute the full-image shared conv feature maps using conv1, conv2_x, conv3_x, and conv4_x.”\n\nUnlike VGG-16 used in Ren2015, our ResNet has no hidden fc layers. We adopt the idea of “Networks on Conv feature maps” (NoC) Ren2015a to address this issue.\nWe compute the full-image shared conv feature maps using those layers whose strides on the image are no greater than 16 pixels (i.e., conv1, conv2_ x, conv3_x, and conv4_x, totally 91 conv layers in ResNet-101; Table 1). We consider these layers as analogous to the 13 conv layers in VGG-16, and by doing so, both ResNet and VGG-16 have conv feature maps of the same total stride (16 pixels).\nThese layers are shared by a region proposal network (RPN, generating 300 proposals) Ren2015 and a Fast R-CNN detection network Girshick2015.\nRoI pooling Girshick2015 is performed before conv5_1. On this RoI-pooled feature, all layers of conv5_x and up are adopted for each region, playing the roles of VGG-16’s fc layers.\nThe final classification layer is replaced by two sibling layers (classification and box regression Girshick2015).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-50 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p10-50 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "__init__",
+              "startLine": 167,
+              "reason": "backbone 을 RPN 과 head 가 공유하도록 구성"
+            }
+          ]
         },
         {
           "chunkIndex": 50,
@@ -960,7 +1028,16 @@
           "content": "“These layers are shared by a region proposal network, generating 300 proposals.”\n\nUnlike VGG-16 used in Ren2015, our ResNet has no hidden fc layers. We adopt the idea of “Networks on Conv feature maps” (NoC) Ren2015a to address this issue.\nWe compute the full-image shared conv feature maps using those layers whose strides on the image are no greater than 16 pixels (i.e., conv1, conv2_ x, conv3_x, and conv4_x, totally 91 conv layers in ResNet-101; Table 1). We consider these layers as analogous to the 13 conv layers in VGG-16, and by doing so, both ResNet and VGG-16 have conv feature maps of the same total stride (16 pixels).\nThese layers are shared by a region proposal network (RPN, generating 300 proposals) Ren2015 and a Fast R-CNN detection network Girshick2015.\nRoI pooling Girshick2015 is performed before conv5_1. On this RoI-pooled feature, all layers of conv5_x and up are adopted for each region, playing the roles of VGG-16’s fc layers.\nThe final classification layer is replaced by two sibling layers (classification and box regression Girshick2015).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-51 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p10-51 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "_default_anchorgen",
+              "startLine": 37,
+              "reason": "RPN 이 쓸 anchor 를 생성하는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 51,
@@ -969,7 +1046,16 @@
           "content": "“RoI pooling is performed before conv5_1. All layers of conv5_x and up are adopted for each region.”\n\nUnlike VGG-16 used in Ren2015, our ResNet has no hidden fc layers. We adopt the idea of “Networks on Conv feature maps” (NoC) Ren2015a to address this issue.\nWe compute the full-image shared conv feature maps using those layers whose strides on the image are no greater than 16 pixels (i.e., conv1, conv2_ x, conv3_x, and conv4_x, totally 91 conv layers in ResNet-101; Table 1). We consider these layers as analogous to the 13 conv layers in VGG-16, and by doing so, both ResNet and VGG-16 have conv feature maps of the same total stride (16 pixels).\nThese layers are shared by a region proposal network (RPN, generating 300 proposals) Ren2015 and a Fast R-CNN detection network Girshick2015.\nRoI pooling Girshick2015 is performed before conv5_1. On this RoI-pooled feature, all layers of conv5_x and up are adopted for each region, playing the roles of VGG-16’s fc layers.\nThe final classification layer is replaced by two sibling layers (classification and box regression Girshick2015).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-52 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p10-52 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "forward",
+              "startLine": 301,
+              "reason": "RoI pooling 결과를 받아 head 를 태우는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 52,
@@ -993,10 +1079,10 @@
           "chunkIndex": 53,
           "sectionTitle": "COCO detection 학습 설정",
           "subsectionTitle": "COCO detection 학습 설정",
-          "content": "COCO detection 학습 설정",
+          "content": "COCO detection 학습 설정\n\nA. Object Detection Baselines In this section we introduce our detection method based on the baseline Faster R-CNN [32] system. The models are initialized by the ImageNet classiﬁcation models, and then ﬁne-tuned on the object detection data. We have experimented with ResNet-50/101 at the time of the ILSVRC & COCO 2015 detection competitions. Unlike VGG-16 used in [32], our ResNet has no hidden fc layers. We adopt the idea of “Networks on Conv feature maps” (NoC) [33] to address this issue. We compute the full-image shared conv feature maps using those layers whose strides on the image are no greater than 16 pixels (i.e., conv1, conv2 x, conv3 x, and conv4 x, totally 91 conv layers in ResNet-101; Table 1).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-54 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p10-54 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.10)"
         },
         {
           "chunkIndex": 54,
@@ -1014,7 +1100,16 @@
           "content": "“NMS is applied … using an IoU threshold of 0.3, followed by box voting.”\n\nBox refinement. Our box refinement partially follows the iterative localization in Gidaris2015.\nIn Faster R-CNN, the final output is a regressed box that is different from its proposal box. So for inference, we pool a new feature from the regressed box and obtain a new classification score and a new regressed box.\nWe combine these 300 new predictions with the original 300 predictions. Non-maximum suppression (NMS) is applied on the union set of predicted boxes using an IoU threshold of 0.3 Girshick2014, followed by box voting Gidaris2015.\nBox refinement improves mAP by about 2 points (Table 9).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-56 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p10-56 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "__init__",
+              "startLine": 167,
+              "reason": "box_nms_thresh 로 NMS IoU 임계값을 두는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 56,
@@ -1056,10 +1151,19 @@
           "chunkIndex": 60,
           "sectionTitle": "Per-class classification·box regression",
           "subsectionTitle": "Per-class classification·box regression",
-          "content": "Per-class classification·box regression",
+          "content": "Per-class classification·box regression\n\n58.8% mAP and our ensemble of 3 models has 62.1% mAP on the DET test set (Table 12).This result won the 1st place in the ImageNet detection task in ILSVRC 2015, surpassing the second place by 8.5 points (absolute). C. ImageNet Localization The ImageNet Localization (LOC) task [36] requires to classify and localize the objects. Following [40, 41], we assume that the image-level classiﬁers are ﬁrst adopted for predicting the class labels of an image, and the localization algorithm only accounts for predicting bounding boxes based on the predicted classes. We adopt the “per-class regression” (PCR) strategy [40, 41], learning a bounding box regressor for each class. We pre-train the networks for ImageNet classiﬁcation and then ﬁne-tune them for localization.",
           "pageStart": 12,
           "pageEnd": 12,
-          "_comment": "노트 p12-61 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p12-61 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.12)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "forward",
+              "startLine": 362,
+              "reason": "class 별 분류와 box regression 을 동시에 출력"
+            }
+          ]
         },
         {
           "chunkIndex": 61,
@@ -1068,7 +1172,16 @@
           "content": "“8 anchors are randomly sampled for each image, where positive and negative anchors have a ratio of 1:1.”\n\nAs in our ImageNet classification training (Sec. 3.4), we randomly sample 224 \\times 224 crops for data augmentation. We use a mini-batch size of 256 images for fine-tuning.\nTo avoid negative samples being dominate, 8 anchors are randomly sampled for each image, where the sampled positive and negative anchors have a ratio of 1:1 Ren2015. For testing, the network is applied on the image fully-convolutionally.",
           "pageStart": 12,
           "pageEnd": 12,
-          "_comment": "노트 p12-62 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p12-62 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "__init__",
+              "startLine": 167,
+              "reason": "rpn_batch_size_per_image 와 positive_fraction 으로 anchor 를 표집"
+            }
+          ]
         },
         {
           "chunkIndex": 62,
@@ -1357,6 +1470,105 @@
               "endLine": 141,
               "codeContent": "    def __init__(\n        self,\n        inplanes: int,\n        planes: int,\n        stride: int = 1,\n        downsample: Optional[nn.Module] = None,\n        groups: int = 1,\n        base_width: int = 64,\n        dilation: int = 1,\n        norm_layer: Optional[Callable[..., nn.Module]] = None,\n    ) -> None:\n        super().__init__()\n        if norm_layer is None:\n            norm_layer = nn.BatchNorm2d\n        width = int(planes * (base_width / 64.0)) * groups\n        # Both self.conv2 and self.downsample layers downsample the input when stride != 1\n        self.conv1 = conv1x1(inplanes, width)\n        self.bn1 = norm_layer(width)\n        self.conv2 = conv3x3(width, width, stride, groups, dilation)\n        self.bn2 = norm_layer(width)\n        self.conv3 = conv1x1(width, planes * self.expansion)\n        self.bn3 = norm_layer(planes * self.expansion)\n        self.relu = nn.ReLU(inplace=True)\n        self.downsample = downsample\n        self.stride = stride",
               "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:117-141"
+            },
+            {
+              "filePath": "references/classification/train.py",
+              "symbolName": "train_one_epoch",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 19,
+              "endLine": 59,
+              "codeContent": "def train_one_epoch(model, criterion, optimizer, data_loader, device, epoch, args, model_ema=None, scaler=None):\n    model.train()\n    metric_logger = utils.MetricLogger(delimiter=\"  \")\n    metric_logger.add_meter(\"lr\", utils.SmoothedValue(window_size=1, fmt=\"{value}\"))\n    metric_logger.add_meter(\"img/s\", utils.SmoothedValue(window_size=10, fmt=\"{value}\"))\n\n    header = f\"Epoch: [{epoch}]\"\n    for i, (image, target) in enumerate(metric_logger.log_every(data_loader, args.print_freq, header)):\n        start_time = time.time()\n        image, target = image.to(device), target.to(device)\n        with torch.cuda.amp.autocast(enabled=scaler is not None):\n            output = model(image)\n            loss = criterion(output, target)\n\n        optimizer.zero_grad()\n        if scaler is not None:\n            scaler.scale(loss).backward()\n            if args.clip_grad_norm is not None:\n                # we should unscale the gradients of optimizer's assigned params if do gradient clipping\n                scaler.unscale_(optimizer)\n                nn.utils.clip_grad_norm_(model.parameters(), args.clip_grad_norm)\n            scaler.step(optimizer)\n            scaler.update()\n        else:\n            loss.backward()\n            if args.clip_grad_norm is not None:\n                nn.utils.clip_grad_norm_(model.parameters(), args.clip_grad_norm)\n            optimizer.step()\n\n        if model_ema and i % args.model_ema_steps == 0:\n            model_ema.update_parameters(model)\n            if epoch < args.lr_warmup_epochs:\n                # Reset ema buffer to keep copying weights during warmup period\n                model_ema.n_averaged.fill_(0)\n\n        acc1, acc5 = utils.accuracy(output, target, topk=(1, 5))\n        batch_size = image.shape[0]\n        metric_logger.update(loss=loss.item(), lr=optimizer.param_groups[0][\"lr\"])\n        metric_logger.meters[\"acc1\"].update(acc1.item(), n=batch_size)\n        metric_logger.meters[\"acc5\"].update(acc5.item(), n=batch_size)\n        metric_logger.meters[\"img/s\"].update(batch_size / (time.time() - start_time))",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — references/classification/train.py:19-59"
+            },
+            {
+              "filePath": "torchvision/transforms/_presets.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ImageClassification",
+              "programmingLanguage": "Python",
+              "startLine": 40,
+              "endLine": 56,
+              "codeContent": "    def __init__(\n        self,\n        *,\n        crop_size: int,\n        resize_size: int = 256,\n        mean: tuple[float, ...] = (0.485, 0.456, 0.406),\n        std: tuple[float, ...] = (0.229, 0.224, 0.225),\n        interpolation: InterpolationMode = InterpolationMode.BILINEAR,\n        antialias: Optional[bool] = True,\n    ) -> None:\n        super().__init__()\n        self.crop_size = [crop_size]\n        self.resize_size = [resize_size]\n        self.mean = list(mean)\n        self.std = list(std)\n        self.interpolation = interpolation\n        self.antialias = antialias",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/transforms/_presets.py:40-56"
+            },
+            {
+              "filePath": "torchvision/transforms/_presets.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ImageClassification",
+              "programmingLanguage": "Python",
+              "startLine": 58,
+              "endLine": 65,
+              "codeContent": "    def forward(self, img: Tensor) -> Tensor:\n        img = F.resize(img, self.resize_size, interpolation=self.interpolation, antialias=self.antialias)\n        img = F.center_crop(img, self.crop_size)\n        if not isinstance(img, Tensor):\n            img = F.pil_to_tensor(img)\n        img = F.convert_image_dtype(img, torch.float)\n        img = F.normalize(img, mean=self.mean, std=self.std)\n        return img",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/transforms/_presets.py:58-65"
+            },
+            {
+              "filePath": "references/classification/train.py",
+              "symbolName": "main",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 204,
+              "endLine": 390,
+              "codeContent": "def main(args):\n    if args.output_dir:\n        utils.mkdir(args.output_dir)\n\n    utils.init_distributed_mode(args)\n    print(args)\n\n    device = torch.device(args.device)\n\n    if args.use_deterministic_algorithms:\n        torch.backends.cudnn.benchmark = False\n        torch.use_deterministic_algorithms(True)\n    else:\n        torch.backends.cudnn.benchmark = True\n\n    train_dir = os.path.join(args.data_path, \"train\")\n    val_dir = os.path.join(args.data_path, \"val\")\n    dataset, dataset_test, train_sampler, test_sampler = load_data(train_dir, val_dir, args)\n\n    num_classes = len(dataset.classes)\n    mixup_cutmix = get_mixup_cutmix(\n        mixup_alpha=args.mixup_alpha, cutmix_alpha=args.cutmix_alpha, num_classes=num_classes, use_v2=args.use_v2\n    )\n    if mixup_cutmix is not None:\n\n        def collate_fn(batch):\n            return mixup_cutmix(*default_collate(batch))\n\n    else:\n        collate_fn = default_collate\n\n    data_loader = torch.utils.data.DataLoader(\n        dataset,\n        batch_size=args.batch_size,\n        sampler=train_sampler,\n        num_workers=args.workers,\n        pin_memory=True,\n        collate_fn=collate_fn,\n    )\n    data_loader_test = torch.utils.data.DataLoader(\n        dataset_test, batch_size=args.batch_size, sampler=test_sampler, num_workers=args.workers, pin_memory=True\n    )\n\n    print(\"Creating model\")\n    model = torchvision.models.get_model(args.model, weights=args.weights, num_classes=num_classes)\n    model.to(device)\n\n    if args.distributed and args.sync_bn:\n        model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)\n\n    criterion = nn.CrossEntropyLoss(label_smoothing=args.label_smoothing)\n\n    custom_keys_weight_decay = []\n    if args.bias_weight_decay is not None:\n        custom_keys_weight_decay.append((\"bias\", args.bias_weight_decay))\n    if args.transformer_embedding_decay is not None:\n        for key in [\"class_token\", \"position_embedding\", \"relative_position_bias_table\"]:\n            custom_keys_weight_decay.append((key, args.transformer_embedding_decay))\n    parameters = utils.set_weight_decay(\n        model,\n        args.weight_decay,\n        norm_weight_decay=args.norm_weight_decay,\n        custom_keys_weight_decay=custom_keys_weight_decay if len(custom_keys_weight_decay) > 0 else None,\n    )\n\n    opt_name = args.opt.lower()\n    if opt_name.startswith(\"sgd\"):\n        optimizer = torch.optim.SGD(\n            parameters,\n            lr=args.lr,\n            momentum=args.momentum,\n            weight_decay=args.weight_decay,\n            nesterov=\"nesterov\" in opt_name,\n        )\n    elif opt_name == \"rmsprop\":\n        optimizer = torch.optim.RMSprop(\n            parameters, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay, eps=0.0316, alpha=0.9\n        )\n    elif opt_name == \"adamw\":\n        optimizer = torch.optim.AdamW(parameters, lr=args.lr, weight_decay=args.weight_decay)\n    else:\n        raise RuntimeError(f\"Invalid optimizer {args.opt}. Only SGD, RMSprop and AdamW are supported.\")\n\n    scaler = torch.cuda.amp.GradScaler() if args.amp else None\n\n    args.lr_scheduler = args.lr_scheduler.lower()\n    if args.lr_scheduler == \"steplr\":\n        main_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=args.lr_step_size, gamma=args.lr_gamma)\n    elif args.lr_scheduler == \"cosineannealinglr\":\n        main_lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(\n            optimizer, T_max=args.epochs - args.lr_warmup_epochs, eta_min=args.lr_min\n        )\n    elif args.lr_scheduler == \"exponentiallr\":\n        main_lr_scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=args.lr_gamma)\n    else:\n        raise RuntimeError(\n            f\"Invalid lr scheduler '{args.lr_scheduler}'. Only StepLR, CosineAnnealingLR and ExponentialLR \"\n            \"are supported.\"\n        )\n\n    if args.lr_warmup_epochs > 0:\n        if args.lr_warmup_method == \"linear\":\n            warmup_lr_scheduler = torch.optim.lr_scheduler.LinearLR(\n                optimizer, start_factor=args.lr_warmup_decay, total_iters=args.lr_warmup_epochs\n            )\n        elif args.lr_warmup_method == \"constant\":\n            warmup_lr_scheduler = torch.optim.lr_scheduler.ConstantLR(\n                optimizer, factor=args.lr_warmup_decay, total_iters=args.lr_warmup_epochs\n            )\n        else:\n            raise RuntimeError(\n                f\"Invalid warmup lr method '{args.lr_warmup_method}'. Only linear and constant are supported.\"\n            )\n        lr_scheduler = torch.optim.lr_scheduler.SequentialLR(\n            optimizer, schedulers=[warmup_lr_scheduler, main_lr_scheduler], milestones=[args.lr_warmup_epochs]\n        )\n    else:\n        lr_scheduler = main_lr_scheduler\n\n    model_without_ddp = model\n    if args.distributed:\n        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])\n        model_without_ddp = model.module\n\n    model_ema = None\n    if args.model_ema:\n        # Decay adjustment that aims to keep the decay independent of other hyper-parameters originally proposed at:\n        # https://github.com/facebookresearch/pycls/blob/f8cd9627/pycls/core/net.py#L123\n        #\n        # total_ema_updates = (Dataset_size / n_GPUs) * epochs / (batch_size_per_gpu * EMA_steps)\n        # We consider constant = Dataset_size for a given dataset/setup and omit it. Thus:\n        # adjust = 1 / total_ema_updates ~= n_GPUs * batch_size_per_gpu * EMA_steps / epochs\n        adjust = args.world_size * args.batch_size * args.model_ema_steps / args.epochs\n        alpha = 1.0 - args.model_ema_decay\n        alpha = min(1.0, alpha * adjust)\n        model_ema = utils.ExponentialMovingAverage(model_without_ddp, device=device, decay=1.0 - alpha)\n\n    if args.resume:\n        checkpoint = torch.load(args.resume, map_location=\"cpu\", weights_only=True)\n        model_without_ddp.load_state_dict(checkpoint[\"model\"])\n        if not args.test_only:\n            optimizer.load_state_dict(checkpoint[\"optimizer\"])\n            lr_scheduler.load_state_dict(checkpoint[\"lr_scheduler\"])\n        args.start_epoch = checkpoint[\"epoch\"] + 1\n        if model_ema:\n            model_ema.load_state_dict(checkpoint[\"model_ema\"])\n        if scaler:\n            scaler.load_state_dict(checkpoint[\"scaler\"])\n\n    if args.test_only:\n        # We disable the cudnn benchmarking because it can noticeably affect the accuracy\n        torch.backends.cudnn.benchmark = False\n        torch.backends.cudnn.deterministic = True\n        if model_ema:\n            evaluate(model_ema, criterion, data_loader_test, device=device, log_suffix=\"EMA\")\n        else:\n            evaluate(model, criterion, data_loader_test, device=device)\n        return\n\n    print(\"Start training\")\n    start_time = time.time()\n    for epoch in range(args.start_epoch, args.epochs):\n        if args.distributed:\n            train_sampler.set_epoch(epoch)\n        train_one_epoch(model, criterion, optimizer, data_loader, device, epoch, args, model_ema, scaler)\n        lr_scheduler.step()\n        evaluate(model, criterion, data_loader_test, device=device)\n        if model_ema:\n            evaluate(model_ema, criterion, data_loader_test, device=device, log_suffix=\"EMA\")\n        if args.output_dir:\n            checkpoint = {\n                \"model\": model_without_ddp.state_dict(),\n                \"optimizer\": optimizer.state_dict(),\n                \"lr_scheduler\": lr_scheduler.state_dict(),\n                \"epoch\": epoch,\n                \"args\": args,\n            }\n            if model_ema:\n                checkpoint[\"model_ema\"] = model_ema.state_dict()\n            if scaler:\n                checkpoint[\"scaler\"] = scaler.state_dict()\n            utils.save_on_master(checkpoint, os.path.join(args.output_dir, f\"model_{epoch}.pth\"))\n            utils.save_on_master(checkpoint, os.path.join(args.output_dir, \"checkpoint.pth\"))\n\n    total_time = time.time() - start_time\n    total_time_str = str(datetime.timedelta(seconds=int(total_time)))\n    print(f\"Training time {total_time_str}\")",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — references/classification/train.py:204-390"
+            },
+            {
+              "filePath": "references/classification/train.py",
+              "symbolName": "get_args_parser",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 393,
+              "endLine": 523,
+              "codeContent": "def get_args_parser(add_help=True):\n    import argparse\n\n    parser = argparse.ArgumentParser(description=\"PyTorch Classification Training\", add_help=add_help)\n\n    parser.add_argument(\"--data-path\", default=\"/datasets01/imagenet_full_size/061417/\", type=str, help=\"dataset path\")\n    parser.add_argument(\"--model\", default=\"resnet18\", type=str, help=\"model name\")\n    parser.add_argument(\"--device\", default=\"cuda\", type=str, help=\"device (Use cuda or cpu Default: cuda)\")\n    parser.add_argument(\n        \"-b\", \"--batch-size\", default=32, type=int, help=\"images per gpu, the total batch size is $NGPU x batch_size\"\n    )\n    parser.add_argument(\"--epochs\", default=90, type=int, metavar=\"N\", help=\"number of total epochs to run\")\n    parser.add_argument(\n        \"-j\", \"--workers\", default=16, type=int, metavar=\"N\", help=\"number of data loading workers (default: 16)\"\n    )\n    parser.add_argument(\"--opt\", default=\"sgd\", type=str, help=\"optimizer\")\n    parser.add_argument(\"--lr\", default=0.1, type=float, help=\"initial learning rate\")\n    parser.add_argument(\"--momentum\", default=0.9, type=float, metavar=\"M\", help=\"momentum\")\n    parser.add_argument(\n        \"--wd\",\n        \"--weight-decay\",\n        default=1e-4,\n        type=float,\n        metavar=\"W\",\n        help=\"weight decay (default: 1e-4)\",\n        dest=\"weight_decay\",\n    )\n    parser.add_argument(\n        \"--norm-weight-decay\",\n        default=None,\n        type=float,\n        help=\"weight decay for Normalization layers (default: None, same value as --wd)\",\n    )\n    parser.add_argument(\n        \"--bias-weight-decay\",\n        default=None,\n        type=float,\n        help=\"weight decay for bias parameters of all layers (default: None, same value as --wd)\",\n    )\n    parser.add_argument(\n        \"--transformer-embedding-decay\",\n        default=None,\n        type=float,\n        help=\"weight decay for embedding parameters for vision transformer models (default: None, same value as --wd)\",\n    )\n    parser.add_argument(\n        \"--label-smoothing\", default=0.0, type=float, help=\"label smoothing (default: 0.0)\", dest=\"label_smoothing\"\n    )\n    parser.add_argument(\"--mixup-alpha\", default=0.0, type=float, help=\"mixup alpha (default: 0.0)\")\n    parser.add_argument(\"--cutmix-alpha\", default=0.0, type=float, help=\"cutmix alpha (default: 0.0)\")\n    parser.add_argument(\"--lr-scheduler\", default=\"steplr\", type=str, help=\"the lr scheduler (default: steplr)\")\n    parser.add_argument(\"--lr-warmup-epochs\", default=0, type=int, help=\"the number of epochs to warmup (default: 0)\")\n    parser.add_argument(\n        \"--lr-warmup-method\", default=\"constant\", type=str, help=\"the warmup method (default: constant)\"\n    )\n    parser.add_argument(\"--lr-warmup-decay\", default=0.01, type=float, help=\"the decay for lr\")\n    parser.add_argument(\"--lr-step-size\", default=30, type=int, help=\"decrease lr every step-size epochs\")\n    parser.add_argument(\"--lr-gamma\", default=0.1, type=float, help=\"decrease lr by a factor of lr-gamma\")\n    parser.add_argument(\"--lr-min\", default=0.0, type=float, help=\"minimum lr of lr schedule (default: 0.0)\")\n    parser.add_argument(\"--print-freq\", default=10, type=int, help=\"print frequency\")\n    parser.add_argument(\"--output-dir\", default=\".\", type=str, help=\"path to save outputs\")\n    parser.add_argument(\"--resume\", default=\"\", type=str, help=\"path of checkpoint\")\n    parser.add_argument(\"--start-epoch\", default=0, type=int, metavar=\"N\", help=\"start epoch\")\n    parser.add_argument(\n        \"--cache-dataset\",\n        dest=\"cache_dataset\",\n        help=\"Cache the datasets for quicker initialization. It also serializes the transforms\",\n        action=\"store_true\",\n    )\n    parser.add_argument(\n        \"--sync-bn\",\n        dest=\"sync_bn\",\n        help=\"Use sync batch norm\",\n        action=\"store_true\",\n    )\n    parser.add_argument(\n        \"--test-only\",\n        dest=\"test_only\",\n        help=\"Only test the model\",\n        action=\"store_true\",\n    )\n    parser.add_argument(\"--auto-augment\", default=None, type=str, help=\"auto augment policy (default: None)\")\n    parser.add_argument(\"--ra-magnitude\", default=9, type=int, help=\"magnitude of auto augment policy\")\n    parser.add_argument(\"--augmix-severity\", default=3, type=int, help=\"severity of augmix policy\")\n    parser.add_argument(\"--random-erase\", default=0.0, type=float, help=\"random erasing probability (default: 0.0)\")\n\n    # Mixed precision training parameters\n    parser.add_argument(\"--amp\", action=\"store_true\", help=\"Use torch.cuda.amp for mixed precision training\")\n\n    # distributed training parameters\n    parser.add_argument(\"--world-size\", default=1, type=int, help=\"number of distributed processes\")\n    parser.add_argument(\"--dist-url\", default=\"env://\", type=str, help=\"url used to set up distributed training\")\n    parser.add_argument(\n        \"--model-ema\", action=\"store_true\", help=\"enable tracking Exponential Moving Average of model parameters\"\n    )\n    parser.add_argument(\n        \"--model-ema-steps\",\n        type=int,\n        default=32,\n        help=\"the number of iterations that controls how often to update the EMA model (default: 32)\",\n    )\n    parser.add_argument(\n        \"--model-ema-decay\",\n        type=float,\n        default=0.99998,\n        help=\"decay factor for Exponential Moving Average of model parameters (default: 0.99998)\",\n    )\n    parser.add_argument(\n        \"--use-deterministic-algorithms\", action=\"store_true\", help=\"Forces the use of deterministic algorithms only.\"\n    )\n    parser.add_argument(\n        \"--interpolation\", default=\"bilinear\", type=str, help=\"the interpolation method (default: bilinear)\"\n    )\n    parser.add_argument(\n        \"--val-resize-size\", default=256, type=int, help=\"the resize size used for validation (default: 256)\"\n    )\n    parser.add_argument(\n        \"--val-crop-size\", default=224, type=int, help=\"the central crop size used for validation (default: 224)\"\n    )\n    parser.add_argument(\n        \"--train-crop-size\", default=224, type=int, help=\"the random crop size used for training (default: 224)\"\n    )\n    parser.add_argument(\"--clip-grad-norm\", default=None, type=float, help=\"the maximum gradient norm (default None)\")\n    parser.add_argument(\"--ra-sampler\", action=\"store_true\", help=\"whether to use Repeated Augmentation in training\")\n    parser.add_argument(\n        \"--ra-reps\", default=3, type=int, help=\"number of repetitions for Repeated Augmentation (default: 3)\"\n    )\n    parser.add_argument(\"--weights\", default=None, type=str, help=\"the weights enum name to load\")\n    parser.add_argument(\"--backend\", default=\"PIL\", type=str.lower, help=\"PIL or tensor - case insensitive\")\n    parser.add_argument(\"--use-v2\", action=\"store_true\", help=\"Use V2 transforms\")\n    return parser",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — references/classification/train.py:393-523"
+            },
+            {
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "FasterRCNN",
+              "programmingLanguage": "Python",
+              "startLine": 167,
+              "endLine": 283,
+              "codeContent": "    def __init__(\n        self,\n        backbone,\n        num_classes=None,\n        # transform parameters\n        min_size=800,\n        max_size=1333,\n        image_mean=None,\n        image_std=None,\n        # RPN parameters\n        rpn_anchor_generator=None,\n        rpn_head=None,\n        rpn_pre_nms_top_n_train=2000,\n        rpn_pre_nms_top_n_test=1000,\n        rpn_post_nms_top_n_train=2000,\n        rpn_post_nms_top_n_test=1000,\n        rpn_nms_thresh=0.7,\n        rpn_fg_iou_thresh=0.7,\n        rpn_bg_iou_thresh=0.3,\n        rpn_batch_size_per_image=256,\n        rpn_positive_fraction=0.5,\n        rpn_score_thresh=0.0,\n        # Box parameters\n        box_roi_pool=None,\n        box_head=None,\n        box_predictor=None,\n        box_score_thresh=0.05,\n        box_nms_thresh=0.5,\n        box_detections_per_img=100,\n        box_fg_iou_thresh=0.5,\n        box_bg_iou_thresh=0.5,\n        box_batch_size_per_image=512,\n        box_positive_fraction=0.25,\n        bbox_reg_weights=None,\n        **kwargs,\n    ):\n\n        if not hasattr(backbone, \"out_channels\"):\n            raise ValueError(\n                \"backbone should contain an attribute out_channels \"\n                \"specifying the number of output channels (assumed to be the \"\n                \"same for all the levels)\"\n            )\n\n        if not isinstance(rpn_anchor_generator, (AnchorGenerator, type(None))):\n            raise TypeError(\n                f\"rpn_anchor_generator should be of type AnchorGenerator or None instead of {type(rpn_anchor_generator)}\"\n            )\n        if not isinstance(box_roi_pool, (MultiScaleRoIAlign, type(None))):\n            raise TypeError(\n                f\"box_roi_pool should be of type MultiScaleRoIAlign or None instead of {type(box_roi_pool)}\"\n            )\n\n        if num_classes is not None:\n            if box_predictor is not None:\n                raise ValueError(\"num_classes should be None when box_predictor is specified\")\n        else:\n            if box_predictor is None:\n                raise ValueError(\"num_classes should not be None when box_predictor is not specified\")\n\n        out_channels = backbone.out_channels\n\n        if rpn_anchor_generator is None:\n            rpn_anchor_generator = _default_anchorgen()\n        if rpn_head is None:\n            rpn_head = RPNHead(out_channels, rpn_anchor_generator.num_anchors_per_location()[0])\n\n        rpn_pre_nms_top_n = dict(training=rpn_pre_nms_top_n_train, testing=rpn_pre_nms_top_n_test)\n        rpn_post_nms_top_n = dict(training=rpn_post_nms_top_n_train, testing=rpn_post_nms_top_n_test)\n\n        rpn = RegionProposalNetwork(\n            rpn_anchor_generator,\n            rpn_head,\n            rpn_fg_iou_thresh,\n            rpn_bg_iou_thresh,\n            rpn_batch_size_per_image,\n            rpn_positive_fraction,\n            rpn_pre_nms_top_n,\n            rpn_post_nms_top_n,\n            rpn_nms_thresh,\n            score_thresh=rpn_score_thresh,\n        )\n\n        if box_roi_pool is None:\n            box_roi_pool = MultiScaleRoIAlign(featmap_names=[\"0\", \"1\", \"2\", \"3\"], output_size=7, sampling_ratio=2)\n\n        if box_head is None:\n            resolution = box_roi_pool.output_size[0]\n            representation_size = 1024\n            box_head = TwoMLPHead(out_channels * resolution**2, representation_size)\n\n        if box_predictor is None:\n            representation_size = 1024\n            box_predictor = FastRCNNPredictor(representation_size, num_classes)\n\n        roi_heads = RoIHeads(\n            # Box\n            box_roi_pool,\n            box_head,\n            box_predictor,\n            box_fg_iou_thresh,\n            box_bg_iou_thresh,\n            box_batch_size_per_image,\n            box_positive_fraction,\n            bbox_reg_weights,\n            box_score_thresh,\n            box_nms_thresh,\n            box_detections_per_img,\n        )\n\n        if image_mean is None:\n            image_mean = [0.485, 0.456, 0.406]\n        if image_std is None:\n            image_std = [0.229, 0.224, 0.225]\n        transform = GeneralizedRCNNTransform(min_size, max_size, image_mean, image_std, **kwargs)\n\n        super().__init__(backbone, rpn, roi_heads, transform)",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/detection/faster_rcnn.py:167-283"
+            },
+            {
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "_default_anchorgen",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 37,
+              "endLine": 40,
+              "codeContent": "def _default_anchorgen():\n    anchor_sizes = ((32,), (64,), (128,), (256,), (512,))\n    aspect_ratios = ((0.5, 1.0, 2.0),) * len(anchor_sizes)\n    return AnchorGenerator(anchor_sizes, aspect_ratios)",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/detection/faster_rcnn.py:37-40"
+            },
+            {
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "TwoMLPHead",
+              "programmingLanguage": "Python",
+              "startLine": 301,
+              "endLine": 307,
+              "codeContent": "    def forward(self, x):\n        x = x.flatten(start_dim=1)\n\n        x = F.relu(self.fc6(x))\n        x = F.relu(self.fc7(x))\n\n        return x",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/detection/faster_rcnn.py:301-307"
+            },
+            {
+              "filePath": "torchvision/models/detection/faster_rcnn.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "FastRCNNPredictor",
+              "programmingLanguage": "Python",
+              "startLine": 362,
+              "endLine": 372,
+              "codeContent": "    def forward(self, x):\n        if x.dim() == 4:\n            torch._assert(\n                list(x.shape[2:]) == [1, 1],\n                f\"x has the wrong shape, expecting the last two dimensions to be [1,1] instead of {list(x.shape[2:])}\",\n            )\n        x = x.flatten(start_dim=1)\n        scores = self.cls_score(x)\n        bbox_deltas = self.bbox_pred(x)\n\n        return scores, bbox_deltas",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/detection/faster_rcnn.py:362-372"
             }
           ]
         }

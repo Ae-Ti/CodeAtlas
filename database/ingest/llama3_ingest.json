@@ -26,11 +26,6 @@
       "chunk": "LL-20",
       "title": "Evaluation Benchmark",
       "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
-    },
-    {
-      "chunk": "-",
-      "title": "content 보강",
-      "issue": "2개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
     }
   ],
   "papers": [
@@ -132,9 +127,9 @@
           "sectionTitle": "3.2 Model Architecture",
           "subsectionTitle": "Grouped Query Attention (GQA)",
           "content": "We use grouped-query attention (GQA) for the 8B and 70B models.\n\nWe use grouped query attention (GQA; ainslie2023gqa) with 8 key-value heads to improve inference speed and to reduce the size of key-value caches during decoding.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-05 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 문단 보강 (ar5iv 2407.21783)",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 LL-05 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 문단 보강 (ar5iv 2407.21783) | 쪽 번호 PDF 대조로 채움(p.6)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -168,9 +163,9 @@
           "sectionTitle": "3 Pre-Training",
           "subsectionTitle": "Transformer Block Forward",
           "content": "Each transformer block consists of attention layers and feed-forward layers with residual connections.\n\nLanguage model pre-training involves: (1) the curation and filtering of a large-scale training corpus, (2) the development of a model architecture and corresponding scaling laws for determining model size, (3) the development of techniques for efficient pre-training at large scale, and (4) the development of a pre-training recipe. We present each of these components separately below.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-07 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-07 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -186,9 +181,9 @@
           "sectionTitle": "3.1 Pre-Training Data",
           "subsectionTitle": "Attention Forward",
           "content": "The attention mechanism computes representations by attending to previous tokens.\n\nWe create our dataset for language model pre-training from a variety of data sources containing knowledge until the end of 2023.\nWe apply several de-duplication methods and data cleaning mechanisms on each data source to obtain high-quality tokens. We remove domains that contain large amounts of personally identifiable information (PII), and domains with known adult content.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-08 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-08 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -204,9 +199,9 @@
           "sectionTitle": "3.1.1 Web Data Curation",
           "subsectionTitle": "KV Cache (Key-Value Cache)",
           "content": "Autoregressive 생성에서는 이전 token의 Attention Key, Value가 계속 필요하다.\n\n일반 방식:\n\n```\nStep 1\nK,V 계산\n\nStep 2\nK,V 다시 계산\n\nStep 3\nK,V 다시 계산\n```\n\n비효율 발생.\n\nKV Cache:\n\n```\n처음 계산한 K,V 저장\n\n↓\n\n다음 token에서는 새로운 Query만 계산\n```\n\n구조:\n\n```\nPrevious Tokens\n\n        |\n        v\n\nCached K,V\n\nNew Token\n\n        |\n        v\n\nNew Query\n\n        |\n        v\n\nAttention\n```\n\n---\n\nText extraction and cleaning.\nWe process the raw HTML content for non-truncated web documents to extract high-quality diverse text.\nTo do so, we build a custom parser that extracts the HTML content and optimizes for precision in boilerplate removal and content recall.\nWe evaluate our parser’s quality in human evaluations, comparing it with popular third-party HTML parsers that optimize for article-like content, and found it to perform favorably.\nWe carefully process HTML pages with mathematics and code content to preserve the structure of that content.\nWe maintain the image alt attribute text since mathematical content is often represented as pre-rendered images where the math is also provided in the alt attribute.\nWe experimentally evaluate different cleaning configurations.\nWe find markdown is harmful to the performance of a model that is primarily trained on web data compared to plain text, so we remove all markdown markers.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-09 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-09 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -240,9 +235,9 @@
           "sectionTitle": "3 Pre-Training",
           "subsectionTitle": "Autoregressive Text Generation",
           "content": "The models generate text autoregressively by predicting the next token.\n\nLanguage model pre-training involves: (1) the curation and filtering of a large-scale training corpus, (2) the development of a model architecture and corresponding scaling laws for determining model size, (3) the development of techniques for efficient pre-training at large scale, and (4) the development of a pre-training recipe. We present each of these components separately below.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-11 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-11 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -257,10 +252,10 @@
           "chunkIndex": 11,
           "sectionTitle": "Temperature Sampling",
           "subsectionTitle": "Temperature Sampling",
-          "content": "Temperature Sampling",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-12 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "content": "Temperature Sampling\n\nOverall, we observed that the vision DPO model consistently performs better than its SFT starting point in human evaluations for every finetuning iteration. 7.5.6 Rejection Sampling Most available question-answer pairs only contain the final answer and lack the chain-of-thought explanation that is required to train a model that generalizes well for reasoning tasks. We use rejection sampling to generate the missing explanations for such examples and boost the model’s reasoning capabilities. Given a question-answer pair, we generate multiple answers by sampling the finetuned model with different system prompts or temperature. Next, we compare the generated answers to the ground-truth via heuristics or an LLM judge.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 LL-12 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.60) | 쪽 번호 인접 chunk 로 보간(p.2)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -275,10 +270,10 @@
           "chunkIndex": 12,
           "sectionTitle": "Top-p (Nucleus Sampling)",
           "subsectionTitle": "Top-p (Nucleus Sampling)",
-          "content": "Top-p (Nucleus Sampling)",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-13 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "content": "Top-p (Nucleus Sampling)\n\nFor example, we opt for a standard dense Transformer model architecture (Vaswani et al., 2017) with minor adaptations, rather than for a mixture-of-experts model (Shazeer et al., 2017) to maximize training stability. Similarly, we adopt a relatively simple post-training procedure based on supervised finetuning (SFT), rejection sampling (RS), and direct preference optimization (DPO; Rafailov et al. (2023)) as opposed to more complex reinforcement learning algorithms (Ouyang et al., 2022; Schulman et al., 2017) that tend to be less stable and harder to scale. The result of our work is Llama 3: a herd of three multilingual1 language models with 8B, 70B, and 405B parameters. We evaluate the performance of Llama 3 on a plethora of benchmark datasets that span a wide range of language understanding tasks.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 LL-13 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.2, 지정 구절 \"sampling\")",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -294,9 +289,9 @@
           "sectionTitle": "4 Post-Training",
           "subsectionTitle": "Chat Completion Pipeline",
           "content": "We develop instruction-tuned models that are optimized for dialogue applications.\n\nOur instruction-tuned models are designed to follow user instructions and produce helpful responses.\n\nWe produce the aligned Llama 3 models by applying several rounds of post-training,666We use the term “post-training” to refer to any model training that happens outside of pre-training. or aligning the model with human feedback (ouyang2022instructgpt; rafailov2024direct) on top of a pre-trained checkpoint. Each round of post-training involves supervised finetuning (SFT) followed by Direct Preference Optimization (DPO; rafailov2024direct) on examples collected either via human annotations or generated synthetically. Our post-training modeling and data approaches are described in Sections 4.1 and  4.2 respectively.\nWe further detail custom data curation strategies to improve the reasoning, coding, factuality, multilingual, tool use, long context, and precise instruction following in Section 4.3.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-14 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "pageStart": 15,
+          "pageEnd": 15,
+          "_comment": "노트 LL-14 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.15)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -312,9 +307,9 @@
           "sectionTitle": "4.1 Modeling",
           "subsectionTitle": "Prompt Template",
           "content": "We use a structured format for conversations consisting of system, user, and assistant messages.\n\nThe backbone of our post-training strategy is a reward model and a language model. We first train a reward model on top of the pre-trained checkpoint using human-annotated preference data (see Section 4.1.2). We then finetune pre-trained checkpoints with supervised finetuning (SFT; see Section 4.1.3), and further align the checkpoints with Direct Preference Optimization (DPO; see Section 4.1.4).\nThis process is illustrated in Figure 7.\nUnless otherwise noted, our modeling procedure applies to Llama 3 405B, and we refer to Llama 3 405B as Llama 3 for simplicity.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-15 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "pageStart": 15,
+          "pageEnd": 15,
+          "_comment": "노트 LL-15 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.15)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/meta-llama/llama3",
@@ -330,45 +325,45 @@
           "sectionTitle": "4.1.1 Chat Dialog Format",
           "subsectionTitle": "Instruction Tuning",
           "content": "We perform supervised fine-tuning on publicly available instruction datasets.\n\nWe fine-tune the pretrained model to follow instructions.\n\nTo tune LLMs for human-AI interaction, we need to define a chat dialog protocol for the model to understand human instructions and perform conversational tasks. Compared to its predecessor, Llama 3 has new capabilities such as tool use (Section 4.3.5) which may require generating multiple messages and sending them to different locations (e.g., user, ipython) within a single dialog turn. To support this, we design a new multi-message chat protocol which uses various special header and termination tokens. The header tokens are used to indicate the source and destination of each message in a conversation. Similarly, the termination tokens indicate when it is the time to alternate between human and AI to speak.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-16 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)"
+          "pageStart": 15,
+          "pageEnd": 15,
+          "_comment": "노트 LL-16 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.15)"
         },
         {
           "chunkIndex": 16,
           "sectionTitle": "4.1.2 Reward Modeling",
           "subsectionTitle": "Supervised Fine Tuning (SFT)",
           "content": "We train the models using supervised fine-tuning (SFT).\n\nWe train a reward model (RM) covering different capabilities on top of the pre-trained checkpoint. The training objective is the same as Llama 2 except that we remove the margin term in the loss, as we observe diminishing improvements after data scaling. Following Llama 2, we use all of our preference data for reward modeling after filtering out samples with similar responses. In addition to standard preference pair of (chosen, rejected) response, annotations also create a third “edited response” for some prompts, where the chosen response from the pair is further edited for improvement (see Section 4.2.1). Hence, each preference ranking sample has two or three responses with clear ranking (edited > chosen > rejected). We concatenate the prompt and multiple responses into a single row during training with responses randomly shuffled. This is an approximation to the standard scenario of putting the responses in separate rows and computing the scores, but in our ablations, this approach improves training efficiency without a loss in accuracy.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-17 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)"
+          "pageStart": 16,
+          "pageEnd": 16,
+          "_comment": "노트 LL-17 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.16)"
         },
         {
           "chunkIndex": 17,
           "sectionTitle": "4.1.3 Supervised Finetuning",
           "subsectionTitle": "RLHF / Preference Optimization",
           "content": "We use human preference data to improve model helpfulness and safety.\n\nThe reward model is then used to perform rejection sampling on our human annotation prompts, the details of which are described in Section 4.2. Together with this rejection-sampled data and other data sources (including synthetic data), we finetune the pre-trained language model using a standard cross entropy loss on the target tokens (while masking loss on prompt tokens).\nMore details about the data mix can be found in Section 4.2.\nWe refer to this stage as supervised finetuning (SFT; weifinetuned; sanh2022multitask; wang2022super), even though many of the training targets are model-generated.\nOur largest models are finetuned with a learning rate of 10^{-5} over the course of 8.5K to 9K steps. We found these hyperparameter settings to work well across different rounds and data mixes.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-18 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)"
+          "pageStart": 16,
+          "pageEnd": 16,
+          "_comment": "노트 LL-18 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.16)"
         },
         {
           "chunkIndex": 18,
           "sectionTitle": "4.1.4 Direct Preference Optimization",
           "subsectionTitle": "Reward Model",
           "content": "We collect preference comparisons and train reward models.\n\nWe further train our SFT models with Direct Preference Optimization (DPO; rafailov2024direct) for human preference alignment. For training, we primarily use the most recent batches of preference data collected using the best performing models from the previous alignment rounds. As a result, our training data conforms better to the distribution of the policy model that is being optimized in each round. We also explored on-policy algorithms such as PPO (schulman2017proximal), but found that DPO required less compute for large-scale models and performed better, especially on instruction following benchmarks like IFEval (zhou2023instruction).\nFor Llama 3, we use a learning rate of 10^{-5} and set the \\beta hyper-parameter to be 0.1. In addition, we apply the following algorithmic modifications to DPO:",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-19 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)"
+          "pageStart": 16,
+          "pageEnd": 16,
+          "_comment": "노트 LL-19 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.16)"
         },
         {
           "chunkIndex": 19,
           "sectionTitle": "5.1.1 Standard Benchmarks",
           "subsectionTitle": "Evaluation Benchmark",
           "content": "We evaluate Llama 3 on a wide range of benchmarks including MMLU, GSM8K, HumanEval, and other tasks.\n\nTo compare our models with the current state-of-the-art, we evaluate Llama 3 on a large number of standard benchmark evaluations shown in Table 8.\nThese evaluations cover eight top-level categories: (1) commonsense reasoning; (2) knowledge; (3) reading comprehension; (4) math, reasoning, and problem solving; (5) long context; (6) code; (7) adversarial evaluations; and (8) aggregate evaluations.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 LL-20 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 문단 보강 (ar5iv 2407.21783)"
+          "pageStart": 28,
+          "pageEnd": 28,
+          "_comment": "노트 LL-20 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 문단 보강 (ar5iv 2407.21783) | 쪽 번호 절 제목 위치로 채움(p.28)"
         }
       ],
       "repositories": [

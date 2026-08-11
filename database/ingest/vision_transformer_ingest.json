@@ -109,13 +109,18 @@
     },
     {
       "chunk": "-",
-      "title": "content 보강",
-      "issue": "1개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 15건을 참조 구현/추가 심볼로 매핑"
+    },
+    {
+      "chunk": "-",
+      "title": "잔여 누락",
+      "issue": "쪽 미확정 0건 / 논문 원문 미보강 1건 (논문에 대응 서술이 없는 항목)"
     },
     {
       "chunk": "-",
       "title": "참조 구현 보강",
-      "issue": "공식 저장소로 대응이 안 되는 chunk 15건을 참조 구현/추가 심볼로 매핑"
+      "issue": "공식 저장소로 대응이 안 되는 chunk 5건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -507,7 +512,16 @@
           "content": "We fine-tune the model on downstream tasks by replacing the classification head.\n\nTypically, we pre-train ViT on large datasets, and fine-tune to (smaller) downstream tasks.\nFor this, we remove the pre-trained prediction head and attach a zero-initialized D\\times K feedforward layer, where K is the number of downstream classes.\nIt is often beneficial to fine-tune at higher resolution than pre-training (Touvron et al. 2019; Kolesnikov et al. 2020).\nWhen feeding images of higher resolution, we keep the patch size the same, which results in a larger effective sequence length.\nThe Vision Transformer can handle arbitrary sequence lengths (up to memory constraints), however, the pre-trained position embeddings may no longer be meaningful.\nWe therefore perform 2D interpolation of the pre-trained position embeddings, according to their location in the original image.\nNote that this resolution adjustment and patch extraction are the only points at which an inductive bias about the 2D structure of the images is manually injected into the Vision Transformer.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 21 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)"
+          "_comment": "노트 21 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models.py",
+              "symbolName": "get_model",
+              "startLine": 33,
+              "reason": "사전학습 모델을 이름으로 불러와 파인튜닝에 쓰는 진입점"
+            }
+          ]
         },
         {
           "chunkIndex": 21,
@@ -552,7 +566,16 @@
           "content": "The patch embeddings can also be extracted from a CNN feature map.\n\nAs an alternative to raw image patches, the input sequence can be formed from feature maps of a CNN (LeCun et al. 1989).\nIn this hybrid model, the patch embedding projection \\mathbf{E} (Eq. 1) is applied to patches extracted from a CNN feature map.\nAs a special case, the patches can have spatial size 1x1, which means that the input sequence is obtained by simply flattening the spatial dimensions of the feature map and projecting to the Transformer dimension.\nThe classification input embedding and position embeddings are added as described above.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 24 | 논문 원문 문단 보강 (ar5iv 2010.11929)"
+          "_comment": "노트 24 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_resnet.py",
+              "symbolName": "__call__",
+              "startLine": 102,
+              "reason": "CNN stage 를 앞단에 두는 hybrid 구성"
+            }
+          ]
         },
         {
           "chunkIndex": 24,
@@ -633,7 +656,16 @@
           "content": "We use weight decay for regularization.\n\nDatasets.\nTo explore model scalability, we use the ILSVRC-2012 ImageNet dataset with 1k classes and 1.3M images (we refer to it as ImageNet in what follows),\nits superset ImageNet-21k with 21k classes and 14M images (Deng et al. 2009),\nand JFT (Sun et al. 2017) with 18k classes and 303M high-resolution images.\nWe de-duplicate the pre-training datasets w.r.t. the test sets of the downstream tasks following Kolesnikov et al. 2020.\nWe transfer the models trained on these dataset to several benchmark tasks:\nImageNet on the original validation labels and the cleaned-up ReaL labels (Beyer et al. 2020),\nCIFAR-10/100 (Krizhevsky 2009),\nOxford-IIIT Pets (Parkhi et al. 2012),\nand Oxford Flowers-102 (Nilsback & Zisserman 2008).\nFor these datasets, pre-processing follows Kolesnikov et al. 2020.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 29 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)"
+          "_comment": "노트 29 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/train.py",
+              "symbolName": "make_update_fn",
+              "startLine": 37,
+              "reason": "weight decay 를 포함한 파라미터 갱신 정의"
+            }
+          ]
         },
         {
           "chunkIndex": 29,
@@ -678,16 +710,34 @@
           "content": "학습된 ViT를 이용한 이미지 분류.\n\n---\n\nIn model design we follow the original Transformer (Vaswani et al. 2017) as closely as possible.\nAn advantage of this intentionally simple setup is that scalable NLP Transformer architectures – and their efficient implementations – can be used almost out of the box.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 32 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)"
+          "_comment": "노트 32 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models.py",
+              "symbolName": "get_model",
+              "startLine": 33,
+              "reason": "추론 시 모델을 구성하는 경로"
+            }
+          ]
         },
         {
           "chunkIndex": 32,
           "sectionTitle": "전체 ViT 구현 Pipeline 정리",
           "subsectionTitle": "전체 ViT 구현 Pipeline 정리",
           "content": "전체 ViT 구현 Pipeline 정리",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 33 / content=구현 설명 (노트에 논문 인용 없음)"
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 33 / content=구현 설명 (노트에 논문 인용 없음) | 쪽 번호 인접 chunk 로 보간(p.3)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "forward",
+              "startLine": 118,
+              "reason": "patch→embedding→Transformer→head 전체 흐름"
+            }
+          ]
         }
       ],
       "repositories": [
@@ -812,6 +862,28 @@
               "endLine": 206,
               "codeContent": "def load_pretrained(*, pretrained_path, init_params, model_config):\n  \"\"\"Loads/converts a pretrained checkpoint for fine tuning.\n\n  Args:\n    pretrained_path: File pointing to pretrained checkpoint.\n    init_params: Parameters from model. Will be used for the head of the model\n      and to verify that the model is compatible with the stored checkpoint.\n    model_config: Configuration of the model. Will be used to configure the head\n      and rescale the position embeddings.\n\n  Returns:\n    Parameters like `init_params`, but loaded with pretrained weights from\n    `pretrained_path` and adapted accordingly.\n  \"\"\"\n\n  restored_params = inspect_params(\n      params=load(pretrained_path),\n      expected=init_params,\n      fail_if_extra=False,\n      fail_if_missing=False)\n\n  # The following allows implementing fine-tuning head variants depending on the\n  # value of `representation_size` in the fine-tuning job:\n  # - `None` : drop the whole head and attach a nn.Linear.\n  # - same number as in pre-training means : keep the head but reset the last\n  #    layer (logits) for the new task.\n  if model_config.get('representation_size') is None:\n    if 'pre_logits' in restored_params:\n      logging.info('load_pretrained: drop-head variant')\n      restored_params['pre_logits'] = {}\n  restored_params['head']['kernel'] = init_params['head']['kernel']\n  restored_params['head']['bias'] = init_params['head']['bias']\n\n  if 'posembed_input' in restored_params.get('Transformer', {}):\n    # Rescale the grid of position embeddings. Param shape is (1,N,1024)\n    posemb = restored_params['Transformer']['posembed_input']['pos_embedding']\n    posemb_new = init_params['Transformer']['posembed_input']['pos_embedding']\n    if posemb.shape != posemb_new.shape:\n      logging.info('load_pretrained: resized variant: %s to %s', posemb.shape,\n                   posemb_new.shape)\n      posemb = interpolate_posembed(\n          posemb, posemb_new.shape[1], model_config.classifier == 'token')\n      restored_params['Transformer']['posembed_input']['pos_embedding'] = posemb\n\n  if version.parse(flax.__version__) >= version.parse('0.3.6'):\n    restored_params = _fix_groupnorm(restored_params)\n\n  return flax.core.freeze(restored_params)",
               "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/checkpoint.py:159-206"
+            },
+            {
+              "filePath": "vit_jax/models.py",
+              "symbolName": "get_model",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 33,
+              "endLine": 40,
+              "codeContent": "def get_model(name, **kw):\n  \"\"\"Returns a model as specified in `model_configs.MODEL_CONFIGS`.\"\"\"\n  if name.startswith('Mixer-'):\n    return MlpMixer(**model_configs.MODEL_CONFIGS[name], **kw)\n  elif name.startswith('LiT-'):\n    return LitModel(**model_configs.MODEL_CONFIGS[name], **kw)\n  else:\n    return VisionTransformer(**model_configs.MODEL_CONFIGS[name], **kw)",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models.py:33-40"
+            },
+            {
+              "filePath": "vit_jax/models_resnet.py",
+              "symbolName": "__call__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ResNetStage",
+              "programmingLanguage": "Python",
+              "startLine": 102,
+              "endLine": 106,
+              "codeContent": "  def __call__(self, x):\n    x = ResidualUnit(self.nout, strides=self.first_stride, name='unit1')(x)\n    for i in range(1, self.block_size):  # pyrefly: ignore[bad-argument-type]\n      x = ResidualUnit(self.nout, strides=(1, 1), name=f'unit{i + 1}')(x)\n    return x",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_resnet.py:102-106"
             }
           ]
         },

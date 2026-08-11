@@ -39,11 +39,6 @@
     },
     {
       "chunk": "-",
-      "title": "content 보강",
-      "issue": "8개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
-    },
-    {
-      "chunk": "-",
       "title": "참조 구현 보강",
       "issue": "공식 저장소로 대응이 안 되는 chunk 7건을 참조 구현/추가 심볼로 매핑"
     }
@@ -246,10 +241,10 @@
           "chunkIndex": 10,
           "sectionTitle": "Section 3.4 Implementation Details",
           "subsectionTitle": "Attention Mask",
-          "content": "문장 길이가 다를 때 padding 위치 무시.\n\n예:\n\n```\nhello world [PAD] [PAD]\n```\n\nPAD는 학습 대상 X.\n\n---",
+          "content": "문장 길이가 다를 때 padding 위치 무시.\n\n예:\n\n```\nhello world [PAD] [PAD]\n```\n\nPAD는 학습 대상 X.\n\n---\n\nAt the output, the token representations are fed into an output layer for tokenlevel tasks, such as sequence tagging or question answering, and the [CLS] representation is fed into an output layer for classiﬁcation, such as entailment or sentiment analysis. Compared to pre-training, ﬁne-tuning is relatively inexpensive. All of the results in the paper can be replicated in at most 1 hour on a single Cloud TPU, or a few hours on a GPU, starting from the exact same pre-trained model. 7 We describe the task-speciﬁc details in the corresponding subsections of Section 4. More details can be found in Appendix A.5. 4 Experiments In this section, we present BERT ﬁne-tuning results on 11 NLP tasks. 4.1 GLUE The General Language Understanding Evaluation (GLUE) benchmark (Wang et al., 2018a) is a collection of diverse natural language understanding tasks.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 11 / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 11 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.5)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
@@ -318,10 +313,10 @@
           "chunkIndex": 14,
           "sectionTitle": "Section 3.4",
           "subsectionTitle": "GELU Activation",
-          "content": "We use the GELU activation function.",
+          "content": "We use the GELU activation function.\n\nThey are sampled such that the combined length is≤ 512 tokens. The LM masking is applied after WordPiece tokenization with a uniform masking rate of 15%, and no special consideration given to partial word pieces. We train with batch size of 256 sequences (256 sequences * 512 tokens = 128,000 tokens/batch) for 1,000,000 steps, which is approximately 40 epochs over the 3.3 billion word corpus. We use Adam with learning rate of 1e-4, β1 = 0.9, β2 = 0.999, L2 weight decay of 0.01, learning rate warmup over the ﬁrst 10,000 steps, and linear decay of the learning rate. We use a dropout probability of 0.1 on all layers. We use a gelu activation (Hendrycks and Gimpel, 2016) rather than the standard relu, following OpenAI GPT.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 15",
+          "_comment": "노트 15 | 논문 원문 보강 (PDF p.13, 제목 키워드 대조)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
@@ -354,10 +349,10 @@
           "chunkIndex": 16,
           "sectionTitle": "Section 3.4",
           "subsectionTitle": "Dropout",
-          "content": "We apply dropout with probability 0.1.",
+          "content": "We apply dropout with probability 0.1.\n\nThey are sampled such that the combined length is≤ 512 tokens. The LM masking is applied after WordPiece tokenization with a uniform masking rate of 15%, and no special consideration given to partial word pieces. We train with batch size of 256 sequences (256 sequences * 512 tokens = 128,000 tokens/batch) for 1,000,000 steps, which is approximately 40 epochs over the 3.3 billion word corpus. We use Adam with learning rate of 1e-4, β1 = 0.9, β2 = 0.999, L2 weight decay of 0.01, learning rate warmup over the ﬁrst 10,000 steps, and linear decay of the learning rate. We use a dropout probability of 0.1 on all layers. We use a gelu activation (Hendrycks and Gimpel, 2016) rather than the standard relu, following OpenAI GPT.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 17",
+          "_comment": "노트 17 | 논문 원문 보강 (PDF p.13, 제목 키워드 대조)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
@@ -462,10 +457,10 @@
           "chunkIndex": 22,
           "sectionTitle": "Section 3.3",
           "subsectionTitle": "NSP Training Instance 생성",
-          "content": "MLM과 NSP 데이터를 하나의 학습 instance로 저장.\n\n---",
+          "content": "MLM과 NSP 데이터를 하나의 학습 instance로 저장.\n\n---\n\n[CLS] he likes play ##ing [SEP]my dog is cute [SEP]Input E[CLS] Ehe Elikes Eplay E##ing E[SEP]Emy Edog Eis Ecute E[SEP] Token Embeddings EA EB EB EB EB EBEA EA EA EA EASegment Embeddings E0 E6 E7 E8 E9 E10E1 E2 E3 E4 E5Position Embeddings Figure 2: BERT input representation. The input embeddings are the sum of the token embeddings, the segmentation embeddings and the position embeddings. The NSP task is closely related to representationlearning objectives used in Jernite et al. (2017) and Logeswaran and Lee (2018). However, in prior work, only sentence embeddings are transferred to down-stream tasks, where BERT transfers all parameters to initialize end-task model parameters. Pre-training data The pre-training procedure largely follows the existing literature on language model pre-training.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 23 / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 23 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.5)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
@@ -498,10 +493,10 @@
           "chunkIndex": 24,
           "sectionTitle": "Section 3.4",
           "subsectionTitle": "MLM Loss",
-          "content": "The objective is to maximize the log likelihood of the correct token.",
+          "content": "The objective is to maximize the log likelihood of the correct token.\n\nAs shown in Figure 1, in the question answering task, we represent the input question and passage as a single packed sequence, with the question using the A embedding and the passage using the B embedding. We only introduce a start vector S ∈ RH and an end vector E ∈ RH during ﬁne-tuning. The probability of word i being the start of the answer span is computed as a dot product betweenTi andS followed by a softmax over all of the words in the paragraph: Pi = eS·Ti ∑ j eS·Tj . The analogous formula is used for the end of the answer span. The score of a candidate span from positioni to positionj is deﬁned as S·Ti +E·Tj, and the maximum scoring span where j ≥ i is used as a prediction. The training objective is the sum of the log-likelihoods of the correct start and end positions.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 25",
+          "_comment": "노트 25 | 논문 원문 보강 (PDF p.6)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
@@ -534,10 +529,10 @@
           "chunkIndex": 26,
           "sectionTitle": "Section 3.4",
           "subsectionTitle": "Total Pre-training Loss",
-          "content": "BERT 학습 loss:\n\n```\nTotal Loss\n\n=\nMLM Loss\n+\nNSP Loss\n```\n\n---",
+          "content": "BERT 학습 loss:\n\n```\nTotal Loss\n\n=\nMLM Loss\n+\nNSP Loss\n```\n\n---\n\nSystem MNLI-(m/mm) QQP QNLI SST-2 CoLA STS-B MRPC RTE A verage 392k 363k 108k 67k 8.5k 5.7k 3.5k 2.5k Pre-OpenAI SOTA 80.6/80.1 66.1 82.3 93.2 35.0 81.0 86.0 61.7 74.0 BiLSTM+ELMo+Attn 76.4/76.1 64.8 79.8 90.4 36.0 73.3 84.9 56.8 71.0 OpenAI GPT 82.1/81.4 70.3 87.4 91.3 45.4 80.0 82.3 56.0 75.1 BERTBASE 84.6/83.4 71.2 90.5 93.5 52.1 85.8 88.9 66.4 79.6 BERTLARGE 86.7/85.9 72.1 92.7 94.9 60.5 86.5 89.3 70.1 82.1 Table 1: GLUE Test results, scored by the evaluation server ( https://gluebenchmark.com/leaderboard). The number below each task denotes the number of training examples. The “Average” column is slightly different than the ofﬁcial GLUE score, since we exclude the problematic WNLI set.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 27 / content=구현 설명 (노트에 논문 인용 없음)",
+          "_comment": "노트 27 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.6)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
@@ -606,10 +601,10 @@
           "chunkIndex": 30,
           "sectionTitle": "Section 3.4",
           "subsectionTitle": "Learning Rate Decay",
-          "content": "The learning rate is increased linearly during warmup and then decreased linearly.",
+          "content": "The learning rate is increased linearly during warmup and then decreased linearly.\n\nWe only introduce a start vector S ∈ RH and an end vector E ∈ RH during ﬁne-tuning. The probability of word i being the start of the answer span is computed as a dot product betweenTi andS followed by a softmax over all of the words in the paragraph: Pi = eS·Ti ∑ j eS·Tj . The analogous formula is used for the end of the answer span. The score of a candidate span from positioni to positionj is deﬁned as S·Ti +E·Tj, and the maximum scoring span where j ≥ i is used as a prediction. The training objective is the sum of the log-likelihoods of the correct start and end positions. We ﬁne-tune for 3 epochs with a learning rate of 5e-5 and a batch size of 32. Table 2 shows top leaderboard entries as well as results from top published systems (Seo et al., 2017; Clark and Gardner, 2018; Peters et al., 2018a; Hu et al., 2018).",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 31",
+          "_comment": "노트 31 | 논문 원문 보강 (PDF p.6)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
@@ -624,10 +619,10 @@
           "chunkIndex": 31,
           "sectionTitle": "Section 3.4",
           "subsectionTitle": "Dropout Regularization",
-          "content": "We use dropout with probability 0.1.",
+          "content": "We use dropout with probability 0.1.\n\nSystem MNLI-(m/mm) QQP QNLI SST-2 CoLA STS-B MRPC RTE A verage 392k 363k 108k 67k 8.5k 5.7k 3.5k 2.5k Pre-OpenAI SOTA 80.6/80.1 66.1 82.3 93.2 35.0 81.0 86.0 61.7 74.0 BiLSTM+ELMo+Attn 76.4/76.1 64.8 79.8 90.4 36.0 73.3 84.9 56.8 71.0 OpenAI GPT 82.1/81.4 70.3 87.4 91.3 45.4 80.0 82.3 56.0 75.1 BERTBASE 84.6/83.4 71.2 90.5 93.5 52.1 85.8 88.9 66.4 79.6 BERTLARGE 86.7/85.9 72.1 92.7 94.9 60.5 86.5 89.3 70.1 82.1 Table 1: GLUE Test results, scored by the evaluation server ( https://gluebenchmark.com/leaderboard). The number below each task denotes the number of training examples. The “Average” column is slightly different than the ofﬁcial GLUE score, since we exclude the problematic WNLI set.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 32",
+          "_comment": "노트 32 | 논문 원문 보강 (PDF p.6)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",

@@ -49,11 +49,6 @@
     },
     {
       "chunk": "-",
-      "title": "content 보강",
-      "issue": "4개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
-    },
-    {
-      "chunk": "-",
       "title": "입도 정리 (§4 규칙 3)",
       "issue": "자식 심볼이 인덱싱된 부모 블록 1개를 제거하고 정답 재지정: ['DDIMSampler']"
     },
@@ -61,6 +56,11 @@
       "chunk": "-",
       "title": "참조 구현 보강",
       "issue": "공식 저장소로 대응이 안 되는 chunk 4건을 참조 구현/추가 심볼로 매핑"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 3건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -118,10 +118,10 @@
           "chunkIndex": 2,
           "sectionTitle": "Section 2.1",
           "subsectionTitle": "Autoencoder Architecture",
-          "content": "We employ an autoencoder with an encoder E and decoder D.\n\nThe encoder maps images into latent representations and the decoder reconstructs images from these representations.",
+          "content": "We employ an autoencoder with an encoder E and decoder D.\n\nThe encoder maps images into latent representations and the decoder reconstructs images from these representations.\n\nWe propose latent diffusion models (LDMs) as an effective generative model and a separate mild compression stage that only eliminates imperceptible details. Data and images from [30]. applied to high-resolution synthesis of megapixel images. (ii) We achieve competitive performance on multiple tasks (unconditional image synthesis, inpainting, stochastic super-resolution) and datasets while signiﬁcantly lowering computational costs. Compared to pixel-based diffusion approaches, we also signiﬁcantly decrease inference costs. (iii) We show that, in contrast to previous work [93] which learns both an encoder/decoder architecture and a score-based prior simultaneously, our approach does not require a delicate weighting of reconstruction and generative abilities.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 LD-03",
+          "_comment": "노트 LD-03 | 논문 원문 보강 (PDF p.2)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
@@ -136,10 +136,10 @@
           "chunkIndex": 3,
           "sectionTitle": "Section 2.1",
           "subsectionTitle": "Perceptual Loss",
-          "content": "We combine a perceptual loss with a patch-based adversarial objective.",
+          "content": "We combine a perceptual loss with a patch-based adversarial objective.\n\nFor the latter, we design an architecture that connects transformers to the DM’s UNet backbone [71] and enables arbitrary types of token-based conditioning mechanisms, see Sec. 3.3. In sum, our work makes the following contributions: (i) In contrast to purely transformer-based approaches [23, 66], our method scales more graceful to higher dimensional data and can thus (a) work on a compression level which provides more faithful and detailed reconstructions than previous work (see Fig. 1) and (b) can be efﬁciently Figure 2. Illustrating perceptual and semantic compression: Most bits of a digital image correspond to imperceptible details. While DMs allow to suppress this semantically meaningless information by minimizing the responsible loss term, gradients (during training) and the neural network backbone (training and inference) still need to be evaluated on all pixels, leading to superﬂuous computations and unnecessarily expensive optimization and inference.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 LD-04",
+          "_comment": "노트 LD-04 | 논문 원문 보강 (PDF p.2)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
@@ -154,10 +154,10 @@
           "chunkIndex": 4,
           "sectionTitle": "Section 2.1",
           "subsectionTitle": "KL Regularization",
-          "content": "We use a KL-regulated autoencoder to prevent arbitrary latent representations.",
+          "content": "We use a KL-regulated autoencoder to prevent arbitrary latent representations.\n\nDeparture to Latent Space Our approach starts with the analysis of already trained diffusion models in pixel space: Fig. 2 shows the rate-distortion trade-off of a trained model. As with any likelihood-based model, learning can be roughly divided into two stages: First is a perceptual compression stage which removes high-frequency details but still learns little semantic variation. In the second stage, the actual generative model learns the semantic and conceptual composition of the data ( semantic compression). We thus aim to ﬁrst ﬁnd a perceptually equivalent, but computationally more suitable space , in which we will train diffusion models for high-resolution image synthesis. Following common practice [11, 23, 66, 67, 96], we separate training into two distinct phases: First, we train an autoencoder which provides a lower-dimensional (and thereby efﬁcient) representational space which is perceptually equivalent to the data space.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 LD-05",
+          "_comment": "노트 LD-05 | 논문 원문 보강 (PDF p.2)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
@@ -442,10 +442,10 @@
           "chunkIndex": 20,
           "sectionTitle": "Section 2.1",
           "subsectionTitle": "VAE Encode / Decode Pipeline",
-          "content": "The encoder maps the image into a lower-dimensional latent representation and the decoder reconstructs the image.",
+          "content": "The encoder maps the image into a lower-dimensional latent representation and the decoder reconstructs the image.\n\nDeparture to Latent Space Our approach starts with the analysis of already trained diffusion models in pixel space: Fig. 2 shows the rate-distortion trade-off of a trained model. As with any likelihood-based model, learning can be roughly divided into two stages: First is a perceptual compression stage which removes high-frequency details but still learns little semantic variation. In the second stage, the actual generative model learns the semantic and conceptual composition of the data ( semantic compression). We thus aim to ﬁrst ﬁnd a perceptually equivalent, but computationally more suitable space , in which we will train diffusion models for high-resolution image synthesis. Following common practice [11, 23, 66, 67, 96], we separate training into two distinct phases: First, we train an autoencoder which provides a lower-dimensional (and thereby efﬁcient) representational space which is perceptually equivalent to the data space.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 LD-21",
+          "_comment": "노트 LD-21 | 논문 원문 보강 (PDF p.2)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
@@ -517,7 +517,16 @@
           "content": "Latent diffusion models can be adapted for image-to-image translation tasks.\n\nSimilar to other types of generative\nmodels DBLP:journals/corr/MirzaO14; NIPS2015_8d55a249, diffusion models\nare in principle capable of modeling conditional distributions of the form\n p(z|y) .\nThis can be implemented with\na conditional denoising autoencoder \\epsilon_{\\theta}(z_{t},t,y) and\npaves the way to controlling the synthesis process through\ninputs y such as text Reed2016GenerativeAT, semantic maps  spade; DBLP:conf/cvpr/IsolaZZE17 or other image-to-image translation tasks Isola2017ImagetoImageTW.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 LD-25 | 논문 원문 문단 보강 (ar5iv 2112.10752)"
+          "_comment": "노트 LD-25 | 논문 원문 문단 보강 (ar5iv 2112.10752)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "ldm/models/diffusion/ddim.py",
+              "symbolName": "p_sample_ddim",
+              "startLine": 165,
+              "reason": "초기 latent 를 주고 역방향 스텝을 도는 image-to-image 경로"
+            }
+          ]
         },
         {
           "chunkIndex": 25,
@@ -526,7 +535,16 @@
           "content": "Latent diffusion models can perform image completion and inpainting.\n\nTab. 8 shows hyperparameters and reconstruction performance of the first stage models used for the LDMs compared in this section.\nFig. 6 shows sample quality as a function of training\nprogress for 2M steps of class-conditional models on the\nImageNet DBLP:conf/cvpr/DengDSLL009 dataset. We see that, i) small\ndownsampling factors for LDM- \\{ 1,2 \\} result in slow training\nprogress, whereas ii) overly large values of f cause stagnating fidelity\nafter comparably few training steps. Revisiting the analysis above\n(Fig. 1 and 2) we\nattribute this to i) leaving most of perceptual compression to the diffusion\nmodel and ii) too strong first stage compression resulting in information loss\nand thus limiting the achievable quality. LDM- \\{ 4-16 \\} \nstrike a good balance between efficiency and perceptually faithful results,\nwhich manifests in a significant FID FID gap of 38 between pixel-based diffusion (LDM-1) and LDM-8 after 2M training steps.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 LD-26 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
+          "_comment": "노트 LD-26 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "scripts/inpaint.py",
+              "symbolName": "make_batch",
+              "startLine": 11,
+              "reason": "마스크와 원본을 묶어 inpainting 입력을 만드는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 26,
@@ -535,7 +553,16 @@
           "content": "We train our models on large-scale datasets consisting of image-text pairs.\n\nFor text-to-image synthesis we use datasets such as LAION-400M.\n\nBy introducing cross-attention based conditioning into LDMs\nwe open them up for various\nconditioning modalities previously unexplored for diffusion models.\nFor text-to-image image modeling, we train a 1.45B parameter KL-regularized LDM conditioned on language prompts on LAION-400M schuhmann2021laion400m.\nWe employ the BERT-tokenizer DBLP:journals/corr/abs-1810-04805 and implement \\tau_{\\theta} as a transformer DBLP:conf/nips/VaswaniSPUJGKP17 to infer a latent code which\nis mapped into the UNet via (multi-head) cross-attention (Sec. 3.3).\nThis combination of domain specific experts for learning a language representation and visual synthesis results in a powerful model, which generalizes well to complex, user-defined text prompts, cf. Fig. 8 and 5. For quantitative analysis, we follow prior work and evaluate text-to-image generation on the MS-COCO DBLP:journals/corr/LinMBHPRDZ14 validation set, where our model improves upon powerful AR DBLP:journals/corr/abs-2102-12092; DBLP:journals/corr/abs-2105-13290 and GAN-based DBLP:journals/corr/abs-2111-13792 methods, cf. Tab. 2. We note that applying classifier-free diffusion guidance ho2021classifier greatly boosts sample quality, such that the guided LDM-KL-8-G is on par with the recent state-of-the-art AR DBLP:journals/corr/abs-2203-13131 and diffusion models DBLP:journals/corr/abs-2112-10741 for text-to-image synthesis, while substantially reducing parameter count.\nTo further analyze the flexibility of the cross-attention based conditioning mechanism we also train models to synthesize images based on semantic layouts on OpenImages  DBLP:journals/corr/abs-1811-00982,\nand finetune on COCO DBLP:conf/cvpr/CaesarUF18, see Fig. 8.\nSee Sec. D.3 for the quantitative evaluation and implementation details.",
           "pageStart": 6,
           "pageEnd": 7,
-          "_comment": "노트 LD-27 | 논문 원문 문단 보강 (ar5iv 2112.10752)"
+          "_comment": "노트 LD-27 | 논문 원문 문단 보강 (ar5iv 2112.10752)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "ldm/data/imagenet.py",
+              "symbolName": "_load",
+              "startLine": 93,
+              "reason": "학습 데이터셋을 읽어 들이는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 27,
@@ -793,6 +820,39 @@
               "endLine": 30,
               "codeContent": "def load_model_from_config(config, ckpt, verbose=False):\n    print(f\"Loading model from {ckpt}\")\n    pl_sd = torch.load(ckpt, map_location=\"cpu\")\n    sd = pl_sd[\"state_dict\"]\n    model = instantiate_from_config(config.model)\n    m, u = model.load_state_dict(sd, strict=False)\n    if len(m) > 0 and verbose:\n        print(\"missing keys:\")\n        print(m)\n    if len(u) > 0 and verbose:\n        print(\"unexpected keys:\")\n        print(u)\n\n    model.cuda()\n    model.eval()\n    return model",
               "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — scripts/txt2img.py:15-30"
+            },
+            {
+              "filePath": "ldm/models/diffusion/ddim.py",
+              "symbolName": "p_sample_ddim",
+              "symbolType": "METHOD",
+              "parentSymbolName": "DDIMSampler",
+              "programmingLanguage": "Python",
+              "startLine": 165,
+              "endLine": 203,
+              "codeContent": "    def p_sample_ddim(self, x, c, t, index, repeat_noise=False, use_original_steps=False, quantize_denoised=False,\n                      temperature=1., noise_dropout=0., score_corrector=None, corrector_kwargs=None,\n                      unconditional_guidance_scale=1., unconditional_conditioning=None):\n        b, *_, device = *x.shape, x.device\n\n        if unconditional_conditioning is None or unconditional_guidance_scale == 1.:\n            e_t = self.model.apply_model(x, t, c)\n        else:\n            x_in = torch.cat([x] * 2)\n            t_in = torch.cat([t] * 2)\n            c_in = torch.cat([unconditional_conditioning, c])\n            e_t_uncond, e_t = self.model.apply_model(x_in, t_in, c_in).chunk(2)\n            e_t = e_t_uncond + unconditional_guidance_scale * (e_t - e_t_uncond)\n\n        if score_corrector is not None:\n            assert self.model.parameterization == \"eps\"\n            e_t = score_corrector.modify_score(self.model, e_t, x, t, c, **corrector_kwargs)\n\n        alphas = self.model.alphas_cumprod if use_original_steps else self.ddim_alphas\n        alphas_prev = self.model.alphas_cumprod_prev if use_original_steps else self.ddim_alphas_prev\n        sqrt_one_minus_alphas = self.model.sqrt_one_minus_alphas_cumprod if use_original_steps else self.ddim_sqrt_one_minus_alphas\n        sigmas = self.model.ddim_sigmas_for_original_num_steps if use_original_steps else self.ddim_sigmas\n        # select parameters corresponding to the currently considered timestep\n        a_t = torch.full((b, 1, 1, 1), alphas[index], device=device)\n        a_prev = torch.full((b, 1, 1, 1), alphas_prev[index], device=device)\n        sigma_t = torch.full((b, 1, 1, 1), sigmas[index], device=device)\n        sqrt_one_minus_at = torch.full((b, 1, 1, 1), sqrt_one_minus_alphas[index],device=device)\n\n        # current prediction for x_0\n        pred_x0 = (x - sqrt_one_minus_at * e_t) / a_t.sqrt()\n        if quantize_denoised:\n            pred_x0, _, *_ = self.model.first_stage_model.quantize(pred_x0)\n        # direction pointing to x_t\n        dir_xt = (1. - a_prev - sigma_t**2).sqrt() * e_t\n        noise = sigma_t * noise_like(x.shape, device, repeat_noise) * temperature\n        if noise_dropout > 0.:\n            noise = torch.nn.functional.dropout(noise, p=noise_dropout)\n        x_prev = a_prev.sqrt() * pred_x0 + dir_xt + noise\n        return x_prev, pred_x0",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/models/diffusion/ddim.py:165-203"
+            },
+            {
+              "filePath": "scripts/inpaint.py",
+              "symbolName": "make_batch",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 11,
+              "endLine": 30,
+              "codeContent": "def make_batch(image, mask, device):\n    image = np.array(Image.open(image).convert(\"RGB\"))\n    image = image.astype(np.float32)/255.0\n    image = image[None].transpose(0,3,1,2)\n    image = torch.from_numpy(image)\n\n    mask = np.array(Image.open(mask).convert(\"L\"))\n    mask = mask.astype(np.float32)/255.0\n    mask = mask[None,None]\n    mask[mask < 0.5] = 0\n    mask[mask >= 0.5] = 1\n    mask = torch.from_numpy(mask)\n\n    masked_image = (1-mask)*image\n\n    batch = {\"image\": image, \"mask\": mask, \"masked_image\": masked_image}\n    for k in batch:\n        batch[k] = batch[k].to(device=device)\n        batch[k] = batch[k]*2.0-1.0\n    return batch",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — scripts/inpaint.py:11-30"
+            },
+            {
+              "filePath": "ldm/data/imagenet.py",
+              "symbolName": "_load",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ImageNetBase",
+              "programmingLanguage": "Python",
+              "startLine": 93,
+              "endLine": 131,
+              "codeContent": "    def _load(self):\n        with open(self.txt_filelist, \"r\") as f:\n            self.relpaths = f.read().splitlines()\n            l1 = len(self.relpaths)\n            self.relpaths = self._filter_relpaths(self.relpaths)\n            print(\"Removed {} files from filelist during filtering.\".format(l1 - len(self.relpaths)))\n\n        self.synsets = [p.split(\"/\")[0] for p in self.relpaths]\n        self.abspaths = [os.path.join(self.datadir, p) for p in self.relpaths]\n\n        unique_synsets = np.unique(self.synsets)\n        class_dict = dict((synset, i) for i, synset in enumerate(unique_synsets))\n        if not self.keep_orig_class_label:\n            self.class_labels = [class_dict[s] for s in self.synsets]\n        else:\n            self.class_labels = [self.synset2idx[s] for s in self.synsets]\n\n        with open(self.human_dict, \"r\") as f:\n            human_dict = f.read().splitlines()\n            human_dict = dict(line.split(maxsplit=1) for line in human_dict)\n\n        self.human_labels = [human_dict[s] for s in self.synsets]\n\n        labels = {\n            \"relpath\": np.array(self.relpaths),\n            \"synsets\": np.array(self.synsets),\n            \"class_label\": np.array(self.class_labels),\n            \"human_label\": np.array(self.human_labels),\n        }\n\n        if self.process_images:\n            self.size = retrieve(self.config, \"size\", default=256)\n            self.data = ImagePaths(self.abspaths,\n                                   labels=labels,\n                                   size=self.size,\n                                   random_crop=self.random_crop,\n                                   )\n        else:\n            self.data = self.abspaths",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/data/imagenet.py:93-131"
             }
           ]
         }

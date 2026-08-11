@@ -109,11 +109,6 @@
     },
     {
       "chunk": "-",
-      "title": "content 보강",
-      "issue": "2개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
-    },
-    {
-      "chunk": "-",
       "title": "입도 정리 (§4 규칙 3)",
       "issue": "자식 심볼이 인덱싱된 부모 블록 1개를 제거하고 정답 재지정: ['VisionTransformer']"
     },
@@ -121,6 +116,16 @@
       "chunk": "-",
       "title": "참조 구현 보강",
       "issue": "공식 저장소로 대응이 안 되는 chunk 17건을 참조 구현/추가 심볼로 매핑"
+    },
+    {
+      "chunk": "-",
+      "title": "잔여 누락",
+      "issue": "쪽 미확정 0건 / 논문 원문 미보강 1건 (논문에 대응 서술이 없는 항목)"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 3건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -204,9 +209,9 @@
           "sectionTitle": "2.3 Selecting an Efficient Pre-Training Method",
           "subsectionTitle": "Patch Flattening",
           "content": "The image is split into patches and treated as a sequence.\n\nState-of-the-art computer vision systems use very large amounts of compute. Mahajan et al. 2018 required 19 GPU years to train their ResNeXt101-32x48d and Xie et al. 2020 required 33 TPUv3 core-years to train their Noisy Student EfficientNet-L2. When considering that both these systems were trained to predict only 1000 ImageNet classes, the task of learning an open set of visual concepts from natural language seems daunting. In the course of our efforts, we found training efficiency was key to successfully scaling natural language supervision and we selected our final pre-training method based on this metric.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 04 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 04 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음) | 쪽 번호 인접 chunk 로 보간(p.3)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/openai/CLIP",
@@ -222,9 +227,9 @@
           "sectionTitle": "2.3 Selecting an Efficient Pre-Training Method",
           "subsectionTitle": "Class Token",
           "content": "전체 이미지 정보를 대표하는 token 추가.\n\n---\n\nOur initial approach, similar to VirTex, jointly trained an image CNN and text transformer from scratch to predict the caption of an image. However, we encountered difficulties efficiently scaling this method. In Figure 2 we show that a 63 million parameter transformer language model, which already uses twice the compute of its ResNet-50 image encoder, learns to recognize ImageNet classes three times slower than a much simpler baseline that predicts a bag-of-words encoding of the same text.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 05 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 05 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음) | 쪽 번호 인접 chunk 로 보간(p.3)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/openai/CLIP",
@@ -240,9 +245,9 @@
           "sectionTitle": "2.3 Selecting an Efficient Pre-Training Method",
           "subsectionTitle": "Position Embedding",
           "content": "Transformer는 순서 정보를 자체적으로 알 수 없기 때문에 위치 정보를 추가.\n\n---\n\nBoth these approaches share a key similarity. They try to predict the exact words of the text accompanying each image. This is a difficult task due to the wide variety of descriptions, comments, and related text that co-occur with images. Recent work in contrastive representation learning for images has found that contrastive objectives can learn better representations than their equivalent predictive objective (Tian et al. 2019). Other work has found that although generative models of images can learn high quality image representations, they require over an order of magnitude more compute than contrastive models with the same performance (Chen et al. 2020a). Noting these findings, we explored training a system to solve the potentially easier proxy task of predicting only which text as a whole is paired with which image and not the exact words of that text. Starting with the same bag-of-words encoding baseline, we swapped the predictive objective for a contrastive objective in Figure 2 and observed a further 4x efficiency improvement in the rate of zero-shot transfer to ImageNet.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 06 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 06 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음) | 쪽 번호 PDF 대조로 채움(p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/openai/CLIP",
@@ -546,9 +551,9 @@
           "sectionTitle": "2.3 Selecting an Efficient Pre-Training Method",
           "subsectionTitle": "Text Preprocessing",
           "content": "Text를 Token ID sequence로 변환.\n\n---\n\nBoth these approaches share a key similarity. They try to predict the exact words of the text accompanying each image. This is a difficult task due to the wide variety of descriptions, comments, and related text that co-occur with images. Recent work in contrastive representation learning for images has found that contrastive objectives can learn better representations than their equivalent predictive objective (Tian et al. 2019). Other work has found that although generative models of images can learn high quality image representations, they require over an order of magnitude more compute than contrastive models with the same performance (Chen et al. 2020a). Noting these findings, we explored training a system to solve the potentially easier proxy task of predicting only which text as a whole is paired with which image and not the exact words of that text. Starting with the same bag-of-words encoding baseline, we swapped the predictive objective for a contrastive objective in Figure 2 and observed a further 4x efficiency improvement in the rate of zero-shot transfer to ImageNet.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 23 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 23 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음) | 쪽 번호 인접 chunk 로 보간(p.3)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/openai/CLIP",
@@ -602,7 +607,16 @@
           "content": "We optimize CLIP using AdamW.\n\nWe consider two different architectures for the image encoder. For the first, we use ResNet-50 (He et al. 2016a) as the base architecture for the image encoder due to its widespread adoption and proven performance. We make several modifications to the original version using the ResNet-D improvements from He et al. 2019 and the antialiased rect-2 blur pooling from Zhang 2019. We also replace the global average pooling layer with an attention pooling mechanism. The attention pooling is implemented as a single layer of “transformer-style” multi-head QKV attention where the query is conditioned on the global average-pooled representation of the image. For the second architecture, we experiment with the recently introduced Vision Transformer (ViT) (Dosovitskiy et al. 2020). We closely follow their implementation with only the minor modification of adding an additional layer normalization to the combined patch and position embeddings before the transformer and use a slightly different initialization scheme.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 26 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 26 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/mlfoundations/open_clip",
+              "filePath": "src/open_clip_train/train.py",
+              "symbolName": "train_one_epoch",
+              "startLine": 343,
+              "reason": "optimizer step 과 scheduler 가 도는 학습 루프"
+            }
+          ]
         },
         {
           "chunkIndex": 26,
@@ -611,7 +625,16 @@
           "content": "FP16 연산을 사용해:\n\n- GPU Memory 감소\n- Training 속도 증가\n\n---\n\nWe consider two different architectures for the image encoder. For the first, we use ResNet-50 (He et al. 2016a) as the base architecture for the image encoder due to its widespread adoption and proven performance. We make several modifications to the original version using the ResNet-D improvements from He et al. 2019 and the antialiased rect-2 blur pooling from Zhang 2019. We also replace the global average pooling layer with an attention pooling mechanism. The attention pooling is implemented as a single layer of “transformer-style” multi-head QKV attention where the query is conditioned on the global average-pooled representation of the image. For the second architecture, we experiment with the recently introduced Vision Transformer (ViT) (Dosovitskiy et al. 2020). We closely follow their implementation with only the minor modification of adding an additional layer normalization to the combined patch and position embeddings before the transformer and use a slightly different initialization scheme.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 27 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 27 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/mlfoundations/open_clip",
+              "filePath": "src/open_clip_train/train.py",
+              "symbolName": "train_one_epoch",
+              "startLine": 343,
+              "reason": "autocast 로 mixed precision 을 적용하는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 27,
@@ -620,16 +643,25 @@
           "content": "We use natural language prompts to convert labels into text descriptions.\n\nIn computer vision, zero-shot learning usually refers to the study of generalizing to unseen object categories in image classification (Lampert et al. 2009). We instead use the term in a broader sense and study generalization to unseen datasets. We motivate this as a proxy for performing unseen tasks, as aspired to in the zero-data learning paper of Larochelle et al. 2008. While much research in the field of unsupervised learning focuses on the representation learning capabilities of machine learning systems, we motivate studying zero-shot transfer as a way of measuring the task-learning capabilities of machine learning systems. In this view, a dataset evaluates performance on a task on a specific distribution. However, many popular computer vision datasets were created by the research community primarily as benchmarks to guide the development of generic image classification methods rather than measuring performance on a specific task. While it is reasonable to say that the SVHN dataset measures the task of street number transcription on the distribution of Google Street View photos, it is unclear what “real” task the CIFAR-10 dataset measures. It is clear, however, what distribution CIFAR-10 is drawn from - TinyImages (Torralba et al. 2008). On these kinds of datasets, zero-shot transfer is more an evaluation of CLIP’s robustness to distribution shift and domain generalization rather than task generalization. Please see Section 3.3 for analysis focused on this.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 28 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 28 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/clip.py",
+              "symbolName": "tokenize",
+              "startLine": 205,
+              "reason": "프롬프트 문장을 토큰화해 텍스트 인코더에 넣는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 28,
           "sectionTitle": "Appendix",
           "subsectionTitle": "Model Loading",
-          "content": "Pre-trained CLIP checkpoint 불러오기.\n\n---",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 29 / content=구현 설명 (노트에 논문 인용 없음)",
+          "content": "Pre-trained CLIP checkpoint 불러오기.\n\n---\n\nOther work has found that although generative models of images can learn high quality image representations, they require over an order of magnitude more compute than contrastive models with the same performance (Chen et al., 2020a). Noting these ﬁndings, we explored training a system to solve the potentially easier proxy task of predicting only which text as a whole is paired with which image and not the exact words of that text. Starting with the same bag-of-words encoding baseline, we swapped the predictive objective for a contrastive objective in Figure 2 and observed a further 4x efﬁciency improvement in the rate of zero-shot transfer to ImageNet. Given a batch ofN (image, text) pairs, CLIP is trained to predict which of theN×N possible (image, text) pairings across a batch actually occurred.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 29 / content=구현 설명 (노트에 논문 인용 없음) | 쪽 번호 인접 chunk 로 보간(p.4) | 논문 원문 보강 (PDF p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/openai/CLIP",
@@ -645,9 +677,9 @@
           "sectionTitle": "3.1.1 Motivation",
           "subsectionTitle": "Inference Pipeline",
           "content": "실제 사용 과정.\n\n---\n\nIn computer vision, zero-shot learning usually refers to the study of generalizing to unseen object categories in image classification (Lampert et al. 2009). We instead use the term in a broader sense and study generalization to unseen datasets. We motivate this as a proxy for performing unseen tasks, as aspired to in the zero-data learning paper of Larochelle et al. 2008. While much research in the field of unsupervised learning focuses on the representation learning capabilities of machine learning systems, we motivate studying zero-shot transfer as a way of measuring the task-learning capabilities of machine learning systems. In this view, a dataset evaluates performance on a task on a specific distribution. However, many popular computer vision datasets were created by the research community primarily as benchmarks to guide the development of generic image classification methods rather than measuring performance on a specific task. While it is reasonable to say that the SVHN dataset measures the task of street number transcription on the distribution of Google Street View photos, it is unclear what “real” task the CIFAR-10 dataset measures. It is clear, however, what distribution CIFAR-10 is drawn from - TinyImages (Torralba et al. 2008). On these kinds of datasets, zero-shot transfer is more an evaluation of CLIP’s robustness to distribution shift and domain generalization rather than task generalization. Please see Section 3.3 for analysis focused on this.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 30 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 30 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음) | 쪽 번호 인접 chunk 로 보간(p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/openai/CLIP",
@@ -663,9 +695,9 @@
           "sectionTitle": "전체 Git Mapping",
           "subsectionTitle": "전체 Git Mapping",
           "content": "전체 Git Mapping",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 31 / content=구현 설명 (노트에 논문 인용 없음)",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 31 / content=구현 설명 (노트에 논문 인용 없음) | 쪽 번호 인접 chunk 로 보간(p.4)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/openai/CLIP",

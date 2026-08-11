@@ -476,9 +476,9 @@
           "sectionTitle": "4 Segment Anything Data Engine",
           "subsectionTitle": "Non-Maximum Suppression(NMS)",
           "content": "We remove duplicate masks using non-maximum suppression.\n\nAs segmentation masks are not abundant on the internet, we built a data engine to enable the collection of our 1.1B mask dataset, SA-1B. The data engine has three stages: (1) a model-assisted manual annotation stage, (2) a semi-automatic stage with a mix of automatically predicted masks and model-assisted annotation, and (3) a fully automatic stage in which our model generates masks without annotator input. We go into details of each next.",
-          "pageStart": null,
-          "pageEnd": null,
-          "_comment": "노트 SAM-23 | 논문 원문 절 문단으로 보강 (ar5iv 2304.02643, 인용문 없음)",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-23 | 논문 원문 절 문단으로 보강 (ar5iv 2304.02643, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.5)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/facebookresearch/segment-anything",
