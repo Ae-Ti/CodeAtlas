@@ -1161,7 +1161,7 @@
           "repositoryName": "darknet",
           "defaultBranch": "master",
           "commitHash": "f6afaabcdf85f77e7aff2ec55c020c0e297c77f9",
-          "licenseName": "NOASSERTION",
+          "licenseName": "YOLO LICENSE v2 (public-domain style)",
           "primaryLanguage": "Config",
           "starCount": 26492,
           "relationType": "OFFICIAL",

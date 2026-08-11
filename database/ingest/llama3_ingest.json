@@ -378,7 +378,7 @@
           "repositoryName": "llama3",
           "defaultBranch": "main",
           "commitHash": "a0940f9cf7065d45bb6675660f80d305c041a754",
-          "licenseName": "NOASSERTION",
+          "licenseName": "Meta Llama 3 Community License",
           "primaryLanguage": "Python",
           "starCount": 29262,
           "relationType": "OFFICIAL",

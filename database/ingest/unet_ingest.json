@@ -221,6 +221,11 @@
       "chunk": "-",
       "title": "참조 구현 보강",
       "issue": "공식 저장소로 대응이 안 되는 chunk 7건을 참조 구현/추가 심볼로 매핑"
+    },
+    {
+      "chunk": "-",
+      "title": "라이선스 정리",
+      "issue": "GPL-3.0 인 milesial/Pytorch-UNet 을 MIT 인 mateuszbuda/brain-segmentation-pytorch 로 교체"
     }
   ],
   "papers": [
@@ -489,11 +494,11 @@
           "_comment": "노트 p2-17 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1505.04597)",
           "mappedCode": [
             {
-              "githubUrl": "https://github.com/milesial/Pytorch-UNet",
-              "filePath": "unet/unet_parts.py",
+              "githubUrl": "https://github.com/mateuszbuda/brain-segmentation-pytorch",
+              "filePath": "unet.py",
               "symbolName": "forward",
-              "startLine": 56,
-              "reason": "contracting path 의 고해상도 feature 를 잘라 붙여(concat) 결합"
+              "startLine": 45,
+              "reason": "torch.cat 으로 contracting path 의 고해상도 feature 를 결합"
             }
           ]
         },
@@ -525,11 +530,11 @@
           "_comment": "노트 p3-20 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1505.04597)",
           "mappedCode": [
             {
-              "githubUrl": "https://github.com/milesial/Pytorch-UNet",
-              "filePath": "unet/unet_parts.py",
+              "githubUrl": "https://github.com/mateuszbuda/brain-segmentation-pytorch",
+              "filePath": "unet.py",
               "symbolName": "__init__",
-              "startLine": 45,
-              "reason": "upsample 후 채널 수를 유지한 채 conv 를 두는 expansive path 구성"
+              "startLine": 9,
+              "reason": "ConvTranspose2d 로 업샘플하며 채널을 늘리는 expansive path 구성"
             }
           ]
         },
@@ -543,11 +548,11 @@
           "_comment": "노트 p3-21 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1505.04597)",
           "mappedCode": [
             {
-              "githubUrl": "https://github.com/milesial/Pytorch-UNet",
-              "filePath": "unet/unet_model.py",
+              "githubUrl": "https://github.com/mateuszbuda/brain-segmentation-pytorch",
+              "filePath": "unet.py",
               "symbolName": "forward",
-              "startLine": 25,
-              "reason": "down 4단계와 up 4단계가 대칭을 이루는 U 자 구조"
+              "startLine": 45,
+              "reason": "encoder 4단계와 decoder 4단계가 대칭을 이루는 U 자 구조"
             }
           ]
         },
@@ -669,11 +674,11 @@
           "_comment": "노트 p4-29 / 판정 `MISSING-BUT-PROVIDED`\n\n구조상 23개지만 저장소에서 자동 검증하지 않는다.\n\n--- | 논문 원문 문단 보강 (ar5iv 1505.04597)",
           "mappedCode": [
             {
-              "githubUrl": "https://github.com/milesial/Pytorch-UNet",
-              "filePath": "unet/unet_model.py",
-              "symbolName": "__init__",
-              "startLine": 7,
-              "reason": "DoubleConv·Down·Up·OutConv 로 전체 convolution 계층을 구성"
+              "githubUrl": "https://github.com/mateuszbuda/brain-segmentation-pytorch",
+              "filePath": "unet.py",
+              "symbolName": "_block",
+              "startLine": 68,
+              "reason": "3x3 conv 두 개를 한 블록으로 묶어 전체 convolution 계층을 구성"
             }
           ]
         },
@@ -696,11 +701,11 @@
           "_comment": "노트 p4-31 / 판정 `DIRECT`, framework만 PyTorch로 변경됨.\n\n--- | 논문 원문 문단 보강 (ar5iv 1505.04597)",
           "mappedCode": [
             {
-              "githubUrl": "https://github.com/milesial/Pytorch-UNet",
+              "githubUrl": "https://github.com/mateuszbuda/brain-segmentation-pytorch",
               "filePath": "train.py",
-              "symbolName": "train_model",
-              "startLine": 27,
-              "reason": "optimizer 와 학습 루프가 정의된 부분"
+              "symbolName": "main",
+              "startLine": 19,
+              "reason": "optimizer 를 만들고 epoch 루프를 도는 학습 진입점"
             }
           ]
         },
@@ -732,11 +737,11 @@
           "_comment": "노트 p4-33 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1505.04597)",
           "mappedCode": [
             {
-              "githubUrl": "https://github.com/milesial/Pytorch-UNet",
+              "githubUrl": "https://github.com/mateuszbuda/brain-segmentation-pytorch",
               "filePath": "train.py",
-              "symbolName": "get_args",
-              "startLine": 170,
-              "reason": "batch size 등 학습 하이퍼파라미터를 받는 지점"
+              "symbolName": "data_loaders",
+              "startLine": 112,
+              "reason": "batch size 를 받아 DataLoader 를 만드는 부분"
             }
           ]
         },
@@ -759,11 +764,11 @@
           "_comment": "노트 p4-35 / 판정 `PARTIAL`\n\n논문은 `K`개 클래스 softmax, 저장소는 binary sigmoid/BCE다. EXPECTED | 논문 원문 문단 보강 (ar5iv 1505.04597)",
           "mappedCode": [
             {
-              "githubUrl": "https://github.com/milesial/Pytorch-UNet",
-              "filePath": "utils/dice_score.py",
-              "symbolName": "dice_loss",
-              "startLine": 25,
-              "reason": "softmax 출력에 대한 픽셀 단위 손실 계산"
+              "githubUrl": "https://github.com/mateuszbuda/brain-segmentation-pytorch",
+              "filePath": "loss.py",
+              "symbolName": "forward",
+              "startLine": 10,
+              "reason": "픽셀 단위 확률 출력에 대한 손실 계산"
             }
           ]
         },
@@ -1225,7 +1230,7 @@
           "repositoryName": "UNet_Biomedical_Image_Segmentation",
           "defaultBranch": "main",
           "commitHash": "a50669d1cbbb256b12b05f60817e0e4b37dea9f6",
-          "licenseName": null,
+          "licenseName": "NONE (라이선스 파일 없음)",
           "primaryLanguage": "Python",
           "starCount": 33,
           "relationType": "COMMUNITY",
@@ -1399,93 +1404,82 @@
           ]
         },
         {
-          "githubUrl": "https://github.com/milesial/Pytorch-UNet",
-          "ownerName": "milesial",
-          "repositoryName": "Pytorch-UNet",
+          "githubUrl": "https://github.com/mateuszbuda/brain-segmentation-pytorch",
+          "ownerName": "mateuszbuda",
+          "repositoryName": "brain-segmentation-pytorch",
           "defaultBranch": "master",
-          "commitHash": "21d7850f2af30a9695bbeea75f3136aa538cfc4a",
-          "licenseName": "GPL-3.0",
+          "commitHash": "d45f8908ab2f0246ba204c702a6161c9eb25f902",
+          "licenseName": "MIT",
           "primaryLanguage": "Python",
-          "starCount": 11590,
+          "starCount": 775,
           "relationType": "COMMUNITY",
           "isPrimary": false,
           "codeBlocks": [
             {
-              "filePath": "unet/unet_parts.py",
+              "filePath": "unet.py",
               "symbolName": "forward",
               "symbolType": "METHOD",
-              "parentSymbolName": "Up",
-              "programmingLanguage": "Python",
-              "startLine": 56,
-              "endLine": 68,
-              "codeContent": "    def forward(self, x1, x2):\n        x1 = self.up(x1)\n        # input is CHW\n        diffY = x2.size()[2] - x1.size()[2]\n        diffX = x2.size()[3] - x1.size()[3]\n\n        x1 = F.pad(x1, [diffX // 2, diffX - diffX // 2,\n                        diffY // 2, diffY - diffY // 2])\n        # if you have padding issues, see\n        # https://github.com/HaiyongJiang/U-Net-Pytorch-Unstructured-Buggy/commit/0e854509c2cea854e247a9c615f175f76fbb2e3a\n        # https://github.com/xiaopeng-liao/Pytorch-UNet/commit/8ebac70e633bac59fc22bb5195e513d5832fb3bd\n        x = torch.cat([x2, x1], dim=1)\n        return self.conv(x)",
-              "_comment": "Verbatim from https://github.com/milesial/Pytorch-UNet @ 21d7850 — unet/unet_parts.py:56-68"
-            },
-            {
-              "filePath": "unet/unet_parts.py",
-              "symbolName": "__init__",
-              "symbolType": "METHOD",
-              "parentSymbolName": "Up",
+              "parentSymbolName": "UNet",
               "programmingLanguage": "Python",
               "startLine": 45,
-              "endLine": 54,
-              "codeContent": "    def __init__(self, in_channels, out_channels, bilinear=True):\n        super().__init__()\n\n        # if bilinear, use the normal convolutions to reduce the number of channels\n        if bilinear:\n            self.up = nn.Upsample(scale_factor=2, mode='bilinear', align_corners=True)\n            self.conv = DoubleConv(in_channels, out_channels, in_channels // 2)\n        else:\n            self.up = nn.ConvTranspose2d(in_channels, in_channels // 2, kernel_size=2, stride=2)\n            self.conv = DoubleConv(in_channels, out_channels)",
-              "_comment": "Verbatim from https://github.com/milesial/Pytorch-UNet @ 21d7850 — unet/unet_parts.py:45-54"
+              "endLine": 65,
+              "codeContent": "    def forward(self, x):\n        enc1 = self.encoder1(x)\n        enc2 = self.encoder2(self.pool1(enc1))\n        enc3 = self.encoder3(self.pool2(enc2))\n        enc4 = self.encoder4(self.pool3(enc3))\n\n        bottleneck = self.bottleneck(self.pool4(enc4))\n\n        dec4 = self.upconv4(bottleneck)\n        dec4 = torch.cat((dec4, enc4), dim=1)\n        dec4 = self.decoder4(dec4)\n        dec3 = self.upconv3(dec4)\n        dec3 = torch.cat((dec3, enc3), dim=1)\n        dec3 = self.decoder3(dec3)\n        dec2 = self.upconv2(dec3)\n        dec2 = torch.cat((dec2, enc2), dim=1)\n        dec2 = self.decoder2(dec2)\n        dec1 = self.upconv1(dec2)\n        dec1 = torch.cat((dec1, enc1), dim=1)\n        dec1 = self.decoder1(dec1)\n        return torch.sigmoid(self.conv(dec1))",
+              "_comment": "Verbatim from https://github.com/mateuszbuda/brain-segmentation-pytorch @ d45f890 — unet.py:45-65"
             },
             {
-              "filePath": "unet/unet_model.py",
-              "symbolName": "forward",
-              "symbolType": "METHOD",
-              "parentSymbolName": "UNet",
-              "programmingLanguage": "Python",
-              "startLine": 25,
-              "endLine": 36,
-              "codeContent": "    def forward(self, x):\n        x1 = self.inc(x)\n        x2 = self.down1(x1)\n        x3 = self.down2(x2)\n        x4 = self.down3(x3)\n        x5 = self.down4(x4)\n        x = self.up1(x5, x4)\n        x = self.up2(x, x3)\n        x = self.up3(x, x2)\n        x = self.up4(x, x1)\n        logits = self.outc(x)\n        return logits",
-              "_comment": "Verbatim from https://github.com/milesial/Pytorch-UNet @ 21d7850 — unet/unet_model.py:25-36"
-            },
-            {
-              "filePath": "unet/unet_model.py",
+              "filePath": "unet.py",
               "symbolName": "__init__",
               "symbolType": "METHOD",
               "parentSymbolName": "UNet",
               "programmingLanguage": "Python",
-              "startLine": 7,
-              "endLine": 23,
-              "codeContent": "    def __init__(self, n_channels, n_classes, bilinear=False):\n        super(UNet, self).__init__()\n        self.n_channels = n_channels\n        self.n_classes = n_classes\n        self.bilinear = bilinear\n\n        self.inc = (DoubleConv(n_channels, 64))\n        self.down1 = (Down(64, 128))\n        self.down2 = (Down(128, 256))\n        self.down3 = (Down(256, 512))\n        factor = 2 if bilinear else 1\n        self.down4 = (Down(512, 1024 // factor))\n        self.up1 = (Up(1024, 512 // factor, bilinear))\n        self.up2 = (Up(512, 256 // factor, bilinear))\n        self.up3 = (Up(256, 128 // factor, bilinear))\n        self.up4 = (Up(128, 64, bilinear))\n        self.outc = (OutConv(64, n_classes))",
-              "_comment": "Verbatim from https://github.com/milesial/Pytorch-UNet @ 21d7850 — unet/unet_model.py:7-23"
+              "startLine": 9,
+              "endLine": 43,
+              "codeContent": "    def __init__(self, in_channels=3, out_channels=1, init_features=32):\n        super(UNet, self).__init__()\n\n        features = init_features\n        self.encoder1 = UNet._block(in_channels, features, name=\"enc1\")\n        self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2)\n        self.encoder2 = UNet._block(features, features * 2, name=\"enc2\")\n        self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)\n        self.encoder3 = UNet._block(features * 2, features * 4, name=\"enc3\")\n        self.pool3 = nn.MaxPool2d(kernel_size=2, stride=2)\n        self.encoder4 = UNet._block(features * 4, features * 8, name=\"enc4\")\n        self.pool4 = nn.MaxPool2d(kernel_size=2, stride=2)\n\n        self.bottleneck = UNet._block(features * 8, features * 16, name=\"bottleneck\")\n\n        self.upconv4 = nn.ConvTranspose2d(\n            features * 16, features * 8, kernel_size=2, stride=2\n        )\n        self.decoder4 = UNet._block((features * 8) * 2, features * 8, name=\"dec4\")\n        self.upconv3 = nn.ConvTranspose2d(\n            features * 8, features * 4, kernel_size=2, stride=2\n        )\n        self.decoder3 = UNet._block((features * 4) * 2, features * 4, name=\"dec3\")\n        self.upconv2 = nn.ConvTranspose2d(\n            features * 4, features * 2, kernel_size=2, stride=2\n        )\n        self.decoder2 = UNet._block((features * 2) * 2, features * 2, name=\"dec2\")\n        self.upconv1 = nn.ConvTranspose2d(\n            features * 2, features, kernel_size=2, stride=2\n        )\n        self.decoder1 = UNet._block(features * 2, features, name=\"dec1\")\n\n        self.conv = nn.Conv2d(\n            in_channels=features, out_channels=out_channels, kernel_size=1\n        )",
+              "_comment": "Verbatim from https://github.com/mateuszbuda/brain-segmentation-pytorch @ d45f890 — unet.py:9-43"
+            },
+            {
+              "filePath": "unet.py",
+              "symbolName": "_block",
+              "symbolType": "METHOD",
+              "parentSymbolName": "UNet",
+              "programmingLanguage": "Python",
+              "startLine": 68,
+              "endLine": 98,
+              "codeContent": "    def _block(in_channels, features, name):\n        return nn.Sequential(\n            OrderedDict(\n                [\n                    (\n                        name + \"conv1\",\n                        nn.Conv2d(\n                            in_channels=in_channels,\n                            out_channels=features,\n                            kernel_size=3,\n                            padding=1,\n                            bias=False,\n                        ),\n                    ),\n                    (name + \"norm1\", nn.BatchNorm2d(num_features=features)),\n                    (name + \"relu1\", nn.ReLU(inplace=True)),\n                    (\n                        name + \"conv2\",\n                        nn.Conv2d(\n                            in_channels=features,\n                            out_channels=features,\n                            kernel_size=3,\n                            padding=1,\n                            bias=False,\n                        ),\n                    ),\n                    (name + \"norm2\", nn.BatchNorm2d(num_features=features)),\n                    (name + \"relu2\", nn.ReLU(inplace=True)),\n                ]\n            )\n        )",
+              "_comment": "Verbatim from https://github.com/mateuszbuda/brain-segmentation-pytorch @ d45f890 — unet.py:68-98"
             },
             {
               "filePath": "train.py",
-              "symbolName": "train_model",
+              "symbolName": "main",
               "symbolType": "FUNCTION",
               "parentSymbolName": null,
               "programmingLanguage": "Python",
-              "startLine": 27,
-              "endLine": 167,
-              "codeContent": "def train_model(\n        model,\n        device,\n        epochs: int = 5,\n        batch_size: int = 1,\n        learning_rate: float = 1e-5,\n        val_percent: float = 0.1,\n        save_checkpoint: bool = True,\n        img_scale: float = 0.5,\n        amp: bool = False,\n        weight_decay: float = 1e-8,\n        momentum: float = 0.999,\n        gradient_clipping: float = 1.0,\n):\n    # 1. Create dataset\n    try:\n        dataset = CarvanaDataset(dir_img, dir_mask, img_scale)\n    except (AssertionError, RuntimeError, IndexError):\n        dataset = BasicDataset(dir_img, dir_mask, img_scale)\n\n    # 2. Split into train / validation partitions\n    n_val = int(len(dataset) * val_percent)\n    n_train = len(dataset) - n_val\n    train_set, val_set = random_split(dataset, [n_train, n_val], generator=torch.Generator().manual_seed(0))\n\n    # 3. Create data loaders\n    loader_args = dict(batch_size=batch_size, num_workers=os.cpu_count(), pin_memory=True)\n    train_loader = DataLoader(train_set, shuffle=True, **loader_args)\n    val_loader = DataLoader(val_set, shuffle=False, drop_last=True, **loader_args)\n\n    # (Initialize logging)\n    experiment = wandb.init(project='U-Net', resume='allow', anonymous='must')\n    experiment.config.update(\n        dict(epochs=epochs, batch_size=batch_size, learning_rate=learning_rate,\n             val_percent=val_percent, save_checkpoint=save_checkpoint, img_scale=img_scale, amp=amp)\n    )\n\n    logging.info(f'''Starting training:\n        Epochs:          {epochs}\n        Batch size:      {batch_size}\n        Learning rate:   {learning_rate}\n        Training size:   {n_train}\n        Validation size: {n_val}\n        Checkpoints:     {save_checkpoint}\n        Device:          {device.type}\n        Images scaling:  {img_scale}\n        Mixed Precision: {amp}\n    ''')\n\n    # 4. Set up the optimizer, the loss, the learning rate scheduler and the loss scaling for AMP\n    optimizer = optim.RMSprop(model.parameters(),\n                              lr=learning_rate, weight_decay=weight_decay, momentum=momentum, foreach=True)\n    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'max', patience=5)  # goal: maximize Dice score\n    grad_scaler = torch.cuda.amp.GradScaler(enabled=amp)\n    criterion = nn.CrossEntropyLoss() if model.n_classes > 1 else nn.BCEWithLogitsLoss()\n    global_step = 0\n\n    # 5. Begin training\n    for epoch in range(1, epochs + 1):\n        model.train()\n        epoch_loss = 0\n        with tqdm(total=n_train, desc=f'Epoch {epoch}/{epochs}', unit='img') as pbar:\n            for batch in train_loader:\n                images, true_masks = batch['image'], batch['mask']\n\n                assert images.shape[1] == model.n_channels, \\\n                    f'Network has been defined with {model.n_channels} input channels, ' \\\n                    f'but loaded images have {images.shape[1]} channels. Please check that ' \\\n                    'the images are loaded correctly.'\n\n                images = images.to(device=device, dtype=torch.float32, memory_format=torch.channels_last)\n                true_masks = true_masks.to(device=device, dtype=torch.long)\n\n                with torch.autocast(device.type if device.type != 'mps' else 'cpu', enabled=amp):\n                    masks_pred = model(images)\n                    if model.n_classes == 1:\n                        loss = criterion(masks_pred.squeeze(1), true_masks.float())\n                        loss += dice_loss(F.sigmoid(masks_pred.squeeze(1)), true_masks.float(), multiclass=False)\n                    else:\n                        loss = criterion(masks_pred, true_masks)\n                        loss += dice_loss(\n                            F.softmax(masks_pred, dim=1).float(),\n                            F.one_hot(true_masks, model.n_classes).permute(0, 3, 1, 2).float(),\n                            multiclass=True\n                        )\n\n                optimizer.zero_grad(set_to_none=True)\n                grad_scaler.scale(loss).backward()\n                grad_scaler.unscale_(optimizer)\n                torch.nn.utils.clip_grad_norm_(model.parameters(), gradient_clipping)\n                grad_scaler.step(optimizer)\n                grad_scaler.update()\n\n                pbar.update(images.shape[0])\n                global_step += 1\n                epoch_loss += loss.item()\n                experiment.log({\n                    'train loss': loss.item(),\n                    'step': global_step,\n                    'epoch': epoch\n                })\n                pbar.set_postfix(**{'loss (batch)': loss.item()})\n\n                # Evaluation round\n                division_step = (n_train // (5 * batch_size))\n                if division_step > 0:\n                    if global_step % division_step == 0:\n                        histograms = {}\n                        for tag, value in model.named_parameters():\n                            tag = tag.replace('/', '.')\n                            if not (torch.isinf(value) | torch.isnan(value)).any():\n                                histograms['Weights/' + tag] = wandb.Histogram(value.data.cpu())\n                            if not (torch.isinf(value.grad) | torch.isnan(value.grad)).any():\n                                histograms['Gradients/' + tag] = wandb.Histogram(value.grad.data.cpu())\n\n                        val_score = evaluate(model, val_loader, device, amp)\n                        scheduler.step(val_score)\n\n                        logging.info('Validation Dice score: {}'.format(val_score))\n                        try:\n                            experiment.log({\n                                'learning rate': optimizer.param_groups[0]['lr'],\n                                'validation Dice': val_score,\n                                'images': wandb.Image(images[0].cpu()),\n                                'masks': {\n                                    'true': wandb.Image(true_masks[0].float().cpu()),\n                                    'pred': wandb.Image(masks_pred.argmax(dim=1)[0].float().cpu()),\n                                },\n                                'step': global_step,\n                                'epoch': epoch,\n                                **histograms\n                            })\n                        except:\n                            pass\n\n        if save_checkpoint:\n            Path(dir_checkpoint).mkdir(parents=True, exist_ok=True)\n            state_dict = model.state_dict()\n            state_dict['mask_values'] = dataset.mask_values\n            torch.save(state_dict, str(dir_checkpoint / 'checkpoint_epoch{}.pth'.format(epoch)))\n            logging.info(f'Checkpoint {epoch} saved!')",
-              "_comment": "Verbatim from https://github.com/milesial/Pytorch-UNet @ 21d7850 — train.py:27-167"
+              "startLine": 19,
+              "endLine": 109,
+              "codeContent": "def main(args):\n    makedirs(args)\n    snapshotargs(args)\n    device = torch.device(\"cpu\" if not torch.cuda.is_available() else args.device)\n\n    loader_train, loader_valid = data_loaders(args)\n    loaders = {\"train\": loader_train, \"valid\": loader_valid}\n\n    unet = UNet(in_channels=Dataset.in_channels, out_channels=Dataset.out_channels)\n    unet.to(device)\n\n    dsc_loss = DiceLoss()\n    best_validation_dsc = 0.0\n\n    optimizer = optim.Adam(unet.parameters(), lr=args.lr)\n\n    logger = Logger(args.logs)\n    loss_train = []\n    loss_valid = []\n\n    step = 0\n\n    for epoch in tqdm(range(args.epochs), total=args.epochs):\n        for phase in [\"train\", \"valid\"]:\n            if phase == \"train\":\n                unet.train()\n            else:\n                unet.eval()\n\n            validation_pred = []\n            validation_true = []\n\n            for i, data in enumerate(loaders[phase]):\n                if phase == \"train\":\n                    step += 1\n\n                x, y_true = data\n                x, y_true = x.to(device), y_true.to(device)\n\n                optimizer.zero_grad()\n\n                with torch.set_grad_enabled(phase == \"train\"):\n                    y_pred = unet(x)\n\n                    loss = dsc_loss(y_pred, y_true)\n\n                    if phase == \"valid\":\n                        loss_valid.append(loss.item())\n                        y_pred_np = y_pred.detach().cpu().numpy()\n                        validation_pred.extend(\n                            [y_pred_np[s] for s in range(y_pred_np.shape[0])]\n                        )\n                        y_true_np = y_true.detach().cpu().numpy()\n                        validation_true.extend(\n                            [y_true_np[s] for s in range(y_true_np.shape[0])]\n                        )\n                        if (epoch % args.vis_freq == 0) or (epoch == args.epochs - 1):\n                            if i * args.batch_size < args.vis_images:\n                                tag = \"image/{}\".format(i)\n                                num_images = args.vis_images - i * args.batch_size\n                                logger.image_list_summary(\n                                    tag,\n                                    log_images(x, y_true, y_pred)[:num_images],\n                                    step,\n                                )\n\n                    if phase == \"train\":\n                        loss_train.append(loss.item())\n                        loss.backward()\n                        optimizer.step()\n\n                if phase == \"train\" and (step + 1) % 10 == 0:\n                    log_loss_summary(logger, loss_train, step)\n                    loss_train = []\n\n            if phase == \"valid\":\n                log_loss_summary(logger, loss_valid, step, prefix=\"val_\")\n                mean_dsc = np.mean(\n                    dsc_per_volume(\n                        validation_pred,\n                        validation_true,\n                        loader_valid.dataset.patient_slice_index,\n                    )\n                )\n                logger.scalar_summary(\"val_dsc\", mean_dsc, step)\n                if mean_dsc > best_validation_dsc:\n                    best_validation_dsc = mean_dsc\n                    torch.save(unet.state_dict(), os.path.join(args.weights, \"unet.pt\"))\n                loss_valid = []\n\n    print(\"Best validation mean DSC: {:4f}\".format(best_validation_dsc))",
+              "_comment": "Verbatim from https://github.com/mateuszbuda/brain-segmentation-pytorch @ d45f890 — train.py:19-109"
             },
             {
               "filePath": "train.py",
-              "symbolName": "get_args",
+              "symbolName": "data_loaders",
               "symbolType": "FUNCTION",
               "parentSymbolName": null,
               "programmingLanguage": "Python",
-              "startLine": 170,
-              "endLine": 184,
-              "codeContent": "def get_args():\n    parser = argparse.ArgumentParser(description='Train the UNet on images and target masks')\n    parser.add_argument('--epochs', '-e', metavar='E', type=int, default=5, help='Number of epochs')\n    parser.add_argument('--batch-size', '-b', dest='batch_size', metavar='B', type=int, default=1, help='Batch size')\n    parser.add_argument('--learning-rate', '-l', metavar='LR', type=float, default=1e-5,\n                        help='Learning rate', dest='lr')\n    parser.add_argument('--load', '-f', type=str, default=False, help='Load model from a .pth file')\n    parser.add_argument('--scale', '-s', type=float, default=0.5, help='Downscaling factor of the images')\n    parser.add_argument('--validation', '-v', dest='val', type=float, default=10.0,\n                        help='Percent of the data that is used as validation (0-100)')\n    parser.add_argument('--amp', action='store_true', default=False, help='Use mixed precision')\n    parser.add_argument('--bilinear', action='store_true', default=False, help='Use bilinear upsampling')\n    parser.add_argument('--classes', '-c', type=int, default=2, help='Number of classes')\n\n    return parser.parse_args()",
-              "_comment": "Verbatim from https://github.com/milesial/Pytorch-UNet @ 21d7850 — train.py:170-184"
+              "startLine": 112,
+              "endLine": 134,
+              "codeContent": "def data_loaders(args):\n    dataset_train, dataset_valid = datasets(args)\n\n    def worker_init(worker_id):\n        np.random.seed(42 + worker_id)\n\n    loader_train = DataLoader(\n        dataset_train,\n        batch_size=args.batch_size,\n        shuffle=True,\n        drop_last=True,\n        num_workers=args.workers,\n        worker_init_fn=worker_init,\n    )\n    loader_valid = DataLoader(\n        dataset_valid,\n        batch_size=args.batch_size,\n        drop_last=False,\n        num_workers=args.workers,\n        worker_init_fn=worker_init,\n    )\n\n    return loader_train, loader_valid",
+              "_comment": "Verbatim from https://github.com/mateuszbuda/brain-segmentation-pytorch @ d45f890 — train.py:112-134"
             },
             {
-              "filePath": "utils/dice_score.py",
-              "symbolName": "dice_loss",
-              "symbolType": "FUNCTION",
-              "parentSymbolName": null,
+              "filePath": "loss.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "DiceLoss",
               "programmingLanguage": "Python",
-              "startLine": 25,
-              "endLine": 28,
-              "codeContent": "def dice_loss(input: Tensor, target: Tensor, multiclass: bool = False):\n    # Dice loss (objective to minimize) between 0 and 1\n    fn = multiclass_dice_coeff if multiclass else dice_coeff\n    return 1 - fn(input, target, reduce_batch_first=True)",
-              "_comment": "Verbatim from https://github.com/milesial/Pytorch-UNet @ 21d7850 — utils/dice_score.py:25-28"
+              "startLine": 10,
+              "endLine": 18,
+              "codeContent": "    def forward(self, y_pred, y_true):\n        assert y_pred.size() == y_true.size()\n        y_pred = y_pred[:, 0].contiguous().view(-1)\n        y_true = y_true[:, 0].contiguous().view(-1)\n        intersection = (y_pred * y_true).sum()\n        dsc = (2. * intersection + self.smooth) / (\n            y_pred.sum() + y_true.sum() + self.smooth\n        )\n        return 1. - dsc",
+              "_comment": "Verbatim from https://github.com/mateuszbuda/brain-segmentation-pytorch @ d45f890 — loss.py:10-18"
             }
           ]
         }

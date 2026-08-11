@@ -1525,7 +1525,7 @@
           "repositoryName": "attention-is-all-you-need-pytorch",
           "ownerName": "jadore801120",
           "defaultBranch": "master",
-          "licenseName": null,
+          "licenseName": "MIT",
           "primaryLanguage": "Python",
           "starCount": 0,
           "relationType": "COMMUNITY",

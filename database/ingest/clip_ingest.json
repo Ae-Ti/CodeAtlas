@@ -841,7 +841,7 @@
           "repositoryName": "open_clip",
           "defaultBranch": "main",
           "commitHash": "602d4af74f86df6f2ff81ba0f0a847b0b70ad2e5",
-          "licenseName": "NOASSERTION",
+          "licenseName": "MIT",
           "primaryLanguage": "Python",
           "starCount": 14055,
           "relationType": "REFERENCE",
