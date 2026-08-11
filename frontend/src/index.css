@@ -1326,3 +1326,43 @@ code, pre {
     font-size: 1.5rem;
   }
 }
+
+
+/* ── 제3자 라이선스 고지 푸터 ────────────────────────────────
+   Meta Llama 3 Community License §1.b.i(B) 가 요구하는 상시 표시. */
+.footer {
+  margin-top: 3rem;
+  padding: 1.25rem 1.5rem 2rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(10, 15, 28, 0.6);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: rgba(148, 163, 184, 0.75);
+}
+
+.footer-attr {
+  font-weight: 600;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+.footer-sep {
+  opacity: 0.5;
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer a:hover {
+  color: rgba(226, 232, 240, 1);
+}

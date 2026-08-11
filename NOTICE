@@ -1,0 +1,25 @@
+CodeAtlas
+Copyright (c) 2026 Ae-Ti
+
+This product includes source code excerpts from third-party repositories.
+Full attribution, license names, commit hashes and per-file citation ranges are
+listed in database/THIRD_PARTY_LICENSES.md, and license texts are reproduced
+verbatim under database/licenses/.
+
+------------------------------------------------------------------------------
+Meta Llama 3
+------------------------------------------------------------------------------
+
+Built with Meta Llama 3
+
+Meta Llama 3 is licensed under the Meta Llama 3 Community License,
+Copyright (c) Meta Platforms, Inc. All Rights Reserved.
+
+A copy of the Meta Llama 3 Community License Agreement is included at
+database/licenses/meta-llama_llama3.txt
+
+Source: https://github.com/meta-llama/llama3 @ a0940f9cf7065d45bb6675660f80d305c041a754
+Excerpted files: llama/model.py, llama/generation.py, llama/tokenizer.py
+CodeAtlas does not train, fine-tune, or serve the Llama 3 model. Code excerpts
+are displayed alongside the corresponding passages of arXiv:2407.21783 for
+research and educational purposes.
