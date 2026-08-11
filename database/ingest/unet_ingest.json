@@ -1,0 +1,725 @@
+{
+  "_comment": "U-net 3b30f4e8fef78004b5d6f7acf559e950.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_sourceMarkdown": "U-net 3b30f4e8fef78004b5d6f7acf559e950.md",
+  "_unresolved": [
+    {
+      "chunk": "-",
+      "title": "코드 블록 전체",
+      "issue": "이 노트는 대응 코드에 파일 경로·심볼명이 없어 code_blocks 를 만들 수 없음. Miltos-90/UNet_Biomedical_Image_Segmentation 기준으로 경로를 지정해야 적재 가능 (chunk 는 72개 모두 적재됨)"
+    },
+    {
+      "chunk": "p5-41",
+      "title": "Weight map 수식",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p8-67",
+      "title": "References 1–14",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p8-68",
+      "title": "Learning-rate range test",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p8-69",
+      "title": "Validation loop",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p8-70",
+      "title": "Early stopping",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p8-71",
+      "title": "Output interpolation",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p8-72",
+      "title": "Min-max normalization",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "1505.04597",
+      "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+      "abstract": "There is large consent that successful training of deep networks requires many thousand annotated training samples. In this paper, we present a network and training strategy that relies on the strong use of data augmentation to use the available annotated samples more efficiently. The architecture consists of a contracting path to capture context and a symmetric expanding path that enables precise localization. We show that such a network can be trained end-to-end from very few images and outperforms the prior best method (a sliding-window convolutional network) on the ISBI challenge for segmentation of neuronal structures in electron microscopic stacks. Using the same network trained on transmitted light microscopy images (phase contrast and DIC) we won the ISBI cell tracking challenge 2015 in these categories by a large margin. Moreover, the network is fast. Segmentation of a 512x512 image takes less than a second on a recent GPU. The full implementation (based on Caffe) and the trained networks are available at http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net .",
+      "pdfUrl": "https://arxiv.org/pdf/1505.04597",
+      "publishedDate": "2015-05-18",
+      "authors": [
+        "Olaf Ronneberger",
+        "Philipp Fischer",
+        "Thomas Brox"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "적은 학습 데이터 문제",
+          "subsectionTitle": "적은 학습 데이터 문제",
+          "content": "“There is large consent that successful training of deep networks requires many thousand annotated training samples.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-1 / 판정 `PARTIAL`\n\n논문의 “적은 이미지” 조건은 30개 배열로 반영되지만, 이 코드 자체가 적은 데이터 문"
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "강한 데이터 증강",
+          "subsectionTitle": "강한 데이터 증강",
+          "content": "“We present a network and training strategy that relies on the strong use of data augmentation to use the available annotated samples more efficiently.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-2 / 판정 `PARTIAL`\n\n강한 augmentation 전략은 구현됐다. 논문이 뒤에서 명시하는 정확한 `3×3` "
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "Contracting path와 expanding path",
+          "subsectionTitle": "Contracting path와 expanding path",
+          "content": "“The architecture consists of a contracting path to capture context and a symmetric expanding path that enables precise localization.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-3 / 판정 `DIRECT`\n\n`Encoder`가 contracting path, `Decoder`가 expanding "
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "End-to-end 학습",
+          "subsectionTitle": "End-to-end 학습",
+          "content": "“We show that such a network can be trained end-to-end from very few images.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-4 / 판정 `DIRECT`\n\n입력에서 출력까지 전체 모델을 한 loss로 역전파한다. [GitHub](https://r"
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "ISBI EM challenge 성능",
+          "subsectionTitle": "ISBI EM challenge 성능",
+          "content": "“Outperforms the prior best method (a sliding-window convolutional network) on the ISBI challenge for segmentation of neuronal structures in electron microscopic stacks.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-5 / 판정 `MISSING-BUT-PROVIDED`\n\n데이터 로더만 있고 논문 성능 재현은 없다.\n\n---"
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "Cell Tracking Challenge 2015",
+          "subsectionTitle": "Cell Tracking Challenge 2015",
+          "content": "“Using the same network trained on transmitted light microscopy images (phase contrast and DIC) we won the ISBI cell tracking challenge 2015 in these categories by a large margin.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-6 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "512×512 이미지의 추론 속도",
+          "subsectionTitle": "512×512 이미지의 추론 속도",
+          "content": "“Segmentation of a 512x512 image takes less than a second on a recent GPU.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-7 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "Caffe 구현과 trained network",
+          "subsectionTitle": "Caffe 구현과 trained network",
+          "content": "“The full implementation (based on Caffe) and the trained networks are available…”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-8 / 판정 `PARTIAL`\n\nCaffe가 아니라 PyTorch이며, 논문 저자의 공식 trained network가 "
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "이미지 분류와 픽셀 분류의 차이",
+          "subsectionTitle": "이미지 분류와 픽셀 분류의 차이",
+          "content": "“The typical use of convolutional networks is on classification tasks, where the output to an image is a single class label.”\n\n“A class label is supposed to be assigned to each pixel.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-9 / 판정 `DIRECT`\n\n출력은 `[batch, class, height, width]` 형태의 픽셀별 class "
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "Ciresan의 sliding-window 방식",
+          "subsectionTitle": "Ciresan의 sliding-window 방식",
+          "content": "“Ciresan et al. trained a network in a sliding-window setup to predict the class label of each pixel by providing a local region (patch) around that pixel as input.”",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 pNone-10 / 판정 `COMPARISON-METHOD / 예상코드`\n\n이 코드는 U-Net이 아니라 논문에서 비판하는 기존 방식"
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "Figure 1 전체 구조",
+          "subsectionTitle": "Figure 1 전체 구조",
+          "content": "“conv 3x3, ReLU”\n\n“copy and crop”\n\n“max pool 2x2”\n\n“up-conv 2x2”\n\n“conv 1x1”\n\n입력 `572×572`, 출력 `388×388`",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-11 / 판정 `DIRECT`, 단 초기화 오류는 별도 존재한다.\n\n이 코드는 저장소의 `UNet.py` 전체 구조다. ["
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "Figure 1 크기 확인",
+          "subsectionTitle": "Figure 1 크기 확인",
+          "content": "입력 타일: `572×572`\n\n출력 segmentation map: `388×388`",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-12 / 판정 `DIRECT`\n\n저장소 README가 Figure 1의 크기를 직접 검사한다. [GitHub](https:"
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "Sliding-window의 중복 계산",
+          "subsectionTitle": "Sliding-window의 중복 계산",
+          "content": "“The network must be run separately for each patch, and there is a lot of redundancy due to overlapping patches.”",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-13 / 판정 `DIRECT-CONCEPTUAL`\n\n반복 patch classifier가 아니라 한 번의 fully con"
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "Context와 localization의 trade-off",
+          "subsectionTitle": "Context와 localization의 trade-off",
+          "content": "“There is a trade-off between localization accuracy and the use of context.”\n\n“Larger patches require more max-pooling layers that reduce localization accuracy, while small patches allow the network to see only little context.”",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-14 / 판정 `DIRECT`\n\nDecoder의 저해상도 context와 encoder의 고해상도 feature를 결합한다"
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "FCN 기반 구조",
+          "subsectionTitle": "FCN 기반 구조",
+          "content": "“We build upon a more elegant architecture, the so-called ‘fully convolutional network’.”",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-15 / 판정 `DIRECT`\n\n모델에 `nn.Linear`가 없고 convolutional layer만으로 공간 출력을 "
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "Pooling을 upsampling으로 보완",
+          "subsectionTitle": "Pooling을 upsampling으로 보완",
+          "content": "“Pooling operators are replaced by upsampling operators.”\n\n“Hence, these layers increase the resolution of the output.”",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-16 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "High-resolution feature 결합",
+          "subsectionTitle": "High-resolution feature 결합",
+          "content": "“High resolution features from the contracting path are combined with the upsampled output.”",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-17 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "Figure 2의 overlap-tile strategy",
+          "subsectionTitle": "Figure 2의 overlap-tile strategy",
+          "content": "“Overlap-tile strategy for seamless segmentation of arbitrary large images.”\n\n“Prediction of the segmentation in the yellow area requires image data within the blue area as input.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-18 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "Border mirroring",
+          "subsectionTitle": "Border mirroring",
+          "content": "“Missing input data is extrapolated by mirroring.”\n\n“To predict the pixels in the border region of the image, the missing context is extrapolated by mirroring the input image.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-19 / 판정 `PARTIAL + 예상코드`\n\n---"
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "Expansive path의 많은 feature channel",
+          "subsectionTitle": "Expansive path의 많은 feature channel",
+          "content": "“In the upsampling part we have also a large number of feature channels, which allow the network to propagate context information to higher resolution layers.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-20 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 20,
+          "sectionTitle": "U-shaped symmetry",
+          "subsectionTitle": "U-shaped symmetry",
+          "content": "“The expansive path is more or less symmetric to the contracting path, and yields a u-shaped architecture.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-21 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 21,
+          "sectionTitle": "Fully connected layer가 없음",
+          "subsectionTitle": "Fully connected layer가 없음",
+          "content": "“The network does not have any fully connected layers.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-22 / 판정 `DIRECT`\n\n`UNet.py`에 `nn.Linear`가 없다. [GitHub](https://raw.g"
+        },
+        {
+          "chunkIndex": 22,
+          "sectionTitle": "Valid convolution",
+          "subsectionTitle": "Valid convolution",
+          "content": "“Only uses the valid part of each convolution.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-23 / 판정 `DIRECT`\n\n`padding` 인자를 지정하지 않았으므로 기본값 `padding=0`이다. [GitHu"
+        },
+        {
+          "chunkIndex": 23,
+          "sectionTitle": "대형 이미지와 GPU 메모리",
+          "subsectionTitle": "대형 이미지와 GPU 메모리",
+          "content": "“This tiling strategy is important to apply the network to large images, since otherwise the resolution would be limited by the GPU memory.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-24 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 24,
+          "sectionTitle": "Elastic deformation",
+          "subsectionTitle": "Elastic deformation",
+          "content": "“We use excessive data augmentation by applying elastic deformations to the available training images.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-25 / 판정 `PARTIAL`\n\nElastic deformation은 있지만 논문의 정확한 알고리즘은 아니다.\n\n---"
+        },
+        {
+          "chunkIndex": 25,
+          "sectionTitle": "Image와 mask에 동일한 변형",
+          "subsectionTitle": "Image와 mask에 동일한 변형",
+          "content": "“This allows the network to learn invariance to such deformations.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-26 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 26,
+          "sectionTitle": "Touching object와 weighted loss",
+          "subsectionTitle": "Touching object와 weighted loss",
+          "content": "“We propose the use of a weighted loss, where the separating background labels between touching cells obtain a large weight in the loss function.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-27 / 판정 `INCORRECT-PARTIAL`\n\nWeight map은 논문과 가깝지만 loss에서 weight를 곱한  EXPECTED"
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "Network Architecture 문단 전체",
+          "subsectionTitle": "Network Architecture 문단 전체",
+          "content": "“It consists of a contracting path and an expansive path.”\n\n“Repeated application of two 3x3 convolutions, each followed by ReLU and a 2x2 max pooling operation with stride 2.”\n\n“At each downsampling step we double the number of feature channels.”\n\n“Every expansive step consists of upsampling, 2x2 up-convolution, concatenation with a cropped feature map, and two 3x3 convolutions.”\n\n“At the final layer a 1x1 convolution maps each 64-component feature vector to the desired number of classes.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-28 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 28,
+          "sectionTitle": "총 23개 convolutional layers",
+          "subsectionTitle": "총 23개 convolutional layers",
+          "content": "“In total the network has 23 convolutional layers.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-29 / 판정 `MISSING-BUT-PROVIDED`\n\n구조상 23개지만 저장소에서 자동 검증하지 않는다.\n\n---"
+        },
+        {
+          "chunkIndex": 29,
+          "sectionTitle": "Even-sized pooling input 조건",
+          "subsectionTitle": "Even-sized pooling input 조건",
+          "content": "“It is important to select the input tile size such that all 2x2 max-pooling operations are applied to a layer with an even x- and y-size.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-30 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 30,
+          "sectionTitle": "SGD",
+          "subsectionTitle": "SGD",
+          "content": "“The input images and their corresponding segmentation maps are used to train the network with the stochastic gradient descent implementation of Caffe.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-31 / 판정 `DIRECT`, framework만 PyTorch로 변경됨.\n\n---"
+        },
+        {
+          "chunkIndex": 31,
+          "sectionTitle": "Output이 input보다 작음",
+          "subsectionTitle": "Output이 input보다 작음",
+          "content": "“Due to the unpadded convolutions, the output image is smaller than the input by a constant border width.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-32 / 판정 `PARTIAL`\n\n크기 차이는 반영했지만 `-94`가 하드코딩되어 있다. [GitHub](https://r EXPECTED"
+        },
+        {
+          "chunkIndex": 32,
+          "sectionTitle": "Batch size 1",
+          "subsectionTitle": "Batch size 1",
+          "content": "“We favor large input tiles over a large batch size and hence reduce the batch to a single image.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-33 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 33,
+          "sectionTitle": "Momentum 0.99",
+          "subsectionTitle": "Momentum 0.99",
+          "content": "“Accordingly we use a high momentum (0.99).”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-34 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 34,
+          "sectionTitle": "Pixel-wise softmax와 cross entropy",
+          "subsectionTitle": "Pixel-wise softmax와 cross entropy",
+          "content": "“The energy function is computed by a pixel-wise soft-max over the final feature map combined with the cross entropy loss function.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-35 / 판정 `PARTIAL`\n\n논문은 `K`개 클래스 softmax, 저장소는 binary sigmoid/BCE다. EXPECTED"
+        },
+        {
+          "chunkIndex": 35,
+          "sectionTitle": "Figure 3의 weight map",
+          "subsectionTitle": "Figure 3의 weight map",
+          "content": "“Map with a pixel-wise loss weight to force the network to learn the border pixels.”",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-36 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 36,
+          "sectionTitle": "각 픽셀의 true label과 weight",
+          "subsectionTitle": "각 픽셀의 true label과 weight",
+          "content": "“\\(\\ell : \\Omega \\rightarrow \\{1,\\ldots,K\\}\\) is the true label of each pixel and \\(w : \\Omega \\rightarrow \\mathbb{R}\\) is a weight map.”",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-37 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 37,
+          "sectionTitle": "클래스 빈도 보정",
+          "subsectionTitle": "클래스 빈도 보정",
+          "content": "“Compensate the different frequency of pixels from a certain class in the training data set.”",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-38 / 판정 `DIRECT` [GitHub](https://raw.githubusercontent.com/Miltos-9"
+        },
+        {
+          "chunkIndex": 38,
+          "sectionTitle": "Touching cell 경계 학습",
+          "subsectionTitle": "Touching cell 경계 학습",
+          "content": "“Force the network to learn the small separation borders that we introduce between touching cells.”",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-39 / 판정 `DIRECT`"
+        },
+        {
+          "chunkIndex": 39,
+          "sectionTitle": "Morphological operations",
+          "subsectionTitle": "Morphological operations",
+          "content": "“The separation border is computed using morphological operations.”",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-40 / 판정 `PARTIAL + 예상코드`\n\n---"
+        },
+        {
+          "chunkIndex": 40,
+          "sectionTitle": "Weight map 수식",
+          "subsectionTitle": "Weight map 수식",
+          "content": "Weight map 수식",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-41 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 41,
+          "sectionTitle": "`d1`, `d2`",
+          "subsectionTitle": "`d1`, `d2`",
+          "content": "“\\(d_1\\) denotes the distance to the border of the nearest cell and \\(d_2\\) the distance to the border of the second nearest cell.”",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-42 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 42,
+          "sectionTitle": "`w0=10`, `sigma≈5`",
+          "subsectionTitle": "`w0=10`, `sigma≈5`",
+          "content": "“In our experiments we set \\(w_0=10\\) and \\(\\sigma\\approx5\\) pixels.”",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-43 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 43,
+          "sectionTitle": "Gaussian weight initialization",
+          "subsectionTitle": "Gaussian weight initialization",
+          "content": "“Drawing the initial weights from a Gaussian distribution with a standard deviation of \\(\\sqrt{2/N}\\).”",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-44 / 판정 `INCORRECT`\n\n문제:\n\n1. `sqrt(2/N)`이 아니라 `2/sqrt(N)`이다.\n2. `con EXPECTED"
+        },
+        {
+          "chunkIndex": 44,
+          "sectionTitle": "Shift invariance",
+          "subsectionTitle": "Shift invariance",
+          "content": "“We primarily need shift invariance.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-45 / 판정 `DIRECT-CONCEPTUAL`\n\n---"
+        },
+        {
+          "chunkIndex": 45,
+          "sectionTitle": "Rotation invariance",
+          "subsectionTitle": "Rotation invariance",
+          "content": "“We primarily need rotation invariance.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-46 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 46,
+          "sectionTitle": "Gray-value variation",
+          "subsectionTitle": "Gray-value variation",
+          "content": "“Robustness to gray value variations.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-47 / 판정 `DIRECT-CONCEPTUAL`\n\n---"
+        },
+        {
+          "chunkIndex": 47,
+          "sectionTitle": "3×3 coarse displacement grid",
+          "subsectionTitle": "3×3 coarse displacement grid",
+          "content": "“We generate smooth deformations using random displacement vectors on a coarse 3 by 3 grid.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-48 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 48,
+          "sectionTitle": "Gaussian displacement 표준편차 10",
+          "subsectionTitle": "Gaussian displacement 표준편차 10",
+          "content": "“The displacements are sampled from a Gaussian distribution with 10 pixels standard deviation.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-49 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 49,
+          "sectionTitle": "Bicubic interpolation",
+          "subsectionTitle": "Bicubic interpolation",
+          "content": "“Per-pixel displacements are then computed using bicubic interpolation.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-50 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 50,
+          "sectionTitle": "Contracting path 끝의 dropout",
+          "subsectionTitle": "Contracting path 끝의 dropout",
+          "content": "“Drop-out layers at the end of the contracting path perform further implicit data augmentation.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-51 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 51,
+          "sectionTitle": "30개 512×512 EM 이미지",
+          "subsectionTitle": "30개 512×512 EM 이미지",
+          "content": "“The training data is a set of 30 images (512x512 pixels).”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-52 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 52,
+          "sectionTitle": "Ground-truth segmentation map",
+          "subsectionTitle": "Ground-truth segmentation map",
+          "content": "“Each image comes with a corresponding fully annotated ground truth segmentation map.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-53 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 53,
+          "sectionTitle": "Secret test set와 challenge 제출",
+          "subsectionTitle": "Secret test set와 challenge 제출",
+          "content": "“The test set is publicly available, but its segmentation maps are kept secret.”\n\n“An evaluation can be obtained by sending the predicted membrane probability map to the organizers.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-54 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 54,
+          "sectionTitle": "10단계 threshold와 Warping/Rand/Pixel error",
+          "subsectionTitle": "10단계 threshold와 Warping/Rand/Pixel error",
+          "content": "“The evaluation is done by thresholding the map at 10 different levels and computation of the ‘warping error’, the ‘Rand error’ and the ‘pixel error’.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-55 / 판정 `MISSING-BUT-PROVIDED-PARTIALLY`\n\n---"
+        },
+        {
+          "chunkIndex": 55,
+          "sectionTitle": "7개 회전본 평균",
+          "subsectionTitle": "7개 회전본 평균",
+          "content": "“The u-net (averaged over 7 rotated versions of the input data)…”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-56 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 56,
+          "sectionTitle": "Figure 4의 PhC-U373 및 DIC-HeLa 결과",
+          "subsectionTitle": "Figure 4의 PhC-U373 및 DIC-HeLa 결과",
+          "content": "“Result on the ISBI cell tracking challenge.”\n\n“PhC-U373”와 “DIC-HeLa” 입력 및 segmentation 결과.",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-57 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 57,
+          "sectionTitle": "IoU 평가",
+          "subsectionTitle": "IoU 평가",
+          "content": "“Average IOU (‘intersection over union’) of 92%.”\n\n“Average IOU of 77.5%.”",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-58 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 58,
+          "sectionTitle": "35개 PhC-U373 이미지",
+          "subsectionTitle": "35개 PhC-U373 이미지",
+          "content": "“It contains 35 partially annotated training images.”",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-59 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 59,
+          "sectionTitle": "20개 DIC-HeLa 이미지",
+          "subsectionTitle": "20개 DIC-HeLa 이미지",
+          "content": "“It contains 20 partially annotated training images.”",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-60 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 60,
+          "sectionTitle": "다양한 biomedical segmentation task에 적용",
+          "subsectionTitle": "다양한 biomedical segmentation task에 적용",
+          "content": "“The u-net architecture achieves very good performance on very different biomedical segmentation applications.”",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-61 / 판정 `PARTIAL`\n\n구조적으로 일반화 가능하지만 저장소는 세 가지 논문 실험을 모두 재현하지 않는다.\n\n--"
+        },
+        {
+          "chunkIndex": 61,
+          "sectionTitle": "Elastic deformation 덕분에 적은 annotation 사용",
+          "subsectionTitle": "Elastic deformation 덕분에 적은 annotation 사용",
+          "content": "“Thanks to data augmentation with elastic deformations, it only needs very few annotated images.”",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-62 / 판정 `PARTIAL`\n\n적은 데이터와 elastic transform은 있지만 논문 설정 그대로는 아니다.\n\n-"
+        },
+        {
+          "chunkIndex": 62,
+          "sectionTitle": "10시간 학습",
+          "subsectionTitle": "10시간 학습",
+          "content": "“A very reasonable training time of only 10 hours on a NVidia Titan GPU (6 GB).”",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-63 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 63,
+          "sectionTitle": "공식 Caffe implementation과 trained networks",
+          "subsectionTitle": "공식 Caffe implementation과 trained networks",
+          "content": "“We provide the full Caffe-based implementation and the trained networks.”",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-64 / 판정 `PARTIAL`\n\n---"
+        },
+        {
+          "chunkIndex": 64,
+          "sectionTitle": "더 많은 task에 쉽게 적용 가능",
+          "subsectionTitle": "더 많은 task에 쉽게 적용 가능",
+          "content": "“The u-net architecture can be applied easily to many more tasks.”",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-65 / 판정 `DIRECT-CONCEPTUAL`\n\n---"
+        },
+        {
+          "chunkIndex": 65,
+          "sectionTitle": "Acknowledgements",
+          "subsectionTitle": "Acknowledgements",
+          "content": "독일 연방·주 정부 Excellence Initiative 및 BMBF 지원 내용.",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-66"
+        },
+        {
+          "chunkIndex": 66,
+          "sectionTitle": "References 1–14",
+          "subsectionTitle": "References 1–14",
+          "content": "References 1–14",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-67 / 판정 대부분 `코드 구현 대상 아님`, 일부 `CONCEPTUAL`."
+        },
+        {
+          "chunkIndex": 67,
+          "sectionTitle": "Learning-rate range test",
+          "subsectionTitle": "Learning-rate range test",
+          "content": "Learning-rate range test",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-68 / 판정 `EXTRA` [GitHub](https://raw.githubusercontent.com/Miltos-90"
+        },
+        {
+          "chunkIndex": 68,
+          "sectionTitle": "Validation loop",
+          "subsectionTitle": "Validation loop",
+          "content": "Validation loop",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-69 / 판정 `EXTRA`\n\n논문은 validation loop 구현을 구체적으로 설명하지 않는다. [GitHub](ht"
+        },
+        {
+          "chunkIndex": 69,
+          "sectionTitle": "Early stopping",
+          "subsectionTitle": "Early stopping",
+          "content": "Early stopping",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-70 / 판정 `EXTRA`\n\n호출부에서 반환값을 `break`에 연결하지 않으면 checkpoint 저장만 되고 실제 e"
+        },
+        {
+          "chunkIndex": 70,
+          "sectionTitle": "Output interpolation",
+          "subsectionTitle": "Output interpolation",
+          "content": "Output interpolation",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-71 / 판정 `EXTRA`\n\n원 논문은 valid convolution의 작은 출력을 그대로 사용하며, 최종 출력을 입력"
+        },
+        {
+          "chunkIndex": 71,
+          "sectionTitle": "Min-max normalization",
+          "subsectionTitle": "Min-max normalization",
+          "content": "Min-max normalization",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-72 / 판정 `EXTRA`\n\n논문 본문에는 이 정규화가 명시되지 않는다. [GitHub](https://raw.githu"
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/Miltos-90/UNet_Biomedical_Image_Segmentation",
+          "ownerName": "Miltos-90",
+          "repositoryName": "UNet_Biomedical_Image_Segmentation",
+          "defaultBranch": "main",
+          "commitHash": null,
+          "licenseName": null,
+          "primaryLanguage": "Jupyter Notebook",
+          "starCount": 33,
+          "relationType": "COMMUNITY",
+          "isPrimary": true,
+          "codeBlocks": []
+        }
+      ]
+    }
+  ]
+}

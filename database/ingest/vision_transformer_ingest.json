@@ -1,0 +1,577 @@
+{
+  "_comment": "Vision Transform 3b30f4e8fef780aeb94ada615f1ce800.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_sourceMarkdown": "Vision Transform 3b30f4e8fef780aeb94ada615f1ce800.md",
+  "_unresolved": [
+    {
+      "chunk": "02",
+      "title": "Image Patch Extraction",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "03",
+      "title": "Patch Flattening",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "04",
+      "title": "Patch Embedding (Linear Projection)",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "05",
+      "title": "Class Token ([CLS])",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "06",
+      "title": "Position Embedding",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "07",
+      "title": "Transformer Encoder Input",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "08",
+      "title": "Transformer Encoder Block",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "10",
+      "title": "Query / Key / Value 생성",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "11",
+      "title": "Scaled Dot Product Attention",
+      "issue": "저장소(google-research/vision_transformer@64801f1)에 없는 경로: flax/linen/attention.py"
+    },
+    {
+      "chunk": "12",
+      "title": "Softmax Attention Probability",
+      "issue": "저장소(google-research/vision_transformer@64801f1)에 없는 경로: flax/linen/attention.py"
+    },
+    {
+      "chunk": "13",
+      "title": "Attention Output Projection",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "15",
+      "title": "Layer Normalization",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트 표기 nn.LayerNorm)"
+    },
+    {
+      "chunk": "17",
+      "title": "GELU Activation",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "18",
+      "title": "Transformer Layer 반복",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "20",
+      "title": "MLP Head (Pre-training / Representation Learning)",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "21",
+      "title": "Fine-tuning Strategy",
+      "issue": "vit_jax/train.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "22",
+      "title": "ViT Model Size Configuration",
+      "issue": "저장소(google-research/vision_transformer@64801f1)에 없는 경로: vit_jax/configs.py"
+    },
+    {
+      "chunk": "23",
+      "title": "Patch Size Experiment",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "24",
+      "title": "Hybrid Architecture (CNN + Transformer)",
+      "issue": "vit_jax/models_vit.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "25",
+      "title": "Training Dataset Pipeline",
+      "issue": "vit_jax/input_pipeline.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "26",
+      "title": "Data Augmentation",
+      "issue": "vit_jax/input_pipeline.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "27",
+      "title": "Optimizer (Adam / AdamW)",
+      "issue": "vit_jax/train.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "28",
+      "title": "Learning Rate Schedule",
+      "issue": "vit_jax/train.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "29",
+      "title": "Weight Decay Regularization",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "30",
+      "title": "Dropout",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "31",
+      "title": "Checkpoint Loading",
+      "issue": "vit_jax/checkpoint.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "32",
+      "title": "Inference Pipeline",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "33",
+      "title": "전체 ViT 구현 Pipeline 정리",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "31",
+      "title": "Checkpoint Loading",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "32",
+      "title": "Inference Pipeline",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "33",
+      "title": "전체 ViT 구현 Pipeline 정리",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "2010.11929",
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "abstract": "While the Transformer architecture has become the de-facto standard for natural language processing tasks, its applications to computer vision remain limited. In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure in place. We show that this reliance on CNNs is not necessary and a pure transformer applied directly to sequences of image patches can perform very well on image classification tasks. When pre-trained on large amounts of data and transferred to multiple mid-sized or small image recognition benchmarks (ImageNet, CIFAR-100, VTAB, etc.), Vision Transformer (ViT) attains excellent results compared to state-of-the-art convolutional networks while requiring substantially fewer computational resources to train.",
+      "pdfUrl": "https://arxiv.org/pdf/2010.11929",
+      "publishedDate": "2020-10-22",
+      "authors": [
+        "Alexey Dosovitskiy",
+        "Lucas Beyer",
+        "Alexander Kolesnikov",
+        "Dirk Weissenborn",
+        "Xiaohua Zhai",
+        "Thomas Unterthiner",
+        "Mostafa Dehghani",
+        "Matthias Minderer",
+        "Georg Heigold",
+        "Sylvain Gelly",
+        "Jakob Uszkoreit",
+        "Neil Houlsby"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "Section 3 Method",
+          "subsectionTitle": "Vision Transformer 전체 Architecture",
+          "content": "We split an image into patches and provide the sequence of linear embeddings of these patches as an input to a Transformer.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 01",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "VisionTransformer",
+              "startLine": 211,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "Section 3.1 Vision Transformer",
+          "subsectionTitle": "Image Patch Extraction",
+          "content": "We reshape the image x ∈ R^(H×W×C) into a sequence of flattened 2D patches.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 02"
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Patch Flattening",
+          "content": "The resulting sequence of patch embeddings is fed to the Transformer encoder.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 03"
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Patch Embedding (Linear Projection)",
+          "content": "The patch embeddings are projected to a D-dimensional vector space.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 04"
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Class Token ([CLS])",
+          "content": "We prepend a learnable embedding to the sequence of patch embeddings.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 05"
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Position Embedding",
+          "content": "Position embeddings are added to the patch embeddings to retain positional information.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 06"
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Transformer Encoder Input",
+          "content": "The resulting sequence is fed to a standard Transformer encoder.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 07"
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Transformer Encoder Block",
+          "content": "The Transformer encoder consists of alternating layers of multiheaded self-attention and MLP blocks.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 08"
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "Section 3.1 Vision Transformer",
+          "subsectionTitle": "Multi-Head Self Attention",
+          "content": "The Transformer encoder consists of alternating layers of multiheaded self-attention and MLP blocks.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 09",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "Encoder1DBlock",
+              "startLine": 105,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Query / Key / Value 생성",
+          "content": "We use a standard Transformer encoder as described in Vaswani et al.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 10"
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Scaled Dot Product Attention",
+          "content": "Self-attention allows the model to attend to all positions of the input sequence.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 11"
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Softmax Attention Probability",
+          "content": "The attention weights are normalized using softmax.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 12"
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Attention Output Projection",
+          "content": "The outputs of all attention heads are concatenated and projected.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 13"
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Residual Connection",
+          "content": "Layer normalization is applied before every block, and residual connections are applied after every block.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 14",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "MlpBlock",
+              "startLine": 66,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Layer Normalization",
+          "content": "Layer normalization is applied before every block.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 15"
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "MLP Block",
+          "content": "Each Transformer layer contains an MLP with two layers.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 16",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "MlpBlock",
+              "startLine": 66,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "GELU Activation",
+          "content": "We use GELU nonlinearities.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 17"
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Transformer Layer 반복",
+          "content": "We apply the Transformer encoder blocks L times.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 18"
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "Section 3.1 Vision Transformer",
+          "subsectionTitle": "Classification Head (Image Classification Output)",
+          "content": "The classification head is attached to the Transformer encoder output.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 19",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "VisionTransformer",
+              "startLine": 211,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "Section 3.1 Vision Transformer",
+          "subsectionTitle": "MLP Head (Pre-training / Representation Learning)",
+          "content": "The MLP head consists of a single hidden layer at pre-training time and a single linear layer at fine-tuning time.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 20"
+        },
+        {
+          "chunkIndex": 20,
+          "sectionTitle": "Section 3.2 Fine-tuning",
+          "subsectionTitle": "Fine-tuning Strategy",
+          "content": "We fine-tune the model on downstream tasks by replacing the classification head.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 21"
+        },
+        {
+          "chunkIndex": 21,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "ViT Model Size Configuration",
+          "content": "We experiment with three model sizes: ViT-Base, ViT-Large, and ViT-Huge.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 22"
+        },
+        {
+          "chunkIndex": 22,
+          "sectionTitle": "Section 4.2 Scaling Study",
+          "subsectionTitle": "Patch Size Experiment",
+          "content": "We evaluate different patch sizes and find that smaller patches improve performance.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 23"
+        },
+        {
+          "chunkIndex": 23,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Hybrid Architecture (CNN + Transformer)",
+          "content": "The patch embeddings can also be extracted from a CNN feature map.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 24"
+        },
+        {
+          "chunkIndex": 24,
+          "sectionTitle": "Section 4 Experiments",
+          "subsectionTitle": "Training Dataset Pipeline",
+          "content": "We pre-train on ImageNet-21k and fine-tune on ImageNet-1k.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 25"
+        },
+        {
+          "chunkIndex": 25,
+          "sectionTitle": "Section 4.1 Training Details",
+          "subsectionTitle": "Data Augmentation",
+          "content": "We use standard data augmentation methods including random crop and horizontal flip.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 26"
+        },
+        {
+          "chunkIndex": 26,
+          "sectionTitle": "Section 4.1 Training Details",
+          "subsectionTitle": "Optimizer (Adam / AdamW)",
+          "content": "We train all models using Adam with weight decay.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 27"
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "Section 4.1",
+          "subsectionTitle": "Learning Rate Schedule",
+          "content": "We use a linear learning rate warmup and decay schedule.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 28"
+        },
+        {
+          "chunkIndex": 28,
+          "sectionTitle": "Section 4.1",
+          "subsectionTitle": "Weight Decay Regularization",
+          "content": "We use weight decay for regularization.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 29"
+        },
+        {
+          "chunkIndex": 29,
+          "sectionTitle": "Section 4.1",
+          "subsectionTitle": "Dropout",
+          "content": "We use dropout in Transformer layers.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 30"
+        },
+        {
+          "chunkIndex": 30,
+          "sectionTitle": "Section 3.2 Fine-tuning",
+          "subsectionTitle": "Checkpoint Loading",
+          "content": "Checkpoint Loading",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 31"
+        },
+        {
+          "chunkIndex": 31,
+          "sectionTitle": "Section 3 Method",
+          "subsectionTitle": "Inference Pipeline",
+          "content": "학습된 ViT를 이용한 이미지 분류.\n\n---",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 32"
+        },
+        {
+          "chunkIndex": 32,
+          "sectionTitle": "전체 ViT 구현 Pipeline 정리",
+          "subsectionTitle": "전체 ViT 구현 Pipeline 정리",
+          "content": "전체 ViT 구현 Pipeline 정리",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 33"
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/google-research/vision_transformer",
+          "ownerName": "google-research",
+          "repositoryName": "vision_transformer",
+          "defaultBranch": "main",
+          "commitHash": "64801f1b3b367b3611cc27a3d45cc22870a36fb3",
+          "licenseName": "Apache-2.0",
+          "primaryLanguage": "Python",
+          "starCount": 12666,
+          "relationType": "OFFICIAL",
+          "isPrimary": true,
+          "codeBlocks": [
+            {
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "VisionTransformer",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 211,
+              "endLine": 308,
+              "codeContent": "class VisionTransformer(nn.Module):\n  \"\"\"VisionTransformer.\"\"\"\n\n  num_classes: int\n  patches: Any\n  transformer: Any\n  hidden_size: int\n  resnet: Optional[Any] = None\n  representation_size: Optional[int] = None\n  classifier: str = 'token'\n  head_bias_init: float = 0.\n  encoder: Type[nn.Module] = Encoder\n  model_name: Optional[str] = None\n\n  @nn.compact\n  def __call__(self, inputs, *, train):\n\n    x = inputs\n    # (Possibly partial) ResNet root.\n    if self.resnet is not None:\n      width = int(64 * self.resnet.width_factor)\n\n      # Root block.\n      x = models_resnet.StdConv(\n          features=width,\n          kernel_size=(7, 7),\n          strides=(2, 2),\n          use_bias=False,\n          name='conv_root')(\n              x)\n      x = nn.GroupNorm(name='gn_root')(x)\n      x = nn.relu(x)\n      x = nn.max_pool(x, window_shape=(3, 3), strides=(2, 2), padding='SAME')\n\n      # ResNet stages.\n      if self.resnet.num_layers:\n        x = models_resnet.ResNetStage(\n            block_size=self.resnet.num_layers[0],\n            nout=width,\n            first_stride=(1, 1),\n            name='block1')(\n                x)\n        for i, block_size in enumerate(self.resnet.num_layers[1:], 1):\n          x = models_resnet.ResNetStage(\n              block_size=block_size,\n              nout=width * 2**i,\n              first_stride=(2, 2),\n              name=f'block{i + 1}')(\n                  x)\n\n    n, h, w, c = x.shape\n\n    # We can merge s2d+emb into a single conv; it's the same.\n    x = nn.Conv(\n        features=self.hidden_size,\n        kernel_size=self.patches.size,\n        strides=self.patches.size,\n        padding='VALID',\n        name='embedding')(\n            x)\n\n    # Here, x is a grid of embeddings.\n\n    # (Possibly partial) Transformer.\n    if self.transformer is not None:\n      n, h, w, c = x.shape\n      x = jnp.reshape(x, [n, h * w, c])\n\n      # If we want to add a class token, add it here.\n      if self.classifier in ['token', 'token_unpooled']:\n        cls = self.param('cls', nn.initializers.zeros, (1, 1, c))\n        cls = jnp.tile(cls, [n, 1, 1])\n        x = jnp.concatenate([cls, x], axis=1)\n\n      x = self.encoder(name='Transformer', **self.transformer)(x, train=train)\n\n    if self.classifier == 'token':\n      x = x[:, 0]\n    elif self.classifier == 'gap':\n      x = jnp.mean(x, axis=list(range(1, x.ndim - 1)))  # (1,) or (1,2)\n    elif self.classifier in ['unpooled', 'token_unpooled']:\n      pass\n    else:\n      raise ValueError(f'Invalid classifier={self.classifier}')\n\n    if self.representation_size is not None:\n      x = nn.Dense(features=self.representation_size, name='pre_logits')(x)\n      x = nn.tanh(x)\n    else:\n      x = IdentityLayer(name='pre_logits')(x)\n\n    if self.num_classes:\n      x = nn.Dense(\n          features=self.num_classes,\n          name='head',\n          kernel_init=nn.initializers.zeros,\n          bias_init=nn.initializers.constant(self.head_bias_init))(x)\n    return x",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_vit.py:211-308"
+            },
+            {
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "Encoder1DBlock",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 105,
+              "endLine": 156,
+              "codeContent": "class Encoder1DBlock(nn.Module):\n  \"\"\"Transformer encoder layer.\n\n  Attributes:\n    inputs: input data.\n    mlp_dim: dimension of the mlp on top of attention block.\n    dtype: the dtype of the computation (default: float32).\n    dropout_rate: dropout rate.\n    attention_dropout_rate: dropout for attention heads.\n    deterministic: bool, deterministic or not (to apply dropout).\n    num_heads: Number of heads in nn.MultiHeadDotProductAttention\n  \"\"\"\n\n  mlp_dim: int\n  num_heads: int\n  dtype: Dtype = jnp.float32\n  dropout_rate: float = 0.1\n  attention_dropout_rate: float = 0.1\n\n  @nn.compact\n  def __call__(self, inputs, *, deterministic):\n    \"\"\"Applies Encoder1DBlock module.\n\n    Args:\n      inputs: Inputs to the layer.\n      deterministic: Dropout will not be applied when set to true.\n\n    Returns:\n      output after transformer encoder block.\n    \"\"\"\n\n    # Attention block.\n    assert inputs.ndim == 3, f'Expected (batch, seq, hidden) got {inputs.shape}'\n    x = nn.LayerNorm(dtype=self.dtype)(inputs)\n    x = nn.MultiHeadDotProductAttention(\n        dtype=self.dtype,\n        kernel_init=nn.initializers.xavier_uniform(),\n        broadcast_dropout=False,\n        deterministic=deterministic,\n        dropout_rate=self.attention_dropout_rate,\n        num_heads=self.num_heads)(\n            x, x)\n    x = nn.Dropout(rate=self.dropout_rate)(x, deterministic=deterministic)\n    x = x + inputs\n\n    # MLP block.\n    y = nn.LayerNorm(dtype=self.dtype)(x)\n    y = MlpBlock(\n        mlp_dim=self.mlp_dim, dtype=self.dtype, dropout_rate=self.dropout_rate)(\n            y, deterministic=deterministic)\n\n    return x + y",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_vit.py:105-156"
+            },
+            {
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "MlpBlock",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 66,
+              "endLine": 102,
+              "codeContent": "class MlpBlock(nn.Module):\n  \"\"\"Transformer MLP / feed-forward block.\"\"\"\n\n  mlp_dim: int\n  dtype: Dtype = jnp.float32\n  param_dtype: Dtype = jnp.float32\n  out_dim: Optional[int] = None\n  dropout_rate: float = 0.1\n  kernel_init: Callable[[PRNGKey, Shape, Dtype],\n                        Array] = nn.initializers.xavier_uniform()\n  bias_init: Callable[[PRNGKey, Shape, Dtype],\n                      Array] = nn.initializers.normal(stddev=1e-6)\n\n  @nn.compact\n  def __call__(self, inputs, *, deterministic):\n    \"\"\"Applies Transformer MlpBlock module.\"\"\"\n    actual_out_dim = inputs.shape[-1] if self.out_dim is None else self.out_dim\n    x = nn.Dense(\n        features=self.mlp_dim,\n        dtype=self.dtype,\n        param_dtype=self.param_dtype,\n        kernel_init=self.kernel_init,\n        bias_init=self.bias_init)(  # pytype: disable=wrong-arg-types\n            inputs)\n    x = nn.gelu(x)\n    x = nn.Dropout(rate=self.dropout_rate)(x, deterministic=deterministic)\n    output = nn.Dense(\n        features=actual_out_dim,\n        dtype=self.dtype,\n        param_dtype=self.param_dtype,\n        kernel_init=self.kernel_init,\n        bias_init=self.bias_init)(  # pytype: disable=wrong-arg-types\n            x)\n    output = nn.Dropout(\n        rate=self.dropout_rate)(\n            output, deterministic=deterministic)\n    return output",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_vit.py:66-102"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

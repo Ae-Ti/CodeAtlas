@@ -1,0 +1,714 @@
+{
+  "_comment": "ResNet 3b30f4e8fef780cfb26ddc25fa667753.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_sourceMarkdown": "ResNet 3b30f4e8fef780cfb26ddc25fa667753.md",
+  "_unresolved": [
+    {
+      "chunk": "-",
+      "title": "코드 블록 전체",
+      "issue": "이 노트는 대응 코드에 파일 경로·심볼명이 없어 code_blocks 를 만들 수 없음. KaimingHe/deep-residual-networks 기준으로 경로를 지정해야 적재 가능 (chunk 는 64개 모두 적재됨)"
+    },
+    {
+      "chunk": "p2-6",
+      "title": "Figure 2 — residual building block",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p2-10",
+      "title": "Highway network와의 차이",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p3-11",
+      "title": "Equation (1)",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p3-12",
+      "title": "두 계층 residual function",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p3-14",
+      "title": "Equation (2) — projection shortcut",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p3-17",
+      "title": "Plain network 설계 규칙",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p4-29",
+      "title": "Learning rate, weight decay, momentum",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p5-33",
+      "title": "ResNet-50 bottleneck 반복 수",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p5-34",
+      "title": "ResNet-101 반복 수",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p5-35",
+      "title": "ResNet-152 반복 수",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p5-36",
+      "title": "ResNet-18·34 basic block",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p6-37",
+      "title": "Option A·B·C",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p7-40",
+      "title": "CIFAR-10 구조",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p7-41",
+      "title": "CIFAR mini-batch·optimizer 설정",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p9-47",
+      "title": "Reference 13 — He initialization",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p9-48",
+      "title": "Reference 16 — Batch Normalization",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p9-49",
+      "title": "Reference 19 — Caffe",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p10-54",
+      "title": "COCO detection 학습 설정",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "p12-61",
+      "title": "Per-class classification·box regression",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "1512.03385",
+      "title": "Deep Residual Learning for Image Recognition",
+      "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers---8x deeper than VGG nets but still having lower complexity. An ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task. We also present analysis on CIFAR-10 with 100 and 1000 layers. The depth of representations is of central importance for many visual recognition tasks. Solely due to our extremely deep representations, we obtain a 28% relative improvement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC & COCO 2015 competitions, where we also won the 1st places on the tasks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.",
+      "pdfUrl": "https://arxiv.org/pdf/1512.03385",
+      "publishedDate": "2015-12-10",
+      "authors": [
+        "Kaiming He",
+        "Xiangyu Zhang",
+        "Shaoqing Ren",
+        "Jian Sun"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "깊은 네트워크의 학습 난이도",
+          "subsectionTitle": "깊은 네트워크의 학습 난이도",
+          "content": "“Deeper neural networks are more difficult to train.”\n\n“We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously.”",
+          "pageStart": 1,
+          "pageEnd": 1,
+          "_comment": "노트 p1-1 / 판정 `DIRECT-CONCEPTUAL`\n\n50·101·152층 모델은 실제로 제공되지만, “더 쉽게 학습된다”는"
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "일반 함수가 아닌 residual function 학습",
+          "subsectionTitle": "일반 함수가 아닌 residual function 학습",
+          "content": "“We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions.”",
+          "pageStart": 1,
+          "pageEnd": 1,
+          "_comment": "노트 p1-2 / 판정 `DIRECT`\n\nCaffe의 `Eltwise` 계층이 shortcut 출력과 residual branch "
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "ImageNet에서 최대 152층",
+          "subsectionTitle": "ImageNet에서 최대 152층",
+          "content": "“On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers.”",
+          "pageStart": 1,
+          "pageEnd": 1,
+          "_comment": "노트 p1-3 / 판정 `DIRECT`\n\n공식 저장소는 논문의 50·101·152층 원본 Caffe 모델을 제공합니다. [GitHu"
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "ILSVRC·COCO 결과",
+          "subsectionTitle": "ILSVRC·COCO 결과",
+          "content": "“An ensemble of these residual nets achieves 3.57% error on the ImageNet test set.”\n\n“We obtain a 28% relative improvement on the COCO object detection dataset.”",
+          "pageStart": 1,
+          "pageEnd": 1,
+          "_comment": "노트 p1-4 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "Figure 1 — 20층·56층 plain network 비교",
+          "subsectionTitle": "Figure 1 — 20층·56층 plain network 비교",
+          "content": "“The deeper network has higher training error, and thus test error.”",
+          "pageStart": 1,
+          "pageEnd": 1,
+          "_comment": "노트 p1-5 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "Figure 2 — residual building block",
+          "subsectionTitle": "Figure 2 — residual building block",
+          "content": "공식 저장소의 모델은 bottleneck block만 포함하므로 Figure 2의 정확한 두 계층 basic block은 없습니다.\n\n공식 bottleneck의 residual branch:\n\n\n\n두 번째 3×3 convolution:\n\n\n\n세 번째 1×1 convolution:\n\n\n\nShortcut과 addition:",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-6 / 판정 `DIRECT`, 단 공식 저장소는 Figure 2의 2-layer basic block이 아니라 3-lay"
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "\\(F(x)=H(x)-x\\), \\(H(x)=F(x)+x\\)",
+          "subsectionTitle": "\\(F(x)=H(x)-x\\), \\(H(x)=F(x)+x\\)",
+          "content": "“We explicitly let these layers fit a residual mapping.”\n\n“The original mapping is recast into \\(F(x)+x\\).”",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-7 / 판정 `DIRECT`\n\nProjection 계층 없이 이전 block 출력이 `Eltwise`의 입력으로 직접 들"
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "Identity shortcut은 추가 parameter와 연산이 거의 없음",
+          "subsectionTitle": "Identity shortcut은 추가 parameter와 연산이 거의 없음",
+          "content": "“Identity shortcut connections add neither extra parameter nor computational complexity.”",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-8 / 판정 `DIRECT`\n\n`res2a`에 convolution이나 weight 계층을 적용하지 않고 바로 합산하므로"
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "SGD와 backpropagation으로 end-to-end 학습",
+          "subsectionTitle": "SGD와 backpropagation으로 end-to-end 학습",
+          "content": "“The entire network can still be trained end-to-end by SGD with backpropagation.”",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-9 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "Highway network와의 차이",
+          "subsectionTitle": "Highway network와의 차이",
+          "content": "ResNet shortcut:\n\n\n\nGate에 해당하는 sigmoid나 multiplication 계층은 존재하지 않습니다.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 p2-10 / 판정 `DIRECT-CONCEPTUAL`\n\n---"
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "Equation (1)",
+          "subsectionTitle": "Equation (1)",
+          "content": "Equation (1)",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-11 / 판정 `DIRECT`\n\nCaffe `Eltwise`의 기본 operation은 합산이며 두 bottom blob을"
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "두 계층 residual function",
+          "subsectionTitle": "두 계층 residual function",
+          "content": "두 계층 residual function",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-12 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "Addition 뒤 두 번째 ReLU",
+          "subsectionTitle": "Addition 뒤 두 번째 ReLU",
+          "content": "“We adopt the second nonlinearity after the addition.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-13 / 판정 `DIRECT`\n\n`Eltwise` 다음에 `ReLU`가 배치된 original post-activation"
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "Equation (2) — projection shortcut",
+          "subsectionTitle": "Equation (2) — projection shortcut",
+          "content": "차원이 바뀌는 `res3a` block의 shortcut입니다.\n\n\n\nProjection 결과와 residual branch 합산:",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-14 / 판정 `DIRECT`\n\n`1×1 convolution`, `stride=2`로 공간 크기와 채널 수를 동시에 맞춥"
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "F는 2층 또는 3층일 수 있음",
+          "subsectionTitle": "F는 2층 또는 3층일 수 있음",
+          "content": "“Experiments in this paper involve a function F that has two or three layers.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-15 / 판정 `PARTIAL`\n\n3-layer 구현은 직접 존재하지만 2-layer ResNet-18/34는 저장소에 없"
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "채널별 feature-map addition",
+          "subsectionTitle": "채널별 feature-map addition",
+          "content": "“The element-wise addition is performed on two feature maps, channel by channel.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-16 / 판정 `DIRECT`\n\n두 bottom tensor의 shape가 동일한 상태에서 채널·공간 위치별 합산이 수행됩"
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "Plain network 설계 규칙",
+          "subsectionTitle": "Plain network 설계 규칙",
+          "content": "Plain network 설계 규칙",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-17 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "Global average pooling과 1000-way FC",
+          "subsectionTitle": "Global average pooling과 1000-way FC",
+          "content": "“The network ends with a global average pooling layer and a 1000-way fully-connected layer with softmax.”",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 p3-18 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "Figure 3 — 첫 7×7 convolution, stride 2",
+          "subsectionTitle": "Figure 3 — 첫 7×7 convolution, stride 2",
+          "content": "“7×7 conv, 64, /2”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-19 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "Max pooling stride 2",
+          "subsectionTitle": "Max pooling stride 2",
+          "content": "“pool, /2”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-20 / 판정 `DIRECT`\n\n논문 Table 1에서 명시한 `3×3 max pool, stride 2`와 일치합니다.\n"
+        },
+        {
+          "chunkIndex": 20,
+          "sectionTitle": "동일 차원의 identity shortcut",
+          "subsectionTitle": "동일 차원의 identity shortcut",
+          "content": "“The identity shortcuts can be directly used when the input and output are of the same dimensions.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-21 / 판정 `DIRECT`\n\n`res2a`가 별도 변환 없이 바로 addition에 입력됩니다.\n\n---"
+        },
+        {
+          "chunkIndex": 21,
+          "sectionTitle": "Option A — zero-padding shortcut",
+          "subsectionTitle": "Option A — zero-padding shortcut",
+          "content": "“The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-22 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 22,
+          "sectionTitle": "Option B — dimension 증가 시에만 projection",
+          "subsectionTitle": "Option B — dimension 증가 시에만 projection",
+          "content": "“The projection shortcut is used to match dimensions, done by 1×1 convolutions.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-23 / 판정 `DIRECT`\n\n공식 50·101·152 모델은 논문에서 선택한 option B 구조입니다.\n\n---"
+        },
+        {
+          "chunkIndex": 23,
+          "sectionTitle": "Batch normalization은 convolution 직후, activation 이전",
+          "subsectionTitle": "Batch normalization은 convolution 직후, activation 이전",
+          "content": "“We adopt batch normalization right after each convolution and before activation.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-24 / 판정 `DIRECT`\n\n순서가 `Convolution → BatchNorm → Scale → ReLU`입니다.\n\n"
+        },
+        {
+          "chunkIndex": 24,
+          "sectionTitle": "ImageNet scale augmentation `[256,480]`",
+          "subsectionTitle": "ImageNet scale augmentation `[256,480]`",
+          "content": "“The image is resized with its shorter side randomly sampled in [256, 480].”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-25 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 25,
+          "sectionTitle": "224×224 random crop·horizontal flip·mean subtraction",
+          "subsectionTitle": "224×224 random crop·horizontal flip·mean subtraction",
+          "content": "“A 224×224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-26 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n---"
+        },
+        {
+          "chunkIndex": 26,
+          "sectionTitle": "He initialization",
+          "subsectionTitle": "He initialization",
+          "content": "“We initialize the weights as in [13].”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-27 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "SGD mini-batch 256",
+          "subsectionTitle": "SGD mini-batch 256",
+          "content": "“We use SGD with a mini-batch size of 256.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-28 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 28,
+          "sectionTitle": "Learning rate, weight decay, momentum",
+          "subsectionTitle": "Learning rate, weight decay, momentum",
+          "content": "Learning rate, weight decay, momentum",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-29 / 판정 `MISSING-BUT-PROVIDED`"
+        },
+        {
+          "chunkIndex": 29,
+          "sectionTitle": "Dropout 미사용",
+          "subsectionTitle": "Dropout 미사용",
+          "content": "“We do not use dropout.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-30 / 판정 `DIRECT`\n\n50·101·152 deploy prototxt에 dropout layer가 존재하지 않습"
+        },
+        {
+          "chunkIndex": 30,
+          "sectionTitle": "10-crop testing",
+          "subsectionTitle": "10-crop testing",
+          "content": "“For comparison studies we adopt the standard 10-crop testing.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-31 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 31,
+          "sectionTitle": "Multi-scale testing",
+          "subsectionTitle": "Multi-scale testing",
+          "content": "“Images are resized such that the shorter side is in {224, 256, 384, 480, 640}.”",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 p4-32 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 32,
+          "sectionTitle": "ResNet-50 bottleneck 반복 수",
+          "subsectionTitle": "ResNet-50 bottleneck 반복 수",
+          "content": "첫 conv2 block:\n\n\n\n\n\n\n\n동일 stage의 이름:\n\n\n\nconv3 stage:\n\n\n\nconv4 stage:\n\n\n\nconv5 stage:",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-33 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 33,
+          "sectionTitle": "ResNet-101 반복 수",
+          "subsectionTitle": "ResNet-101 반복 수",
+          "content": "공식 ResNet-101 prototxt의 conv4 block 이름은 다음 범위를 포함합니다.\n\n\n\n총 23개입니다.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-34 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 34,
+          "sectionTitle": "ResNet-152 반복 수",
+          "subsectionTitle": "ResNet-152 반복 수",
+          "content": "공식 ResNet-152 prototxt에는 다음 stage들이 구현됩니다.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-35 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 35,
+          "sectionTitle": "ResNet-18·34 basic block",
+          "subsectionTitle": "ResNet-18·34 basic block",
+          "content": "ResNet-18·34 basic block",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 p5-36 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 36,
+          "sectionTitle": "Option A·B·C",
+          "subsectionTitle": "Option A·B·C",
+          "content": "Option A·B·C",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-37 / 판정 `PARTIAL + 예상코드`\n\n---"
+        },
+        {
+          "chunkIndex": 37,
+          "sectionTitle": "Figure 5 — bottleneck block",
+          "subsectionTitle": "Figure 5 — bottleneck block",
+          "content": "“The three layers are 1×1, 3×3, and 1×1 convolutions.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-38 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 38,
+          "sectionTitle": "1×1 계층의 차원 축소와 복원",
+          "subsectionTitle": "1×1 계층의 차원 축소와 복원",
+          "content": "“The 1×1 layers are responsible for reducing and then increasing dimensions.”",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 p6-39 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 39,
+          "sectionTitle": "CIFAR-10 구조",
+          "subsectionTitle": "CIFAR-10 구조",
+          "content": "CIFAR-10 구조",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-40 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 40,
+          "sectionTitle": "CIFAR mini-batch·optimizer 설정",
+          "subsectionTitle": "CIFAR mini-batch·optimizer 설정",
+          "content": "CIFAR mini-batch·optimizer 설정",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-41 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 41,
+          "sectionTitle": "CIFAR data augmentation",
+          "subsectionTitle": "CIFAR data augmentation",
+          "content": "“4 pixels are padded on each side, and a 32×32 crop is randomly sampled from the padded image or its horizontal flip.”",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-42 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n논문은 per-pixel mean subtracti"
+        },
+        {
+          "chunkIndex": 42,
+          "sectionTitle": "110-layer warm-up",
+          "subsectionTitle": "110-layer warm-up",
+          "content": "“We use 0.01 to warm up the training until the training error is below 80%, about 400 iterations, and then go back to 0.1.”",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 p7-43 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 43,
+          "sectionTitle": "Layer response 표준편차 분석",
+          "subsectionTitle": "Layer response 표준편차 분석",
+          "content": "“The responses are the outputs of each 3×3 layer, after BN and before nonlinearity.”",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-44 / 판정 `MISSING-BUT-PROVIDED`\n\n정확히 3×3 convolution 뒤 BN만 수집하려면 modu"
+        },
+        {
+          "chunkIndex": 44,
+          "sectionTitle": "1202-layer ResNet",
+          "subsectionTitle": "1202-layer ResNet",
+          "content": "“We set n=200 that leads to a 1202-layer network.”",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-45 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 45,
+          "sectionTitle": "PASCAL·COCO detection에서 ResNet-101 사용",
+          "subsectionTitle": "PASCAL·COCO detection에서 ResNet-101 사용",
+          "content": "“We adopt Faster R-CNN as the detection method.”\n\n“We are interested in the improvements of replacing VGG-16 with ResNet-101.”",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 p8-46 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n이 코드는 현대 torchvision 근사 구현이며"
+        },
+        {
+          "chunkIndex": 46,
+          "sectionTitle": "Reference 13 — He initialization",
+          "subsectionTitle": "Reference 13 — He initialization",
+          "content": "Reference 13 — He initialization",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "_comment": "노트 p9-47 / 판정 `예상코드`\n\n---"
+        },
+        {
+          "chunkIndex": 47,
+          "sectionTitle": "Reference 16 — Batch Normalization",
+          "subsectionTitle": "Reference 16 — Batch Normalization",
+          "content": "Reference 16 — Batch Normalization",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "_comment": "노트 p9-48 / 판정 `DIRECT`\n\n---"
+        },
+        {
+          "chunkIndex": 48,
+          "sectionTitle": "Reference 19 — Caffe",
+          "subsectionTitle": "Reference 19 — Caffe",
+          "content": "Reference 19 — Caffe",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "_comment": "노트 p9-49 / 판정 `DIRECT`\n\n공식 저장소는 BVLC Caffe를 submodule 대상으로 지정합니다. [GitExtr"
+        },
+        {
+          "chunkIndex": 49,
+          "sectionTitle": "conv1~conv4_x를 shared feature로 사용",
+          "subsectionTitle": "conv1~conv4_x를 shared feature로 사용",
+          "content": "“We compute the full-image shared conv feature maps using conv1, conv2_x, conv3_x, and conv4_x.”",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-50 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 50,
+          "sectionTitle": "RPN 300 proposals",
+          "subsectionTitle": "RPN 300 proposals",
+          "content": "“These layers are shared by a region proposal network, generating 300 proposals.”",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-51 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 51,
+          "sectionTitle": "RoI pooling 후 conv5_x 실행",
+          "subsectionTitle": "RoI pooling 후 conv5_x 실행",
+          "content": "“RoI pooling is performed before conv5_1. All layers of conv5_x and up are adopted for each region.”",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-52 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 52,
+          "sectionTitle": "Detection fine-tuning 중 BN 고정",
+          "subsectionTitle": "Detection fine-tuning 중 BN 고정",
+          "content": "“The BN layers are fixed during fine-tuning for object detection.”",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-53 / 판정 `DIRECT-PARTIAL`\n\n이 설정은 추론 또는 고정 BN에 대응하지만, fine-tuning 중 pa EXPECTED"
+        },
+        {
+          "chunkIndex": 53,
+          "sectionTitle": "COCO detection 학습 설정",
+          "subsectionTitle": "COCO detection 학습 설정",
+          "content": "COCO detection 학습 설정",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-54 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 54,
+          "sectionTitle": "Box refinement",
+          "subsectionTitle": "Box refinement",
+          "content": "“We pool a new feature from the regressed box and obtain a new classification score and a new regressed box.”",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-55 / 판정 `MISSING-BUT-PROVIDED-CONCEPTUAL`\n\n실제 Faster R-CNN API에 맞추려면"
+        },
+        {
+          "chunkIndex": 55,
+          "sectionTitle": "NMS IoU 0.3와 box voting",
+          "subsectionTitle": "NMS IoU 0.3와 box voting",
+          "content": "“NMS is applied … using an IoU threshold of 0.3, followed by box voting.”",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-56 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 56,
+          "sectionTitle": "Global context feature",
+          "subsectionTitle": "Global context feature",
+          "content": "“The global feature is concatenated with the original per-region feature.”",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-57 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 57,
+          "sectionTitle": "Detection multi-scale testing",
+          "subsectionTitle": "Detection multi-scale testing",
+          "content": "“The image’s shorter sides are in {200, 400, 600, 800, 1000}.”",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 p10-58 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 58,
+          "sectionTitle": "Ensemble of region proposals and classifiers",
+          "subsectionTitle": "Ensemble of region proposals and classifiers",
+          "content": "“We use an ensemble for proposing regions, and the union set of proposals are processed by an ensemble of per-region classifiers.”",
+          "pageStart": 11,
+          "pageEnd": 11,
+          "_comment": "노트 p11-59 / 판정 `MISSING-BUT-PROVIDED`"
+        },
+        {
+          "chunkIndex": 59,
+          "sectionTitle": "ImageNet detection 200 classes",
+          "subsectionTitle": "ImageNet detection 200 classes",
+          "content": "“The ImageNet Detection task involves 200 object categories.”",
+          "pageStart": 11,
+          "pageEnd": 11,
+          "_comment": "노트 p11-60 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 60,
+          "sectionTitle": "Per-class classification·box regression",
+          "subsectionTitle": "Per-class classification·box regression",
+          "content": "Per-class classification·box regression",
+          "pageStart": 12,
+          "pageEnd": 12,
+          "_comment": "노트 p12-61 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 61,
+          "sectionTitle": "Anchor sampling — 이미지당 8개, positive:negative=1:1",
+          "subsectionTitle": "Anchor sampling — 이미지당 8개, positive:negative=1:1",
+          "content": "“8 anchors are randomly sampled for each image, where positive and negative anchors have a ratio of 1:1.”",
+          "pageStart": 12,
+          "pageEnd": 12,
+          "_comment": "노트 p12-62 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 62,
+          "sectionTitle": "Fully convolutional localization test",
+          "subsectionTitle": "Fully convolutional localization test",
+          "content": "“For testing, the network is applied on the image fully-convolutionally.”",
+          "pageStart": 12,
+          "pageEnd": 12,
+          "_comment": "노트 p12-63 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        },
+        {
+          "chunkIndex": 63,
+          "sectionTitle": "R-CNN용 상위 200개 proposal",
+          "subsectionTitle": "R-CNN용 상위 200개 proposal",
+          "content": "“For each training image, the highest scored 200 proposals are extracted as training samples.”",
+          "pageStart": 12,
+          "pageEnd": 12,
+          "_comment": "노트 p12-64 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+          "ownerName": "KaimingHe",
+          "repositoryName": "deep-residual-networks",
+          "defaultBranch": "master",
+          "commitHash": null,
+          "licenseName": "MIT",
+          "primaryLanguage": null,
+          "starCount": 6750,
+          "relationType": "OFFICIAL",
+          "isPrimary": true,
+          "codeBlocks": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,685 @@
+{
+  "_comment": "Segment anything 3b40f4e8fef7802c8537e471401bc0ff.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_sourceMarkdown": "Segment anything 3b40f4e8fef7802c8537e471401bc0ff.md",
+  "_unresolved": [
+    {
+      "chunk": "SAM-22",
+      "title": "Mask Filtering",
+      "issue": "segment_anything/automatic_mask_generator.py 에서 심볼을 특정할 수 없음 (노트 표기 calculate_stability_score)"
+    },
+    {
+      "chunk": "SAM-23",
+      "title": "Non-Maximum Suppression(NMS)",
+      "issue": "segment_anything/automatic_mask_generator.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "SAM-24",
+      "title": "Training Strategy (학습 전략)",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "SAM-25",
+      "title": "Loss Function",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "SAM-26",
+      "title": "SA-1B Dataset",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "SAM-27",
+      "title": "Data Engine",
+      "issue": "segment_anything/automatic_mask_generator.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "SAM-28",
+      "title": "Experiments",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "SAM-29",
+      "title": "Zero-shot Transfer",
+      "issue": "segment_anything/predictor.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "-",
+      "title": "입도 정리",
+      "issue": "부모 블록 2개를 자식 메서드로 대체 (['SamAutomaticMaskGenerator', 'MaskDecoder'])"
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "2304.02643",
+      "title": "Segment Anything",
+      "abstract": "We introduce the Segment Anything (SA) project: a new task, model, and dataset for image segmentation. Using our efficient model in a data collection loop, we built the largest segmentation dataset to date (by far), with over 1 billion masks on 11M licensed and privacy respecting images. The model is designed and trained to be promptable, so it can transfer zero-shot to new image distributions and tasks. We evaluate its capabilities on numerous tasks and find that its zero-shot performance is impressive -- often competitive with or even superior to prior fully supervised results. We are releasing the Segment Anything Model (SAM) and corresponding dataset (SA-1B) of 1B masks and 11M images at https://segment-anything.com to foster research into foundation models for computer vision.",
+      "pdfUrl": "https://arxiv.org/pdf/2304.02643",
+      "publishedDate": "2023-04-05",
+      "authors": [
+        "Alexander Kirillov",
+        "Eric Mintun",
+        "Nikhila Ravi",
+        "Hanzi Mao",
+        "Chloe Rolland",
+        "Laura Gustafson",
+        "Tete Xiao",
+        "Spencer Whitehead",
+        "Alexander C. Berg",
+        "Wan-Yen Lo",
+        "Piotr Dollár",
+        "Ross Girshick"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "Section 3. Segment Anything Model",
+          "subsectionTitle": "SAM 전체 Architecture",
+          "content": "The Segment Anything Model (SAM) consists of three components: an image encoder, a prompt encoder, and a mask decoder.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-01",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/sam.py",
+              "symbolName": "Sam",
+              "startLine": 18,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nSAM consists of:\n- image encoder\n- prompt encoder\n- mask decoder\n```\n\n↓\n\n코드:\n\n```\nself.image_encoder\n\nself.prompt_encoder\n\nself.mask_decoder\n```\n\n↓\n\n실행:\n\n```\nimage_embeddings =\nself.image_encoder()\n\nsparse_embeddings,\ndense_embeddings =\nself.prompt_encoder()\n\nmasks =\nself.mask_decoder()\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Image Encoder",
+          "content": "The image encoder is a Vision Transformer (ViT) that computes a one-time embedding for the image.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-02",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/image_encoder.py",
+              "symbolName": "ImageEncoderViT",
+              "startLine": 17,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nViT computes image embedding\n```\n\n↓\n\n코드:\n\n```\nself.patch_embed()\n\nfor blk in self.blocks:\n\nself.neck()\n```\n\n↓\n\n결과:\n\n```\nImage Embedding\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "Section 3. Segment Anything Model",
+          "subsectionTitle": "Patch Embedding (Image → Token 변환)",
+          "content": "We use a pre-trained MAE ViT-H image encoder. The image encoder processes the image and outputs an image embedding.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-03",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/image_encoder.py",
+              "symbolName": "PatchEmbed",
+              "startLine": 364,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nImage encoder receives image input\nand produces image embedding.\n```\n\n↓\n\n코드:\n\n```\nself.proj = nn.Conv2d(...)\n```\n\n↓\n\n이미지를 patch 단위 feature map으로 변환\n\n논문 개념:\n\n```\nImage Patch Tokenization\n```\n\n코드:\n\n```\nConv2d with kernel=stride=patch size\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Vision Transformer Block",
+          "content": "The image encoder is based on ViT-H and produces a high dimensional image embedding.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-04",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/image_encoder.py",
+              "symbolName": "Block",
+              "startLine": 119,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nViT encoder computes image representation\n```\n\n↓\n\n코드:\n\n```\nfor blk in self.blocks:\n    x = blk(x)\n```\n\n↓\n\n각 Transformer Block 수행\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Multi Head Attention",
+          "content": "The image encoder uses a ViT architecture.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-05",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/image_encoder.py",
+              "symbolName": "Attention",
+              "startLine": 185,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nViT image encoder\n```\n\n↓\n\n코드:\n\n```\nAttention.forward()\n```\n\n↓\n\n구현:\n\n```\nQ,K,V 생성\n↓\nAttention score 계산\n↓\nFeature aggregation\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Prompt Encoder Overview",
+          "content": "The prompt encoder takes sparse prompts (points, boxes, text) and dense prompts (masks).",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-06",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/prompt_encoder.py",
+              "symbolName": "PromptEncoder",
+              "startLine": 16,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nSparse prompts and dense prompts\n```\n\n↓\n\n코드:\n\n```\n_embed_points()\n\n_embed_boxes()\n\n_embed_masks()\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "Section 3. Segment Anything Model",
+          "subsectionTitle": "Point Prompt Encoding",
+          "content": "Sparse prompts, which include points, boxes, and text, are represented as positional encodings summed with learned embeddings.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-07",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/prompt_encoder.py",
+              "symbolName": "PromptEncoder",
+              "startLine": 16,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\npoint prompts are represented\nas positional encodings\nwith learned embeddings\n```\n\n↓\n\n코드:\n\n```\nself.pe_layer.forward_with_coords()\n```\n\n↓\n\n좌표 embedding 생성\n\n그리고:\n\n```\nself.point_embeddings\n```\n\n↓\n\npositive / negative point label embedding 추가\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Box Prompt Encoding",
+          "content": "Sparse prompts include points, boxes, and text.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-08",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/prompt_encoder.py",
+              "symbolName": "PromptEncoder",
+              "startLine": 16,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nbox prompt\n```\n\n↓\n\n코드:\n\n```\nboxes.reshape(\n    -1,\n    2,\n    2\n)\n```\n\n↓\n\n두 개 corner point 생성\n\n↓\n\n```\npoint_embeddings[2]\npoint_embeddings[3]\n```\n\n↓\n\nbox corner embedding\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Mask Prompt Encoding",
+          "content": "Dense prompts, such as masks, are embedded with a convolutional neural network.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-09",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/prompt_encoder.py",
+              "symbolName": "PromptEncoder",
+              "startLine": 16,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nDense prompts are embedded\nwith CNN\n```\n\n↓\n\n코드:\n\n```\nself.mask_downscaling()\n```\n\n↓\n\nMask feature embedding 생성\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Positional Encoding",
+          "content": "Sparse prompts are represented as positional encodings summed with learned embeddings.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-10",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/prompt_encoder.py",
+              "symbolName": "PositionEmbeddingRandom",
+              "startLine": 171,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\npositional encoding\n```\n\n↓\n\n코드:\n\n```\n_pe_encoding()\n```\n\n↓\n\nFourier Feature 생성\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "Section 3. Segment Anything Model",
+          "subsectionTitle": "Mask Decoder Overview",
+          "content": "The mask decoder efficiently maps the image embedding, prompt embeddings, and an output token to a mask.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-11",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/mask_decoder.py",
+              "symbolName": "predict_masks",
+              "startLine": 112,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nMask decoder maps:\nimage embedding\nprompt embedding\noutput token\n\nto mask\n```\n\n↓\n\n코드:\n\n```\nself.predict_masks()\n```\n\n↓\n\n실제 구현:\n\n```\nimage_embeddings\n\n+\n\nsparse_prompt_embeddings\n\n+\n\ndense_prompt_embeddings\n\n+\n\nmask_tokens\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Mask Decoder Prediction Pipeline",
+          "content": "The decoder predicts multiple masks for a single prompt, allowing the model to handle ambiguity.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 SAM-12",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/mask_decoder.py",
+              "symbolName": "predict_masks",
+              "startLine": 112,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\noutput token\n```\n\n↓\n\n코드:\n\n```\nself.mask_tokens\nself.iou_token\n```\n\n---\n\n논문:\n\n```\nmultiple masks\n```\n\n↓\n\n코드:\n\n```\nnum_mask_tokens\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Two-Way Transformer",
+          "content": "The decoder uses a two-way transformer that updates both the image embedding and the prompt tokens.",
+          "pageStart": 5,
+          "pageEnd": 6,
+          "_comment": "노트 SAM-13",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/transformer.py",
+              "symbolName": "TwoWayTransformer",
+              "startLine": 16,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nupdates image embedding\nand prompt tokens\n```\n\n↓\n\n코드:\n\n```\nqueries, keys = layer(...)\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Two-Way Attention Block",
+          "content": "The transformer block consists of self-attention and cross-attention layers.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 SAM-14",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/transformer.py",
+              "symbolName": "TwoWayAttentionBlock",
+              "startLine": 109,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "Section 3. Segment Anything Model",
+          "subsectionTitle": "Mask Token Hypernetwork (Mask Generation)",
+          "content": "After the transformer, the mask tokens are passed through a small MLP and then used to generate the final masks.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 SAM-15",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/mask_decoder.py",
+              "symbolName": "predict_masks",
+              "startLine": 112,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nmask tokens are passed through MLP\nand generate masks\n```\n\n↓\n\n코드:\n\n```\nself.output_hypernetworks_mlps\n```\n\n↓\n\nMask Token을 MLP 변환\n\n논문:\n\n```\ngenerate final masks\n```\n\n↓\n\n코드:\n\n```\nhyper_in @ upscaled_embedding\n```\n\n↓\n\nMask Logit 생성\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "IoU Prediction Head",
+          "content": "The decoder also predicts a confidence score for each mask.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 SAM-16",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/mask_decoder.py",
+              "symbolName": "predict_masks",
+              "startLine": 112,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\npredicts confidence score\nfor each mask\n```\n\n↓\n\n코드:\n\n```\niou_prediction_head()\n```\n\n↓\n\n출력:\n\n```\niou_pred\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Full SAM Forward Pipeline",
+          "content": "The image encoder, prompt encoder, and mask decoder are combined to form the Segment Anything Model.",
+          "pageStart": 5,
+          "pageEnd": 6,
+          "_comment": "노트 SAM-17",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/modeling/sam.py",
+              "symbolName": "Sam",
+              "startLine": 18,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nthree components combined\n```\n\n↓\n\n코드:\n\n```\nself.image_encoder\n\nself.prompt_encoder\n\nself.mask_decoder\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "SAM Predictor API",
+          "content": "The image encoder can be run once and the resulting embedding can be reused for multiple prompts.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 SAM-18",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/predictor.py",
+              "symbolName": "SamPredictor",
+              "startLine": 17,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nimage embedding reused\n```\n\n↓\n\n코드:\n\n```\nself.features\n```\n\n저장 후 재사용.\n\n논문:\n\n```\nmultiple prompts\n```\n\n↓\n\n코드:\n\n```\npredict()\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "Section 4. Segment Anything Data Engine",
+          "subsectionTitle": "Automatic Mask Generator",
+          "content": "We develop an automatic annotation pipeline that uses SAM to generate masks automatically.",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 SAM-19",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/automatic_mask_generator.py",
+              "symbolName": "_generate_masks",
+              "startLine": 197,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nautomatic annotation pipeline\n```\n\n↓\n\n코드:\n\n```\nSamAutomaticMaskGenerator.generate()\n```\n\n↓\n\n자동 Mask 생성 전체 Pipeline\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "Section 4",
+          "subsectionTitle": "Point Grid Sampling",
+          "content": "We automatically generate masks by sampling points over the image.",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 SAM-20",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/utils/amg.py",
+              "symbolName": "build_all_layer_point_grids",
+              "startLine": 189,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nsampling points over image\n```\n\n↓\n\n코드:\n\n```\nbuild_point_grid()\n```\n\n↓\n\nPrompt 후보 생성\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 20,
+          "sectionTitle": "Section 4",
+          "subsectionTitle": "Crop Strategy",
+          "content": "We use a crop-based strategy to improve the segmentation of small objects.",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 SAM-21",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/facebookresearch/segment-anything",
+              "filePath": "segment_anything/automatic_mask_generator.py",
+              "symbolName": "_generate_masks",
+              "startLine": 197,
+              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\ncrop-based strategy\n```\n\n↓\n\n코드:\n\n```\ngenerate_crop_boxes()\n```\n\n↓\n\nCrop 영역 생성\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 21,
+          "sectionTitle": "Section 4",
+          "subsectionTitle": "Mask Filtering",
+          "content": "We filter masks using predicted IoU and stability scores.",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 SAM-22"
+        },
+        {
+          "chunkIndex": 22,
+          "sectionTitle": "Section 4",
+          "subsectionTitle": "Non-Maximum Suppression(NMS)",
+          "content": "We remove duplicate masks using non-maximum suppression.",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 SAM-23"
+        },
+        {
+          "chunkIndex": 23,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Training Strategy (학습 전략)",
+          "content": "We train SAM on a large-scale dataset of images and masks. The model is trained with a combination of image encoder, prompt encoder, and mask decoder.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 SAM-24"
+        },
+        {
+          "chunkIndex": 24,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Loss Function",
+          "content": "We use a combination of focal loss and dice loss for mask prediction.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 SAM-25"
+        },
+        {
+          "chunkIndex": 25,
+          "sectionTitle": "Section 2",
+          "subsectionTitle": "SA-1B Dataset",
+          "content": "We introduce SA-1B, a dataset containing 1 billion masks collected through our data engine.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 SAM-26"
+        },
+        {
+          "chunkIndex": 26,
+          "sectionTitle": "Section 4",
+          "subsectionTitle": "Data Engine",
+          "content": "We develop a data engine with three stages: assisted-manual, semi-automatic, and fully automatic annotation.",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 SAM-27"
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "Section 5",
+          "subsectionTitle": "Experiments",
+          "content": "We evaluate SAM on several segmentation benchmarks and compare zero-shot performance.",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "_comment": "노트 SAM-28"
+        },
+        {
+          "chunkIndex": 28,
+          "sectionTitle": "Section 5",
+          "subsectionTitle": "Zero-shot Transfer",
+          "content": "SAM demonstrates strong zero-shot transfer performance on a variety of segmentation tasks.",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "_comment": "노트 SAM-29"
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/facebookresearch/segment-anything",
+          "ownerName": "facebookresearch",
+          "repositoryName": "segment-anything",
+          "defaultBranch": "main",
+          "commitHash": "dca509fe793f601edb92606367a655c15ac00fdf",
+          "licenseName": "Apache-2.0",
+          "primaryLanguage": "Python",
+          "starCount": 54671,
+          "relationType": "OFFICIAL",
+          "isPrimary": true,
+          "codeBlocks": [
+            {
+              "filePath": "segment_anything/modeling/sam.py",
+              "symbolName": "Sam",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 18,
+              "endLine": 174,
+              "codeContent": "class Sam(nn.Module):\n    mask_threshold: float = 0.0\n    image_format: str = \"RGB\"\n\n    def __init__(\n        self,\n        image_encoder: ImageEncoderViT,\n        prompt_encoder: PromptEncoder,\n        mask_decoder: MaskDecoder,\n        pixel_mean: List[float] = [123.675, 116.28, 103.53],\n        pixel_std: List[float] = [58.395, 57.12, 57.375],\n    ) -> None:\n        \"\"\"\n        SAM predicts object masks from an image and input prompts.\n\n        Arguments:\n          image_encoder (ImageEncoderViT): The backbone used to encode the\n            image into image embeddings that allow for efficient mask prediction.\n          prompt_encoder (PromptEncoder): Encodes various types of input prompts.\n          mask_decoder (MaskDecoder): Predicts masks from the image embeddings\n            and encoded prompts.\n          pixel_mean (list(float)): Mean values for normalizing pixels in the input image.\n          pixel_std (list(float)): Std values for normalizing pixels in the input image.\n        \"\"\"\n        super().__init__()\n        self.image_encoder = image_encoder\n        self.prompt_encoder = prompt_encoder\n        self.mask_decoder = mask_decoder\n        self.register_buffer(\"pixel_mean\", torch.Tensor(pixel_mean).view(-1, 1, 1), False)\n        self.register_buffer(\"pixel_std\", torch.Tensor(pixel_std).view(-1, 1, 1), False)\n\n    @property\n    def device(self) -> Any:\n        return self.pixel_mean.device\n\n    @torch.no_grad()\n    def forward(\n        self,\n        batched_input: List[Dict[str, Any]],\n        multimask_output: bool,\n    ) -> List[Dict[str, torch.Tensor]]:\n        \"\"\"\n        Predicts masks end-to-end from provided images and prompts.\n        If prompts are not known in advance, using SamPredictor is\n        recommended over calling the model directly.\n\n        Arguments:\n          batched_input (list(dict)): A list over input images, each a\n            dictionary with the following keys. A prompt key can be\n            excluded if it is not present.\n              'image': The image as a torch tensor in 3xHxW format,\n                already transformed for input to the model.\n              'original_size': (tuple(int, int)) The original size of\n                the image before transformation, as (H, W).\n              'point_coords': (torch.Tensor) Batched point prompts for\n                this image, with shape BxNx2. Already transformed to the\n                input frame of the model.\n              'point_labels': (torch.Tensor) Batched labels for point prompts,\n                with shape BxN.\n              'boxes': (torch.Tensor) Batched box inputs, with shape Bx4.\n                Already transformed to the input frame of the model.\n              'mask_inputs': (torch.Tensor) Batched mask inputs to the model,\n                in the form Bx1xHxW.\n          multimask_output (bool): Whether the model should predict multiple\n            disambiguating masks, or return a single mask.\n\n        Returns:\n          (list(dict)): A list over input images, where each element is\n            as dictionary with the following keys.\n              'masks': (torch.Tensor) Batched binary mask predictions,\n                with shape BxCxHxW, where B is the number of input prompts,\n                C is determined by multimask_output, and (H, W) is the\n                original size of the image.\n              'iou_predictions': (torch.Tensor) The model's predictions\n                of mask quality, in shape BxC.\n              'low_res_logits': (torch.Tensor) Low resolution logits with\n                shape BxCxHxW, where H=W=256. Can be passed as mask input\n                to subsequent iterations of prediction.\n        \"\"\"\n        input_images = torch.stack([self.preprocess(x[\"image\"]) for x in batched_input], dim=0)\n        image_embeddings = self.image_encoder(input_images)\n\n        outputs = []\n        for image_record, curr_embedding in zip(batched_input, image_embeddings):\n            if \"point_coords\" in image_record:\n                points = (image_record[\"point_coords\"], image_record[\"point_labels\"])\n            else:\n                points = None\n            sparse_embeddings, dense_embeddings = self.prompt_encoder(\n                points=points,\n                boxes=image_record.get(\"boxes\", None),\n                masks=image_record.get(\"mask_inputs\", None),\n            )\n            low_res_masks, iou_predictions = self.mask_decoder(\n                image_embeddings=curr_embedding.unsqueeze(0),\n                image_pe=self.prompt_encoder.get_dense_pe(),\n                sparse_prompt_embeddings=sparse_embeddings,\n                dense_prompt_embeddings=dense_embeddings,\n                multimask_output=multimask_output,\n            )\n            masks = self.postprocess_masks(\n                low_res_masks,\n                input_size=image_record[\"image\"].shape[-2:],\n                original_size=image_record[\"original_size\"],\n            )\n            masks = masks > self.mask_threshold\n            outputs.append(\n                {\n                    \"masks\": masks,\n                    \"iou_predictions\": iou_predictions,\n                    \"low_res_logits\": low_res_masks,\n                }\n            )\n        return outputs\n\n    def postprocess_masks(\n        self,\n        masks: torch.Tensor,\n        input_size: Tuple[int, ...],\n        original_size: Tuple[int, ...],\n    ) -> torch.Tensor:\n        \"\"\"\n        Remove padding and upscale masks to the original image size.\n\n        Arguments:\n          masks (torch.Tensor): Batched masks from the mask_decoder,\n            in BxCxHxW format.\n          input_size (tuple(int, int)): The size of the image input to the\n            model, in (H, W) format. Used to remove padding.\n          original_size (tuple(int, int)): The original size of the image\n            before resizing for input to the model, in (H, W) format.\n\n        Returns:\n          (torch.Tensor): Batched masks in BxCxHxW format, where (H, W)\n            is given by original_size.\n        \"\"\"\n        masks = F.interpolate(\n            masks,\n            (self.image_encoder.img_size, self.image_encoder.img_size),\n            mode=\"bilinear\",\n            align_corners=False,\n        )\n        masks = masks[..., : input_size[0], : input_size[1]]\n        masks = F.interpolate(masks, original_size, mode=\"bilinear\", align_corners=False)\n        return masks\n\n    def preprocess(self, x: torch.Tensor) -> torch.Tensor:\n        \"\"\"Normalize pixel values and pad to a square input.\"\"\"\n        # Normalize colors\n        x = (x - self.pixel_mean) / self.pixel_std\n\n        # Pad\n        h, w = x.shape[-2:]\n        padh = self.image_encoder.img_size - h\n        padw = self.image_encoder.img_size - w\n        x = F.pad(x, (0, padw, 0, padh))\n        return x",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/sam.py:18-174"
+            },
+            {
+              "filePath": "segment_anything/modeling/image_encoder.py",
+              "symbolName": "ImageEncoderViT",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 17,
+              "endLine": 116,
+              "codeContent": "class ImageEncoderViT(nn.Module):\n    def __init__(\n        self,\n        img_size: int = 1024,\n        patch_size: int = 16,\n        in_chans: int = 3,\n        embed_dim: int = 768,\n        depth: int = 12,\n        num_heads: int = 12,\n        mlp_ratio: float = 4.0,\n        out_chans: int = 256,\n        qkv_bias: bool = True,\n        norm_layer: Type[nn.Module] = nn.LayerNorm,\n        act_layer: Type[nn.Module] = nn.GELU,\n        use_abs_pos: bool = True,\n        use_rel_pos: bool = False,\n        rel_pos_zero_init: bool = True,\n        window_size: int = 0,\n        global_attn_indexes: Tuple[int, ...] = (),\n    ) -> None:\n        \"\"\"\n        Args:\n            img_size (int): Input image size.\n            patch_size (int): Patch size.\n            in_chans (int): Number of input image channels.\n            embed_dim (int): Patch embedding dimension.\n            depth (int): Depth of ViT.\n            num_heads (int): Number of attention heads in each ViT block.\n            mlp_ratio (float): Ratio of mlp hidden dim to embedding dim.\n            qkv_bias (bool): If True, add a learnable bias to query, key, value.\n            norm_layer (nn.Module): Normalization layer.\n            act_layer (nn.Module): Activation layer.\n            use_abs_pos (bool): If True, use absolute positional embeddings.\n            use_rel_pos (bool): If True, add relative positional embeddings to the attention map.\n            rel_pos_zero_init (bool): If True, zero initialize relative positional parameters.\n            window_size (int): Window size for window attention blocks.\n            global_attn_indexes (list): Indexes for blocks using global attention.\n        \"\"\"\n        super().__init__()\n        self.img_size = img_size\n\n        self.patch_embed = PatchEmbed(\n            kernel_size=(patch_size, patch_size),\n            stride=(patch_size, patch_size),\n            in_chans=in_chans,\n            embed_dim=embed_dim,\n        )\n\n        self.pos_embed: Optional[nn.Parameter] = None\n        if use_abs_pos:\n            # Initialize absolute positional embedding with pretrain image size.\n            self.pos_embed = nn.Parameter(\n                torch.zeros(1, img_size // patch_size, img_size // patch_size, embed_dim)\n            )\n\n        self.blocks = nn.ModuleList()\n        for i in range(depth):\n            block = Block(\n                dim=embed_dim,\n                num_heads=num_heads,\n                mlp_ratio=mlp_ratio,\n                qkv_bias=qkv_bias,\n                norm_layer=norm_layer,\n                act_layer=act_layer,\n                use_rel_pos=use_rel_pos,\n                rel_pos_zero_init=rel_pos_zero_init,\n                window_size=window_size if i not in global_attn_indexes else 0,\n                input_size=(img_size // patch_size, img_size // patch_size),\n            )\n            self.blocks.append(block)\n\n        self.neck = nn.Sequential(\n            nn.Conv2d(\n                embed_dim,\n                out_chans,\n                kernel_size=1,\n                bias=False,\n            ),\n            LayerNorm2d(out_chans),\n            nn.Conv2d(\n                out_chans,\n                out_chans,\n                kernel_size=3,\n                padding=1,\n                bias=False,\n            ),\n            LayerNorm2d(out_chans),\n        )\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        x = self.patch_embed(x)\n        if self.pos_embed is not None:\n            x = x + self.pos_embed\n\n        for blk in self.blocks:\n            x = blk(x)\n\n        x = self.neck(x.permute(0, 3, 1, 2))\n\n        return x",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/image_encoder.py:17-116"
+            },
+            {
+              "filePath": "segment_anything/modeling/image_encoder.py",
+              "symbolName": "PatchEmbed",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 364,
+              "endLine": 395,
+              "codeContent": "class PatchEmbed(nn.Module):\n    \"\"\"\n    Image to Patch Embedding.\n    \"\"\"\n\n    def __init__(\n        self,\n        kernel_size: Tuple[int, int] = (16, 16),\n        stride: Tuple[int, int] = (16, 16),\n        padding: Tuple[int, int] = (0, 0),\n        in_chans: int = 3,\n        embed_dim: int = 768,\n    ) -> None:\n        \"\"\"\n        Args:\n            kernel_size (Tuple): kernel size of the projection layer.\n            stride (Tuple): stride of the projection layer.\n            padding (Tuple): padding size of the projection layer.\n            in_chans (int): Number of input image channels.\n            embed_dim (int): Patch embedding dimension.\n        \"\"\"\n        super().__init__()\n\n        self.proj = nn.Conv2d(\n            in_chans, embed_dim, kernel_size=kernel_size, stride=stride, padding=padding\n        )\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        x = self.proj(x)\n        # B C H W -> B H W C\n        x = x.permute(0, 2, 3, 1)\n        return x",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/image_encoder.py:364-395"
+            },
+            {
+              "filePath": "segment_anything/modeling/image_encoder.py",
+              "symbolName": "Block",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 119,
+              "endLine": 182,
+              "codeContent": "class Block(nn.Module):\n    \"\"\"Transformer blocks with support of window attention and residual propagation blocks\"\"\"\n\n    def __init__(\n        self,\n        dim: int,\n        num_heads: int,\n        mlp_ratio: float = 4.0,\n        qkv_bias: bool = True,\n        norm_layer: Type[nn.Module] = nn.LayerNorm,\n        act_layer: Type[nn.Module] = nn.GELU,\n        use_rel_pos: bool = False,\n        rel_pos_zero_init: bool = True,\n        window_size: int = 0,\n        input_size: Optional[Tuple[int, int]] = None,\n    ) -> None:\n        \"\"\"\n        Args:\n            dim (int): Number of input channels.\n            num_heads (int): Number of attention heads in each ViT block.\n            mlp_ratio (float): Ratio of mlp hidden dim to embedding dim.\n            qkv_bias (bool): If True, add a learnable bias to query, key, value.\n            norm_layer (nn.Module): Normalization layer.\n            act_layer (nn.Module): Activation layer.\n            use_rel_pos (bool): If True, add relative positional embeddings to the attention map.\n            rel_pos_zero_init (bool): If True, zero initialize relative positional parameters.\n            window_size (int): Window size for window attention blocks. If it equals 0, then\n                use global attention.\n            input_size (tuple(int, int) or None): Input resolution for calculating the relative\n                positional parameter size.\n        \"\"\"\n        super().__init__()\n        self.norm1 = norm_layer(dim)\n        self.attn = Attention(\n            dim,\n            num_heads=num_heads,\n            qkv_bias=qkv_bias,\n            use_rel_pos=use_rel_pos,\n            rel_pos_zero_init=rel_pos_zero_init,\n            input_size=input_size if window_size == 0 else (window_size, window_size),\n        )\n\n        self.norm2 = norm_layer(dim)\n        self.mlp = MLPBlock(embedding_dim=dim, mlp_dim=int(dim * mlp_ratio), act=act_layer)\n\n        self.window_size = window_size\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        shortcut = x\n        x = self.norm1(x)\n        # Window partition\n        if self.window_size > 0:\n            H, W = x.shape[1], x.shape[2]\n            x, pad_hw = window_partition(x, self.window_size)\n\n        x = self.attn(x)\n        # Reverse window partition\n        if self.window_size > 0:\n            x = window_unpartition(x, self.window_size, pad_hw, (H, W))\n\n        x = shortcut + x\n        x = x + self.mlp(self.norm2(x))\n\n        return x",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/image_encoder.py:119-182"
+            },
+            {
+              "filePath": "segment_anything/modeling/image_encoder.py",
+              "symbolName": "Attention",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 185,
+              "endLine": 240,
+              "codeContent": "class Attention(nn.Module):\n    \"\"\"Multi-head Attention block with relative position embeddings.\"\"\"\n\n    def __init__(\n        self,\n        dim: int,\n        num_heads: int = 8,\n        qkv_bias: bool = True,\n        use_rel_pos: bool = False,\n        rel_pos_zero_init: bool = True,\n        input_size: Optional[Tuple[int, int]] = None,\n    ) -> None:\n        \"\"\"\n        Args:\n            dim (int): Number of input channels.\n            num_heads (int): Number of attention heads.\n            qkv_bias (bool):  If True, add a learnable bias to query, key, value.\n            rel_pos (bool): If True, add relative positional embeddings to the attention map.\n            rel_pos_zero_init (bool): If True, zero initialize relative positional parameters.\n            input_size (tuple(int, int) or None): Input resolution for calculating the relative\n                positional parameter size.\n        \"\"\"\n        super().__init__()\n        self.num_heads = num_heads\n        head_dim = dim // num_heads\n        self.scale = head_dim**-0.5\n\n        self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)\n        self.proj = nn.Linear(dim, dim)\n\n        self.use_rel_pos = use_rel_pos\n        if self.use_rel_pos:\n            assert (\n                input_size is not None\n            ), \"Input size must be provided if using relative positional encoding.\"\n            # initialize relative positional embeddings\n            self.rel_pos_h = nn.Parameter(torch.zeros(2 * input_size[0] - 1, head_dim))\n            self.rel_pos_w = nn.Parameter(torch.zeros(2 * input_size[1] - 1, head_dim))\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        B, H, W, _ = x.shape\n        # qkv with shape (3, B, nHead, H * W, C)\n        qkv = self.qkv(x).reshape(B, H * W, 3, self.num_heads, -1).permute(2, 0, 3, 1, 4)\n        # q, k, v with shape (B * nHead, H * W, C)\n        q, k, v = qkv.reshape(3, B * self.num_heads, H * W, -1).unbind(0)\n\n        attn = (q * self.scale) @ k.transpose(-2, -1)\n\n        if self.use_rel_pos:\n            attn = add_decomposed_rel_pos(attn, q, self.rel_pos_h, self.rel_pos_w, (H, W), (H, W))\n\n        attn = attn.softmax(dim=-1)\n        x = (attn @ v).view(B, self.num_heads, H, W, -1).permute(0, 2, 3, 1, 4).reshape(B, H, W, -1)\n        x = self.proj(x)\n\n        return x",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/image_encoder.py:185-240"
+            },
+            {
+              "filePath": "segment_anything/modeling/prompt_encoder.py",
+              "symbolName": "PromptEncoder",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 16,
+              "endLine": 168,
+              "codeContent": "class PromptEncoder(nn.Module):\n    def __init__(\n        self,\n        embed_dim: int,\n        image_embedding_size: Tuple[int, int],\n        input_image_size: Tuple[int, int],\n        mask_in_chans: int,\n        activation: Type[nn.Module] = nn.GELU,\n    ) -> None:\n        \"\"\"\n        Encodes prompts for input to SAM's mask decoder.\n\n        Arguments:\n          embed_dim (int): The prompts' embedding dimension\n          image_embedding_size (tuple(int, int)): The spatial size of the\n            image embedding, as (H, W).\n          input_image_size (int): The padded size of the image as input\n            to the image encoder, as (H, W).\n          mask_in_chans (int): The number of hidden channels used for\n            encoding input masks.\n          activation (nn.Module): The activation to use when encoding\n            input masks.\n        \"\"\"\n        super().__init__()\n        self.embed_dim = embed_dim\n        self.input_image_size = input_image_size\n        self.image_embedding_size = image_embedding_size\n        self.pe_layer = PositionEmbeddingRandom(embed_dim // 2)\n\n        self.num_point_embeddings: int = 4  # pos/neg point + 2 box corners\n        point_embeddings = [nn.Embedding(1, embed_dim) for i in range(self.num_point_embeddings)]\n        self.point_embeddings = nn.ModuleList(point_embeddings)\n        self.not_a_point_embed = nn.Embedding(1, embed_dim)\n\n        self.mask_input_size = (4 * image_embedding_size[0], 4 * image_embedding_size[1])\n        self.mask_downscaling = nn.Sequential(\n            nn.Conv2d(1, mask_in_chans // 4, kernel_size=2, stride=2),\n            LayerNorm2d(mask_in_chans // 4),\n            activation(),\n            nn.Conv2d(mask_in_chans // 4, mask_in_chans, kernel_size=2, stride=2),\n            LayerNorm2d(mask_in_chans),\n            activation(),\n            nn.Conv2d(mask_in_chans, embed_dim, kernel_size=1),\n        )\n        self.no_mask_embed = nn.Embedding(1, embed_dim)\n\n    def get_dense_pe(self) -> torch.Tensor:\n        \"\"\"\n        Returns the positional encoding used to encode point prompts,\n        applied to a dense set of points the shape of the image encoding.\n\n        Returns:\n          torch.Tensor: Positional encoding with shape\n            1x(embed_dim)x(embedding_h)x(embedding_w)\n        \"\"\"\n        return self.pe_layer(self.image_embedding_size).unsqueeze(0)\n\n    def _embed_points(\n        self,\n        points: torch.Tensor,\n        labels: torch.Tensor,\n        pad: bool,\n    ) -> torch.Tensor:\n        \"\"\"Embeds point prompts.\"\"\"\n        points = points + 0.5  # Shift to center of pixel\n        if pad:\n            padding_point = torch.zeros((points.shape[0], 1, 2), device=points.device)\n            padding_label = -torch.ones((labels.shape[0], 1), device=labels.device)\n            points = torch.cat([points, padding_point], dim=1)\n            labels = torch.cat([labels, padding_label], dim=1)\n        point_embedding = self.pe_layer.forward_with_coords(points, self.input_image_size)\n        point_embedding[labels == -1] = 0.0\n        point_embedding[labels == -1] += self.not_a_point_embed.weight\n        point_embedding[labels == 0] += self.point_embeddings[0].weight\n        point_embedding[labels == 1] += self.point_embeddings[1].weight\n        return point_embedding\n\n    def _embed_boxes(self, boxes: torch.Tensor) -> torch.Tensor:\n        \"\"\"Embeds box prompts.\"\"\"\n        boxes = boxes + 0.5  # Shift to center of pixel\n        coords = boxes.reshape(-1, 2, 2)\n        corner_embedding = self.pe_layer.forward_with_coords(coords, self.input_image_size)\n        corner_embedding[:, 0, :] += self.point_embeddings[2].weight\n        corner_embedding[:, 1, :] += self.point_embeddings[3].weight\n        return corner_embedding\n\n    def _embed_masks(self, masks: torch.Tensor) -> torch.Tensor:\n        \"\"\"Embeds mask inputs.\"\"\"\n        mask_embedding = self.mask_downscaling(masks)\n        return mask_embedding\n\n    def _get_batch_size(\n        self,\n        points: Optional[Tuple[torch.Tensor, torch.Tensor]],\n        boxes: Optional[torch.Tensor],\n        masks: Optional[torch.Tensor],\n    ) -> int:\n        \"\"\"\n        Gets the batch size of the output given the batch size of the input prompts.\n        \"\"\"\n        if points is not None:\n            return points[0].shape[0]\n        elif boxes is not None:\n            return boxes.shape[0]\n        elif masks is not None:\n            return masks.shape[0]\n        else:\n            return 1\n\n    def _get_device(self) -> torch.device:\n        return self.point_embeddings[0].weight.device\n\n    def forward(\n        self,\n        points: Optional[Tuple[torch.Tensor, torch.Tensor]],\n        boxes: Optional[torch.Tensor],\n        masks: Optional[torch.Tensor],\n    ) -> Tuple[torch.Tensor, torch.Tensor]:\n        \"\"\"\n        Embeds different types of prompts, returning both sparse and dense\n        embeddings.\n\n        Arguments:\n          points (tuple(torch.Tensor, torch.Tensor) or none): point coordinates\n            and labels to embed.\n          boxes (torch.Tensor or none): boxes to embed\n          masks (torch.Tensor or none): masks to embed\n\n        Returns:\n          torch.Tensor: sparse embeddings for the points and boxes, with shape\n            BxNx(embed_dim), where N is determined by the number of input points\n            and boxes.\n          torch.Tensor: dense embeddings for the masks, in the shape\n            Bx(embed_dim)x(embed_H)x(embed_W)\n        \"\"\"\n        bs = self._get_batch_size(points, boxes, masks)\n        sparse_embeddings = torch.empty((bs, 0, self.embed_dim), device=self._get_device())\n        if points is not None:\n            coords, labels = points\n            point_embeddings = self._embed_points(coords, labels, pad=(boxes is None))\n            sparse_embeddings = torch.cat([sparse_embeddings, point_embeddings], dim=1)\n        if boxes is not None:\n            box_embeddings = self._embed_boxes(boxes)\n            sparse_embeddings = torch.cat([sparse_embeddings, box_embeddings], dim=1)\n\n        if masks is not None:\n            dense_embeddings = self._embed_masks(masks)\n        else:\n            dense_embeddings = self.no_mask_embed.weight.reshape(1, -1, 1, 1).expand(\n                bs, -1, self.image_embedding_size[0], self.image_embedding_size[1]\n            )\n\n        return sparse_embeddings, dense_embeddings",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/prompt_encoder.py:16-168"
+            },
+            {
+              "filePath": "segment_anything/modeling/prompt_encoder.py",
+              "symbolName": "PositionEmbeddingRandom",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 171,
+              "endLine": 214,
+              "codeContent": "class PositionEmbeddingRandom(nn.Module):\n    \"\"\"\n    Positional encoding using random spatial frequencies.\n    \"\"\"\n\n    def __init__(self, num_pos_feats: int = 64, scale: Optional[float] = None) -> None:\n        super().__init__()\n        if scale is None or scale <= 0.0:\n            scale = 1.0\n        self.register_buffer(\n            \"positional_encoding_gaussian_matrix\",\n            scale * torch.randn((2, num_pos_feats)),\n        )\n\n    def _pe_encoding(self, coords: torch.Tensor) -> torch.Tensor:\n        \"\"\"Positionally encode points that are normalized to [0,1].\"\"\"\n        # assuming coords are in [0, 1]^2 square and have d_1 x ... x d_n x 2 shape\n        coords = 2 * coords - 1\n        coords = coords @ self.positional_encoding_gaussian_matrix\n        coords = 2 * np.pi * coords\n        # outputs d_1 x ... x d_n x C shape\n        return torch.cat([torch.sin(coords), torch.cos(coords)], dim=-1)\n\n    def forward(self, size: Tuple[int, int]) -> torch.Tensor:\n        \"\"\"Generate positional encoding for a grid of the specified size.\"\"\"\n        h, w = size\n        device: Any = self.positional_encoding_gaussian_matrix.device\n        grid = torch.ones((h, w), device=device, dtype=torch.float32)\n        y_embed = grid.cumsum(dim=0) - 0.5\n        x_embed = grid.cumsum(dim=1) - 0.5\n        y_embed = y_embed / h\n        x_embed = x_embed / w\n\n        pe = self._pe_encoding(torch.stack([x_embed, y_embed], dim=-1))\n        return pe.permute(2, 0, 1)  # C x H x W\n\n    def forward_with_coords(\n        self, coords_input: torch.Tensor, image_size: Tuple[int, int]\n    ) -> torch.Tensor:\n        \"\"\"Positionally encode points that are not normalized to [0,1].\"\"\"\n        coords = coords_input.clone()\n        coords[:, :, 0] = coords[:, :, 0] / image_size[1]\n        coords[:, :, 1] = coords[:, :, 1] / image_size[0]\n        return self._pe_encoding(coords.to(torch.float))  # B x N x C",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/prompt_encoder.py:171-214"
+            },
+            {
+              "filePath": "segment_anything/modeling/mask_decoder.py",
+              "symbolName": "predict_masks",
+              "symbolType": "METHOD",
+              "parentSymbolName": "MaskDecoder",
+              "programmingLanguage": "Python",
+              "startLine": 112,
+              "endLine": 149,
+              "codeContent": "    def predict_masks(\n        self,\n        image_embeddings: torch.Tensor,\n        image_pe: torch.Tensor,\n        sparse_prompt_embeddings: torch.Tensor,\n        dense_prompt_embeddings: torch.Tensor,\n    ) -> Tuple[torch.Tensor, torch.Tensor]:\n        \"\"\"Predicts masks. See 'forward' for more details.\"\"\"\n        # Concatenate output tokens\n        output_tokens = torch.cat([self.iou_token.weight, self.mask_tokens.weight], dim=0)\n        output_tokens = output_tokens.unsqueeze(0).expand(sparse_prompt_embeddings.size(0), -1, -1)\n        tokens = torch.cat((output_tokens, sparse_prompt_embeddings), dim=1)\n\n        # Expand per-image data in batch direction to be per-mask\n        src = torch.repeat_interleave(image_embeddings, tokens.shape[0], dim=0)\n        src = src + dense_prompt_embeddings\n        pos_src = torch.repeat_interleave(image_pe, tokens.shape[0], dim=0)\n        b, c, h, w = src.shape\n\n        # Run the transformer\n        hs, src = self.transformer(src, pos_src, tokens)\n        iou_token_out = hs[:, 0, :]\n        mask_tokens_out = hs[:, 1 : (1 + self.num_mask_tokens), :]\n\n        # Upscale mask embeddings and predict masks using the mask tokens\n        src = src.transpose(1, 2).view(b, c, h, w)\n        upscaled_embedding = self.output_upscaling(src)\n        hyper_in_list: List[torch.Tensor] = []\n        for i in range(self.num_mask_tokens):\n            hyper_in_list.append(self.output_hypernetworks_mlps[i](mask_tokens_out[:, i, :]))\n        hyper_in = torch.stack(hyper_in_list, dim=1)\n        b, c, h, w = upscaled_embedding.shape\n        masks = (hyper_in @ upscaled_embedding.view(b, c, h * w)).view(b, -1, h, w)\n\n        # Generate mask quality predictions\n        iou_pred = self.iou_prediction_head(iou_token_out)\n\n        return masks, iou_pred",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/mask_decoder.py:112-149"
+            },
+            {
+              "filePath": "segment_anything/modeling/transformer.py",
+              "symbolName": "TwoWayTransformer",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 16,
+              "endLine": 106,
+              "codeContent": "class TwoWayTransformer(nn.Module):\n    def __init__(\n        self,\n        depth: int,\n        embedding_dim: int,\n        num_heads: int,\n        mlp_dim: int,\n        activation: Type[nn.Module] = nn.ReLU,\n        attention_downsample_rate: int = 2,\n    ) -> None:\n        \"\"\"\n        A transformer decoder that attends to an input image using\n        queries whose positional embedding is supplied.\n\n        Args:\n          depth (int): number of layers in the transformer\n          embedding_dim (int): the channel dimension for the input embeddings\n          num_heads (int): the number of heads for multihead attention. Must\n            divide embedding_dim\n          mlp_dim (int): the channel dimension internal to the MLP block\n          activation (nn.Module): the activation to use in the MLP block\n        \"\"\"\n        super().__init__()\n        self.depth = depth\n        self.embedding_dim = embedding_dim\n        self.num_heads = num_heads\n        self.mlp_dim = mlp_dim\n        self.layers = nn.ModuleList()\n\n        for i in range(depth):\n            self.layers.append(\n                TwoWayAttentionBlock(\n                    embedding_dim=embedding_dim,\n                    num_heads=num_heads,\n                    mlp_dim=mlp_dim,\n                    activation=activation,\n                    attention_downsample_rate=attention_downsample_rate,\n                    skip_first_layer_pe=(i == 0),\n                )\n            )\n\n        self.final_attn_token_to_image = Attention(\n            embedding_dim, num_heads, downsample_rate=attention_downsample_rate\n        )\n        self.norm_final_attn = nn.LayerNorm(embedding_dim)\n\n    def forward(\n        self,\n        image_embedding: Tensor,\n        image_pe: Tensor,\n        point_embedding: Tensor,\n    ) -> Tuple[Tensor, Tensor]:\n        \"\"\"\n        Args:\n          image_embedding (torch.Tensor): image to attend to. Should be shape\n            B x embedding_dim x h x w for any h and w.\n          image_pe (torch.Tensor): the positional encoding to add to the image. Must\n            have the same shape as image_embedding.\n          point_embedding (torch.Tensor): the embedding to add to the query points.\n            Must have shape B x N_points x embedding_dim for any N_points.\n\n        Returns:\n          torch.Tensor: the processed point_embedding\n          torch.Tensor: the processed image_embedding\n        \"\"\"\n        # BxCxHxW -> BxHWxC == B x N_image_tokens x C\n        bs, c, h, w = image_embedding.shape\n        image_embedding = image_embedding.flatten(2).permute(0, 2, 1)\n        image_pe = image_pe.flatten(2).permute(0, 2, 1)\n\n        # Prepare queries\n        queries = point_embedding\n        keys = image_embedding\n\n        # Apply transformer blocks and final layernorm\n        for layer in self.layers:\n            queries, keys = layer(\n                queries=queries,\n                keys=keys,\n                query_pe=point_embedding,\n                key_pe=image_pe,\n            )\n\n        # Apply the final attention layer from the points to the image\n        q = queries + point_embedding\n        k = keys + image_pe\n        attn_out = self.final_attn_token_to_image(q=q, k=k, v=keys)\n        queries = queries + attn_out\n        queries = self.norm_final_attn(queries)\n\n        return queries, keys",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/transformer.py:16-106"
+            },
+            {
+              "filePath": "segment_anything/modeling/transformer.py",
+              "symbolName": "TwoWayAttentionBlock",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 109,
+              "endLine": 182,
+              "codeContent": "class TwoWayAttentionBlock(nn.Module):\n    def __init__(\n        self,\n        embedding_dim: int,\n        num_heads: int,\n        mlp_dim: int = 2048,\n        activation: Type[nn.Module] = nn.ReLU,\n        attention_downsample_rate: int = 2,\n        skip_first_layer_pe: bool = False,\n    ) -> None:\n        \"\"\"\n        A transformer block with four layers: (1) self-attention of sparse\n        inputs, (2) cross attention of sparse inputs to dense inputs, (3) mlp\n        block on sparse inputs, and (4) cross attention of dense inputs to sparse\n        inputs.\n\n        Arguments:\n          embedding_dim (int): the channel dimension of the embeddings\n          num_heads (int): the number of heads in the attention layers\n          mlp_dim (int): the hidden dimension of the mlp block\n          activation (nn.Module): the activation of the mlp block\n          skip_first_layer_pe (bool): skip the PE on the first layer\n        \"\"\"\n        super().__init__()\n        self.self_attn = Attention(embedding_dim, num_heads)\n        self.norm1 = nn.LayerNorm(embedding_dim)\n\n        self.cross_attn_token_to_image = Attention(\n            embedding_dim, num_heads, downsample_rate=attention_downsample_rate\n        )\n        self.norm2 = nn.LayerNorm(embedding_dim)\n\n        self.mlp = MLPBlock(embedding_dim, mlp_dim, activation)\n        self.norm3 = nn.LayerNorm(embedding_dim)\n\n        self.norm4 = nn.LayerNorm(embedding_dim)\n        self.cross_attn_image_to_token = Attention(\n            embedding_dim, num_heads, downsample_rate=attention_downsample_rate\n        )\n\n        self.skip_first_layer_pe = skip_first_layer_pe\n\n    def forward(\n        self, queries: Tensor, keys: Tensor, query_pe: Tensor, key_pe: Tensor\n    ) -> Tuple[Tensor, Tensor]:\n        # Self attention block\n        if self.skip_first_layer_pe:\n            queries = self.self_attn(q=queries, k=queries, v=queries)\n        else:\n            q = queries + query_pe\n            attn_out = self.self_attn(q=q, k=q, v=queries)\n            queries = queries + attn_out\n        queries = self.norm1(queries)\n\n        # Cross attention block, tokens attending to image embedding\n        q = queries + query_pe\n        k = keys + key_pe\n        attn_out = self.cross_attn_token_to_image(q=q, k=k, v=keys)\n        queries = queries + attn_out\n        queries = self.norm2(queries)\n\n        # MLP block\n        mlp_out = self.mlp(queries)\n        queries = queries + mlp_out\n        queries = self.norm3(queries)\n\n        # Cross attention block, image embedding attending to tokens\n        q = queries + query_pe\n        k = keys + key_pe\n        attn_out = self.cross_attn_image_to_token(q=k, k=q, v=queries)\n        keys = keys + attn_out\n        keys = self.norm4(keys)\n\n        return queries, keys",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/modeling/transformer.py:109-182"
+            },
+            {
+              "filePath": "segment_anything/predictor.py",
+              "symbolName": "SamPredictor",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 17,
+              "endLine": 269,
+              "codeContent": "class SamPredictor:\n    def __init__(\n        self,\n        sam_model: Sam,\n    ) -> None:\n        \"\"\"\n        Uses SAM to calculate the image embedding for an image, and then\n        allow repeated, efficient mask prediction given prompts.\n\n        Arguments:\n          sam_model (Sam): The model to use for mask prediction.\n        \"\"\"\n        super().__init__()\n        self.model = sam_model\n        self.transform = ResizeLongestSide(sam_model.image_encoder.img_size)\n        self.reset_image()\n\n    def set_image(\n        self,\n        image: np.ndarray,\n        image_format: str = \"RGB\",\n    ) -> None:\n        \"\"\"\n        Calculates the image embeddings for the provided image, allowing\n        masks to be predicted with the 'predict' method.\n\n        Arguments:\n          image (np.ndarray): The image for calculating masks. Expects an\n            image in HWC uint8 format, with pixel values in [0, 255].\n          image_format (str): The color format of the image, in ['RGB', 'BGR'].\n        \"\"\"\n        assert image_format in [\n            \"RGB\",\n            \"BGR\",\n        ], f\"image_format must be in ['RGB', 'BGR'], is {image_format}.\"\n        if image_format != self.model.image_format:\n            image = image[..., ::-1]\n\n        # Transform the image to the form expected by the model\n        input_image = self.transform.apply_image(image)\n        input_image_torch = torch.as_tensor(input_image, device=self.device)\n        input_image_torch = input_image_torch.permute(2, 0, 1).contiguous()[None, :, :, :]\n\n        self.set_torch_image(input_image_torch, image.shape[:2])\n\n    @torch.no_grad()\n    def set_torch_image(\n        self,\n        transformed_image: torch.Tensor,\n        original_image_size: Tuple[int, ...],\n    ) -> None:\n        \"\"\"\n        Calculates the image embeddings for the provided image, allowing\n        masks to be predicted with the 'predict' method. Expects the input\n        image to be already transformed to the format expected by the model.\n\n        Arguments:\n          transformed_image (torch.Tensor): The input image, with shape\n            1x3xHxW, which has been transformed with ResizeLongestSide.\n          original_image_size (tuple(int, int)): The size of the image\n            before transformation, in (H, W) format.\n        \"\"\"\n        assert (\n            len(transformed_image.shape) == 4\n            and transformed_image.shape[1] == 3\n            and max(*transformed_image.shape[2:]) == self.model.image_encoder.img_size\n        ), f\"set_torch_image input must be BCHW with long side {self.model.image_encoder.img_size}.\"\n        self.reset_image()\n\n        self.original_size = original_image_size\n        self.input_size = tuple(transformed_image.shape[-2:])\n        input_image = self.model.preprocess(transformed_image)\n        self.features = self.model.image_encoder(input_image)\n        self.is_image_set = True\n\n    def predict(\n        self,\n        point_coords: Optional[np.ndarray] = None,\n        point_labels: Optional[np.ndarray] = None,\n        box: Optional[np.ndarray] = None,\n        mask_input: Optional[np.ndarray] = None,\n        multimask_output: bool = True,\n        return_logits: bool = False,\n    ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:\n        \"\"\"\n        Predict masks for the given input prompts, using the currently set image.\n\n        Arguments:\n          point_coords (np.ndarray or None): A Nx2 array of point prompts to the\n            model. Each point is in (X,Y) in pixels.\n          point_labels (np.ndarray or None): A length N array of labels for the\n            point prompts. 1 indicates a foreground point and 0 indicates a\n            background point.\n          box (np.ndarray or None): A length 4 array given a box prompt to the\n            model, in XYXY format.\n          mask_input (np.ndarray): A low resolution mask input to the model, typically\n            coming from a previous prediction iteration. Has form 1xHxW, where\n            for SAM, H=W=256.\n          multimask_output (bool): If true, the model will return three masks.\n            For ambiguous input prompts (such as a single click), this will often\n            produce better masks than a single prediction. If only a single\n            mask is needed, the model's predicted quality score can be used\n            to select the best mask. For non-ambiguous prompts, such as multiple\n            input prompts, multimask_output=False can give better results.\n          return_logits (bool): If true, returns un-thresholded masks logits\n            instead of a binary mask.\n\n        Returns:\n          (np.ndarray): The output masks in CxHxW format, where C is the\n            number of masks, and (H, W) is the original image size.\n          (np.ndarray): An array of length C containing the model's\n            predictions for the quality of each mask.\n          (np.ndarray): An array of shape CxHxW, where C is the number\n            of masks and H=W=256. These low resolution logits can be passed to\n            a subsequent iteration as mask input.\n        \"\"\"\n        if not self.is_image_set:\n            raise RuntimeError(\"An image must be set with .set_image(...) before mask prediction.\")\n\n        # Transform input prompts\n        coords_torch, labels_torch, box_torch, mask_input_torch = None, None, None, None\n        if point_coords is not None:\n            assert (\n                point_labels is not None\n            ), \"point_labels must be supplied if point_coords is supplied.\"\n            point_coords = self.transform.apply_coords(point_coords, self.original_size)\n            coords_torch = torch.as_tensor(point_coords, dtype=torch.float, device=self.device)\n            labels_torch = torch.as_tensor(point_labels, dtype=torch.int, device=self.device)\n            coords_torch, labels_torch = coords_torch[None, :, :], labels_torch[None, :]\n        if box is not None:\n            box = self.transform.apply_boxes(box, self.original_size)\n            box_torch = torch.as_tensor(box, dtype=torch.float, device=self.device)\n            box_torch = box_torch[None, :]\n        if mask_input is not None:\n            mask_input_torch = torch.as_tensor(mask_input, dtype=torch.float, device=self.device)\n            mask_input_torch = mask_input_torch[None, :, :, :]\n\n        masks, iou_predictions, low_res_masks = self.predict_torch(\n            coords_torch,\n            labels_torch,\n            box_torch,\n            mask_input_torch,\n            multimask_output,\n            return_logits=return_logits,\n        )\n\n        masks_np = masks[0].detach().cpu().numpy()\n        iou_predictions_np = iou_predictions[0].detach().cpu().numpy()\n        low_res_masks_np = low_res_masks[0].detach().cpu().numpy()\n        return masks_np, iou_predictions_np, low_res_masks_np\n\n    @torch.no_grad()\n    def predict_torch(\n        self,\n        point_coords: Optional[torch.Tensor],\n        point_labels: Optional[torch.Tensor],\n        boxes: Optional[torch.Tensor] = None,\n        mask_input: Optional[torch.Tensor] = None,\n        multimask_output: bool = True,\n        return_logits: bool = False,\n    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:\n        \"\"\"\n        Predict masks for the given input prompts, using the currently set image.\n        Input prompts are batched torch tensors and are expected to already be\n        transformed to the input frame using ResizeLongestSide.\n\n        Arguments:\n          point_coords (torch.Tensor or None): A BxNx2 array of point prompts to the\n            model. Each point is in (X,Y) in pixels.\n          point_labels (torch.Tensor or None): A BxN array of labels for the\n            point prompts. 1 indicates a foreground point and 0 indicates a\n            background point.\n          boxes (np.ndarray or None): A Bx4 array given a box prompt to the\n            model, in XYXY format.\n          mask_input (np.ndarray): A low resolution mask input to the model, typically\n            coming from a previous prediction iteration. Has form Bx1xHxW, where\n            for SAM, H=W=256. Masks returned by a previous iteration of the\n            predict method do not need further transformation.\n          multimask_output (bool): If true, the model will return three masks.\n            For ambiguous input prompts (such as a single click), this will often\n            produce better masks than a single prediction. If only a single\n            mask is needed, the model's predicted quality score can be used\n            to select the best mask. For non-ambiguous prompts, such as multiple\n            input prompts, multimask_output=False can give better results.\n          return_logits (bool): If true, returns un-thresholded masks logits\n            instead of a binary mask.\n\n        Returns:\n          (torch.Tensor): The output masks in BxCxHxW format, where C is the\n            number of masks, and (H, W) is the original image size.\n          (torch.Tensor): An array of shape BxC containing the model's\n            predictions for the quality of each mask.\n          (torch.Tensor): An array of shape BxCxHxW, where C is the number\n            of masks and H=W=256. These low res logits can be passed to\n            a subsequent iteration as mask input.\n        \"\"\"\n        if not self.is_image_set:\n            raise RuntimeError(\"An image must be set with .set_image(...) before mask prediction.\")\n\n        if point_coords is not None:\n            points = (point_coords, point_labels)\n        else:\n            points = None\n\n        # Embed prompts\n        sparse_embeddings, dense_embeddings = self.model.prompt_encoder(\n            points=points,\n            boxes=boxes,\n            masks=mask_input,\n        )\n\n        # Predict masks\n        low_res_masks, iou_predictions = self.model.mask_decoder(\n            image_embeddings=self.features,\n            image_pe=self.model.prompt_encoder.get_dense_pe(),\n            sparse_prompt_embeddings=sparse_embeddings,\n            dense_prompt_embeddings=dense_embeddings,\n            multimask_output=multimask_output,\n        )\n\n        # Upscale the masks to the original image resolution\n        masks = self.model.postprocess_masks(low_res_masks, self.input_size, self.original_size)\n\n        if not return_logits:\n            masks = masks > self.model.mask_threshold\n\n        return masks, iou_predictions, low_res_masks\n\n    def get_image_embedding(self) -> torch.Tensor:\n        \"\"\"\n        Returns the image embeddings for the currently set image, with\n        shape 1xCxHxW, where C is the embedding dimension and (H,W) are\n        the embedding spatial dimension of SAM (typically C=256, H=W=64).\n        \"\"\"\n        if not self.is_image_set:\n            raise RuntimeError(\n                \"An image must be set with .set_image(...) to generate an embedding.\"\n            )\n        assert self.features is not None, \"Features must exist if an image has been set.\"\n        return self.features\n\n    @property\n    def device(self) -> torch.device:\n        return self.model.device\n\n    def reset_image(self) -> None:\n        \"\"\"Resets the currently set image.\"\"\"\n        self.is_image_set = False\n        self.features = None\n        self.orig_h = None\n        self.orig_w = None\n        self.input_h = None\n        self.input_w = None",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/predictor.py:17-269"
+            },
+            {
+              "filePath": "segment_anything/utils/amg.py",
+              "symbolName": "build_all_layer_point_grids",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 189,
+              "endLine": 197,
+              "codeContent": "def build_all_layer_point_grids(\n    n_per_side: int, n_layers: int, scale_per_layer: int\n) -> List[np.ndarray]:\n    \"\"\"Generates point grids for all crop layers.\"\"\"\n    points_by_layer = []\n    for i in range(n_layers + 1):\n        n_points = int(n_per_side / (scale_per_layer**i))\n        points_by_layer.append(build_point_grid(n_points))\n    return points_by_layer",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/utils/amg.py:189-197"
+            },
+            {
+              "filePath": "segment_anything/automatic_mask_generator.py",
+              "symbolName": "_generate_masks",
+              "symbolType": "METHOD",
+              "parentSymbolName": "SamAutomaticMaskGenerator",
+              "programmingLanguage": "Python",
+              "startLine": 197,
+              "endLine": 223,
+              "codeContent": "    def _generate_masks(self, image: np.ndarray) -> MaskData:\n        orig_size = image.shape[:2]\n        crop_boxes, layer_idxs = generate_crop_boxes(\n            orig_size, self.crop_n_layers, self.crop_overlap_ratio\n        )\n\n        # Iterate over image crops\n        data = MaskData()\n        for crop_box, layer_idx in zip(crop_boxes, layer_idxs):\n            crop_data = self._process_crop(image, crop_box, layer_idx, orig_size)\n            data.cat(crop_data)\n\n        # Remove duplicate masks between crops\n        if len(crop_boxes) > 1:\n            # Prefer masks from smaller crops\n            scores = 1 / box_area(data[\"crop_boxes\"])\n            scores = scores.to(data[\"boxes\"].device)\n            keep_by_nms = batched_nms(\n                data[\"boxes\"].float(),\n                scores,\n                torch.zeros_like(data[\"boxes\"][:, 0]),  # categories\n                iou_threshold=self.crop_nms_thresh,\n            )\n            data.filter(keep_by_nms)\n\n        data.to_numpy()\n        return data",
+              "_comment": "Verbatim from https://github.com/facebookresearch/segment-anything @ dca509f — segment_anything/automatic_mask_generator.py:197-223"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

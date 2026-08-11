@@ -1,0 +1,645 @@
+{
+  "_comment": "CLIP 3b40f4e8fef780d08580e6f407e64884.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_sourceMarkdown": "CLIP 3b40f4e8fef780d08580e6f407e64884.md",
+  "_unresolved": [
+    {
+      "chunk": "02",
+      "title": "Image Encoder 구조",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "04",
+      "title": "Patch Flattening",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "05",
+      "title": "Class Token",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "06",
+      "title": "Position Embedding",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "09",
+      "title": "Token Embedding",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "10",
+      "title": "Text Position Embedding",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "12",
+      "title": "End Of Text(EOT) Token Representation",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "13",
+      "title": "Text Projection Layer",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "14",
+      "title": "Image Projection Layer",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "16",
+      "title": "Feature Normalization",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "17",
+      "title": "Image-Text Similarity Calculation",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트 표기 text_features.t)"
+    },
+    {
+      "chunk": "18",
+      "title": "Learnable Temperature Parameter",
+      "issue": "clip/model.py 에서 심볼을 특정할 수 없음 (노트 표기 self.logit_scale.exp)"
+    },
+    {
+      "chunk": "19",
+      "title": "Contrastive Learning Objective",
+      "issue": "저장소(openai/CLIP@d05afc4)에 없는 경로: train.py"
+    },
+    {
+      "chunk": "20",
+      "title": "Symmetric Cross Entropy Loss",
+      "issue": "저장소(openai/CLIP@d05afc4)에 없는 경로: train.py"
+    },
+    {
+      "chunk": "21",
+      "title": "Dataset Pipeline",
+      "issue": "저장소(openai/CLIP@d05afc4)에 없는 경로: data.py"
+    },
+    {
+      "chunk": "22",
+      "title": "Image Preprocessing",
+      "issue": "clip/clip.py 에서 심볼을 특정할 수 없음 (노트 표기 transforms.ToTensor)"
+    },
+    {
+      "chunk": "24",
+      "title": "Zero-shot Classification",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "25",
+      "title": "Training Loop (CLIP Pre-training Process)",
+      "issue": "저장소(openai/CLIP@d05afc4)에 없는 경로: train.py"
+    },
+    {
+      "chunk": "26",
+      "title": "Optimizer Configuration",
+      "issue": "저장소(openai/CLIP@d05afc4)에 없는 경로: train.py"
+    },
+    {
+      "chunk": "27",
+      "title": "Mixed Precision Training",
+      "issue": "저장소(openai/CLIP@d05afc4)에 없는 경로: train.py"
+    },
+    {
+      "chunk": "28",
+      "title": "Prompt Engineering",
+      "issue": "저장소(openai/CLIP@d05afc4)에 없는 경로: 사용자 코드 영역"
+    },
+    {
+      "chunk": "30",
+      "title": "Inference Pipeline",
+      "issue": "저장소(openai/CLIP@d05afc4)에 없는 경로: README Example"
+    },
+    {
+      "chunk": "31",
+      "title": "전체 Git Mapping",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "-",
+      "title": "입도 정리",
+      "issue": "부모 블록 1개를 자식 메서드로 대체 (['CLIP'])"
+    },
+    {
+      "chunk": "05",
+      "title": "Class Token",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "06",
+      "title": "Position Embedding",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "16",
+      "title": "Feature Normalization",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "20",
+      "title": "Symmetric Cross Entropy Loss",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "22",
+      "title": "Image Preprocessing",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "23",
+      "title": "Text Preprocessing",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "27",
+      "title": "Mixed Precision Training",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "29",
+      "title": "Model Loading",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "30",
+      "title": "Inference Pipeline",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "31",
+      "title": "전체 Git Mapping",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "2103.00020",
+      "title": "Learning Transferable Visual Models From Natural Language Supervision",
+      "abstract": "State-of-the-art computer vision systems are trained to predict a fixed set of predetermined object categories. This restricted form of supervision limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much broader source of supervision. We demonstrate that the simple pre-training task of predicting which caption goes with which image is an efficient and scalable way to learn SOTA image representations from scratch on a dataset of 400 million (image, text) pairs collected from the internet. After pre-training, natural language is used to reference learned visual concepts (or describe new ones) enabling zero-shot transfer of the model to downstream tasks. We study the performance of this approach by benchmarking on over 30 different existing computer vision datasets, spanning tasks such as OCR, action recognition in videos, geo-localization, and many types of fine-grained object classification. The model transfers non-trivially to most tasks and is often competitive with a fully supervised baseline without the need for any dataset specific training. For instance, we match the accuracy of the original ResNet-50 on ImageNet zero-shot without needing to use any of the 1.28 million training examples it was trained on. We release our code and pre-trained model weights at https://github.com/OpenAI/CLIP.",
+      "pdfUrl": "https://arxiv.org/pdf/2103.00020",
+      "publishedDate": "2021-02-26",
+      "authors": [
+        "Alec Radford",
+        "Jong Wook Kim",
+        "Chris Hallacy",
+        "Aditya Ramesh",
+        "Gabriel Goh",
+        "Sandhini Agarwal",
+        "Girish Sastry",
+        "Amanda Askell",
+        "Pamela Mishkin",
+        "Jack Clark",
+        "Gretchen Krueger",
+        "Ilya Sutskever"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "Section 2 Approach",
+          "subsectionTitle": "CLIP 전체 Dual Encoder Architecture",
+          "content": "We train a neural network to predict the correct caption for an image.\n\nThe model learns a joint embedding space for images and text.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 01",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "encode_image",
+              "startLine": 340,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Image Encoder 구조",
+          "content": "We use two different image encoders: ResNet and Vision Transformer.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 02"
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Vision Transformer Image Encoder",
+          "content": "For ViT based models, we use a standard Transformer architecture.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 03",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "VisionTransformer",
+              "startLine": 206,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "Section 2.3",
+          "subsectionTitle": "Patch Flattening",
+          "content": "The image is split into patches and treated as a sequence.",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 04"
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "Section 2.3",
+          "subsectionTitle": "Class Token",
+          "content": "전체 이미지 정보를 대표하는 token 추가.\n\n---",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 05"
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Position Embedding",
+          "content": "Transformer는 순서 정보를 자체적으로 알 수 없기 때문에 위치 정보를 추가.\n\n---",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 06"
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Text Encoder Transformer Architecture",
+          "content": "The text encoder is a Transformer with the architecture modifications described in GPT-2.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 07",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "Transformer",
+              "startLine": 195,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "Section 2.2 Dataset",
+          "subsectionTitle": "BPE Tokenization",
+          "content": "We tokenize the text using a byte pair encoding (BPE) representation.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 08",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/simple_tokenizer.py",
+              "symbolName": "SimpleTokenizer",
+              "startLine": 62,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Token Embedding",
+          "content": "The text tokens are embedded and added with positional embeddings.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 09"
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Text Position Embedding",
+          "content": "Positional embeddings are added to the token embeddings.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 10"
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Text Transformer Encoder Block",
+          "content": "The text encoder is a Transformer.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 11",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "ResidualAttentionBlock",
+              "startLine": 171,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "End Of Text(EOT) Token Representation",
+          "content": "The activation from the highest layer of the EOT token is used as the text representation.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 12"
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Text Projection Layer",
+          "content": "Both image and text representations are projected into a shared embedding space.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 13"
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Image Projection Layer",
+          "content": "The image encoder output is projected to the embedding dimension.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 14"
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "Section 2.1",
+          "subsectionTitle": "Shared Embedding Space Construction",
+          "content": "The image and text representations are projected into a shared embedding space.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 15",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "encode_image",
+              "startLine": 340,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "Section 2.1",
+          "subsectionTitle": "Feature Normalization",
+          "content": "벡터 크기의 영향을 제거하고 방향만 비교.\n\n수식:\n\n\\[\n\\hat{x}=\\frac{x}{||x||}\n\\]\n\n---",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 16"
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "Section 2.1",
+          "subsectionTitle": "Image-Text Similarity Calculation",
+          "content": "The similarity between the image and text embeddings is computed using cosine similarity.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 17"
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "Section 2.1",
+          "subsectionTitle": "Learnable Temperature Parameter",
+          "content": "The temperature parameter is learned during training.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 18"
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "Section 2.1",
+          "subsectionTitle": "Contrastive Learning Objective",
+          "content": "We optimize a symmetric cross entropy loss over the similarity matrix.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 19"
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "Section 2.1",
+          "subsectionTitle": "Symmetric Cross Entropy Loss",
+          "content": "한 방향으로만 학습하면 embedding alignment가 불균형해질 수 있음.\n\n---",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 20"
+        },
+        {
+          "chunkIndex": 20,
+          "sectionTitle": "Section 2.2 Dataset",
+          "subsectionTitle": "Dataset Pipeline",
+          "content": "We create a dataset of 400 million image-text pairs.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 21"
+        },
+        {
+          "chunkIndex": 21,
+          "sectionTitle": "Section 2.3 Architecture",
+          "subsectionTitle": "Image Preprocessing",
+          "content": "Vision Encoder 입력 형태 맞춤.\n\n---",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 22"
+        },
+        {
+          "chunkIndex": 22,
+          "sectionTitle": "Section 2.3",
+          "subsectionTitle": "Text Preprocessing",
+          "content": "Text를 Token ID sequence로 변환.\n\n---",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 23",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/clip.py",
+              "symbolName": "tokenize",
+              "startLine": 205,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 23,
+          "sectionTitle": "Section 3.1 Zero-shot Transfer",
+          "subsectionTitle": "Zero-shot Classification",
+          "content": "We use CLIP without training a classifier for each dataset.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 24"
+        },
+        {
+          "chunkIndex": 24,
+          "sectionTitle": "Section 2.1",
+          "subsectionTitle": "Training Loop (CLIP Pre-training Process)",
+          "content": "We jointly train an image encoder and a text encoder to maximize the similarity of image-text pairs.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 25"
+        },
+        {
+          "chunkIndex": 25,
+          "sectionTitle": "Section 2.4",
+          "subsectionTitle": "Optimizer Configuration",
+          "content": "We optimize CLIP using AdamW.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 26"
+        },
+        {
+          "chunkIndex": 26,
+          "sectionTitle": "Section 2.4 Training",
+          "subsectionTitle": "Mixed Precision Training",
+          "content": "FP16 연산을 사용해:\n\n- GPU Memory 감소\n- Training 속도 증가\n\n---",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 27"
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Prompt Engineering",
+          "content": "We use natural language prompts to convert labels into text descriptions.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 28"
+        },
+        {
+          "chunkIndex": 28,
+          "sectionTitle": "Appendix",
+          "subsectionTitle": "Model Loading",
+          "content": "Pre-trained CLIP checkpoint 불러오기.\n\n---",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 29",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/clip.py",
+              "symbolName": "load",
+              "startLine": 94,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 29,
+          "sectionTitle": "Section 3",
+          "subsectionTitle": "Inference Pipeline",
+          "content": "실제 사용 과정.\n\n---",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 30"
+        },
+        {
+          "chunkIndex": 30,
+          "sectionTitle": "전체 Git Mapping",
+          "subsectionTitle": "전체 Git Mapping",
+          "content": "전체 Git Mapping",
+          "pageStart": null,
+          "pageEnd": null,
+          "_comment": "노트 31"
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/openai/CLIP",
+          "ownerName": "openai",
+          "repositoryName": "CLIP",
+          "defaultBranch": "main",
+          "commitHash": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
+          "licenseName": "MIT",
+          "primaryLanguage": "Python",
+          "starCount": 34155,
+          "relationType": "OFFICIAL",
+          "isPrimary": true,
+          "codeBlocks": [
+            {
+              "filePath": "clip/model.py",
+              "symbolName": "VisionTransformer",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 206,
+              "endLine": 240,
+              "codeContent": "class VisionTransformer(nn.Module):\n    def __init__(self, input_resolution: int, patch_size: int, width: int, layers: int, heads: int, output_dim: int):\n        super().__init__()\n        self.input_resolution = input_resolution\n        self.output_dim = output_dim\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=width, kernel_size=patch_size, stride=patch_size, bias=False)\n\n        scale = width ** -0.5\n        self.class_embedding = nn.Parameter(scale * torch.randn(width))\n        self.positional_embedding = nn.Parameter(scale * torch.randn((input_resolution // patch_size) ** 2 + 1, width))\n        self.ln_pre = LayerNorm(width)\n\n        self.transformer = Transformer(width, layers, heads)\n\n        self.ln_post = LayerNorm(width)\n        self.proj = nn.Parameter(scale * torch.randn(width, output_dim))\n\n    def forward(self, x: torch.Tensor):\n        x = self.conv1(x)  # shape = [*, width, grid, grid]\n        x = x.reshape(x.shape[0], x.shape[1], -1)  # shape = [*, width, grid ** 2]\n        x = x.permute(0, 2, 1)  # shape = [*, grid ** 2, width]\n        x = torch.cat([self.class_embedding.to(x.dtype) + torch.zeros(x.shape[0], 1, x.shape[-1], dtype=x.dtype, device=x.device), x], dim=1)  # shape = [*, grid ** 2 + 1, width]\n        x = x + self.positional_embedding.to(x.dtype)\n        x = self.ln_pre(x)\n\n        x = x.permute(1, 0, 2)  # NLD -> LND\n        x = self.transformer(x)\n        x = x.permute(1, 0, 2)  # LND -> NLD\n\n        x = self.ln_post(x[:, 0, :])\n\n        if self.proj is not None:\n            x = x @ self.proj\n\n        return x",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:206-240"
+            },
+            {
+              "filePath": "clip/model.py",
+              "symbolName": "Transformer",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 195,
+              "endLine": 203,
+              "codeContent": "class Transformer(nn.Module):\n    def __init__(self, width: int, layers: int, heads: int, attn_mask: torch.Tensor = None):\n        super().__init__()\n        self.width = width\n        self.layers = layers\n        self.resblocks = nn.Sequential(*[ResidualAttentionBlock(width, heads, attn_mask) for _ in range(layers)])\n\n    def forward(self, x: torch.Tensor):\n        return self.resblocks(x)",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:195-203"
+            },
+            {
+              "filePath": "clip/simple_tokenizer.py",
+              "symbolName": "SimpleTokenizer",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 62,
+              "endLine": 132,
+              "codeContent": "class SimpleTokenizer(object):\n    def __init__(self, bpe_path: str = default_bpe()):\n        self.byte_encoder = bytes_to_unicode()\n        self.byte_decoder = {v: k for k, v in self.byte_encoder.items()}\n        merges = gzip.open(bpe_path).read().decode(\"utf-8\").split('\\n')\n        merges = merges[1:49152-256-2+1]\n        merges = [tuple(merge.split()) for merge in merges]\n        vocab = list(bytes_to_unicode().values())\n        vocab = vocab + [v+'</w>' for v in vocab]\n        for merge in merges:\n            vocab.append(''.join(merge))\n        vocab.extend(['<|startoftext|>', '<|endoftext|>'])\n        self.encoder = dict(zip(vocab, range(len(vocab))))\n        self.decoder = {v: k for k, v in self.encoder.items()}\n        self.bpe_ranks = dict(zip(merges, range(len(merges))))\n        self.cache = {'<|startoftext|>': '<|startoftext|>', '<|endoftext|>': '<|endoftext|>'}\n        self.pat = re.compile(r\"\"\"<\\|startoftext\\|>|<\\|endoftext\\|>|'s|'t|'re|'ve|'m|'ll|'d|[\\p{L}]+|[\\p{N}]|[^\\s\\p{L}\\p{N}]+\"\"\", re.IGNORECASE)\n\n    def bpe(self, token):\n        if token in self.cache:\n            return self.cache[token]\n        word = tuple(token[:-1]) + ( token[-1] + '</w>',)\n        pairs = get_pairs(word)\n\n        if not pairs:\n            return token+'</w>'\n\n        while True:\n            bigram = min(pairs, key = lambda pair: self.bpe_ranks.get(pair, float('inf')))\n            if bigram not in self.bpe_ranks:\n                break\n            first, second = bigram\n            new_word = []\n            i = 0\n            while i < len(word):\n                try:\n                    j = word.index(first, i)\n                    new_word.extend(word[i:j])\n                    i = j\n                except:\n                    new_word.extend(word[i:])\n                    break\n\n                if word[i] == first and i < len(word)-1 and word[i+1] == second:\n                    new_word.append(first+second)\n                    i += 2\n                else:\n                    new_word.append(word[i])\n                    i += 1\n            new_word = tuple(new_word)\n            word = new_word\n            if len(word) == 1:\n                break\n            else:\n                pairs = get_pairs(word)\n        word = ' '.join(word)\n        self.cache[token] = word\n        return word\n\n    def encode(self, text):\n        bpe_tokens = []\n        text = whitespace_clean(basic_clean(text)).lower()\n        for token in re.findall(self.pat, text):\n            token = ''.join(self.byte_encoder[b] for b in token.encode('utf-8'))\n            bpe_tokens.extend(self.encoder[bpe_token] for bpe_token in self.bpe(token).split(' '))\n        return bpe_tokens\n\n    def decode(self, tokens):\n        text = ''.join([self.decoder[token] for token in tokens])\n        text = bytearray([self.byte_decoder[c] for c in text]).decode('utf-8', errors=\"replace\").replace('</w>', ' ')\n        return text",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/simple_tokenizer.py:62-132"
+            },
+            {
+              "filePath": "clip/model.py",
+              "symbolName": "ResidualAttentionBlock",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 171,
+              "endLine": 192,
+              "codeContent": "class ResidualAttentionBlock(nn.Module):\n    def __init__(self, d_model: int, n_head: int, attn_mask: torch.Tensor = None):\n        super().__init__()\n\n        self.attn = nn.MultiheadAttention(d_model, n_head)\n        self.ln_1 = LayerNorm(d_model)\n        self.mlp = nn.Sequential(OrderedDict([\n            (\"c_fc\", nn.Linear(d_model, d_model * 4)),\n            (\"gelu\", QuickGELU()),\n            (\"c_proj\", nn.Linear(d_model * 4, d_model))\n        ]))\n        self.ln_2 = LayerNorm(d_model)\n        self.attn_mask = attn_mask\n\n    def attention(self, x: torch.Tensor):\n        self.attn_mask = self.attn_mask.to(dtype=x.dtype, device=x.device) if self.attn_mask is not None else None\n        return self.attn(x, x, x, need_weights=False, attn_mask=self.attn_mask)[0]\n\n    def forward(self, x: torch.Tensor):\n        x = x + self.attention(self.ln_1(x))\n        x = x + self.mlp(self.ln_2(x))\n        return x",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:171-192"
+            },
+            {
+              "filePath": "clip/model.py",
+              "symbolName": "encode_image",
+              "symbolType": "METHOD",
+              "parentSymbolName": "CLIP",
+              "programmingLanguage": "Python",
+              "startLine": 340,
+              "endLine": 341,
+              "codeContent": "    def encode_image(self, image):\n        return self.visual(image.type(self.dtype))",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:340-341"
+            },
+            {
+              "filePath": "clip/clip.py",
+              "symbolName": "tokenize",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 205,
+              "endLine": 245,
+              "codeContent": "def tokenize(texts: Union[str, List[str]], context_length: int = 77, truncate: bool = False) -> Union[torch.IntTensor, torch.LongTensor]:\n    \"\"\"\n    Returns the tokenized representation of given input string(s)\n\n    Parameters\n    ----------\n    texts : Union[str, List[str]]\n        An input string or a list of input strings to tokenize\n\n    context_length : int\n        The context length to use; all CLIP models use 77 as the context length\n\n    truncate: bool\n        Whether to truncate the text in case its encoding is longer than the context length\n\n    Returns\n    -------\n    A two-dimensional tensor containing the resulting tokens, shape = [number of input strings, context_length].\n    We return LongTensor when torch version is <1.8.0, since older index_select requires indices to be long.\n    \"\"\"\n    if isinstance(texts, str):\n        texts = [texts]\n\n    sot_token = _tokenizer.encoder[\"<|startoftext|>\"]\n    eot_token = _tokenizer.encoder[\"<|endoftext|>\"]\n    all_tokens = [[sot_token] + _tokenizer.encode(text) + [eot_token] for text in texts]\n    if version.parse(torch.__version__) < version.parse(\"1.8.0\"):\n        result = torch.zeros(len(all_tokens), context_length, dtype=torch.long)\n    else:\n        result = torch.zeros(len(all_tokens), context_length, dtype=torch.int)\n\n    for i, tokens in enumerate(all_tokens):\n        if len(tokens) > context_length:\n            if truncate:\n                tokens = tokens[:context_length]\n                tokens[-1] = eot_token\n            else:\n                raise RuntimeError(f\"Input {texts[i]} is too long for context length {context_length}\")\n        result[i, :len(tokens)] = torch.tensor(tokens)\n\n    return result",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/clip.py:205-245"
+            },
+            {
+              "filePath": "clip/clip.py",
+              "symbolName": "load",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 94,
+              "endLine": 202,
+              "codeContent": "def load(name: str, device: Union[str, torch.device] = \"cuda\" if torch.cuda.is_available() else \"cpu\", jit: bool = False, download_root: str = None):\n    \"\"\"Load a CLIP model\n\n    Parameters\n    ----------\n    name : str\n        A model name listed by `clip.available_models()`, or the path to a model checkpoint containing the state_dict\n\n    device : Union[str, torch.device]\n        The device to put the loaded model\n\n    jit : bool\n        Whether to load the optimized JIT model or more hackable non-JIT model (default).\n\n    download_root: str\n        path to download the model files; by default, it uses \"~/.cache/clip\"\n\n    Returns\n    -------\n    model : torch.nn.Module\n        The CLIP model\n\n    preprocess : Callable[[PIL.Image], torch.Tensor]\n        A torchvision transform that converts a PIL image into a tensor that the returned model can take as its input\n    \"\"\"\n    if name in _MODELS:\n        model_path = _download(_MODELS[name], download_root or os.path.expanduser(\"~/.cache/clip\"))\n    elif os.path.isfile(name):\n        model_path = name\n    else:\n        raise RuntimeError(f\"Model {name} not found; available models = {available_models()}\")\n\n    with open(model_path, 'rb') as opened_file:\n        try:\n            # loading JIT archive\n            model = torch.jit.load(opened_file, map_location=device if jit else \"cpu\").eval()\n            state_dict = None\n        except RuntimeError:\n            # loading saved state dict\n            if jit:\n                warnings.warn(f\"File {model_path} is not a JIT archive. Loading as a state dict instead\")\n                jit = False\n            state_dict = torch.load(opened_file, map_location=\"cpu\")\n\n    if not jit:\n        model = build_model(state_dict or model.state_dict()).to(device)\n        if str(device) == \"cpu\":\n            model.float()\n        return model, _transform(model.visual.input_resolution)\n\n    # patch the device names\n    device_holder = torch.jit.trace(lambda: torch.ones([]).to(torch.device(device)), example_inputs=[])\n    device_node = [n for n in device_holder.graph.findAllNodes(\"prim::Constant\") if \"Device\" in repr(n)][-1]\n\n    def _node_get(node: torch._C.Node, key: str):\n        \"\"\"Gets attributes of a node which is polymorphic over return type.\n        \n        From https://github.com/pytorch/pytorch/pull/82628\n        \"\"\"\n        sel = node.kindOf(key)\n        return getattr(node, sel)(key)\n\n    def patch_device(module):\n        try:\n            graphs = [module.graph] if hasattr(module, \"graph\") else []\n        except RuntimeError:\n            graphs = []\n\n        if hasattr(module, \"forward1\"):\n            graphs.append(module.forward1.graph)\n\n        for graph in graphs:\n            for node in graph.findAllNodes(\"prim::Constant\"):\n                if \"value\" in node.attributeNames() and str(_node_get(node, \"value\")).startswith(\"cuda\"):\n                    node.copyAttributes(device_node)\n\n    model.apply(patch_device)\n    patch_device(model.encode_image)\n    patch_device(model.encode_text)\n\n    # patch dtype to float32 on CPU\n    if str(device) == \"cpu\":\n        float_holder = torch.jit.trace(lambda: torch.ones([]).float(), example_inputs=[])\n        float_input = list(float_holder.graph.findNode(\"aten::to\").inputs())[1]\n        float_node = float_input.node()\n\n        def patch_float(module):\n            try:\n                graphs = [module.graph] if hasattr(module, \"graph\") else []\n            except RuntimeError:\n                graphs = []\n\n            if hasattr(module, \"forward1\"):\n                graphs.append(module.forward1.graph)\n\n            for graph in graphs:\n                for node in graph.findAllNodes(\"aten::to\"):\n                    inputs = list(node.inputs())\n                    for i in [1, 2]:  # dtype can be the second or third argument to aten::to()\n                        if _node_get(inputs[i].node(), \"value\") == 5:\n                            inputs[i].node().copyAttributes(float_node)\n\n        model.apply(patch_float)\n        patch_float(model.encode_image)\n        patch_float(model.encode_text)\n\n        model.float()\n\n    return model, _transform(model.input_resolution.item())",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/clip.py:94-202"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,805 @@
+{
+  "_comment": "BERT 3b30f4e8fef7809a99f9c6a0187acada.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_sourceMarkdown": "BERT 3b30f4e8fef7809a99f9c6a0187acada.md",
+  "_unresolved": [
+    {
+      "chunk": "06",
+      "title": "Special Token [CLS]",
+      "issue": "create_pretraining_data.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "09",
+      "title": "Query / Key / Value Projection",
+      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "10",
+      "title": "Attention Score 계산",
+      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "12",
+      "title": "Softmax Attention Probability",
+      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "13",
+      "title": "Attention Output 계산",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "16",
+      "title": "Residual Connection + Layer Normalization",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "17",
+      "title": "Dropout",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "19",
+      "title": "15% Token Masking Strategy",
+      "issue": "create_pretraining_data.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "21",
+      "title": "Masked LM Label 저장",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "22",
+      "title": "Next Sentence Prediction (NSP)",
+      "issue": "create_pretraining_data.py 에서 심볼을 특정할 수 없음 (노트 표기 rng.random)"
+    },
+    {
+      "chunk": "24",
+      "title": "MLM Prediction Head",
+      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트 표기 get_masked_lm_output)"
+    },
+    {
+      "chunk": "25",
+      "title": "MLM Loss",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "26",
+      "title": "NSP Classifier",
+      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "28",
+      "title": "BERT Configuration (Base / Large)",
+      "issue": "저장소(google-research/bert@eedf571)에 없는 경로: bert_config.json"
+    },
+    {
+      "chunk": "34",
+      "title": "Classification Loss",
+      "issue": "run_classifier.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "35",
+      "title": "SQuAD Question Answering Fine-tuning",
+      "issue": "run_squad.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+    },
+    {
+      "chunk": "37",
+      "title": "BERT 전체 Training Pipeline",
+      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+    },
+    {
+      "chunk": "11",
+      "title": "Attention Mask",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "23",
+      "title": "NSP Training Instance 생성",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "27",
+      "title": "Total Pre-training Loss",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "36",
+      "title": "SQuAD Output Layer",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    },
+    {
+      "chunk": "37",
+      "title": "BERT 전체 Training Pipeline",
+      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "1810.04805",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
+      "pdfUrl": "https://arxiv.org/pdf/1810.04805",
+      "publishedDate": "2018-10-11",
+      "authors": [
+        "Jacob Devlin",
+        "Ming-Wei Chang",
+        "Kenton Lee",
+        "Kristina Toutanova"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "Section 2 BERT",
+          "subsectionTitle": "BERT Encoder Architecture",
+          "content": "BERT’s model architecture is a multi-layer bidirectional Transformer encoder based on the original implementation described in Vaswani et al.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 01",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "BertModel",
+              "startLine": 107,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "Section 3.1 Input Representation",
+          "subsectionTitle": "Input Representation",
+          "content": "The input embeddings are constructed from the sum of the token embeddings, segmentation embeddings, and position embeddings.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 02",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "embedding_postprocessor",
+              "startLine": 428,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Token Embedding",
+          "content": "The first token of every sequence is always a special classification token ([CLS]).",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 03",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "embedding_lookup",
+              "startLine": 380,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "Section 3.1 Input Representation",
+          "subsectionTitle": "Segment Embedding",
+          "content": "Sentence pairs are packed together into a single sequence.\n\nWe use learned embeddings to indicate whether a token belongs to sentence A or sentence B.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 04",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "embedding_postprocessor",
+              "startLine": 428,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Position Embedding",
+          "content": "Position embeddings are added to give the model information about the position of each token.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 05",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "embedding_postprocessor",
+              "startLine": 428,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "Section 3.1",
+          "subsectionTitle": "Special Token [CLS]",
+          "content": "The first token of every sequence is always a special classification token ([CLS]).",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 06"
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "Section 2",
+          "subsectionTitle": "Transformer Encoder Layer",
+          "content": "BERT uses a multi-layer bidirectional Transformer encoder.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 07",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "transformer_model",
+              "startLine": 754,
+              "reason": "```\nDIRECT\n```"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "Section 3.2 BERT Architecture",
+          "subsectionTitle": "Multi-Head Self Attention",
+          "content": "We use a bidirectional self-attention mechanism in all layers.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 08",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "attention_layer",
+              "startLine": 558,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "Section 3.2",
+          "subsectionTitle": "Query / Key / Value Projection",
+          "content": "Each attention head projects the input representations into queries, keys, and values.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 09"
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "Section 3.2",
+          "subsectionTitle": "Attention Score 계산",
+          "content": "Attention is computed as a scaled dot product between query and key representations.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 10"
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "Section 3.4 Implementation Details",
+          "subsectionTitle": "Attention Mask",
+          "content": "문장 길이가 다를 때 padding 위치 무시.\n\n예:\n\n```\nhello world [PAD] [PAD]\n```\n\nPAD는 학습 대상 X.\n\n---",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 11",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "attention_layer",
+              "startLine": 558,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "Section 3.2",
+          "subsectionTitle": "Softmax Attention Probability",
+          "content": "The attention weights are obtained by applying softmax.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 12"
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "Section 3.2",
+          "subsectionTitle": "Attention Output 계산",
+          "content": "The output is the weighted sum of the value representations.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 13"
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "Section 3.2",
+          "subsectionTitle": "Feed Forward Network",
+          "content": "Each Transformer block contains a fully connected feed-forward network.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 14",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "transformer_model",
+              "startLine": 754,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "Section 3.4",
+          "subsectionTitle": "GELU Activation",
+          "content": "We use the GELU activation function.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 15",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "gelu",
+              "startLine": 264,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "Section 3.2",
+          "subsectionTitle": "Residual Connection + Layer Normalization",
+          "content": "Each layer consists of two sub-layers: self-attention and feed-forward network, each followed by residual connection and layer normalization.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 16"
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "Section 3.4",
+          "subsectionTitle": "Dropout",
+          "content": "We apply dropout with probability 0.1.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 17"
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "Section 3.3 Pre-training Tasks",
+          "subsectionTitle": "Masked Language Model (MLM) Pre-training Objective",
+          "content": "In order to train a deep bidirectional representation, we introduce a new training objective called Masked LM (MLM).",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 18",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_masked_lm_predictions",
+              "startLine": 342,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "Section 3.3 Pre-training Tasks",
+          "subsectionTitle": "15% Token Masking Strategy",
+          "content": "We randomly mask 15% of all WordPiece tokens in each sequence.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 19"
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "Section 3.3 Pre-training Tasks",
+          "subsectionTitle": "80-10-10 Mask Replacement Rule",
+          "content": "The token is replaced with the [MASK] token 80% of the time, with a random token 10% of the time, and unchanged 10% of the time.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 20",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_masked_lm_predictions",
+              "startLine": 342,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 20,
+          "sectionTitle": "Section 3.3",
+          "subsectionTitle": "Masked LM Label 저장",
+          "content": "The objective is to predict the original vocabulary ID of the masked token.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 21"
+        },
+        {
+          "chunkIndex": 21,
+          "sectionTitle": "Section 3.3 Pre-training Tasks",
+          "subsectionTitle": "Next Sentence Prediction (NSP)",
+          "content": "Many important downstream tasks such as Natural Language Inference are based on understanding the relationship between two sentences.\n\nWe train a model that predicts whether the second sentence is the actual next sentence.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 22"
+        },
+        {
+          "chunkIndex": 22,
+          "sectionTitle": "Section 3.3",
+          "subsectionTitle": "NSP Training Instance 생성",
+          "content": "MLM과 NSP 데이터를 하나의 학습 instance로 저장.\n\n---",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 23",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_instances_from_document",
+              "startLine": 223,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 23,
+          "sectionTitle": "Section 3.4",
+          "subsectionTitle": "MLM Prediction Head",
+          "content": "The final hidden vectors corresponding to the masked positions are fed into an output softmax over the vocabulary.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 24"
+        },
+        {
+          "chunkIndex": 24,
+          "sectionTitle": "Section 3.4",
+          "subsectionTitle": "MLM Loss",
+          "content": "The objective is to maximize the log likelihood of the correct token.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 25"
+        },
+        {
+          "chunkIndex": 25,
+          "sectionTitle": "Section 3.4",
+          "subsectionTitle": "NSP Classifier",
+          "content": "The [CLS] representation is used for next sentence prediction.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 26"
+        },
+        {
+          "chunkIndex": 26,
+          "sectionTitle": "Section 3.4",
+          "subsectionTitle": "Total Pre-training Loss",
+          "content": "BERT 학습 loss:\n\n```\nTotal Loss\n\n=\nMLM Loss\n+\nNSP Loss\n```\n\n---",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 27",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_pretraining.py",
+              "symbolName": "model_fn",
+              "startLine": 114,
+              "reason": "```\nDIRECT\n```\n\n계속 진행합니다.\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "Section 3.4 BERT Architecture",
+          "subsectionTitle": "BERT Configuration (Base / Large)",
+          "content": "We use two model sizes: BERT_BASE and BERT_LARGE.\n\nBERT_BASE: L=12, H=768, A=12\n\nBERT_LARGE: L=24, H=1024, A=16",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 28"
+        },
+        {
+          "chunkIndex": 28,
+          "sectionTitle": "Section 3.4 Implementation Details",
+          "subsectionTitle": "Optimizer - Adam with Weight Decay",
+          "content": "We use Adam with learning rate 1e-4, β1=0.9, β2=0.999.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 29",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "optimization.py",
+              "symbolName": "create_optimizer",
+              "startLine": 25,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 29,
+          "sectionTitle": "Section 3.4 Implementation Details",
+          "subsectionTitle": "Learning Rate Warmup",
+          "content": "We use a learning rate of 1e-4 with a warmup over the first 10,000 steps.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 30",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "optimization.py",
+              "symbolName": "create_optimizer",
+              "startLine": 25,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 30,
+          "sectionTitle": "Section 3.4",
+          "subsectionTitle": "Learning Rate Decay",
+          "content": "The learning rate is increased linearly during warmup and then decreased linearly.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 31",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "optimization.py",
+              "symbolName": "create_optimizer",
+              "startLine": 25,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 31,
+          "sectionTitle": "Section 3.4",
+          "subsectionTitle": "Dropout Regularization",
+          "content": "We use dropout with probability 0.1.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 32",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "dropout",
+              "startLine": 344,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 32,
+          "sectionTitle": "Section 4 Fine-tuning BERT",
+          "subsectionTitle": "Fine-tuning Classification",
+          "content": "For sentence-level classification tasks, the representation of the [CLS] token is used.",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 33",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_classifier.py",
+              "symbolName": "create_model",
+              "startLine": 574,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 33,
+          "sectionTitle": "Section 4 Fine-tuning",
+          "subsectionTitle": "Classification Loss",
+          "content": "The fine-tuning procedure introduces only minimal changes compared to pre-training.",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "_comment": "노트 34"
+        },
+        {
+          "chunkIndex": 34,
+          "sectionTitle": "Section 4.2 SQuAD",
+          "subsectionTitle": "SQuAD Question Answering Fine-tuning",
+          "content": "The task is to predict the start and end token positions of the answer span.",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 35"
+        },
+        {
+          "chunkIndex": 35,
+          "sectionTitle": "Section 4.2",
+          "subsectionTitle": "SQuAD Output Layer",
+          "content": "각 token hidden state를 이용해 answer span 결정.\n\n---",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "_comment": "노트 36",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_squad.py",
+              "symbolName": "create_model",
+              "startLine": 550,
+              "reason": "```\nDIRECT\n```\n\n---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 36,
+          "sectionTitle": "Section 3 Pre-training",
+          "subsectionTitle": "BERT 전체 Training Pipeline",
+          "content": "```\nRaw Text\n\n↓\n\ncreate_pretraining_data.py\n\n↓\n\nTFRecord Dataset\n\n↓\n\nrun_pretraining.py\n\n↓\n\nBERT Model\n\n↓\n\nMLM + NSP Loss\n\n↓\n\nAdam Optimizer\n\n↓\n\nCheckpoint\n```\n\n---",
+          "pageStart": 5,
+          "pageEnd": 6,
+          "_comment": "노트 37"
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/google-research/bert",
+          "ownerName": "google-research",
+          "repositoryName": "bert",
+          "defaultBranch": "master",
+          "commitHash": "eedf5716ce1268e56f0a50264a88cafad334ac61",
+          "licenseName": "Apache-2.0",
+          "primaryLanguage": "Python",
+          "starCount": 40057,
+          "relationType": "OFFICIAL",
+          "isPrimary": true,
+          "codeBlocks": [
+            {
+              "filePath": "modeling.py",
+              "symbolName": "BertModel",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 107,
+              "endLine": 261,
+              "codeContent": "class BertModel(object):\n  \"\"\"BERT model (\"Bidirectional Encoder Representations from Transformers\").\n\n  Example usage:\n\n  ```python\n  # Already been converted into WordPiece token ids\n  input_ids = tf.constant([[31, 51, 99], [15, 5, 0]])\n  input_mask = tf.constant([[1, 1, 1], [1, 1, 0]])\n  token_type_ids = tf.constant([[0, 0, 1], [0, 2, 0]])\n\n  config = modeling.BertConfig(vocab_size=32000, hidden_size=512,\n    num_hidden_layers=8, num_attention_heads=6, intermediate_size=1024)\n\n  model = modeling.BertModel(config=config, is_training=True,\n    input_ids=input_ids, input_mask=input_mask, token_type_ids=token_type_ids)\n\n  label_embeddings = tf.get_variable(...)\n  pooled_output = model.get_pooled_output()\n  logits = tf.matmul(pooled_output, label_embeddings)\n  ...\n  ```\n  \"\"\"\n\n  def __init__(self,\n               config,\n               is_training,\n               input_ids,\n               input_mask=None,\n               token_type_ids=None,\n               use_one_hot_embeddings=False,\n               scope=None):\n    \"\"\"Constructor for BertModel.\n\n    Args:\n      config: `BertConfig` instance.\n      is_training: bool. true for training model, false for eval model. Controls\n        whether dropout will be applied.\n      input_ids: int32 Tensor of shape [batch_size, seq_length].\n      input_mask: (optional) int32 Tensor of shape [batch_size, seq_length].\n      token_type_ids: (optional) int32 Tensor of shape [batch_size, seq_length].\n      use_one_hot_embeddings: (optional) bool. Whether to use one-hot word\n        embeddings or tf.embedding_lookup() for the word embeddings.\n      scope: (optional) variable scope. Defaults to \"bert\".\n\n    Raises:\n      ValueError: The config is invalid or one of the input tensor shapes\n        is invalid.\n    \"\"\"\n    config = copy.deepcopy(config)\n    if not is_training:\n      config.hidden_dropout_prob = 0.0\n      config.attention_probs_dropout_prob = 0.0\n\n    input_shape = get_shape_list(input_ids, expected_rank=2)\n    batch_size = input_shape[0]\n    seq_length = input_shape[1]\n\n    if input_mask is None:\n      input_mask = tf.ones(shape=[batch_size, seq_length], dtype=tf.int32)\n\n    if token_type_ids is None:\n      token_type_ids = tf.zeros(shape=[batch_size, seq_length], dtype=tf.int32)\n\n    with tf.variable_scope(scope, default_name=\"bert\"):\n      with tf.variable_scope(\"embeddings\"):\n        # Perform embedding lookup on the word ids.\n        (self.embedding_output, self.embedding_table) = embedding_lookup(\n            input_ids=input_ids,\n            vocab_size=config.vocab_size,\n            embedding_size=config.hidden_size,\n            initializer_range=config.initializer_range,\n            word_embedding_name=\"word_embeddings\",\n            use_one_hot_embeddings=use_one_hot_embeddings)\n\n        # Add positional embeddings and token type embeddings, then layer\n        # normalize and perform dropout.\n        self.embedding_output = embedding_postprocessor(\n            input_tensor=self.embedding_output,\n            use_token_type=True,\n            token_type_ids=token_type_ids,\n            token_type_vocab_size=config.type_vocab_size,\n            token_type_embedding_name=\"token_type_embeddings\",\n            use_position_embeddings=True,\n            position_embedding_name=\"position_embeddings\",\n            initializer_range=config.initializer_range,\n            max_position_embeddings=config.max_position_embeddings,\n            dropout_prob=config.hidden_dropout_prob)\n\n      with tf.variable_scope(\"encoder\"):\n        # This converts a 2D mask of shape [batch_size, seq_length] to a 3D\n        # mask of shape [batch_size, seq_length, seq_length] which is used\n        # for the attention scores.\n        attention_mask = create_attention_mask_from_input_mask(\n            input_ids, input_mask)\n\n        # Run the stacked transformer.\n        # `sequence_output` shape = [batch_size, seq_length, hidden_size].\n        self.all_encoder_layers = transformer_model(\n            input_tensor=self.embedding_output,\n            attention_mask=attention_mask,\n            hidden_size=config.hidden_size,\n            num_hidden_layers=config.num_hidden_layers,\n            num_attention_heads=config.num_attention_heads,\n            intermediate_size=config.intermediate_size,\n            intermediate_act_fn=get_activation(config.hidden_act),\n            hidden_dropout_prob=config.hidden_dropout_prob,\n            attention_probs_dropout_prob=config.attention_probs_dropout_prob,\n            initializer_range=config.initializer_range,\n            do_return_all_layers=True)\n\n      self.sequence_output = self.all_encoder_layers[-1]\n      # The \"pooler\" converts the encoded sequence tensor of shape\n      # [batch_size, seq_length, hidden_size] to a tensor of shape\n      # [batch_size, hidden_size]. This is necessary for segment-level\n      # (or segment-pair-level) classification tasks where we need a fixed\n      # dimensional representation of the segment.\n      with tf.variable_scope(\"pooler\"):\n        # We \"pool\" the model by simply taking the hidden state corresponding\n        # to the first token. We assume that this has been pre-trained\n        first_token_tensor = tf.squeeze(self.sequence_output[:, 0:1, :], axis=1)\n        self.pooled_output = tf.layers.dense(\n            first_token_tensor,\n            config.hidden_size,\n            activation=tf.tanh,\n            kernel_initializer=create_initializer(config.initializer_range))\n\n  def get_pooled_output(self):\n    return self.pooled_output\n\n  def get_sequence_output(self):\n    \"\"\"Gets final hidden layer of encoder.\n\n    Returns:\n      float Tensor of shape [batch_size, seq_length, hidden_size] corresponding\n      to the final hidden of the transformer encoder.\n    \"\"\"\n    return self.sequence_output\n\n  def get_all_encoder_layers(self):\n    return self.all_encoder_layers\n\n  def get_embedding_output(self):\n    \"\"\"Gets output of the embedding lookup (i.e., input to the transformer).\n\n    Returns:\n      float Tensor of shape [batch_size, seq_length, hidden_size] corresponding\n      to the output of the embedding layer, after summing the word\n      embeddings with the positional embeddings and the token type embeddings,\n      then performing layer normalization. This is the input to the transformer.\n    \"\"\"\n    return self.embedding_output\n\n  def get_embedding_table(self):\n    return self.embedding_table",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:107-261"
+            },
+            {
+              "filePath": "modeling.py",
+              "symbolName": "embedding_postprocessor",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 428,
+              "endLine": 521,
+              "codeContent": "def embedding_postprocessor(input_tensor,\n                            use_token_type=False,\n                            token_type_ids=None,\n                            token_type_vocab_size=16,\n                            token_type_embedding_name=\"token_type_embeddings\",\n                            use_position_embeddings=True,\n                            position_embedding_name=\"position_embeddings\",\n                            initializer_range=0.02,\n                            max_position_embeddings=512,\n                            dropout_prob=0.1):\n  \"\"\"Performs various post-processing on a word embedding tensor.\n\n  Args:\n    input_tensor: float Tensor of shape [batch_size, seq_length,\n      embedding_size].\n    use_token_type: bool. Whether to add embeddings for `token_type_ids`.\n    token_type_ids: (optional) int32 Tensor of shape [batch_size, seq_length].\n      Must be specified if `use_token_type` is True.\n    token_type_vocab_size: int. The vocabulary size of `token_type_ids`.\n    token_type_embedding_name: string. The name of the embedding table variable\n      for token type ids.\n    use_position_embeddings: bool. Whether to add position embeddings for the\n      position of each token in the sequence.\n    position_embedding_name: string. The name of the embedding table variable\n      for positional embeddings.\n    initializer_range: float. Range of the weight initialization.\n    max_position_embeddings: int. Maximum sequence length that might ever be\n      used with this model. This can be longer than the sequence length of\n      input_tensor, but cannot be shorter.\n    dropout_prob: float. Dropout probability applied to the final output tensor.\n\n  Returns:\n    float tensor with same shape as `input_tensor`.\n\n  Raises:\n    ValueError: One of the tensor shapes or input values is invalid.\n  \"\"\"\n  input_shape = get_shape_list(input_tensor, expected_rank=3)\n  batch_size = input_shape[0]\n  seq_length = input_shape[1]\n  width = input_shape[2]\n\n  output = input_tensor\n\n  if use_token_type:\n    if token_type_ids is None:\n      raise ValueError(\"`token_type_ids` must be specified if\"\n                       \"`use_token_type` is True.\")\n    token_type_table = tf.get_variable(\n        name=token_type_embedding_name,\n        shape=[token_type_vocab_size, width],\n        initializer=create_initializer(initializer_range))\n    # This vocab will be small so we always do one-hot here, since it is always\n    # faster for a small vocabulary.\n    flat_token_type_ids = tf.reshape(token_type_ids, [-1])\n    one_hot_ids = tf.one_hot(flat_token_type_ids, depth=token_type_vocab_size)\n    token_type_embeddings = tf.matmul(one_hot_ids, token_type_table)\n    token_type_embeddings = tf.reshape(token_type_embeddings,\n                                       [batch_size, seq_length, width])\n    output += token_type_embeddings\n\n  if use_position_embeddings:\n    assert_op = tf.assert_less_equal(seq_length, max_position_embeddings)\n    with tf.control_dependencies([assert_op]):\n      full_position_embeddings = tf.get_variable(\n          name=position_embedding_name,\n          shape=[max_position_embeddings, width],\n          initializer=create_initializer(initializer_range))\n      # Since the position embedding table is a learned variable, we create it\n      # using a (long) sequence length `max_position_embeddings`. The actual\n      # sequence length might be shorter than this, for faster training of\n      # tasks that do not have long sequences.\n      #\n      # So `full_position_embeddings` is effectively an embedding table\n      # for position [0, 1, 2, ..., max_position_embeddings-1], and the current\n      # sequence has positions [0, 1, 2, ... seq_length-1], so we can just\n      # perform a slice.\n      position_embeddings = tf.slice(full_position_embeddings, [0, 0],\n                                     [seq_length, -1])\n      num_dims = len(output.shape.as_list())\n\n      # Only the last two dimensions are relevant (`seq_length` and `width`), so\n      # we broadcast among the first dimensions, which is typically just\n      # the batch size.\n      position_broadcast_shape = []\n      for _ in range(num_dims - 2):\n        position_broadcast_shape.append(1)\n      position_broadcast_shape.extend([seq_length, width])\n      position_embeddings = tf.reshape(position_embeddings,\n                                       position_broadcast_shape)\n      output += position_embeddings\n\n  output = layer_norm_and_dropout(output, dropout_prob)\n  return output",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:428-521"
+            },
+            {
+              "filePath": "modeling.py",
+              "symbolName": "embedding_lookup",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 380,
+              "endLine": 425,
+              "codeContent": "def embedding_lookup(input_ids,\n                     vocab_size,\n                     embedding_size=128,\n                     initializer_range=0.02,\n                     word_embedding_name=\"word_embeddings\",\n                     use_one_hot_embeddings=False):\n  \"\"\"Looks up words embeddings for id tensor.\n\n  Args:\n    input_ids: int32 Tensor of shape [batch_size, seq_length] containing word\n      ids.\n    vocab_size: int. Size of the embedding vocabulary.\n    embedding_size: int. Width of the word embeddings.\n    initializer_range: float. Embedding initialization range.\n    word_embedding_name: string. Name of the embedding table.\n    use_one_hot_embeddings: bool. If True, use one-hot method for word\n      embeddings. If False, use `tf.gather()`.\n\n  Returns:\n    float Tensor of shape [batch_size, seq_length, embedding_size].\n  \"\"\"\n  # This function assumes that the input is of shape [batch_size, seq_length,\n  # num_inputs].\n  #\n  # If the input is a 2D tensor of shape [batch_size, seq_length], we\n  # reshape to [batch_size, seq_length, 1].\n  if input_ids.shape.ndims == 2:\n    input_ids = tf.expand_dims(input_ids, axis=[-1])\n\n  embedding_table = tf.get_variable(\n      name=word_embedding_name,\n      shape=[vocab_size, embedding_size],\n      initializer=create_initializer(initializer_range))\n\n  flat_input_ids = tf.reshape(input_ids, [-1])\n  if use_one_hot_embeddings:\n    one_hot_input_ids = tf.one_hot(flat_input_ids, depth=vocab_size)\n    output = tf.matmul(one_hot_input_ids, embedding_table)\n  else:\n    output = tf.gather(embedding_table, flat_input_ids)\n\n  input_shape = get_shape_list(input_ids)\n\n  output = tf.reshape(output,\n                      input_shape[0:-1] + [input_shape[-1] * embedding_size])\n  return (output, embedding_table)",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:380-425"
+            },
+            {
+              "filePath": "modeling.py",
+              "symbolName": "transformer_model",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 754,
+              "endLine": 892,
+              "codeContent": "def transformer_model(input_tensor,\n                      attention_mask=None,\n                      hidden_size=768,\n                      num_hidden_layers=12,\n                      num_attention_heads=12,\n                      intermediate_size=3072,\n                      intermediate_act_fn=gelu,\n                      hidden_dropout_prob=0.1,\n                      attention_probs_dropout_prob=0.1,\n                      initializer_range=0.02,\n                      do_return_all_layers=False):\n  \"\"\"Multi-headed, multi-layer Transformer from \"Attention is All You Need\".\n\n  This is almost an exact implementation of the original Transformer encoder.\n\n  See the original paper:\n  https://arxiv.org/abs/1706.03762\n\n  Also see:\n  https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/models/transformer.py\n\n  Args:\n    input_tensor: float Tensor of shape [batch_size, seq_length, hidden_size].\n    attention_mask: (optional) int32 Tensor of shape [batch_size, seq_length,\n      seq_length], with 1 for positions that can be attended to and 0 in\n      positions that should not be.\n    hidden_size: int. Hidden size of the Transformer.\n    num_hidden_layers: int. Number of layers (blocks) in the Transformer.\n    num_attention_heads: int. Number of attention heads in the Transformer.\n    intermediate_size: int. The size of the \"intermediate\" (a.k.a., feed\n      forward) layer.\n    intermediate_act_fn: function. The non-linear activation function to apply\n      to the output of the intermediate/feed-forward layer.\n    hidden_dropout_prob: float. Dropout probability for the hidden layers.\n    attention_probs_dropout_prob: float. Dropout probability of the attention\n      probabilities.\n    initializer_range: float. Range of the initializer (stddev of truncated\n      normal).\n    do_return_all_layers: Whether to also return all layers or just the final\n      layer.\n\n  Returns:\n    float Tensor of shape [batch_size, seq_length, hidden_size], the final\n    hidden layer of the Transformer.\n\n  Raises:\n    ValueError: A Tensor shape or parameter is invalid.\n  \"\"\"\n  if hidden_size % num_attention_heads != 0:\n    raise ValueError(\n        \"The hidden size (%d) is not a multiple of the number of attention \"\n        \"heads (%d)\" % (hidden_size, num_attention_heads))\n\n  attention_head_size = int(hidden_size / num_attention_heads)\n  input_shape = get_shape_list(input_tensor, expected_rank=3)\n  batch_size = input_shape[0]\n  seq_length = input_shape[1]\n  input_width = input_shape[2]\n\n  # The Transformer performs sum residuals on all layers so the input needs\n  # to be the same as the hidden size.\n  if input_width != hidden_size:\n    raise ValueError(\"The width of the input tensor (%d) != hidden size (%d)\" %\n                     (input_width, hidden_size))\n\n  # We keep the representation as a 2D tensor to avoid re-shaping it back and\n  # forth from a 3D tensor to a 2D tensor. Re-shapes are normally free on\n  # the GPU/CPU but may not be free on the TPU, so we want to minimize them to\n  # help the optimizer.\n  prev_output = reshape_to_matrix(input_tensor)\n\n  all_layer_outputs = []\n  for layer_idx in range(num_hidden_layers):\n    with tf.variable_scope(\"layer_%d\" % layer_idx):\n      layer_input = prev_output\n\n      with tf.variable_scope(\"attention\"):\n        attention_heads = []\n        with tf.variable_scope(\"self\"):\n          attention_head = attention_layer(\n              from_tensor=layer_input,\n              to_tensor=layer_input,\n              attention_mask=attention_mask,\n              num_attention_heads=num_attention_heads,\n              size_per_head=attention_head_size,\n              attention_probs_dropout_prob=attention_probs_dropout_prob,\n              initializer_range=initializer_range,\n              do_return_2d_tensor=True,\n              batch_size=batch_size,\n              from_seq_length=seq_length,\n              to_seq_length=seq_length)\n          attention_heads.append(attention_head)\n\n        attention_output = None\n        if len(attention_heads) == 1:\n          attention_output = attention_heads[0]\n        else:\n          # In the case where we have other sequences, we just concatenate\n          # them to the self-attention head before the projection.\n          attention_output = tf.concat(attention_heads, axis=-1)\n\n        # Run a linear projection of `hidden_size` then add a residual\n        # with `layer_input`.\n        with tf.variable_scope(\"output\"):\n          attention_output = tf.layers.dense(\n              attention_output,\n              hidden_size,\n              kernel_initializer=create_initializer(initializer_range))\n          attention_output = dropout(attention_output, hidden_dropout_prob)\n          attention_output = layer_norm(attention_output + layer_input)\n\n      # The activation is only applied to the \"intermediate\" hidden layer.\n      with tf.variable_scope(\"intermediate\"):\n        intermediate_output = tf.layers.dense(\n            attention_output,\n            intermediate_size,\n            activation=intermediate_act_fn,\n            kernel_initializer=create_initializer(initializer_range))\n\n      # Down-project back to `hidden_size` then add the residual.\n      with tf.variable_scope(\"output\"):\n        layer_output = tf.layers.dense(\n            intermediate_output,\n            hidden_size,\n            kernel_initializer=create_initializer(initializer_range))\n        layer_output = dropout(layer_output, hidden_dropout_prob)\n        layer_output = layer_norm(layer_output + attention_output)\n        prev_output = layer_output\n        all_layer_outputs.append(layer_output)\n\n  if do_return_all_layers:\n    final_outputs = []\n    for layer_output in all_layer_outputs:\n      final_output = reshape_from_matrix(layer_output, input_shape)\n      final_outputs.append(final_output)\n    return final_outputs\n  else:\n    final_output = reshape_from_matrix(prev_output, input_shape)\n    return final_output",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:754-892"
+            },
+            {
+              "filePath": "modeling.py",
+              "symbolName": "attention_layer",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 558,
+              "endLine": 751,
+              "codeContent": "def attention_layer(from_tensor,\n                    to_tensor,\n                    attention_mask=None,\n                    num_attention_heads=1,\n                    size_per_head=512,\n                    query_act=None,\n                    key_act=None,\n                    value_act=None,\n                    attention_probs_dropout_prob=0.0,\n                    initializer_range=0.02,\n                    do_return_2d_tensor=False,\n                    batch_size=None,\n                    from_seq_length=None,\n                    to_seq_length=None):\n  \"\"\"Performs multi-headed attention from `from_tensor` to `to_tensor`.\n\n  This is an implementation of multi-headed attention based on \"Attention\n  is all you Need\". If `from_tensor` and `to_tensor` are the same, then\n  this is self-attention. Each timestep in `from_tensor` attends to the\n  corresponding sequence in `to_tensor`, and returns a fixed-with vector.\n\n  This function first projects `from_tensor` into a \"query\" tensor and\n  `to_tensor` into \"key\" and \"value\" tensors. These are (effectively) a list\n  of tensors of length `num_attention_heads`, where each tensor is of shape\n  [batch_size, seq_length, size_per_head].\n\n  Then, the query and key tensors are dot-producted and scaled. These are\n  softmaxed to obtain attention probabilities. The value tensors are then\n  interpolated by these probabilities, then concatenated back to a single\n  tensor and returned.\n\n  In practice, the multi-headed attention are done with transposes and\n  reshapes rather than actual separate tensors.\n\n  Args:\n    from_tensor: float Tensor of shape [batch_size, from_seq_length,\n      from_width].\n    to_tensor: float Tensor of shape [batch_size, to_seq_length, to_width].\n    attention_mask: (optional) int32 Tensor of shape [batch_size,\n      from_seq_length, to_seq_length]. The values should be 1 or 0. The\n      attention scores will effectively be set to -infinity for any positions in\n      the mask that are 0, and will be unchanged for positions that are 1.\n    num_attention_heads: int. Number of attention heads.\n    size_per_head: int. Size of each attention head.\n    query_act: (optional) Activation function for the query transform.\n    key_act: (optional) Activation function for the key transform.\n    value_act: (optional) Activation function for the value transform.\n    attention_probs_dropout_prob: (optional) float. Dropout probability of the\n      attention probabilities.\n    initializer_range: float. Range of the weight initializer.\n    do_return_2d_tensor: bool. If True, the output will be of shape [batch_size\n      * from_seq_length, num_attention_heads * size_per_head]. If False, the\n      output will be of shape [batch_size, from_seq_length, num_attention_heads\n      * size_per_head].\n    batch_size: (Optional) int. If the input is 2D, this might be the batch size\n      of the 3D version of the `from_tensor` and `to_tensor`.\n    from_seq_length: (Optional) If the input is 2D, this might be the seq length\n      of the 3D version of the `from_tensor`.\n    to_seq_length: (Optional) If the input is 2D, this might be the seq length\n      of the 3D version of the `to_tensor`.\n\n  Returns:\n    float Tensor of shape [batch_size, from_seq_length,\n      num_attention_heads * size_per_head]. (If `do_return_2d_tensor` is\n      true, this will be of shape [batch_size * from_seq_length,\n      num_attention_heads * size_per_head]).\n\n  Raises:\n    ValueError: Any of the arguments or tensor shapes are invalid.\n  \"\"\"\n\n  def transpose_for_scores(input_tensor, batch_size, num_attention_heads,\n                           seq_length, width):\n    output_tensor = tf.reshape(\n        input_tensor, [batch_size, seq_length, num_attention_heads, width])\n\n    output_tensor = tf.transpose(output_tensor, [0, 2, 1, 3])\n    return output_tensor\n\n  from_shape = get_shape_list(from_tensor, expected_rank=[2, 3])\n  to_shape = get_shape_list(to_tensor, expected_rank=[2, 3])\n\n  if len(from_shape) != len(to_shape):\n    raise ValueError(\n        \"The rank of `from_tensor` must match the rank of `to_tensor`.\")\n\n  if len(from_shape) == 3:\n    batch_size = from_shape[0]\n    from_seq_length = from_shape[1]\n    to_seq_length = to_shape[1]\n  elif len(from_shape) == 2:\n    if (batch_size is None or from_seq_length is None or to_seq_length is None):\n      raise ValueError(\n          \"When passing in rank 2 tensors to attention_layer, the values \"\n          \"for `batch_size`, `from_seq_length`, and `to_seq_length` \"\n          \"must all be specified.\")\n\n  # Scalar dimensions referenced here:\n  #   B = batch size (number of sequences)\n  #   F = `from_tensor` sequence length\n  #   T = `to_tensor` sequence length\n  #   N = `num_attention_heads`\n  #   H = `size_per_head`\n\n  from_tensor_2d = reshape_to_matrix(from_tensor)\n  to_tensor_2d = reshape_to_matrix(to_tensor)\n\n  # `query_layer` = [B*F, N*H]\n  query_layer = tf.layers.dense(\n      from_tensor_2d,\n      num_attention_heads * size_per_head,\n      activation=query_act,\n      name=\"query\",\n      kernel_initializer=create_initializer(initializer_range))\n\n  # `key_layer` = [B*T, N*H]\n  key_layer = tf.layers.dense(\n      to_tensor_2d,\n      num_attention_heads * size_per_head,\n      activation=key_act,\n      name=\"key\",\n      kernel_initializer=create_initializer(initializer_range))\n\n  # `value_layer` = [B*T, N*H]\n  value_layer = tf.layers.dense(\n      to_tensor_2d,\n      num_attention_heads * size_per_head,\n      activation=value_act,\n      name=\"value\",\n      kernel_initializer=create_initializer(initializer_range))\n\n  # `query_layer` = [B, N, F, H]\n  query_layer = transpose_for_scores(query_layer, batch_size,\n                                     num_attention_heads, from_seq_length,\n                                     size_per_head)\n\n  # `key_layer` = [B, N, T, H]\n  key_layer = transpose_for_scores(key_layer, batch_size, num_attention_heads,\n                                   to_seq_length, size_per_head)\n\n  # Take the dot product between \"query\" and \"key\" to get the raw\n  # attention scores.\n  # `attention_scores` = [B, N, F, T]\n  attention_scores = tf.matmul(query_layer, key_layer, transpose_b=True)\n  attention_scores = tf.multiply(attention_scores,\n                                 1.0 / math.sqrt(float(size_per_head)))\n\n  if attention_mask is not None:\n    # `attention_mask` = [B, 1, F, T]\n    attention_mask = tf.expand_dims(attention_mask, axis=[1])\n\n    # Since attention_mask is 1.0 for positions we want to attend and 0.0 for\n    # masked positions, this operation will create a tensor which is 0.0 for\n    # positions we want to attend and -10000.0 for masked positions.\n    adder = (1.0 - tf.cast(attention_mask, tf.float32)) * -10000.0\n\n    # Since we are adding it to the raw scores before the softmax, this is\n    # effectively the same as removing these entirely.\n    attention_scores += adder\n\n  # Normalize the attention scores to probabilities.\n  # `attention_probs` = [B, N, F, T]\n  attention_probs = tf.nn.softmax(attention_scores)\n\n  # This is actually dropping out entire tokens to attend to, which might\n  # seem a bit unusual, but is taken from the original Transformer paper.\n  attention_probs = dropout(attention_probs, attention_probs_dropout_prob)\n\n  # `value_layer` = [B, T, N, H]\n  value_layer = tf.reshape(\n      value_layer,\n      [batch_size, to_seq_length, num_attention_heads, size_per_head])\n\n  # `value_layer` = [B, N, T, H]\n  value_layer = tf.transpose(value_layer, [0, 2, 1, 3])\n\n  # `context_layer` = [B, N, F, H]\n  context_layer = tf.matmul(attention_probs, value_layer)\n\n  # `context_layer` = [B, F, N, H]\n  context_layer = tf.transpose(context_layer, [0, 2, 1, 3])\n\n  if do_return_2d_tensor:\n    # `context_layer` = [B*F, N*H]\n    context_layer = tf.reshape(\n        context_layer,\n        [batch_size * from_seq_length, num_attention_heads * size_per_head])\n  else:\n    # `context_layer` = [B, F, N*H]\n    context_layer = tf.reshape(\n        context_layer,\n        [batch_size, from_seq_length, num_attention_heads * size_per_head])\n\n  return context_layer",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:558-751"
+            },
+            {
+              "filePath": "modeling.py",
+              "symbolName": "gelu",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 264,
+              "endLine": 277,
+              "codeContent": "def gelu(x):\n  \"\"\"Gaussian Error Linear Unit.\n\n  This is a smoother version of the RELU.\n  Original paper: https://arxiv.org/abs/1606.08415\n  Args:\n    x: float Tensor to perform activation.\n\n  Returns:\n    `x` with the GELU activation applied.\n  \"\"\"\n  cdf = 0.5 * (1.0 + tf.tanh(\n      (np.sqrt(2 / np.pi) * (x + 0.044715 * tf.pow(x, 3)))))\n  return x * cdf",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:264-277"
+            },
+            {
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_masked_lm_predictions",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 342,
+              "endLine": 415,
+              "codeContent": "def create_masked_lm_predictions(tokens, masked_lm_prob,\n                                 max_predictions_per_seq, vocab_words, rng):\n  \"\"\"Creates the predictions for the masked LM objective.\"\"\"\n\n  cand_indexes = []\n  for (i, token) in enumerate(tokens):\n    if token == \"[CLS]\" or token == \"[SEP]\":\n      continue\n    # Whole Word Masking means that if we mask all of the wordpieces\n    # corresponding to an original word. When a word has been split into\n    # WordPieces, the first token does not have any marker and any subsequence\n    # tokens are prefixed with ##. So whenever we see the ## token, we\n    # append it to the previous set of word indexes.\n    #\n    # Note that Whole Word Masking does *not* change the training code\n    # at all -- we still predict each WordPiece independently, softmaxed\n    # over the entire vocabulary.\n    if (FLAGS.do_whole_word_mask and len(cand_indexes) >= 1 and\n        token.startswith(\"##\")):\n      cand_indexes[-1].append(i)\n    else:\n      cand_indexes.append([i])\n\n  rng.shuffle(cand_indexes)\n\n  output_tokens = list(tokens)\n\n  num_to_predict = min(max_predictions_per_seq,\n                       max(1, int(round(len(tokens) * masked_lm_prob))))\n\n  masked_lms = []\n  covered_indexes = set()\n  for index_set in cand_indexes:\n    if len(masked_lms) >= num_to_predict:\n      break\n    # If adding a whole-word mask would exceed the maximum number of\n    # predictions, then just skip this candidate.\n    if len(masked_lms) + len(index_set) > num_to_predict:\n      continue\n    is_any_index_covered = False\n    for index in index_set:\n      if index in covered_indexes:\n        is_any_index_covered = True\n        break\n    if is_any_index_covered:\n      continue\n    for index in index_set:\n      covered_indexes.add(index)\n\n      masked_token = None\n      # 80% of the time, replace with [MASK]\n      if rng.random() < 0.8:\n        masked_token = \"[MASK]\"\n      else:\n        # 10% of the time, keep original\n        if rng.random() < 0.5:\n          masked_token = tokens[index]\n        # 10% of the time, replace with random word\n        else:\n          masked_token = vocab_words[rng.randint(0, len(vocab_words) - 1)]\n\n      output_tokens[index] = masked_token\n\n      masked_lms.append(MaskedLmInstance(index=index, label=tokens[index]))\n  assert len(masked_lms) <= num_to_predict\n  masked_lms = sorted(masked_lms, key=lambda x: x.index)\n\n  masked_lm_positions = []\n  masked_lm_labels = []\n  for p in masked_lms:\n    masked_lm_positions.append(p.index)\n    masked_lm_labels.append(p.label)\n\n  return (output_tokens, masked_lm_positions, masked_lm_labels)",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — create_pretraining_data.py:342-415"
+            },
+            {
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_instances_from_document",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 223,
+              "endLine": 335,
+              "codeContent": "def create_instances_from_document(\n    all_documents, document_index, max_seq_length, short_seq_prob,\n    masked_lm_prob, max_predictions_per_seq, vocab_words, rng):\n  \"\"\"Creates `TrainingInstance`s for a single document.\"\"\"\n  document = all_documents[document_index]\n\n  # Account for [CLS], [SEP], [SEP]\n  max_num_tokens = max_seq_length - 3\n\n  # We *usually* want to fill up the entire sequence since we are padding\n  # to `max_seq_length` anyways, so short sequences are generally wasted\n  # computation. However, we *sometimes*\n  # (i.e., short_seq_prob == 0.1 == 10% of the time) want to use shorter\n  # sequences to minimize the mismatch between pre-training and fine-tuning.\n  # The `target_seq_length` is just a rough target however, whereas\n  # `max_seq_length` is a hard limit.\n  target_seq_length = max_num_tokens\n  if rng.random() < short_seq_prob:\n    target_seq_length = rng.randint(2, max_num_tokens)\n\n  # We DON'T just concatenate all of the tokens from a document into a long\n  # sequence and choose an arbitrary split point because this would make the\n  # next sentence prediction task too easy. Instead, we split the input into\n  # segments \"A\" and \"B\" based on the actual \"sentences\" provided by the user\n  # input.\n  instances = []\n  current_chunk = []\n  current_length = 0\n  i = 0\n  while i < len(document):\n    segment = document[i]\n    current_chunk.append(segment)\n    current_length += len(segment)\n    if i == len(document) - 1 or current_length >= target_seq_length:\n      if current_chunk:\n        # `a_end` is how many segments from `current_chunk` go into the `A`\n        # (first) sentence.\n        a_end = 1\n        if len(current_chunk) >= 2:\n          a_end = rng.randint(1, len(current_chunk) - 1)\n\n        tokens_a = []\n        for j in range(a_end):\n          tokens_a.extend(current_chunk[j])\n\n        tokens_b = []\n        # Random next\n        is_random_next = False\n        if len(current_chunk) == 1 or rng.random() < 0.5:\n          is_random_next = True\n          target_b_length = target_seq_length - len(tokens_a)\n\n          # This should rarely go for more than one iteration for large\n          # corpora. However, just to be careful, we try to make sure that\n          # the random document is not the same as the document\n          # we're processing.\n          for _ in range(10):\n            random_document_index = rng.randint(0, len(all_documents) - 1)\n            if random_document_index != document_index:\n              break\n\n          random_document = all_documents[random_document_index]\n          random_start = rng.randint(0, len(random_document) - 1)\n          for j in range(random_start, len(random_document)):\n            tokens_b.extend(random_document[j])\n            if len(tokens_b) >= target_b_length:\n              break\n          # We didn't actually use these segments so we \"put them back\" so\n          # they don't go to waste.\n          num_unused_segments = len(current_chunk) - a_end\n          i -= num_unused_segments\n        # Actual next\n        else:\n          is_random_next = False\n          for j in range(a_end, len(current_chunk)):\n            tokens_b.extend(current_chunk[j])\n        truncate_seq_pair(tokens_a, tokens_b, max_num_tokens, rng)\n\n        assert len(tokens_a) >= 1\n        assert len(tokens_b) >= 1\n\n        tokens = []\n        segment_ids = []\n        tokens.append(\"[CLS]\")\n        segment_ids.append(0)\n        for token in tokens_a:\n          tokens.append(token)\n          segment_ids.append(0)\n\n        tokens.append(\"[SEP]\")\n        segment_ids.append(0)\n\n        for token in tokens_b:\n          tokens.append(token)\n          segment_ids.append(1)\n        tokens.append(\"[SEP]\")\n        segment_ids.append(1)\n\n        (tokens, masked_lm_positions,\n         masked_lm_labels) = create_masked_lm_predictions(\n             tokens, masked_lm_prob, max_predictions_per_seq, vocab_words, rng)\n        instance = TrainingInstance(\n            tokens=tokens,\n            segment_ids=segment_ids,\n            is_random_next=is_random_next,\n            masked_lm_positions=masked_lm_positions,\n            masked_lm_labels=masked_lm_labels)\n        instances.append(instance)\n      current_chunk = []\n      current_length = 0\n    i += 1\n\n  return instances",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — create_pretraining_data.py:223-335"
+            },
+            {
+              "filePath": "run_pretraining.py",
+              "symbolName": "model_fn",
+              "symbolType": "METHOD",
+              "parentSymbolName": "model_fn_builder",
+              "programmingLanguage": "Python",
+              "startLine": 114,
+              "endLine": 235,
+              "codeContent": "  def model_fn(features, labels, mode, params):  # pylint: disable=unused-argument\n    \"\"\"The `model_fn` for TPUEstimator.\"\"\"\n\n    tf.logging.info(\"*** Features ***\")\n    for name in sorted(features.keys()):\n      tf.logging.info(\"  name = %s, shape = %s\" % (name, features[name].shape))\n\n    input_ids = features[\"input_ids\"]\n    input_mask = features[\"input_mask\"]\n    segment_ids = features[\"segment_ids\"]\n    masked_lm_positions = features[\"masked_lm_positions\"]\n    masked_lm_ids = features[\"masked_lm_ids\"]\n    masked_lm_weights = features[\"masked_lm_weights\"]\n    next_sentence_labels = features[\"next_sentence_labels\"]\n\n    is_training = (mode == tf.estimator.ModeKeys.TRAIN)\n\n    model = modeling.BertModel(\n        config=bert_config,\n        is_training=is_training,\n        input_ids=input_ids,\n        input_mask=input_mask,\n        token_type_ids=segment_ids,\n        use_one_hot_embeddings=use_one_hot_embeddings)\n\n    (masked_lm_loss,\n     masked_lm_example_loss, masked_lm_log_probs) = get_masked_lm_output(\n         bert_config, model.get_sequence_output(), model.get_embedding_table(),\n         masked_lm_positions, masked_lm_ids, masked_lm_weights)\n\n    (next_sentence_loss, next_sentence_example_loss,\n     next_sentence_log_probs) = get_next_sentence_output(\n         bert_config, model.get_pooled_output(), next_sentence_labels)\n\n    total_loss = masked_lm_loss + next_sentence_loss\n\n    tvars = tf.trainable_variables()\n\n    initialized_variable_names = {}\n    scaffold_fn = None\n    if init_checkpoint:\n      (assignment_map, initialized_variable_names\n      ) = modeling.get_assignment_map_from_checkpoint(tvars, init_checkpoint)\n      if use_tpu:\n\n        def tpu_scaffold():\n          tf.train.init_from_checkpoint(init_checkpoint, assignment_map)\n          return tf.train.Scaffold()\n\n        scaffold_fn = tpu_scaffold\n      else:\n        tf.train.init_from_checkpoint(init_checkpoint, assignment_map)\n\n    tf.logging.info(\"**** Trainable Variables ****\")\n    for var in tvars:\n      init_string = \"\"\n      if var.name in initialized_variable_names:\n        init_string = \", *INIT_FROM_CKPT*\"\n      tf.logging.info(\"  name = %s, shape = %s%s\", var.name, var.shape,\n                      init_string)\n\n    output_spec = None\n    if mode == tf.estimator.ModeKeys.TRAIN:\n      train_op = optimization.create_optimizer(\n          total_loss, learning_rate, num_train_steps, num_warmup_steps, use_tpu)\n\n      output_spec = tf.contrib.tpu.TPUEstimatorSpec(\n          mode=mode,\n          loss=total_loss,\n          train_op=train_op,\n          scaffold_fn=scaffold_fn)\n    elif mode == tf.estimator.ModeKeys.EVAL:\n\n      def metric_fn(masked_lm_example_loss, masked_lm_log_probs, masked_lm_ids,\n                    masked_lm_weights, next_sentence_example_loss,\n                    next_sentence_log_probs, next_sentence_labels):\n        \"\"\"Computes the loss and accuracy of the model.\"\"\"\n        masked_lm_log_probs = tf.reshape(masked_lm_log_probs,\n                                         [-1, masked_lm_log_probs.shape[-1]])\n        masked_lm_predictions = tf.argmax(\n            masked_lm_log_probs, axis=-1, output_type=tf.int32)\n        masked_lm_example_loss = tf.reshape(masked_lm_example_loss, [-1])\n        masked_lm_ids = tf.reshape(masked_lm_ids, [-1])\n        masked_lm_weights = tf.reshape(masked_lm_weights, [-1])\n        masked_lm_accuracy = tf.metrics.accuracy(\n            labels=masked_lm_ids,\n            predictions=masked_lm_predictions,\n            weights=masked_lm_weights)\n        masked_lm_mean_loss = tf.metrics.mean(\n            values=masked_lm_example_loss, weights=masked_lm_weights)\n\n        next_sentence_log_probs = tf.reshape(\n            next_sentence_log_probs, [-1, next_sentence_log_probs.shape[-1]])\n        next_sentence_predictions = tf.argmax(\n            next_sentence_log_probs, axis=-1, output_type=tf.int32)\n        next_sentence_labels = tf.reshape(next_sentence_labels, [-1])\n        next_sentence_accuracy = tf.metrics.accuracy(\n            labels=next_sentence_labels, predictions=next_sentence_predictions)\n        next_sentence_mean_loss = tf.metrics.mean(\n            values=next_sentence_example_loss)\n\n        return {\n            \"masked_lm_accuracy\": masked_lm_accuracy,\n            \"masked_lm_loss\": masked_lm_mean_loss,\n            \"next_sentence_accuracy\": next_sentence_accuracy,\n            \"next_sentence_loss\": next_sentence_mean_loss,\n        }\n\n      eval_metrics = (metric_fn, [\n          masked_lm_example_loss, masked_lm_log_probs, masked_lm_ids,\n          masked_lm_weights, next_sentence_example_loss,\n          next_sentence_log_probs, next_sentence_labels\n      ])\n      output_spec = tf.contrib.tpu.TPUEstimatorSpec(\n          mode=mode,\n          loss=total_loss,\n          eval_metrics=eval_metrics,\n          scaffold_fn=scaffold_fn)\n    else:\n      raise ValueError(\"Only TRAIN and EVAL modes are supported: %s\" % (mode))\n\n    return output_spec",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — run_pretraining.py:114-235"
+            },
+            {
+              "filePath": "optimization.py",
+              "symbolName": "create_optimizer",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 25,
+              "endLine": 84,
+              "codeContent": "def create_optimizer(loss, init_lr, num_train_steps, num_warmup_steps, use_tpu):\n  \"\"\"Creates an optimizer training op.\"\"\"\n  global_step = tf.train.get_or_create_global_step()\n\n  learning_rate = tf.constant(value=init_lr, shape=[], dtype=tf.float32)\n\n  # Implements linear decay of the learning rate.\n  learning_rate = tf.train.polynomial_decay(\n      learning_rate,\n      global_step,\n      num_train_steps,\n      end_learning_rate=0.0,\n      power=1.0,\n      cycle=False)\n\n  # Implements linear warmup. I.e., if global_step < num_warmup_steps, the\n  # learning rate will be `global_step/num_warmup_steps * init_lr`.\n  if num_warmup_steps:\n    global_steps_int = tf.cast(global_step, tf.int32)\n    warmup_steps_int = tf.constant(num_warmup_steps, dtype=tf.int32)\n\n    global_steps_float = tf.cast(global_steps_int, tf.float32)\n    warmup_steps_float = tf.cast(warmup_steps_int, tf.float32)\n\n    warmup_percent_done = global_steps_float / warmup_steps_float\n    warmup_learning_rate = init_lr * warmup_percent_done\n\n    is_warmup = tf.cast(global_steps_int < warmup_steps_int, tf.float32)\n    learning_rate = (\n        (1.0 - is_warmup) * learning_rate + is_warmup * warmup_learning_rate)\n\n  # It is recommended that you use this optimizer for fine tuning, since this\n  # is how the model was trained (note that the Adam m/v variables are NOT\n  # loaded from init_checkpoint.)\n  optimizer = AdamWeightDecayOptimizer(\n      learning_rate=learning_rate,\n      weight_decay_rate=0.01,\n      beta_1=0.9,\n      beta_2=0.999,\n      epsilon=1e-6,\n      exclude_from_weight_decay=[\"LayerNorm\", \"layer_norm\", \"bias\"])\n\n  if use_tpu:\n    optimizer = tf.contrib.tpu.CrossShardOptimizer(optimizer)\n\n  tvars = tf.trainable_variables()\n  grads = tf.gradients(loss, tvars)\n\n  # This is how the model was pre-trained.\n  (grads, _) = tf.clip_by_global_norm(grads, clip_norm=1.0)\n\n  train_op = optimizer.apply_gradients(\n      zip(grads, tvars), global_step=global_step)\n\n  # Normally the global step update is done inside of `apply_gradients`.\n  # However, `AdamWeightDecayOptimizer` doesn't do this. But if you use\n  # a different optimizer, you should probably take this line out.\n  new_global_step = global_step + 1\n  train_op = tf.group(train_op, [global_step.assign(new_global_step)])\n  return train_op",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — optimization.py:25-84"
+            },
+            {
+              "filePath": "modeling.py",
+              "symbolName": "dropout",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 344,
+              "endLine": 359,
+              "codeContent": "def dropout(input_tensor, dropout_prob):\n  \"\"\"Perform dropout.\n\n  Args:\n    input_tensor: float Tensor.\n    dropout_prob: Python float. The probability of dropping out a value (NOT of\n      *keeping* a dimension as in `tf.nn.dropout`).\n\n  Returns:\n    A version of `input_tensor` with dropout applied.\n  \"\"\"\n  if dropout_prob is None or dropout_prob == 0.0:\n    return input_tensor\n\n  output = tf.nn.dropout(input_tensor, 1.0 - dropout_prob)\n  return output",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:344-359"
+            },
+            {
+              "filePath": "run_classifier.py",
+              "symbolName": "create_model",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 574,
+              "endLine": 616,
+              "codeContent": "def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,\n                 labels, num_labels, use_one_hot_embeddings):\n  \"\"\"Creates a classification model.\"\"\"\n  model = modeling.BertModel(\n      config=bert_config,\n      is_training=is_training,\n      input_ids=input_ids,\n      input_mask=input_mask,\n      token_type_ids=segment_ids,\n      use_one_hot_embeddings=use_one_hot_embeddings)\n\n  # In the demo, we are doing a simple classification task on the entire\n  # segment.\n  #\n  # If you want to use the token-level output, use model.get_sequence_output()\n  # instead.\n  output_layer = model.get_pooled_output()\n\n  hidden_size = output_layer.shape[-1].value\n\n  output_weights = tf.get_variable(\n      \"output_weights\", [num_labels, hidden_size],\n      initializer=tf.truncated_normal_initializer(stddev=0.02))\n\n  output_bias = tf.get_variable(\n      \"output_bias\", [num_labels], initializer=tf.zeros_initializer())\n\n  with tf.variable_scope(\"loss\"):\n    if is_training:\n      # I.e., 0.1 dropout\n      output_layer = tf.nn.dropout(output_layer, keep_prob=0.9)\n\n    logits = tf.matmul(output_layer, output_weights, transpose_b=True)\n    logits = tf.nn.bias_add(logits, output_bias)\n    probabilities = tf.nn.softmax(logits, axis=-1)\n    log_probs = tf.nn.log_softmax(logits, axis=-1)\n\n    one_hot_labels = tf.one_hot(labels, depth=num_labels, dtype=tf.float32)\n\n    per_example_loss = -tf.reduce_sum(one_hot_labels * log_probs, axis=-1)\n    loss = tf.reduce_mean(per_example_loss)\n\n    return (loss, per_example_loss, logits, probabilities)",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — run_classifier.py:574-616"
+            },
+            {
+              "filePath": "run_squad.py",
+              "symbolName": "create_model",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 550,
+              "endLine": 587,
+              "codeContent": "def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,\n                 use_one_hot_embeddings):\n  \"\"\"Creates a classification model.\"\"\"\n  model = modeling.BertModel(\n      config=bert_config,\n      is_training=is_training,\n      input_ids=input_ids,\n      input_mask=input_mask,\n      token_type_ids=segment_ids,\n      use_one_hot_embeddings=use_one_hot_embeddings)\n\n  final_hidden = model.get_sequence_output()\n\n  final_hidden_shape = modeling.get_shape_list(final_hidden, expected_rank=3)\n  batch_size = final_hidden_shape[0]\n  seq_length = final_hidden_shape[1]\n  hidden_size = final_hidden_shape[2]\n\n  output_weights = tf.get_variable(\n      \"cls/squad/output_weights\", [2, hidden_size],\n      initializer=tf.truncated_normal_initializer(stddev=0.02))\n\n  output_bias = tf.get_variable(\n      \"cls/squad/output_bias\", [2], initializer=tf.zeros_initializer())\n\n  final_hidden_matrix = tf.reshape(final_hidden,\n                                   [batch_size * seq_length, hidden_size])\n  logits = tf.matmul(final_hidden_matrix, output_weights, transpose_b=True)\n  logits = tf.nn.bias_add(logits, output_bias)\n\n  logits = tf.reshape(logits, [batch_size, seq_length, 2])\n  logits = tf.transpose(logits, [2, 0, 1])\n\n  unstacked_logits = tf.unstack(logits, axis=0)\n\n  (start_logits, end_logits) = (unstacked_logits[0], unstacked_logits[1])\n\n  return (start_logits, end_logits)",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — run_squad.py:550-587"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
