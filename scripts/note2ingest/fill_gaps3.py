@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """3차 — 제목만 있는 chunk. 제목 키워드로 논문 전체를 훑어 해당 대목을 찾습니다."""
-import json, os, re, sys, collections
+import json
+import os, os, re, sys, collections
 SC = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, SC)
 from fill_gaps import FILES, PAGES, tokens, norm
-ING = '/Users/ungsik/Desktop/CodeAtlas/CodeAtlas_git/CodeAtlas/database/ingest'
+ING = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'database', 'ingest')
 
 def find_window(aid, q, want=650, min_hit=2):
     best = (0, None, None)

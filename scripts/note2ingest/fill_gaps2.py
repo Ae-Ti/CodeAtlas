@@ -4,13 +4,16 @@
 노트는 논문을 앞에서 뒤로 훑으며 작성돼 있어 쪽 번호가 단조 증가합니다.
 그 성질을 이용해 남은 구멍을 메웁니다.
 """
-import json, os, re, collections
+import json
+import os, os, re, collections
 SC = os.path.dirname(os.path.abspath(__file__))
 import sys
 sys.path.insert(0, SC)
 from fill_gaps import FILES, PAGES, tokens, best_page, extract_para, norm
 
-ING = '/Users/ungsik/Desktop/CodeAtlas/CodeAtlas_git/CodeAtlas/database/ingest'
+ING = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'database', 'ingest')
 SECNUM = re.compile(r'^\s*(?:Section\s*)?([0-9]+(?:\.[0-9]+)*)')
 
 

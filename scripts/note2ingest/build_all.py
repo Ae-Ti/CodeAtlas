@@ -15,7 +15,9 @@ sys.path.insert(0, SC)
 from parse_md import parse_format_a, parse_format_b     # noqa: E402
 from locate import Repo                                  # noqa: E402
 
-ING = '/Users/ungsik/Desktop/CodeAtlas/CodeAtlas_git/CodeAtlas/database/ingest'
+ING = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'database', 'ingest')
 META = json.load(open(os.path.join(SC, 'arxiv_meta.json'), encoding='utf-8'))
 
 PAPERS = {

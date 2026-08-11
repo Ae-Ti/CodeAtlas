@@ -12,7 +12,9 @@ import os
 import re
 
 SC = os.path.dirname(os.path.abspath(__file__))
-ING = '/Users/ungsik/Desktop/CodeAtlas/CodeAtlas_git/CodeAtlas/database/ingest'
+ING = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'database', 'ingest')
 PAGES = json.load(open(os.path.join(SC, 'pdf_pages.json'), encoding='utf-8'))
 
 FILES = {

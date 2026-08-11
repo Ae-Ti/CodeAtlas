@@ -15,7 +15,9 @@ SC = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SC)
 from locate import Repo                                  # noqa: E402
 
-ING = '/Users/ungsik/Desktop/CodeAtlas/CodeAtlas_git/CodeAtlas/database/ingest'
+ING = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'database', 'ingest')
 
 SECONDARY = {
     'ViT2':    dict(slug='lucidrains/vit-pytorch', branch='main', stars=25477,

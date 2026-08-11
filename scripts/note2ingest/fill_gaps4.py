@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """4차 — 제목만 있는 잔여 chunk. 논문에서 찾을 구절을 직접 지정합니다."""
-import json, os, re, sys
+import json
+import os, os, re, sys
 SC = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, SC)
 from fill_gaps import PAGES, norm
-ING = '/Users/ungsik/Desktop/CodeAtlas/CodeAtlas_git/CodeAtlas/database/ingest'
+ING = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'database', 'ingest')
 
 # 파일 -> chunkIndex -> (arxivId, 논문에서 찾을 구절)
 TARGET = {

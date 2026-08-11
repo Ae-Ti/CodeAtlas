@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """라이선스 실측값 반영 + U-Net 참조 구현을 GPL → MIT 로 교체."""
-import json, os, sys
+import json
+import os, os, sys
 SC = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SC)
 from locate import Repo
 
-ING = '/Users/ungsik/Desktop/CodeAtlas/CodeAtlas_git/CodeAtlas/database/ingest'
+ING = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'database', 'ingest')
 
 # LICENSE 파일 실측 결과
 LICENSE = {

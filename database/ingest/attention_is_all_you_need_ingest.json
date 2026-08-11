@@ -1,6 +1,6 @@
 {
   "_comment": "Generated from uploaded markdown. Content and included codeContent are copied verbatim from the uploaded document. Expected-code blocks, blocks without document-backed filePath, non-code fenced text, and duplicate natural keys without startLine were excluded from ingest codeBlocks/mappedCode and recorded in _unresolved. [2026-08-08 갱신] abstract·authors를 arXiv 원본으로 채움. codeBlocks는 저장소 원문(@132907d)으로 교체하고 실제 startLine/endLine을 부여함 — 업로드 마크다운의 코드는 재포맷된 상태였음. MultiHeadAttention.forward를 가리키던 블록 2건은 자연키가 같아 1건으로 병합(14→13). [2026-08-08 갱신2] chunk content에 논문 원문 문단을 덧붙이고(ar5iv 1706.03762), sectionTitle을 논문 실제 섹션명으로 교체, 기존 한국어 제목은 subsectionTitle로 이동. [§4] 리프 심볼 기준으로 codeBlocks 재구성(33개) — 같은 파일에서 부모·자식을 동시에 인덱싱하지 않음. Transformer/MultiHeadAttention/ScheduledOptim 클래스 블록은 자식 메서드로 대체하고 정답을 재지정. 매핑 대상 chunk를 9개 → 43개로 확대.",
-  "_sourceMarkdown": "/Users/ungsik/Downloads/Attention is All You Need 3b30f4e8fef78046bd59ef71457d418f.md",
+  "_sourceMarkdown": "Attention is All You Need 3b30f4e8fef78046bd59ef71457d418f.md",
   "_unresolved": [
     {
       "section": 2,

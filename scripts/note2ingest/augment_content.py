@@ -14,7 +14,9 @@ import re
 import sys
 
 SC = os.path.dirname(os.path.abspath(__file__))
-ING = '/Users/ungsik/Desktop/CodeAtlas/CodeAtlas_git/CodeAtlas/database/ingest'
+ING = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'database', 'ingest')
 
 FILES = {
     'bert_ingest.json': '1810.04805', 'clip_ingest.json': '2103.00020',
