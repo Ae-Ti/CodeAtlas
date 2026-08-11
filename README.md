@@ -44,7 +44,7 @@ CodeAtlas 는 그 마지막 한 칸을 채웁니다.
             ...
 ```
 
-*(꾸며낸 예시가 아니라 실제 적재된 데이터입니다 — `paper_chunks.id=320` ↔ `code_blocks.id=520`)*
+*(꾸며낸 예시가 아니라 실제 적재된 데이터입니다 — `paper_chunks.id=19` ↔ `code_blocks.id=13`)*
 
 ---
 
@@ -118,12 +118,13 @@ CODEATLAS_EMBEDDING_BACKFILL=true ./mvnw spring-boot:run  # localhost:8080   [�
 # 4) 프론트엔드
 cd frontend && npm install && npm run dev                 # localhost:5173   [터미널 C]
 
-# 5) (선택) 큐레이션 사전계산 — chunk 당 Qwen3 1회, 65 chunk 기준 약 19분
+# 5) (선택) 큐레이션 사전계산 — chunk 당 Qwen3 1회, 376 chunk 기준 약 100분
 curl -X POST localhost:8080/api/admin/curate-pending      #                  [터미널 D]
 ```
 
 여기까지 하면 `localhost:5173` 에서 화면이 뜹니다. 모델 다운로드를 빼면 몇 분,
-5번 큐레이션까지 포함하면 20분 남짓 걸립니다.
+5번 큐레이션까지 포함하면 100분쯤 걸립니다. **논문을 하나 더 추가할 때는 그 논문의
+단락만 처리하므로 약 11분입니다** — 전체 재구축과 별개입니다.
 
 ### 확인
 
@@ -197,28 +198,46 @@ Qwen3 를 호출한 것인지를 나타냅니다. 자세한 내용은 [frontend/
 
 ## 6. 검색 품질
 
-수동으로 만든 정답셋 **43쌍**(논문 단락 ↔ 대응 코드 블록)으로 측정했습니다.
-후보 풀은 대상 저장소의 코드 블록 33개, 대안 정답을 인정하는 multi-gold 기준입니다.
+논문 9편에 대해 손으로 만든 정답셋 **315쌍**(논문 단락 ↔ 대응 코드 블록)으로 측정했습니다.
+**서비스와 동일한 조건** — 후보를 그 논문에 연결된 저장소로 한정(단락당 평균 22블록),
+순수 pgvector 코사인 정렬입니다.
 
 | 지표 | 값 | 무작위 선택 시 | 배수 |
 |---|---|---|---|
-| Top-1 | 30.2% (13/43) | 3.7% | **8.2×** |
-| Top-3 | 53.5% (23/43) | 11.0% | **4.9×** |
-| **Top-5** | **69.8% (30/43)** | 18.3% | **3.8×** |
-| MRR | 0.4703 | — | — |
+| Top-1 | 28.6% (90/315) | 5.0% | **5.7×** |
+| Top-3 | 52.4% (165/315) | 15.1% | **3.5×** |
+| **Top-5** | **65.1% (205/315)** | 25.2% | **2.6×** |
+| MRR | 0.4173 | — | — |
 
-**Top-5 가 제품과 맞는 지표입니다** — 화면이 후보 5개를 함께 보여주고, 사용자는 그중에서
-고릅니다. 절대 수치만 보면 낮아 보이지만 무작위 대비 3.8~8.2배이며, 후보 풀이 33개인
-조건에서 나온 값입니다.
+**Top-5 가 제품과 맞는 지표입니다** — 화면이 후보 5개를 함께 보여주고 사용자는 그중에서
+고릅니다. 근거(파일 경로·줄 번호·원본 GitHub 링크)를 함께 제시하므로 5개 중 고르는 비용이
+저장소를 직접 뒤지는 것보다 훨씬 낮습니다.
 
-정답셋을 9쌍에서 43쌍으로 넓히면서 수치가 크게 떨어졌습니다. 9쌍은 "대응 코드를 바로 찾을 수
-있었던 단락"만 모인 낙관 편향 집합이었고, 43쌍이 실제 사용 조건에 가깝습니다.
-측정 조건·한계·하이브리드 검색 실험 결과는
-[2026-08-11 정리 문서](docs/2026-08-11_정답셋_43쌍_확장_및_평가지표_정비.md) 에 전부 적어 두었습니다.
+### 측정 조건에 대하여
+
+지표를 부풀리지 않기 위해 아래를 명시합니다.
+
+- **정답셋은 저자가 수동 검수한 것**입니다. 논문 단락 376개 중 코드가 대응하는 315개가
+  대상이며, 나머지 61개(실험 결과·Figure·저장소에 없는 기능)는 **일부러 비워 두었습니다.**
+  억지로 코드를 붙이면 정답셋 자체가 오염됩니다.
+- **랜덤 하한은 단락별 실제 후보 수로 계산**했습니다. 후보를 논문 범위로 좁히면 무작위
+  적중률이 올라가므로, 전체 코퍼스(183블록) 기준으로 계산하면 배수가 부풀려집니다.
+- **랭킹 함수 자체는 아직 개선하지 않았습니다.** 어휘 신호를 결합한 하이브리드 검색은
+  측정만 해두고 적용하지 않았습니다 ([#18](https://github.com/Ae-Ti/CodeAtlas/issues/18)).
+
+> 이전 문서의 43쌍 수치(Top-5 69.8%)와는 조건이 다릅니다. 그때는 논문 1편·후보 33블록이었고
+> 지금은 9편입니다. 측정 이력과 판단 근거는
+> [2026-08-12 정리](docs/2026-08-12_논문9편_확장_및_검색범위_교정.md) ·
+> [2026-08-11 정리](docs/2026-08-11_정답셋_43쌍_확장_및_평가지표_정비.md) 에 있습니다.
+
+### 재현
+
+정답셋은 DB id 가 아니라 안정 키(`arxiv_id`, `chunk_index`, `github_url`, `file_path`,
+`symbol_name`, `start_line`)로 저장돼 있어, 적재 순서가 달라도 같은 결과가 나옵니다.
 
 ```bash
-python3 scripts/eval_retrieval.py database/eval_set_attention.csv --multi-gold \
-    --only-repo https://github.com/jadore801120/attention-is-all-you-need-pytorch
+python3 scripts/note2ingest/eval_set_tool.py resolve database/eval_set_bert.csv /tmp/bert.csv
+python3 scripts/eval_retrieval.py /tmp/bert.csv --k 5
 ```
 
 ---
@@ -281,27 +300,50 @@ MCP tool 코드는 손대지 않습니다.
 
 본 저장소의 코드는 [MIT License](LICENSE) 입니다. 인덱싱 대상 자료의 출처는 아래와 같습니다.
 
-| 자료 | 출처 | 라이선스 | 코드 블록 |
-|---|---|---|---|
-| 논문 본문·메타데이터 | [arXiv](https://arxiv.org) | 논문별 원저작자 표기 유지 | — |
-| `attention-is-all-you-need-pytorch` | [jadore801120](https://github.com/jadore801120/attention-is-all-you-need-pytorch) | MIT | 33 |
-| `annotated-transformer` | [harvardnlp](https://github.com/harvardnlp/annotated-transformer) | MIT | 4 |
-| `transformers` | [huggingface](https://github.com/huggingface/transformers) | Apache-2.0 | 1 |
-| `vision` | [pytorch](https://github.com/pytorch/vision) | BSD-3-Clause | 1 |
-| `bert` | [google-research](https://github.com/google-research/bert) | Apache-2.0 | 1 |
-| 논문↔저장소 후보 소싱 | Papers with Code 아카이브 데이터셋 | CC-BY-SA-4.0 | — |
+**적재 현황** (2026-08-12 기준)
 
-라이선스는 GitHub API(`GET /repos/{owner}/{repo}`)로 실측 확인했습니다. 코드 블록은 원 저장소의
-파일 경로·줄 번호, 참조한 커밋 해시와 함께 저장되며, 화면에서 항상 원본 GitHub 링크를 함께
-제시합니다. 사용된 오픈소스 라이브러리 전체 목록은 SBOM 으로 별도 제출합니다.
+| | |
+|---|---|
+| 논문 | **9편** (Attention, BERT, ResNet, YOLO, ViT, CLIP, Latent Diffusion, SAM, Llama 3) |
+| 단락 | 376개 — 쪽 번호 100%, 논문 원문 대조 99.2% |
+| 코드 블록 | **183개** / 저장소 **12곳** |
+| 매핑 | 수동 검증 344건 + AI 생성 1,667건 |
 
-**적재 현황** (2026-08-11 기준) — 논문 3편 / 단락 65개 / 코드 블록 40개 / 저장소 5곳 /
-매핑 344건(수동 검증 52 + AI 292).
+전량이 실데이터입니다. 데모용 임시 데이터는 포함돼 있지 않습니다.
 
-전체 파이프라인(PDF 분할 → AST 파싱 → 임베딩 → 수동 검수)을 통과한 실데이터는
-*Attention Is All You Need* ↔ `attention-is-all-you-need-pytorch` **1편(코드 블록 33개)** 이며,
-§6 의 평가 수치도 이 저장소만을 후보 풀로 삼아 측정한 값입니다. 나머지 4개 저장소의
-7개 블록은 화면 동작 확인용 데모 seed 입니다. 논문 확장은 진행 중입니다.
+### 인덱싱 대상 저장소
+
+| 저장소 | 라이선스 | 코드 블록 |
+|---|---|---|
+| [jadore801120/attention-is-all-you-need-pytorch](https://github.com/jadore801120/attention-is-all-you-need-pytorch) | MIT | 33 |
+| [CompVis/latent-diffusion](https://github.com/CompVis/latent-diffusion) | MIT | 21 |
+| [google-research/bert](https://github.com/google-research/bert) | Apache-2.0 | 18 |
+| [pjreddie/darknet](https://github.com/pjreddie/darknet) | YOLO LICENSE v2 (public-domain style) | 18 |
+| [pytorch/vision](https://github.com/pytorch/vision) | BSD-3-Clause | 18 |
+| [facebookresearch/segment-anything](https://github.com/facebookresearch/segment-anything) | Apache-2.0 | 16 |
+| [KaimingHe/deep-residual-networks](https://github.com/KaimingHe/deep-residual-networks) | MIT | 14 |
+| [openai/CLIP](https://github.com/openai/CLIP) | MIT | 13 |
+| [google-research/vision_transformer](https://github.com/google-research/vision_transformer) | Apache-2.0 | 12 |
+| [meta-llama/llama3](https://github.com/meta-llama/llama3) | Meta Llama 3 Community License | 10 |
+| [lucidrains/vit-pytorch](https://github.com/lucidrains/vit-pytorch) | MIT | 6 |
+| [mlfoundations/open_clip](https://github.com/mlfoundations/open_clip) | MIT | 4 |
+
+| 그 밖의 자료 | 출처 | 라이선스 |
+|---|---|---|
+| 논문 본문·메타데이터 | [arXiv](https://arxiv.org) | 논문별 원저작자 표기 유지 |
+| 논문↔저장소 후보 소싱 | Papers with Code 아카이브 데이터셋 | CC-BY-SA-4.0 |
+
+라이선스는 GitHub API(`GET /repos/{owner}/{repo}`)로 실측 확인했으며, **라이선스가 명시되지
+않은 저장소는 인용 대상에서 제외**했습니다. 코드 블록은 원 저장소의 파일 경로·줄 번호,
+참조한 커밋 해시와 함께 저장되며 화면에서 항상 원본 GitHub 링크를 제시합니다.
+
+전문 고지는 [`NOTICE`](NOTICE) 와 [`database/THIRD_PARTY_LICENSES.md`](database/THIRD_PARTY_LICENSES.md)
+에 있습니다. Meta Llama 3 Community License §1.b.i(B)가 요구하는 "Built with Meta Llama 3"
+표시는 화면 하단에 상시 노출합니다.
+
+> **이 절은 "우리가 코드를 인용해 보여주는 저장소"입니다.** CodeAtlas 가 동작하기 위해
+> *의존하는* 라이브러리 271개는 성격이 다르며 [docs/오픈소스SW_목록.md](docs/오픈소스SW_목록.md)
+> 와 [`sbom/`](sbom/) 에 별도로 정리했습니다.
 
 ---
 
@@ -330,9 +372,10 @@ MCP tool 코드는 손대지 않습니다.
 | README (실행 가능 수준) | 본 문서 | ✅ |
 | 결과보고서 | — | 작성 예정 |
 | 시연영상 (3분 이내) | — | 촬영 예정 |
-| SBOM / 오픈소스SW 목록 | — | 작성 예정 |
+| SBOM / 오픈소스SW 목록 | [docs/오픈소스SW_목록.md](docs/오픈소스SW_목록.md) · [sbom/](sbom/) | ✅ |
 | CONTRIBUTING.md | — | 작성 예정 |
-| `seed_dump.sql` / `seed_manifest.csv` | `database/` | 작성 예정 |
+| `seed_dump.sql` / `seed_manifest.csv` | [database/](database/) | ✅ |
+| 확장 기능·발전 방향 | [docs/CodeAtlas_확장기능.md](docs/CodeAtlas_확장기능.md) | ✅ |
 | 데모 시나리오 | `docs/demo-scenario.md` | 작성 예정 |
 | 정부 지원사업 중복수혜 여부 확인서 | — | 해당 여부 확인 중 |
 
