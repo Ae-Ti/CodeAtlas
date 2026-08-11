@@ -1,106 +1,226 @@
 {
-  "_comment": "ResNet 3b30f4e8fef780cfb26ddc25fa667753.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_comment": "노트 마크다운에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것(줄 번호는 AST·블록 파서 실측). 노트에 경로·심볼이 없는 경우 코드 본문을 저장소에 역매칭해 특정했습니다.",
   "_sourceMarkdown": "ResNet 3b30f4e8fef780cfb26ddc25fa667753.md",
   "_unresolved": [
     {
-      "chunk": "-",
-      "title": "코드 블록 전체",
-      "issue": "이 노트는 대응 코드에 파일 경로·심볼명이 없어 code_blocks 를 만들 수 없음. KaimingHe/deep-residual-networks 기준으로 경로를 지정해야 적재 가능 (chunk 는 64개 모두 적재됨)"
+      "chunk": "p1-3",
+      "title": "ImageNet에서 최대 152층",
+      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
-      "chunk": "p2-6",
-      "title": "Figure 2 — residual building block",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "chunk": "p1-4",
+      "title": "ILSVRC·COCO 결과",
+      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
-      "chunk": "p2-10",
-      "title": "Highway network와의 차이",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "chunk": "p1-5",
+      "title": "Figure 1 — 20층·56층 plain network 비교",
+      "issue": "노트에 대응 코드가 없음"
     },
     {
-      "chunk": "p3-11",
-      "title": "Equation (1)",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "chunk": "p2-9",
+      "title": "SGD와 backpropagation으로 end-to-end 학습",
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p3-12",
       "title": "두 계층 residual function",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
-    },
-    {
-      "chunk": "p3-14",
-      "title": "Equation (2) — projection shortcut",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p3-17",
       "title": "Plain network 설계 규칙",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-22",
+      "title": "Option A — zero-padding shortcut",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-25",
+      "title": "ImageNet scale augmentation `[256,480]`",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-26",
+      "title": "224×224 random crop·horizontal flip·mean subtraction",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-27",
+      "title": "He initialization",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-28",
+      "title": "SGD mini-batch 256",
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p4-29",
       "title": "Learning rate, weight decay, momentum",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
     },
     {
-      "chunk": "p5-33",
-      "title": "ResNet-50 bottleneck 반복 수",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "chunk": "p4-30",
+      "title": "Dropout 미사용",
+      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p4-31",
+      "title": "10-crop testing",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-32",
+      "title": "Multi-scale testing",
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p5-34",
       "title": "ResNet-101 반복 수",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "p5-35",
       "title": "ResNet-152 반복 수",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "p5-36",
       "title": "ResNet-18·34 basic block",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p6-37",
       "title": "Option A·B·C",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p6-39",
+      "title": "1×1 계층의 차원 축소와 복원",
+      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "p7-40",
       "title": "CIFAR-10 구조",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p7-41",
       "title": "CIFAR mini-batch·optimizer 설정",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p7-42",
+      "title": "CIFAR data augmentation",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p7-43",
+      "title": "110-layer warm-up",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p8-44",
+      "title": "Layer response 표준편차 분석",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p8-45",
+      "title": "1202-layer ResNet",
+      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p8-46",
+      "title": "PASCAL·COCO detection에서 ResNet-101 사용",
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p9-47",
       "title": "Reference 13 — He initialization",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
-    },
-    {
-      "chunk": "p9-48",
-      "title": "Reference 16 — Batch Normalization",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p9-49",
       "title": "Reference 19 — Caffe",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p10-50",
+      "title": "conv1~conv4_x를 shared feature로 사용",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p10-51",
+      "title": "RPN 300 proposals",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p10-52",
+      "title": "RoI pooling 후 conv5_x 실행",
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p10-54",
       "title": "COCO detection 학습 설정",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p10-55",
+      "title": "Box refinement",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p10-56",
+      "title": "NMS IoU 0.3와 box voting",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p10-57",
+      "title": "Global context feature",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p10-58",
+      "title": "Detection multi-scale testing",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p11-59",
+      "title": "Ensemble of region proposals and classifiers",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p11-60",
+      "title": "ImageNet detection 200 classes",
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p12-61",
       "title": "Per-class classification·box regression",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p12-62",
+      "title": "Anchor sampling — 이미지당 8개, positive:negative=1:1",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p12-63",
+      "title": "Fully convolutional localization test",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p12-64",
+      "title": "R-CNN용 상위 200개 proposal",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "-",
+      "title": "content 보강",
+      "issue": "22개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
     }
   ],
   "papers": [
@@ -119,39 +239,57 @@
       "chunks": [
         {
           "chunkIndex": 0,
-          "sectionTitle": "깊은 네트워크의 학습 난이도",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "깊은 네트워크의 학습 난이도",
-          "content": "“Deeper neural networks are more difficult to train.”\n\n“We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously.”",
+          "content": "“Deeper neural networks are more difficult to train.”\n\n“We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously.”\n\nDeeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth.\nOn the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8 \\times deeper than VGG nets Simonyan2015 but still having lower complexity.\nAn ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task.\nWe also present analysis on CIFAR-10 with 100 and 1000 layers.",
           "pageStart": 1,
           "pageEnd": 1,
-          "_comment": "노트 p1-1 / 판정 `DIRECT-CONCEPTUAL`\n\n50·101·152층 모델은 실제로 제공되지만, “더 쉽게 학습된다”는"
+          "_comment": "노트 p1-1 / 판정 `DIRECT-CONCEPTUAL`\n\n50·101·152층 모델은 실제로 제공되지만, “더 쉽게 학습된다”는 | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "ResNet-101",
+              "startLine": 1,
+              "reason": "공식 저장소에서 깊은 모델은 각각 별도의 Caffe 네트워크 정의로 제공됩니다."
+            }
+          ]
         },
         {
           "chunkIndex": 1,
-          "sectionTitle": "일반 함수가 아닌 residual function 학습",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "일반 함수가 아닌 residual function 학습",
-          "content": "“We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions.”",
+          "content": "“We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions.”\n\nDeeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth.\nOn the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8 \\times deeper than VGG nets Simonyan2015 but still having lower complexity.\nAn ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task.\nWe also present analysis on CIFAR-10 with 100 and 1000 layers.",
           "pageStart": 1,
           "pageEnd": 1,
-          "_comment": "노트 p1-2 / 판정 `DIRECT`\n\nCaffe의 `Eltwise` 계층이 shortcut 출력과 residual branch "
+          "_comment": "노트 p1-2 / 판정 `DIRECT`\n\nCaffe의 `Eltwise` 계층이 shortcut 출력과 residual branch  | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch1",
+              "startLine": 61,
+              "reason": "다음은 ResNet-50 첫 residual block에서 residual branch와 shortcut branch를 더하는 실제 코드입니다. Residual branch의 마지막 출력과 shortcut을 합칩니다."
+            }
+          ]
         },
         {
           "chunkIndex": 2,
-          "sectionTitle": "ImageNet에서 최대 152층",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "ImageNet에서 최대 152층",
-          "content": "“On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers.”",
+          "content": "“On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers.”\n\nDeeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth.\nOn the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8 \\times deeper than VGG nets Simonyan2015 but still having lower complexity.\nAn ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task.\nWe also present analysis on CIFAR-10 with 100 and 1000 layers.",
           "pageStart": 1,
           "pageEnd": 1,
-          "_comment": "노트 p1-3 / 판정 `DIRECT`\n\n공식 저장소는 논문의 50·101·152층 원본 Caffe 모델을 제공합니다. [GitHu"
+          "_comment": "노트 p1-3 / 판정 `DIRECT`\n\n공식 저장소는 논문의 50·101·152층 원본 Caffe 모델을 제공합니다. [GitHu | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 3,
-          "sectionTitle": "ILSVRC·COCO 결과",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "ILSVRC·COCO 결과",
-          "content": "“An ensemble of these residual nets achieves 3.57% error on the ImageNet test set.”\n\n“We obtain a 28% relative improvement on the COCO object detection dataset.”",
+          "content": "“An ensemble of these residual nets achieves 3.57% error on the ImageNet test set.”\n\n“We obtain a 28% relative improvement on the COCO object detection dataset.”\n\nDeeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth.\nOn the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8 \\times deeper than VGG nets Simonyan2015 but still having lower complexity.\nAn ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task.\nWe also present analysis on CIFAR-10 with 100 and 1000 layers.",
           "pageStart": 1,
           "pageEnd": 1,
-          "_comment": "노트 p1-4 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p1-4 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 4,
@@ -169,34 +307,61 @@
           "content": "공식 저장소의 모델은 bottleneck block만 포함하므로 Figure 2의 정확한 두 계층 basic block은 없습니다.\n\n공식 bottleneck의 residual branch:\n\n\n\n두 번째 3×3 convolution:\n\n\n\n세 번째 1×1 convolution:\n\n\n\nShortcut과 addition:",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-6 / 판정 `DIRECT`, 단 공식 저장소는 Figure 2의 2-layer basic block이 아니라 3-lay"
+          "_comment": "노트 p2-6 / 판정 `DIRECT`, 단 공식 저장소는 Figure 2의 2-layer basic block이 아니라 3-lay / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch2a",
+              "startLine": 95,
+              "reason": "공식 저장소의 모델은 bottleneck block만 포함하므로 Figure 2의 정확한 두 계층 basic block은 없습니다. 공식 bottleneck의 residual branch: 두 번째 3×3 convolution: 세 번째 1×1 convolution: Shortcut과 addition:"
+            }
+          ]
         },
         {
           "chunkIndex": 6,
-          "sectionTitle": "\\(F(x)=H(x)-x\\), \\(H(x)=F(x)+x\\)",
+          "sectionTitle": "1 Introduction",
           "subsectionTitle": "\\(F(x)=H(x)-x\\), \\(H(x)=F(x)+x\\)",
-          "content": "“We explicitly let these layers fit a residual mapping.”\n\n“The original mapping is recast into \\(F(x)+x\\).”",
+          "content": "“We explicitly let these layers fit a residual mapping.”\n\n“The original mapping is recast into \\(F(x)+x\\).”\n\nIn this paper, we address the degradation problem by introducing a deep residual learning framework.\nInstead of hoping each few stacked layers directly fit a desired underlying mapping, we explicitly let these layers fit a residual mapping. Formally, denoting the desired underlying mapping as \\mathcal{H}(\\mathbf{x}) , we let the stacked nonlinear layers fit another mapping of \\mathcal{F}(\\mathbf{x}):=\\mathcal{H}(\\mathbf{x})-\\mathbf{x} . The original mapping is recast into \\mathcal{F}(\\mathbf{x})+\\mathbf{x} .\nWe hypothesize that it is easier to optimize the residual mapping than to optimize the original, unreferenced mapping. To the extreme, if an identity mapping were optimal, it would be easier to push the residual to zero than to fit an identity mapping by a stack of nonlinear layers.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-7 / 판정 `DIRECT`\n\nProjection 계층 없이 이전 block 출력이 `Eltwise`의 입력으로 직접 들"
+          "_comment": "노트 p2-7 / 판정 `DIRECT`\n\nProjection 계층 없이 이전 block 출력이 `Eltwise`의 입력으로 직접 들 | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2b",
+              "startLine": 342,
+              "reason": "Identity shortcut을 사용하는 block: 여기서:"
+            }
+          ]
         },
         {
           "chunkIndex": 7,
-          "sectionTitle": "Identity shortcut은 추가 parameter와 연산이 거의 없음",
+          "sectionTitle": "1 Introduction",
           "subsectionTitle": "Identity shortcut은 추가 parameter와 연산이 거의 없음",
-          "content": "“Identity shortcut connections add neither extra parameter nor computational complexity.”",
+          "content": "“Identity shortcut connections add neither extra parameter nor computational complexity.”\n\nThe formulation of \\mathcal{F}(\\mathbf{x})+\\mathbf{x} can be realized by feedforward neural networks with “shortcut connections” (Fig. 2). Shortcut connections Bishop1995; Ripley1996; Venables1999 are those skipping one or more layers. In our case, the shortcut connections simply perform identity mapping, and their outputs are added to the outputs of the stacked layers (Fig. 2). Identity shortcut connections add neither extra parameter nor computational complexity. The entire network can still be trained end-to-end by SGD with backpropagation, and can be easily implemented using common libraries (e.g., Caffe Jia2014) without modifying the solvers.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-8 / 판정 `DIRECT`\n\n`res2a`에 convolution이나 weight 계층을 적용하지 않고 바로 합산하므로"
+          "_comment": "노트 p2-8 / 판정 `DIRECT`\n\n`res2a`에 convolution이나 weight 계층을 적용하지 않고 바로 합산하므로 | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2b",
+              "startLine": 342,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:342 의 res2b 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 8,
-          "sectionTitle": "SGD와 backpropagation으로 end-to-end 학습",
+          "sectionTitle": "1 Introduction",
           "subsectionTitle": "SGD와 backpropagation으로 end-to-end 학습",
-          "content": "“The entire network can still be trained end-to-end by SGD with backpropagation.”",
+          "content": "“The entire network can still be trained end-to-end by SGD with backpropagation.”\n\nThe formulation of \\mathcal{F}(\\mathbf{x})+\\mathbf{x} can be realized by feedforward neural networks with “shortcut connections” (Fig. 2). Shortcut connections Bishop1995; Ripley1996; Venables1999 are those skipping one or more layers. In our case, the shortcut connections simply perform identity mapping, and their outputs are added to the outputs of the stacked layers (Fig. 2). Identity shortcut connections add neither extra parameter nor computational complexity. The entire network can still be trained end-to-end by SGD with backpropagation, and can be easily implemented using common libraries (e.g., Caffe Jia2014) without modifying the solvers.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-9 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p2-9 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 9,
@@ -205,7 +370,16 @@
           "content": "ResNet shortcut:\n\n\n\nGate에 해당하는 sigmoid나 multiplication 계층은 존재하지 않습니다.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-10 / 판정 `DIRECT-CONCEPTUAL`\n\n---"
+          "_comment": "노트 p2-10 / 판정 `DIRECT-CONCEPTUAL`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2b",
+              "startLine": 342,
+              "reason": "ResNet shortcut: Gate에 해당하는 sigmoid나 multiplication 계층은 존재하지 않습니다."
+            }
+          ]
         },
         {
           "chunkIndex": 10,
@@ -214,7 +388,16 @@
           "content": "Equation (1)",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-11 / 판정 `DIRECT`\n\nCaffe `Eltwise`의 기본 operation은 합산이며 두 bottom blob을"
+          "_comment": "노트 p3-11 / 판정 `DIRECT`\n\nCaffe `Eltwise`의 기본 operation은 합산이며 두 bottom blob을 / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2b",
+              "startLine": 342,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:342 의 res2b 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 11,
@@ -223,16 +406,25 @@
           "content": "두 계층 residual function",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-12 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p3-12 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 12,
-          "sectionTitle": "Addition 뒤 두 번째 ReLU",
+          "sectionTitle": "3.2 Identity Mapping by Shortcuts",
           "subsectionTitle": "Addition 뒤 두 번째 ReLU",
-          "content": "“We adopt the second nonlinearity after the addition.”",
+          "content": "“We adopt the second nonlinearity after the addition.”\n\nHere \\mathbf{x} and \\mathbf{y} are the input and output vectors of the layers considered. The function \\mathcal{F}(\\mathbf{x},\\{W_{i}\\}) represents the residual mapping to be learned. For the example in Fig. 2 that has two layers, \\mathcal{F}=W_{2}\\sigma(W_{1}\\mathbf{x}) in which \\sigma denotes ReLU Nair2010 and the biases are omitted for simplifying notations. The operation \\mathcal{F}+\\mathbf{x} is performed by a shortcut connection and element-wise addition. We adopt the second nonlinearity after the addition (i.e., \\sigma(\\mathbf{y}) , see Fig. 2).",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-13 / 판정 `DIRECT`\n\n`Eltwise` 다음에 `ReLU`가 배치된 original post-activation"
+          "_comment": "노트 p3-13 / 판정 `DIRECT`\n\n`Eltwise` 다음에 `ReLU`가 배치된 original post-activation | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a",
+              "startLine": 211,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:211 의 res2a 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 13,
@@ -241,25 +433,52 @@
           "content": "차원이 바뀌는 `res3a` block의 shortcut입니다.\n\n\n\nProjection 결과와 residual branch 합산:",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-14 / 판정 `DIRECT`\n\n`1×1 convolution`, `stride=2`로 공간 크기와 채널 수를 동시에 맞춥"
+          "_comment": "노트 p3-14 / 판정 `DIRECT`\n\n`1×1 convolution`, `stride=2`로 공간 크기와 채널 수를 동시에 맞춥 / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res3a_branch1",
+              "startLine": 488,
+              "reason": "차원이 바뀌는 `res3a` block의 shortcut입니다. Projection 결과와 residual branch 합산:"
+            }
+          ]
         },
         {
           "chunkIndex": 14,
-          "sectionTitle": "F는 2층 또는 3층일 수 있음",
+          "sectionTitle": "3.2 Identity Mapping by Shortcuts",
           "subsectionTitle": "F는 2층 또는 3층일 수 있음",
-          "content": "“Experiments in this paper involve a function F that has two or three layers.”",
+          "content": "“Experiments in this paper involve a function F that has two or three layers.”\n\nThe form of the residual function \\mathcal{F} is flexible. Experiments in this paper involve a function \\mathcal{F} that has two or three layers (Fig. 5), while more layers are possible. But if \\mathcal{F} has only a single layer, Eqn.(1) is similar to a linear layer: \\mathbf{y}=W_{1}\\mathbf{x}+\\mathbf{x} , for which we have not observed advantages.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-15 / 판정 `PARTIAL`\n\n3-layer 구현은 직접 존재하지만 2-layer ResNet-18/34는 저장소에 없"
+          "_comment": "노트 p3-15 / 판정 `PARTIAL`\n\n3-layer 구현은 직접 존재하지만 2-layer ResNet-18/34는 저장소에 없 | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch2c",
+              "startLine": 177,
+              "reason": "공식 저장소는 3-layer bottleneck만 제공합니다. 실제 예:"
+            }
+          ]
         },
         {
           "chunkIndex": 15,
-          "sectionTitle": "채널별 feature-map addition",
+          "sectionTitle": "3.2 Identity Mapping by Shortcuts",
           "subsectionTitle": "채널별 feature-map addition",
-          "content": "“The element-wise addition is performed on two feature maps, channel by channel.”",
+          "content": "“The element-wise addition is performed on two feature maps, channel by channel.”\n\nWe also note that although the above notations are about fully-connected layers for simplicity, they are applicable to convolutional layers. The function \\mathcal{F}(\\mathbf{x},\\{W_{i}\\}) can represent multiple convolutional layers. The element-wise addition is performed on two feature maps, channel by channel.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-16 / 판정 `DIRECT`\n\n두 bottom tensor의 shape가 동일한 상태에서 채널·공간 위치별 합산이 수행됩"
+          "_comment": "노트 p3-16 / 판정 `DIRECT`\n\n두 bottom tensor의 shape가 동일한 상태에서 채널·공간 위치별 합산이 수행됩 | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2b",
+              "startLine": 342,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:342 의 res2b 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 16,
@@ -268,16 +487,25 @@
           "content": "Plain network 설계 규칙",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-17 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p3-17 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 17,
-          "sectionTitle": "Global average pooling과 1000-way FC",
+          "sectionTitle": "3.3 Network Architectures",
           "subsectionTitle": "Global average pooling과 1000-way FC",
-          "content": "“The network ends with a global average pooling layer and a 1000-way fully-connected layer with softmax.”",
+          "content": "“The network ends with a global average pooling layer and a 1000-way fully-connected layer with softmax.”\n\nPlain Network.\nOur plain baselines (Fig. 3, middle) are mainly inspired by the philosophy of VGG nets Simonyan2015 (Fig. 3, left).\nThe convolutional layers mostly have 3 \\times 3 filters and follow two simple design rules: (i) for the same output feature map size, the layers have the same number of filters; and (ii) if the feature map size is halved, the number of filters is doubled so as to preserve the time complexity per layer. We perform downsampling directly by convolutional layers that have a stride of 2.\nThe network ends with a global average pooling layer and a 1000-way fully-connected layer with softmax. The total number of weighted layers is 34 in Fig. 3 (middle).",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-18 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-18 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "pool5",
+              "startLine": 4520,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:4520 의 pool5 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 18,
@@ -286,7 +514,16 @@
           "content": "“7×7 conv, 64, /2”",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-19 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p4-19 / 판정 `DIRECT`\n\n---",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "conv1",
+              "startLine": 8,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:8 의 conv1 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 19,
@@ -295,79 +532,115 @@
           "content": "“pool, /2”",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-20 / 판정 `DIRECT`\n\n논문 Table 1에서 명시한 `3×3 max pool, stride 2`와 일치합니다.\n"
+          "_comment": "노트 p4-20 / 판정 `DIRECT`\n\n논문 Table 1에서 명시한 `3×3 max pool, stride 2`와 일치합니다.\n",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "pool1",
+              "startLine": 49,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:49 의 pool1 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 20,
-          "sectionTitle": "동일 차원의 identity shortcut",
+          "sectionTitle": "3.3 Network Architectures",
           "subsectionTitle": "동일 차원의 identity shortcut",
-          "content": "“The identity shortcuts can be directly used when the input and output are of the same dimensions.”",
+          "content": "“The identity shortcuts can be directly used when the input and output are of the same dimensions.”\n\nResidual Network.\nBased on the above plain network, we insert shortcut connections (Fig. 3, right) which turn the network into its counterpart residual version.\nThe identity shortcuts (Eqn.(1)) can be directly used when the input and output are of the same dimensions (solid line shortcuts in Fig. 3).\nWhen the dimensions increase (dotted line shortcuts in Fig. 3), we consider two options:\n(A) The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions. This option introduces no extra parameter;\n(B) The projection shortcut in Eqn.(2) is used to match dimensions (done by 1 \\times 1 convolutions).\nFor both options, when the shortcuts go across feature maps of two sizes, they are performed with a stride of 2.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-21 / 판정 `DIRECT`\n\n`res2a`가 별도 변환 없이 바로 addition에 입력됩니다.\n\n---"
+          "_comment": "노트 p4-21 / 판정 `DIRECT`\n\n`res2a`가 별도 변환 없이 바로 addition에 입력됩니다.\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2b",
+              "startLine": 342,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:342 의 res2b 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 21,
-          "sectionTitle": "Option A — zero-padding shortcut",
+          "sectionTitle": "3.3 Network Architectures",
           "subsectionTitle": "Option A — zero-padding shortcut",
-          "content": "“The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions.”",
+          "content": "“The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions.”\n\nResidual Network.\nBased on the above plain network, we insert shortcut connections (Fig. 3, right) which turn the network into its counterpart residual version.\nThe identity shortcuts (Eqn.(1)) can be directly used when the input and output are of the same dimensions (solid line shortcuts in Fig. 3).\nWhen the dimensions increase (dotted line shortcuts in Fig. 3), we consider two options:\n(A) The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions. This option introduces no extra parameter;\n(B) The projection shortcut in Eqn.(2) is used to match dimensions (done by 1 \\times 1 convolutions).\nFor both options, when the shortcuts go across feature maps of two sizes, they are performed with a stride of 2.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-22 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p4-22 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 22,
-          "sectionTitle": "Option B — dimension 증가 시에만 projection",
+          "sectionTitle": "3.3 Network Architectures",
           "subsectionTitle": "Option B — dimension 증가 시에만 projection",
-          "content": "“The projection shortcut is used to match dimensions, done by 1×1 convolutions.”",
+          "content": "“The projection shortcut is used to match dimensions, done by 1×1 convolutions.”\n\nResidual Network.\nBased on the above plain network, we insert shortcut connections (Fig. 3, right) which turn the network into its counterpart residual version.\nThe identity shortcuts (Eqn.(1)) can be directly used when the input and output are of the same dimensions (solid line shortcuts in Fig. 3).\nWhen the dimensions increase (dotted line shortcuts in Fig. 3), we consider two options:\n(A) The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions. This option introduces no extra parameter;\n(B) The projection shortcut in Eqn.(2) is used to match dimensions (done by 1 \\times 1 convolutions).\nFor both options, when the shortcuts go across feature maps of two sizes, they are performed with a stride of 2.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-23 / 판정 `DIRECT`\n\n공식 50·101·152 모델은 논문에서 선택한 option B 구조입니다.\n\n---"
+          "_comment": "노트 p4-23 / 판정 `DIRECT`\n\n공식 50·101·152 모델은 논문에서 선택한 option B 구조입니다.\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res3a_branch1",
+              "startLine": 488,
+              "reason": "차원이 동일한 다음 block에서는 projection이 없습니다."
+            }
+          ]
         },
         {
           "chunkIndex": 23,
-          "sectionTitle": "Batch normalization은 convolution 직후, activation 이전",
+          "sectionTitle": "3.4 Implementation",
           "subsectionTitle": "Batch normalization은 convolution 직후, activation 이전",
-          "content": "“We adopt batch normalization right after each convolution and before activation.”",
+          "content": "“We adopt batch normalization right after each convolution and before activation.”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-24 / 판정 `DIRECT`\n\n순서가 `Convolution → BatchNorm → Scale → ReLU`입니다.\n\n"
+          "_comment": "노트 p4-24 / 판정 `DIRECT`\n\n순서가 `Convolution → BatchNorm → Scale → ReLU`입니다.\n\n | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "bn2a_branch2a",
+              "startLine": 109,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:109 의 bn2a_branch2a 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 24,
-          "sectionTitle": "ImageNet scale augmentation `[256,480]`",
+          "sectionTitle": "3.4 Implementation",
           "subsectionTitle": "ImageNet scale augmentation `[256,480]`",
-          "content": "“The image is resized with its shorter side randomly sampled in [256, 480].”",
+          "content": "“The image is resized with its shorter side randomly sampled in [256, 480].”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-25 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p4-25 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 25,
-          "sectionTitle": "224×224 random crop·horizontal flip·mean subtraction",
+          "sectionTitle": "3.4 Implementation",
           "subsectionTitle": "224×224 random crop·horizontal flip·mean subtraction",
-          "content": "“A 224×224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted.”",
+          "content": "“A 224×224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted.”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-26 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n---"
+          "_comment": "노트 p4-26 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 26,
-          "sectionTitle": "He initialization",
+          "sectionTitle": "3.4 Implementation",
           "subsectionTitle": "He initialization",
-          "content": "“We initialize the weights as in [13].”",
+          "content": "“We initialize the weights as in [13].”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-27 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p4-27 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 27,
-          "sectionTitle": "SGD mini-batch 256",
+          "sectionTitle": "3.4 Implementation",
           "subsectionTitle": "SGD mini-batch 256",
-          "content": "“We use SGD with a mini-batch size of 256.”",
+          "content": "“We use SGD with a mini-batch size of 256.”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-28 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p4-28 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 28,
@@ -376,34 +649,34 @@
           "content": "Learning rate, weight decay, momentum",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-29 / 판정 `MISSING-BUT-PROVIDED`"
+          "_comment": "노트 p4-29 / 판정 `MISSING-BUT-PROVIDED` / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 29,
-          "sectionTitle": "Dropout 미사용",
+          "sectionTitle": "3.4 Implementation",
           "subsectionTitle": "Dropout 미사용",
-          "content": "“We do not use dropout.”",
+          "content": "“We do not use dropout.”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-30 / 판정 `DIRECT`\n\n50·101·152 deploy prototxt에 dropout layer가 존재하지 않습"
+          "_comment": "노트 p4-30 / 판정 `DIRECT`\n\n50·101·152 deploy prototxt에 dropout layer가 존재하지 않습 | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 30,
-          "sectionTitle": "10-crop testing",
+          "sectionTitle": "3.4 Implementation",
           "subsectionTitle": "10-crop testing",
-          "content": "“For comparison studies we adopt the standard 10-crop testing.”",
+          "content": "“For comparison studies we adopt the standard 10-crop testing.”\n\nIn testing, for comparison studies we adopt the standard 10-crop testing Krizhevsky2012.\nFor best results, we adopt the fully-convolutional form as in Simonyan2015; He2015, and average the scores at multiple scales (images are resized such that the shorter side is in \\{224,256,384,480,640\\} ).",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-31 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p4-31 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 31,
-          "sectionTitle": "Multi-scale testing",
+          "sectionTitle": "3.4 Implementation",
           "subsectionTitle": "Multi-scale testing",
-          "content": "“Images are resized such that the shorter side is in {224, 256, 384, 480, 640}.”",
+          "content": "“Images are resized such that the shorter side is in {224, 256, 384, 480, 640}.”\n\nIn testing, for comparison studies we adopt the standard 10-crop testing Krizhevsky2012.\nFor best results, we adopt the fully-convolutional form as in Simonyan2015; He2015, and average the scores at multiple scales (images are resized such that the shorter side is in \\{224,256,384,480,640\\} ).",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-32 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p4-32 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 32,
@@ -412,7 +685,16 @@
           "content": "첫 conv2 block:\n\n\n\n\n\n\n\n동일 stage의 이름:\n\n\n\nconv3 stage:\n\n\n\nconv4 stage:\n\n\n\nconv5 stage:",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-33 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p5-33 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch2c",
+              "startLine": 177,
+              "reason": "첫 conv2 block: 동일 stage의 이름: conv3 stage: conv4 stage: conv5 stage:"
+            }
+          ]
         },
         {
           "chunkIndex": 33,
@@ -421,7 +703,7 @@
           "content": "공식 ResNet-101 prototxt의 conv4 block 이름은 다음 범위를 포함합니다.\n\n\n\n총 23개입니다.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-34 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p5-34 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 34,
@@ -430,7 +712,7 @@
           "content": "공식 ResNet-152 prototxt에는 다음 stage들이 구현됩니다.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-35 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p5-35 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 35,
@@ -439,7 +721,7 @@
           "content": "ResNet-18·34 basic block",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-36 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p5-36 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 36,
@@ -448,25 +730,34 @@
           "content": "Option A·B·C",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-37 / 판정 `PARTIAL + 예상코드`\n\n---"
+          "_comment": "노트 p6-37 / 판정 `PARTIAL + 예상코드`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 37,
-          "sectionTitle": "Figure 5 — bottleneck block",
+          "sectionTitle": "4.1 ImageNet Classification",
           "subsectionTitle": "Figure 5 — bottleneck block",
-          "content": "“The three layers are 1×1, 3×3, and 1×1 convolutions.”",
+          "content": "“The three layers are 1×1, 3×3, and 1×1 convolutions.”\n\nDeeper Bottleneck Architectures. Next we describe our deeper nets for ImageNet. Because of concerns on the training time that we can afford, we modify the building block as a bottleneck design44\n 4\n \n \n \n Deeper non-bottleneck ResNets (e.g., Fig. 5 left) also gain accuracy from increased depth (as shown on CIFAR-10), but are not as economical as the bottleneck ResNets. So the usage of bottleneck designs is mainly due to practical considerations. We further note that the degradation problem of plain nets is also witnessed for the bottleneck designs..\nFor each residual function \\mathcal{F} , we use a stack of 3 layers instead of 2 (Fig. 5). The three layers are 1 \\times 1, 3 \\times 3, and 1 \\times 1 convolutions, where the 1 \\times 1 layers are responsible for reducing and then increasing (restoring) dimensions, leaving the 3 \\times 3 layer a bottleneck with smaller input/output dimensions.\nFig. 5 shows an example, where both designs have similar time complexity.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-38 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p6-38 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch2b",
+              "startLine": 136,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:136 의 res2a_branch2b 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 38,
-          "sectionTitle": "1×1 계층의 차원 축소와 복원",
+          "sectionTitle": "4.1 ImageNet Classification",
           "subsectionTitle": "1×1 계층의 차원 축소와 복원",
-          "content": "“The 1×1 layers are responsible for reducing and then increasing dimensions.”",
+          "content": "“The 1×1 layers are responsible for reducing and then increasing dimensions.”\n\nDeeper Bottleneck Architectures. Next we describe our deeper nets for ImageNet. Because of concerns on the training time that we can afford, we modify the building block as a bottleneck design44\n 4\n \n \n \n Deeper non-bottleneck ResNets (e.g., Fig. 5 left) also gain accuracy from increased depth (as shown on CIFAR-10), but are not as economical as the bottleneck ResNets. So the usage of bottleneck designs is mainly due to practical considerations. We further note that the degradation problem of plain nets is also witnessed for the bottleneck designs..\nFor each residual function \\mathcal{F} , we use a stack of 3 layers instead of 2 (Fig. 5). The three layers are 1 \\times 1, 3 \\times 3, and 1 \\times 1 convolutions, where the 1 \\times 1 layers are responsible for reducing and then increasing (restoring) dimensions, leaving the 3 \\times 3 layer a bottleneck with smaller input/output dimensions.\nFig. 5 shows an example, where both designs have similar time complexity.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-39 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p6-39 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 39,
@@ -475,7 +766,7 @@
           "content": "CIFAR-10 구조",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-40 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p7-40 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 40,
@@ -484,52 +775,52 @@
           "content": "CIFAR mini-batch·optimizer 설정",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-41 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p7-41 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 41,
-          "sectionTitle": "CIFAR data augmentation",
+          "sectionTitle": "4.2 CIFAR-10 and Analysis",
           "subsectionTitle": "CIFAR data augmentation",
-          "content": "“4 pixels are padded on each side, and a 32×32 crop is randomly sampled from the padded image or its horizontal flip.”",
+          "content": "“4 pixels are padded on each side, and a 32×32 crop is randomly sampled from the padded image or its horizontal flip.”\n\nWe use a weight decay of 0.0001 and momentum of 0.9, and adopt the weight initialization in He2015 and BN Ioffe2015 but with no dropout. These models are trained with a mini-batch size of 128 on two GPUs. We start with a learning rate of 0.1, divide it by 10 at 32k and 48k iterations, and terminate training at 64k iterations, which is determined on a 45k/5k train/val split. We follow the simple data augmentation in Lee2014 for training: 4 pixels are padded on each side, and a 32 \\times 32 crop is randomly sampled from the padded image or its horizontal flip. For testing, we only evaluate the single view of the original 32 \\times 32 image.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-42 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n논문은 per-pixel mean subtracti"
+          "_comment": "노트 p7-42 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n논문은 per-pixel mean subtracti | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 42,
-          "sectionTitle": "110-layer warm-up",
+          "sectionTitle": "4.2 CIFAR-10 and Analysis",
           "subsectionTitle": "110-layer warm-up",
-          "content": "“We use 0.01 to warm up the training until the training error is below 80%, about 400 iterations, and then go back to 0.1.”",
+          "content": "“We use 0.01 to warm up the training until the training error is below 80%, about 400 iterations, and then go back to 0.1.”\n\nWe further explore n=18 that leads to a 110-layer ResNet. In this case, we find that the initial learning rate of 0.1 is slightly too large to start converging55\n 5\n \n \n \n With an initial learning rate of 0.1, it starts converging ( . So we use 0.01 to warm up the training until the training error is below 80% (about 400 iterations), and then go back to 0.1 and continue training. The rest of the learning schedule is as done previously. This 110-layer network converges well (Fig. 6, middle). It has fewer parameters than other deep and thin networks such as FitNet Romero2015 and Highway Srivastava2015 (Table 6), yet is among the state-of-the-art results (6.43%, Table 6).",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-43 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p7-43 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 43,
-          "sectionTitle": "Layer response 표준편차 분석",
+          "sectionTitle": "4.2 CIFAR-10 and Analysis",
           "subsectionTitle": "Layer response 표준편차 분석",
-          "content": "“The responses are the outputs of each 3×3 layer, after BN and before nonlinearity.”",
+          "content": "“The responses are the outputs of each 3×3 layer, after BN and before nonlinearity.”\n\nAnalysis of Layer Responses.\nFig. 7 shows the standard deviations (std) of the layer responses. The responses are the outputs of each 3 \\times 3 layer, after BN and before other nonlinearity (ReLU/addition). For ResNets, this analysis reveals the response strength of the residual functions.\nFig. 7 shows that ResNets have generally smaller responses than their plain counterparts. These results support our basic motivation (Sec.3.1) that the residual functions might be generally closer to zero than the non-residual functions.\nWe also notice that the deeper ResNet has smaller magnitudes of responses, as evidenced by the comparisons among ResNet-20, 56, and 110 in Fig. 7. When there are more layers, an individual layer of ResNets tends to modify the signal less.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 p8-44 / 판정 `MISSING-BUT-PROVIDED`\n\n정확히 3×3 convolution 뒤 BN만 수집하려면 modu"
+          "_comment": "노트 p8-44 / 판정 `MISSING-BUT-PROVIDED`\n\n정확히 3×3 convolution 뒤 BN만 수집하려면 modu | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 44,
-          "sectionTitle": "1202-layer ResNet",
+          "sectionTitle": "4.2 CIFAR-10 and Analysis",
           "subsectionTitle": "1202-layer ResNet",
-          "content": "“We set n=200 that leads to a 1202-layer network.”",
+          "content": "“We set n=200 that leads to a 1202-layer network.”\n\nExploring Over 1000 layers.\nWe explore an aggressively deep model of over 1000 layers. We set n=200 that leads to a 1202-layer network, which is trained as described above. Our method shows no optimization difficulty, and this 10^{3} -layer network is able to achieve training error 6, right). Its test error is still fairly good (7.93%, Table 6).",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 p8-45 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p8-45 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 45,
-          "sectionTitle": "PASCAL·COCO detection에서 ResNet-101 사용",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "PASCAL·COCO detection에서 ResNet-101 사용",
-          "content": "“We adopt Faster R-CNN as the detection method.”\n\n“We are interested in the improvements of replacing VGG-16 with ResNet-101.”",
+          "content": "“We adopt Faster R-CNN as the detection method.”\n\n“We are interested in the improvements of replacing VGG-16 with ResNet-101.”\n\nOur method has good generalization performance on other recognition tasks. Table 8 and 8 show the object detection baseline results on PASCAL VOC 2007 and 2012 Everingham2010 and COCO Lin2014. We adopt Faster R-CNN Ren2015 as the detection method. Here we are interested in the improvements of replacing VGG-16 Simonyan2015 with ResNet-101. The detection implementation (see appendix) of using both models is the same, so the gains can only be attributed to better networks. Most remarkably, on the challenging COCO dataset we obtain a 6.0% increase in COCO’s standard metric (mAP@[.5, .95]), which is a 28% relative improvement. This gain is solely due to the learned representations.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 p8-46 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n이 코드는 현대 torchvision 근사 구현이며"
+          "_comment": "노트 p8-46 / 판정 `MISSING-BUT-PROVIDED-PARTIAL`\n\n이 코드는 현대 torchvision 근사 구현이며 | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 46,
@@ -538,7 +829,7 @@
           "content": "Reference 13 — He initialization",
           "pageStart": 9,
           "pageEnd": 9,
-          "_comment": "노트 p9-47 / 판정 `예상코드`\n\n---"
+          "_comment": "노트 p9-47 / 판정 `예상코드`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 47,
@@ -547,7 +838,16 @@
           "content": "Reference 16 — Batch Normalization",
           "pageStart": 9,
           "pageEnd": 9,
-          "_comment": "노트 p9-48 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p9-48 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "scale_conv1",
+              "startLine": 32,
+              "reason": "prototxt/ResNet-101-deploy.prototxt:32 의 scale_conv1 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 48,
@@ -556,43 +856,52 @@
           "content": "Reference 19 — Caffe",
           "pageStart": 9,
           "pageEnd": 9,
-          "_comment": "노트 p9-49 / 판정 `DIRECT`\n\n공식 저장소는 BVLC Caffe를 submodule 대상으로 지정합니다. [GitExtr"
+          "_comment": "노트 p9-49 / 판정 `DIRECT`\n\n공식 저장소는 BVLC Caffe를 submodule 대상으로 지정합니다. [GitExtr / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 49,
-          "sectionTitle": "conv1~conv4_x를 shared feature로 사용",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "conv1~conv4_x를 shared feature로 사용",
-          "content": "“We compute the full-image shared conv feature maps using conv1, conv2_x, conv3_x, and conv4_x.”",
+          "content": "“We compute the full-image shared conv feature maps using conv1, conv2_x, conv3_x, and conv4_x.”\n\nUnlike VGG-16 used in Ren2015, our ResNet has no hidden fc layers. We adopt the idea of “Networks on Conv feature maps” (NoC) Ren2015a to address this issue.\nWe compute the full-image shared conv feature maps using those layers whose strides on the image are no greater than 16 pixels (i.e., conv1, conv2_ x, conv3_x, and conv4_x, totally 91 conv layers in ResNet-101; Table 1). We consider these layers as analogous to the 13 conv layers in VGG-16, and by doing so, both ResNet and VGG-16 have conv feature maps of the same total stride (16 pixels).\nThese layers are shared by a region proposal network (RPN, generating 300 proposals) Ren2015 and a Fast R-CNN detection network Girshick2015.\nRoI pooling Girshick2015 is performed before conv5_1. On this RoI-pooled feature, all layers of conv5_x and up are adopted for each region, playing the roles of VGG-16’s fc layers.\nThe final classification layer is replaced by two sibling layers (classification and box regression Girshick2015).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-50 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p10-50 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 50,
-          "sectionTitle": "RPN 300 proposals",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "RPN 300 proposals",
-          "content": "“These layers are shared by a region proposal network, generating 300 proposals.”",
+          "content": "“These layers are shared by a region proposal network, generating 300 proposals.”\n\nUnlike VGG-16 used in Ren2015, our ResNet has no hidden fc layers. We adopt the idea of “Networks on Conv feature maps” (NoC) Ren2015a to address this issue.\nWe compute the full-image shared conv feature maps using those layers whose strides on the image are no greater than 16 pixels (i.e., conv1, conv2_ x, conv3_x, and conv4_x, totally 91 conv layers in ResNet-101; Table 1). We consider these layers as analogous to the 13 conv layers in VGG-16, and by doing so, both ResNet and VGG-16 have conv feature maps of the same total stride (16 pixels).\nThese layers are shared by a region proposal network (RPN, generating 300 proposals) Ren2015 and a Fast R-CNN detection network Girshick2015.\nRoI pooling Girshick2015 is performed before conv5_1. On this RoI-pooled feature, all layers of conv5_x and up are adopted for each region, playing the roles of VGG-16’s fc layers.\nThe final classification layer is replaced by two sibling layers (classification and box regression Girshick2015).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-51 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p10-51 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 51,
-          "sectionTitle": "RoI pooling 후 conv5_x 실행",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "RoI pooling 후 conv5_x 실행",
-          "content": "“RoI pooling is performed before conv5_1. All layers of conv5_x and up are adopted for each region.”",
+          "content": "“RoI pooling is performed before conv5_1. All layers of conv5_x and up are adopted for each region.”\n\nUnlike VGG-16 used in Ren2015, our ResNet has no hidden fc layers. We adopt the idea of “Networks on Conv feature maps” (NoC) Ren2015a to address this issue.\nWe compute the full-image shared conv feature maps using those layers whose strides on the image are no greater than 16 pixels (i.e., conv1, conv2_ x, conv3_x, and conv4_x, totally 91 conv layers in ResNet-101; Table 1). We consider these layers as analogous to the 13 conv layers in VGG-16, and by doing so, both ResNet and VGG-16 have conv feature maps of the same total stride (16 pixels).\nThese layers are shared by a region proposal network (RPN, generating 300 proposals) Ren2015 and a Fast R-CNN detection network Girshick2015.\nRoI pooling Girshick2015 is performed before conv5_1. On this RoI-pooled feature, all layers of conv5_x and up are adopted for each region, playing the roles of VGG-16’s fc layers.\nThe final classification layer is replaced by two sibling layers (classification and box regression Girshick2015).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-52 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p10-52 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 52,
-          "sectionTitle": "Detection fine-tuning 중 BN 고정",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "Detection fine-tuning 중 BN 고정",
-          "content": "“The BN layers are fixed during fine-tuning for object detection.”",
+          "content": "“The BN layers are fixed during fine-tuning for object detection.”\n\nFor the usage of BN layers, after pre-training, we compute the BN statistics (means and variances) for each layer on the ImageNet training set. Then the BN layers are fixed during fine-tuning for object detection. As such, the BN layers become linear activations with constant offsets and scales, and BN statistics are not updated by fine-tuning. We fix the BN layers mainly for reducing memory consumption in Faster R-CNN training.",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-53 / 판정 `DIRECT-PARTIAL`\n\n이 설정은 추론 또는 고정 BN에 대응하지만, fine-tuning 중 pa EXPECTED"
+          "_comment": "노트 p10-53 / 판정 `DIRECT-PARTIAL`\n\n이 설정은 추론 또는 고정 BN에 대응하지만, fine-tuning 중 pa EXPECTED | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/KaimingHe/deep-residual-networks",
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "bn_conv1",
+              "startLine": 22,
+              "reason": "Deploy prototxt의 BN은 global statistics 사용으로 설정됩니다."
+            }
+          ]
         },
         {
           "chunkIndex": 53,
@@ -601,61 +910,61 @@
           "content": "COCO detection 학습 설정",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-54 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p10-54 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 54,
-          "sectionTitle": "Box refinement",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "Box refinement",
-          "content": "“We pool a new feature from the regressed box and obtain a new classification score and a new regressed box.”",
+          "content": "“We pool a new feature from the regressed box and obtain a new classification score and a new regressed box.”\n\nBox refinement. Our box refinement partially follows the iterative localization in Gidaris2015.\nIn Faster R-CNN, the final output is a regressed box that is different from its proposal box. So for inference, we pool a new feature from the regressed box and obtain a new classification score and a new regressed box.\nWe combine these 300 new predictions with the original 300 predictions. Non-maximum suppression (NMS) is applied on the union set of predicted boxes using an IoU threshold of 0.3 Girshick2014, followed by box voting Gidaris2015.\nBox refinement improves mAP by about 2 points (Table 9).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-55 / 판정 `MISSING-BUT-PROVIDED-CONCEPTUAL`\n\n실제 Faster R-CNN API에 맞추려면"
+          "_comment": "노트 p10-55 / 판정 `MISSING-BUT-PROVIDED-CONCEPTUAL`\n\n실제 Faster R-CNN API에 맞추려면 | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 55,
-          "sectionTitle": "NMS IoU 0.3와 box voting",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "NMS IoU 0.3와 box voting",
-          "content": "“NMS is applied … using an IoU threshold of 0.3, followed by box voting.”",
+          "content": "“NMS is applied … using an IoU threshold of 0.3, followed by box voting.”\n\nBox refinement. Our box refinement partially follows the iterative localization in Gidaris2015.\nIn Faster R-CNN, the final output is a regressed box that is different from its proposal box. So for inference, we pool a new feature from the regressed box and obtain a new classification score and a new regressed box.\nWe combine these 300 new predictions with the original 300 predictions. Non-maximum suppression (NMS) is applied on the union set of predicted boxes using an IoU threshold of 0.3 Girshick2014, followed by box voting Gidaris2015.\nBox refinement improves mAP by about 2 points (Table 9).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-56 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p10-56 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 56,
-          "sectionTitle": "Global context feature",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "Global context feature",
-          "content": "“The global feature is concatenated with the original per-region feature.”",
+          "content": "“The global feature is concatenated with the original per-region feature.”\n\nGlobal context. We combine global context in the Fast R-CNN step. Given the full-image conv feature map, we pool a feature by global Spatial Pyramid Pooling He2014 (with a “single-level” pyramid) which can be implemented as “RoI” pooling using the entire image’s bounding box as the RoI. This pooled feature is fed into the post-RoI layers to obtain a global context feature. This global feature is concatenated with the original per-region feature, followed by the sibling classification and box regression layers. This new structure is trained end-to-end.\nGlobal context improves mAP@.5 by about 1 point (Table 9).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-57 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p10-57 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 57,
-          "sectionTitle": "Detection multi-scale testing",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "Detection multi-scale testing",
-          "content": "“The image’s shorter sides are in {200, 400, 600, 800, 1000}.”",
+          "content": "“The image’s shorter sides are in {200, 400, 600, 800, 1000}.”\n\nMulti-scale testing. In the above, all results are obtained by single-scale training/testing as in Ren2015, where the image’s shorter side is s=600 pixels. Multi-scale training/testing has been developed in He2014; Girshick2015 by selecting a scale from a feature pyramid, and in Ren2015a by using maxout layers. In our current implementation, we have performed multi-scale testing following Ren2015a; we have not performed multi-scale training because of limited time. In addition, we have performed multi-scale testing only for the Fast R-CNN step (but not yet for the RPN step).\nWith a trained model, we compute conv feature maps on an image pyramid, where the image’s shorter sides are s\\in\\{200,400,600,800,1000\\} . We select two adjacent scales from the pyramid following Ren2015a. RoI pooling and subsequent layers are performed on the feature maps of these two scales Ren2015a, which are merged by maxout as in Ren2015a.\nMulti-scale testing improves the mAP by over 2 points (Table 9).",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "노트 p10-58 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p10-58 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 58,
-          "sectionTitle": "Ensemble of region proposals and classifiers",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "Ensemble of region proposals and classifiers",
-          "content": "“We use an ensemble for proposing regions, and the union set of proposals are processed by an ensemble of per-region classifiers.”",
+          "content": "“We use an ensemble for proposing regions, and the union set of proposals are processed by an ensemble of per-region classifiers.”\n\nEnsemble. In Faster R-CNN, the system is designed to learn region proposals and also object classifiers, so an ensemble can be used to boost both tasks. We use an ensemble for proposing regions, and the union set of proposals are processed by an ensemble of per-region classifiers.\nTable 9 shows our result based on an ensemble of 3 networks. The mAP is 59.0% and 37.4% on the test-dev set. This result won the 1st place in the detection task in COCO 2015.",
           "pageStart": 11,
           "pageEnd": 11,
-          "_comment": "노트 p11-59 / 판정 `MISSING-BUT-PROVIDED`"
+          "_comment": "노트 p11-59 / 판정 `MISSING-BUT-PROVIDED` | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 59,
-          "sectionTitle": "ImageNet detection 200 classes",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "ImageNet detection 200 classes",
-          "content": "“The ImageNet Detection task involves 200 object categories.”",
+          "content": "“The ImageNet Detection task involves 200 object categories.”\n\nThe ImageNet Detection (DET) task involves 200 object categories. The accuracy is evaluated by mAP@.5.\nOur object detection algorithm for ImageNet DET is the same as that for MS COCO in Table 9. The networks are pre-trained on the 1000-class ImageNet classification set, and are fine-tuned on the DET data. We split the validation set into two parts (val1/val2) following Girshick2014. We fine-tune the detection models using the DET training set and the val1 set. The val2 set is used for validation. We do not use other ILSVRC 2015 data. Our single model with ResNet-101 has 58.8% mAP and our ensemble of 3 models has 62.1% mAP on the DET test set (Table 12). This result won the 1st place in the ImageNet detection task in ILSVRC 2015, surpassing the second place by 8.5 points (absolute).",
           "pageStart": 11,
           "pageEnd": 11,
-          "_comment": "노트 p11-60 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p11-60 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 60,
@@ -664,34 +973,34 @@
           "content": "Per-class classification·box regression",
           "pageStart": 12,
           "pageEnd": 12,
-          "_comment": "노트 p12-61 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p12-61 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 61,
-          "sectionTitle": "Anchor sampling — 이미지당 8개, positive:negative=1:1",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "Anchor sampling — 이미지당 8개, positive:negative=1:1",
-          "content": "“8 anchors are randomly sampled for each image, where positive and negative anchors have a ratio of 1:1.”",
+          "content": "“8 anchors are randomly sampled for each image, where positive and negative anchors have a ratio of 1:1.”\n\nAs in our ImageNet classification training (Sec. 3.4), we randomly sample 224 \\times 224 crops for data augmentation. We use a mini-batch size of 256 images for fine-tuning.\nTo avoid negative samples being dominate, 8 anchors are randomly sampled for each image, where the sampled positive and negative anchors have a ratio of 1:1 Ren2015. For testing, the network is applied on the image fully-convolutionally.",
           "pageStart": 12,
           "pageEnd": 12,
-          "_comment": "노트 p12-62 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p12-62 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 62,
-          "sectionTitle": "Fully convolutional localization test",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "Fully convolutional localization test",
-          "content": "“For testing, the network is applied on the image fully-convolutionally.”",
+          "content": "“For testing, the network is applied on the image fully-convolutionally.”\n\nAs in our ImageNet classification training (Sec. 3.4), we randomly sample 224 \\times 224 crops for data augmentation. We use a mini-batch size of 256 images for fine-tuning.\nTo avoid negative samples being dominate, 8 anchors are randomly sampled for each image, where the sampled positive and negative anchors have a ratio of 1:1 Ren2015. For testing, the network is applied on the image fully-convolutionally.",
           "pageStart": 12,
           "pageEnd": 12,
-          "_comment": "노트 p12-63 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p12-63 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         },
         {
           "chunkIndex": 63,
-          "sectionTitle": "R-CNN용 상위 200개 proposal",
+          "sectionTitle": "4.3 Object Detection on PASCAL and MS COCO",
           "subsectionTitle": "R-CNN용 상위 200개 proposal",
-          "content": "“For each training image, the highest scored 200 proposals are extracted as training samples.”",
+          "content": "“For each training image, the highest scored 200 proposals are extracted as training samples.”\n\nOur R-CNN implementation is as follows. We apply the per-class RPN trained as above on the training images to predict bounding boxes for the ground truth class. These predicted boxes play a role of class-dependent proposals.\nFor each training image, the highest scored 200 proposals are extracted as training samples to train an R-CNN classifier. The image region is cropped from a proposal, warped to 224 \\times 224 pixels, and fed into the classification network as in R-CNN Girshick2014. The outputs of this network consist of two sibling fc layers for cls and reg, also in a per-class form.\nThis R-CNN network is fine-tuned on the training set using a mini-batch size of 256 in the RoI-centric fashion. For testing, the RPN generates the highest scored 200 proposals for each predicted class, and the R-CNN network is used to update these proposals’ scores and box positions.",
           "pageStart": 12,
           "pageEnd": 12,
-          "_comment": "노트 p12-64 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p12-64 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
         }
       ],
       "repositories": [
@@ -700,13 +1009,168 @@
           "ownerName": "KaimingHe",
           "repositoryName": "deep-residual-networks",
           "defaultBranch": "master",
-          "commitHash": null,
+          "commitHash": "a7026cb6d478e131b765b898c312e25f9f6dc031",
           "licenseName": "MIT",
-          "primaryLanguage": null,
+          "primaryLanguage": "Prototxt",
           "starCount": 6750,
           "relationType": "OFFICIAL",
           "isPrimary": true,
-          "codeBlocks": []
+          "codeBlocks": [
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "ResNet-101",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Prototxt",
+              "startLine": 1,
+              "endLine": 7,
+              "codeContent": "name: \"ResNet-101\"\ninput: \"data\"\ninput_dim: 1\ninput_dim: 3\ninput_dim: 224\ninput_dim: 224\n",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:1-7"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch1",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 61,
+              "endLine": 73,
+              "codeContent": "layer {\n\tbottom: \"pool1\"\n\ttop: \"res2a_branch1\"\n\tname: \"res2a_branch1\"\n\ttype: \"Convolution\"\n\tconvolution_param {\n\t\tnum_output: 256\n\t\tkernel_size: 1\n\t\tpad: 0\n\t\tstride: 1\n\t\tbias_term: false\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:61-73"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch2a",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 95,
+              "endLine": 107,
+              "codeContent": "layer {\n\tbottom: \"pool1\"\n\ttop: \"res2a_branch2a\"\n\tname: \"res2a_branch2a\"\n\ttype: \"Convolution\"\n\tconvolution_param {\n\t\tnum_output: 64\n\t\tkernel_size: 1\n\t\tpad: 0\n\t\tstride: 1\n\t\tbias_term: false\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:95-107"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2b",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 342,
+              "endLine": 348,
+              "codeContent": "layer {\n\tbottom: \"res2a\"\n\tbottom: \"res2b_branch2c\"\n\ttop: \"res2b\"\n\tname: \"res2b\"\n\ttype: \"Eltwise\"\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:342-348"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 211,
+              "endLine": 217,
+              "codeContent": "layer {\n\tbottom: \"res2a_branch1\"\n\tbottom: \"res2a_branch2c\"\n\ttop: \"res2a\"\n\tname: \"res2a\"\n\ttype: \"Eltwise\"\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:211-217"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res3a_branch1",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 488,
+              "endLine": 500,
+              "codeContent": "layer {\n\tbottom: \"res2c\"\n\ttop: \"res3a_branch1\"\n\tname: \"res3a_branch1\"\n\ttype: \"Convolution\"\n\tconvolution_param {\n\t\tnum_output: 512\n\t\tkernel_size: 1\n\t\tpad: 0\n\t\tstride: 2\n\t\tbias_term: false\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:488-500"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch2c",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 177,
+              "endLine": 189,
+              "codeContent": "layer {\n\tbottom: \"res2a_branch2b\"\n\ttop: \"res2a_branch2c\"\n\tname: \"res2a_branch2c\"\n\ttype: \"Convolution\"\n\tconvolution_param {\n\t\tnum_output: 256\n\t\tkernel_size: 1\n\t\tpad: 0\n\t\tstride: 1\n\t\tbias_term: false\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:177-189"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "pool5",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 4520,
+              "endLine": 4530,
+              "codeContent": "layer {\n\tbottom: \"res5c\"\n\ttop: \"pool5\"\n\tname: \"pool5\"\n\ttype: \"Pooling\"\n\tpooling_param {\n\t\tkernel_size: 7\n\t\tstride: 1\n\t\tpool: AVE\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:4520-4530"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "conv1",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 8,
+              "endLine": 20,
+              "codeContent": "layer {\n\tbottom: \"data\"\n\ttop: \"conv1\"\n\tname: \"conv1\"\n\ttype: \"Convolution\"\n\tconvolution_param {\n\t\tnum_output: 64\n\t\tkernel_size: 7\n\t\tpad: 3\n\t\tstride: 2\n\t\tbias_term: false\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:8-20"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "pool1",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 49,
+              "endLine": 59,
+              "codeContent": "layer {\n\tbottom: \"conv1\"\n\ttop: \"pool1\"\n\tname: \"pool1\"\n\ttype: \"Pooling\"\n\tpooling_param {\n\t\tkernel_size: 3\n\t\tstride: 2\n\t\tpool: MAX\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:49-59"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "bn2a_branch2a",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 109,
+              "endLine": 117,
+              "codeContent": "layer {\n\tbottom: \"res2a_branch2a\"\n\ttop: \"res2a_branch2a\"\n\tname: \"bn2a_branch2a\"\n\ttype: \"BatchNorm\"\n\tbatch_norm_param {\n\t\tuse_global_stats: true\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:109-117"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "res2a_branch2b",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 136,
+              "endLine": 148,
+              "codeContent": "layer {\n\tbottom: \"res2a_branch2a\"\n\ttop: \"res2a_branch2b\"\n\tname: \"res2a_branch2b\"\n\ttype: \"Convolution\"\n\tconvolution_param {\n\t\tnum_output: 64\n\t\tkernel_size: 3\n\t\tpad: 1\n\t\tstride: 1\n\t\tbias_term: false\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:136-148"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "scale_conv1",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 32,
+              "endLine": 40,
+              "codeContent": "layer {\n\tbottom: \"conv1\"\n\ttop: \"conv1\"\n\tname: \"scale_conv1\"\n\ttype: \"Scale\"\n\tscale_param {\n\t\tbias_term: true\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:32-40"
+            },
+            {
+              "filePath": "prototxt/ResNet-101-deploy.prototxt",
+              "symbolName": "bn_conv1",
+              "symbolType": "MODULE",
+              "parentSymbolName": "ResNet-101",
+              "programmingLanguage": "Prototxt",
+              "startLine": 22,
+              "endLine": 30,
+              "codeContent": "layer {\n\tbottom: \"conv1\"\n\ttop: \"conv1\"\n\tname: \"bn_conv1\"\n\ttype: \"BatchNorm\"\n\tbatch_norm_param {\n\t\tuse_global_stats: true\n\t}\n}",
+              "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:22-30"
+            }
+          ]
         }
       ]
     }

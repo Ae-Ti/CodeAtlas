@@ -1,41 +1,291 @@
 {
-  "_comment": "YOLO 3b30f4e8fef7808bb2a4e4838257a03c.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_comment": "노트 마크다운에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것(줄 번호는 AST·블록 파서 실측). 노트에 경로·심볼이 없는 경우 코드 본문을 저장소에 역매칭해 특정했습니다.",
   "_sourceMarkdown": "YOLO 3b30f4e8fef7808bb2a4e4838257a03c.md",
   "_unresolved": [
     {
-      "chunk": "-",
-      "title": "코드 블록 전체",
-      "issue": "이 노트는 대응 코드에 파일 경로·심볼명이 없어 code_blocks 를 만들 수 없음. pjreddie/darknet 기준으로 경로를 지정해야 적재 가능 (chunk 는 69개 모두 적재됨)"
+      "chunk": "pNone-2",
+      "title": "전체 파이프라인의 end-to-end 최적화",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "pNone-3",
+      "title": "Figure 1 — 448×448 resize",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "pNone-4",
+      "title": "Figure 1 — 한 번의 convolutional network 실행",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "pNone-6",
+      "title": "실시간 속도 45 FPS",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "pNone-8",
+      "title": "전체 이미지의 global context 사용",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "pNone-9",
+      "title": "Sliding-window와 R-CNN 설명",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p2-10",
+      "title": "하나의 network로 detection 요소 통합",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-11",
+      "title": "S×S grid",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-12",
+      "title": "객체 중심이 위치한 cell이 검출 책임",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-13",
+      "title": "각 cell이 B개 bounding box와 confidence 예측",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-14",
+      "title": "Confidence = Pr(Object) × IoU",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-15",
+      "title": "x, y, w, h, confidence 다섯 예측값",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-16",
+      "title": "x, y는 cell-relative offset",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-17",
+      "title": "w, h는 전체 이미지 기준",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-18",
+      "title": "Conditional class probability",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-19",
+      "title": "Box별 class probability가 아니라 cell당 한 세트",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "p2-20",
       "title": "Equation (1) — class-specific confidence",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p2-21",
+      "title": "Figure 2 — `S×S×(B×5+C)` tensor",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p3-24",
+      "title": "Figure 3 — 입력 448×448",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p3-26",
+      "title": "2×2 max pooling stride 2",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p3-29",
+      "title": "ImageNet에서 224×224로 pretraining",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p3-30",
+      "title": "ImageNet 1000-class pretraining",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p3-32",
+      "title": "224에서 448로 해상도 증가",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p3-33",
+      "title": "Width와 height를 0~1로 정규화",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "p3-34",
+      "title": "최종 layer는 linear activation",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "p3-35",
       "title": "나머지 layer는 Leaky ReLU 0.1",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
-      "chunk": "p4-40",
-      "title": "Equation (3) — 전체 YOLO loss",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "chunk": "p3-36",
+      "title": "Sum-squared error 사용",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p3-38",
+      "title": "Width와 height의 square root 예측",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p3-39",
+      "title": "가장 높은 IoU predictor가 책임",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-41",
+      "title": "Classification loss는 object cell에만 적용",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "p4-42",
+      "title": "Coordinate loss는 responsible predictor에만 적용",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "p4-43",
+      "title": "135 epochs",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "p4-44",
+      "title": "PASCAL VOC 2007·2012 학습",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p4-45",
+      "title": "Batch size 64",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-46",
+      "title": "Momentum 0.9",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p4-47",
+      "title": "Weight decay 0.0005",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p4-49",
+      "title": "Dropout 0.5",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "p4-50",
+      "title": "Random scaling·translation 최대 20%",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p4-52",
+      "title": "한 번의 network evaluation",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p4-53",
+      "title": "이미지당 98개 bounding box",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p4-54",
+      "title": "Non-maximal suppression",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p4-55",
+      "title": "NMS로 2~3% mAP 개선",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p4-56",
+      "title": "YOLO의 small-object 한계",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p5-57",
+      "title": "DPM과 비교",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p5-58",
+      "title": "R-CNN의 약 2000 proposal과 YOLO의 98 box",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p5-59",
+      "title": "여러 class를 동시에 검출하는 general-purpose detector",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "p6-60",
       "title": "Table 1 — mAP와 FPS 비교",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p6-61",
       "title": "Error Analysis 기준",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p6-62",
+      "title": "Fast R-CNN 결과를 YOLO로 재점수화",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p7-63",
+      "title": "VOC 2012 mAP 57.9",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p7-64",
+      "title": "Small object class 성능 저하",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p7-65",
+      "title": "Artwork generalization",
+      "issue": "노트에 대응 코드가 없음"
     },
     {
       "chunk": "p8-66",
       "title": "Figure 5 — Precision-Recall curve, AP, F1",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "p8-67",
+      "title": "Webcam 실시간 detection",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p8-68",
+      "title": "Tracking처럼 동작",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "p8-69",
+      "title": "Conclusion — full-image joint training",
+      "issue": "코드 본문을 pjreddie/darknet@f6afaab 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "-",
+      "title": "content 보강",
+      "issue": "15개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
     }
   ],
   "papers": [
@@ -54,21 +304,30 @@
       "chunks": [
         {
           "chunkIndex": 0,
-          "sectionTitle": "객체 검출을 하나의 회귀 문제로 구성",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "객체 검출을 하나의 회귀 문제로 구성",
-          "content": "“Instead, we frame object detection as a regression problem to spatially separated bounding boxes and associated class probabilities.”\n\n“A single neural network predicts bounding boxes and class probabilities directly from full images in one evaluation.”",
+          "content": "“Instead, we frame object detection as a regression problem to spatially separated bounding boxes and associated class probabilities.”\n\n“A single neural network predicts bounding boxes and class probabilities directly from full images in one evaluation.”\n\nWe present YOLO, a new approach to object detection. Prior work on object detection repurposes classifiers to perform detection. Instead, we frame object detection as a regression problem to spatially separated bounding boxes and associated class probabilities. A single neural network predicts bounding boxes and class probabilities directly from full images in one evaluation. Since the whole detection pipeline is a single network, it can be optimized end-to-end directly on detection performance.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 pNone-1 / 판정 `DIRECT`\n\n`connected` 계층이 모든 bounding box 좌표, confidence, cl"
+          "_comment": "노트 pNone-1 / 판정 `DIRECT`\n\n`connected` 계층이 모든 bounding box 좌표, confidence, cl | 논문 원문 문단 보강 (ar5iv 1506.02640)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/yolov1-tiny.cfg",
+              "symbolName": "detection[16]",
+              "startLine": 116,
+              "reason": "`1470`은 다음 출력을 한 번에 회귀한다."
+            }
+          ]
         },
         {
           "chunkIndex": 1,
-          "sectionTitle": "전체 파이프라인의 end-to-end 최적화",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "전체 파이프라인의 end-to-end 최적화",
-          "content": "“Since the whole detection pipeline is a single network, it can be optimized end-to-end directly on detection performance.”",
+          "content": "“Since the whole detection pipeline is a single network, it can be optimized end-to-end directly on detection performance.”\n\nWe present YOLO, a new approach to object detection. Prior work on object detection repurposes classifiers to perform detection. Instead, we frame object detection as a regression problem to spatially separated bounding boxes and associated class probabilities. A single neural network predicts bounding boxes and class probabilities directly from full images in one evaluation. Since the whole detection pipeline is a single network, it can be optimized end-to-end directly on detection performance.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 pNone-2 / 판정 `DIRECT`\n\n입력 이미지부터 최종 detection loss까지 한 network에서 forward·b"
+          "_comment": "노트 pNone-2 / 판정 `DIRECT`\n\n입력 이미지부터 최종 detection loss까지 한 network에서 forward·b | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 2,
@@ -95,133 +354,151 @@
           "content": "“(3) thresholds the resulting detections by the model’s confidence.”\n\n“Non-max suppression.”",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 pNone-5 / 판정 `DIRECT`\n\n- `thresh`: confidence가 낮은 결과 제거\n- `do_nms_sort()`"
+          "_comment": "노트 pNone-5 / 판정 `DIRECT`\n\n- `thresh`: confidence가 낮은 결과 제거\n- `do_nms_sort()`",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "examples/detector.c",
+              "symbolName": "test_detector",
+              "startLine": 562,
+              "reason": "examples/detector.c:562 의 test_detector 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 5,
-          "sectionTitle": "실시간 속도 45 FPS",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "실시간 속도 45 FPS",
-          "content": "“Our base YOLO model processes images in real-time at 45 frames per second.”",
+          "content": "“Our base YOLO model processes images in real-time at 45 frames per second.”\n\nOur unified architecture is extremely fast. Our base YOLO model processes images in real-time at 45 frames per second. A smaller version of the network, Fast YOLO, processes an astounding 155 frames per second while still achieving double the mAP of other real-time detectors. Compared to state-of-the-art detection systems, YOLO makes more localization errors but is less likely to predict false positives on background. Finally, YOLO learns very general representations of objects. It outperforms other detection methods, including DPM and R-CNN, when generalizing from natural images to other domains like artwork.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 pNone-6 / 판정 `MISSING-BUT-PROVIDED`\n\n45 FPS는 논문의 실험 결과이며, 저장소 실행 환경에 따라 달"
+          "_comment": "노트 pNone-6 / 판정 `MISSING-BUT-PROVIDED`\n\n45 FPS는 논문의 실험 결과이며, 저장소 실행 환경에 따라 달 | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 6,
-          "sectionTitle": "Fast YOLO 155 FPS",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "Fast YOLO 155 FPS",
-          "content": "“Fast YOLO processes an astounding 155 frames per second…”",
+          "content": "“Fast YOLO processes an astounding 155 frames per second…”\n\nOur unified architecture is extremely fast. Our base YOLO model processes images in real-time at 45 frames per second. A smaller version of the network, Fast YOLO, processes an astounding 155 frames per second while still achieving double the mAP of other real-time detectors. Compared to state-of-the-art detection systems, YOLO makes more localization errors but is less likely to predict false positives on background. Finally, YOLO learns very general representations of objects. It outperforms other detection methods, including DPM and R-CNN, when generalizing from natural images to other domains like artwork.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 pNone-7 / 판정 `PARTIAL`\n\n공식 저장소의 `yolov1-tiny.cfg`는 논문의 Fast YOLO와 같은 축소 목"
+          "_comment": "노트 pNone-7 / 판정 `PARTIAL`\n\n공식 저장소의 `yolov1-tiny.cfg`는 논문의 Fast YOLO와 같은 축소 목 | 논문 원문 문단 보강 (ar5iv 1506.02640)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/yolov3-openimages.cfg",
+              "symbolName": "convolutional[63]",
+              "startLine": 461,
+              "reason": "공식 저장소에는 Fast YOLO에 대응하는 축소 설정이 있습니다."
+            }
+          ]
         },
         {
           "chunkIndex": 7,
-          "sectionTitle": "전체 이미지의 global context 사용",
+          "sectionTitle": "1 Introduction",
           "subsectionTitle": "전체 이미지의 global context 사용",
-          "content": "“YOLO sees the entire image during training and test time so it implicitly encodes contextual information about classes as well as their appearance.”",
+          "content": "“YOLO sees the entire image during training and test time so it implicitly encodes contextual information about classes as well as their appearance.”\n\nSecond, YOLO reasons globally about the image when making predictions. Unlike sliding window and region proposal-based techniques, YOLO sees the entire image during training and test time so it implicitly encodes contextual information about classes as well as their appearance. Fast R-CNN, a top detection method DBLP:journals/corr/Girshick15, mistakes background patches in an image for objects because it can’t see the larger context. YOLO makes less than half the number of background errors compared to Fast R-CNN.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 pNone-8 / 판정 `DIRECT`\n\n입력 전체 `448×448`에서 추출된 마지막 feature를 하나의 connected o"
+          "_comment": "노트 pNone-8 / 판정 `DIRECT`\n\n입력 전체 `448×448`에서 추출된 마지막 feature를 하나의 connected o | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 8,
-          "sectionTitle": "Sliding-window와 R-CNN 설명",
+          "sectionTitle": "1 Introduction",
           "subsectionTitle": "Sliding-window와 R-CNN 설명",
-          "content": "“DPM use a sliding window approach…”\n\n“R-CNN use region proposal methods…”",
+          "content": "“DPM use a sliding window approach…”\n\n“R-CNN use region proposal methods…”\n\nCurrent detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image. Systems like deformable parts models (DPM) use a sliding window approach where the classifier is run at evenly spaced locations over the entire image lsvm-pami.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 pNone-9 / 판정 `COMPARISON-METHOD / 예상코드`\n\n이 코드는 YOLO 코드가 아니라 논문에서 비교 대상으로 "
+          "_comment": "노트 pNone-9 / 판정 `COMPARISON-METHOD / 예상코드`\n\n이 코드는 YOLO 코드가 아니라 논문에서 비교 대상으로  | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 9,
-          "sectionTitle": "하나의 network로 detection 요소 통합",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "하나의 network로 detection 요소 통합",
-          "content": "“We unify the separate components of object detection into a single neural network.”\n\n“It also predicts all bounding boxes across all classes for an image simultaneously.”",
+          "content": "“We unify the separate components of object detection into a single neural network.”\n\n“It also predicts all bounding boxes across all classes for an image simultaneously.”\n\nWe unify the separate components of object detection into a single neural network. Our network uses features from the entire image to predict each bounding box. It also predicts all bounding boxes across all classes for an image simultaneously. This means our network reasons globally about the full image and all the objects in the image. The YOLO design enables end-to-end training and real-time speeds while maintaining high average precision.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-10 / 판정 `DIRECT`\n\n모든 cell, box, class prediction을 하나의 출력 벡터에서 동시에 생성"
+          "_comment": "노트 p2-10 / 판정 `DIRECT`\n\n모든 cell, box, class prediction을 하나의 출력 벡터에서 동시에 생성 | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 10,
-          "sectionTitle": "S×S grid",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "S×S grid",
-          "content": "“Our system divides the input image into an S × S grid.”",
+          "content": "“Our system divides the input image into an S × S grid.”\n\nOur system divides the input image into an S\\times S grid. If the center of an object falls into a grid cell, that grid cell is responsible for detecting that object.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-11 / 판정 `DIRECT`\n\nPASCAL VOC 설정에서 `S=7`입니다. [GitHub](https://github."
+          "_comment": "노트 p2-11 / 판정 `DIRECT`\n\nPASCAL VOC 설정에서 `S=7`입니다. [GitHub](https://github. | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 11,
-          "sectionTitle": "객체 중심이 위치한 cell이 검출 책임",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "객체 중심이 위치한 cell이 검출 책임",
-          "content": "“If the center of an object falls into a grid cell, that grid cell is responsible for detecting that object.”",
+          "content": "“If the center of an object falls into a grid cell, that grid cell is responsible for detecting that object.”\n\nOur system divides the input image into an S\\times S grid. If the center of an object falls into a grid cell, that grid cell is responsible for detecting that object.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-12 / 판정 `DIRECT`\n\n객체 중심 좌표를 `side`로 곱해 어느 row·column cell에 들어가는지 결정합"
+          "_comment": "노트 p2-12 / 판정 `DIRECT`\n\n객체 중심 좌표를 `side`로 곱해 어느 row·column cell에 들어가는지 결정합 | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 12,
-          "sectionTitle": "각 cell이 B개 bounding box와 confidence 예측",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "각 cell이 B개 bounding box와 confidence 예측",
-          "content": "“Each grid cell predicts B bounding boxes and confidence scores for those boxes.”",
+          "content": "“Each grid cell predicts B bounding boxes and confidence scores for those boxes.”\n\nEach grid cell predicts B bounding boxes and confidence scores for those boxes. These confidence scores reflect how confident the model is that the box contains an object and also how accurate it thinks the box is that it predicts. Formally we define confidence as \\Pr(\\textrm{Object})*\\textrm{IOU}_{\\textrm{pred}}^{\\textrm{truth}} . If no object exists in that cell, the confidence scores should be zero. Otherwise we want the confidence score to equal the intersection over union (IOU) between the predicted box and the ground truth.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-13 / 판정 `DIRECT`\n\n`t1.test.cfg`와 `yolov1-tiny.cfg`가 논문과 정확히 일치합니다. ["
+          "_comment": "노트 p2-13 / 판정 `DIRECT`\n\n`t1.test.cfg`와 `yolov1-tiny.cfg`가 논문과 정확히 일치합니다. [ | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 13,
-          "sectionTitle": "Confidence = Pr(Object) × IoU",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "Confidence = Pr(Object) × IoU",
-          "content": "“Formally we define confidence as Pr(Object) ∗ IOU…”\n\n“If no object exists in that cell, the confidence scores should be zero.”",
+          "content": "“Formally we define confidence as Pr(Object) ∗ IOU…”\n\n“If no object exists in that cell, the confidence scores should be zero.”\n\nEach grid cell predicts B bounding boxes and confidence scores for those boxes. These confidence scores reflect how confident the model is that the box contains an object and also how accurate it thinks the box is that it predicts. Formally we define confidence as \\Pr(\\textrm{Object})*\\textrm{IOU}_{\\textrm{pred}}^{\\textrm{truth}} . If no object exists in that cell, the confidence scores should be zero. Otherwise we want the confidence score to equal the intersection over union (IOU) between the predicted box and the ground truth.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-14 / 판정 `DIRECT`\n\n`rescore=1`은 object confidence target을 IoU로 다시 설정하"
+          "_comment": "노트 p2-14 / 판정 `DIRECT`\n\n`rescore=1`은 object confidence target을 IoU로 다시 설정하 | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 14,
-          "sectionTitle": "x, y, w, h, confidence 다섯 예측값",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "x, y, w, h, confidence 다섯 예측값",
-          "content": "“Each bounding box consists of 5 predictions: x, y, w, h, and confidence.”",
+          "content": "“Each bounding box consists of 5 predictions: x, y, w, h, and confidence.”\n\nEach bounding box consists of 5 predictions: x , y , w , h , and confidence. The (x,y) coordinates represent the center of the box relative to the bounds of the grid cell. The width and height are predicted relative to the whole image. Finally the confidence prediction represents the IOU between the predicted box and any ground truth box.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-15 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p2-15 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 15,
-          "sectionTitle": "x, y는 cell-relative offset",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "x, y는 cell-relative offset",
-          "content": "“The (x, y) coordinates represent the center of the box relative to the bounds of the grid cell.”",
+          "content": "“The (x, y) coordinates represent the center of the box relative to the bounds of the grid cell.”\n\nEach bounding box consists of 5 predictions: x , y , w , h , and confidence. The (x,y) coordinates represent the center of the box relative to the bounds of the grid cell. The width and height are predicted relative to the whole image. Finally the confidence prediction represents the IOU between the predicted box and any ground truth box.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-16 / 판정 `DIRECT`\n\n`local_x`, `local_y`는 각 cell 안의 0~1 offset이 됩니다.\n\n"
+          "_comment": "노트 p2-16 / 판정 `DIRECT`\n\n`local_x`, `local_y`는 각 cell 안의 0~1 offset이 됩니다.\n\n | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 16,
-          "sectionTitle": "w, h는 전체 이미지 기준",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "w, h는 전체 이미지 기준",
-          "content": "“The width and height are predicted relative to the whole image.”",
+          "content": "“The width and height are predicted relative to the whole image.”\n\nEach bounding box consists of 5 predictions: x , y , w , h , and confidence. The (x,y) coordinates represent the center of the box relative to the bounds of the grid cell. The width and height are predicted relative to the whole image. Finally the confidence prediction represents the IOU between the predicted box and any ground truth box.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-17 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p2-17 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 17,
-          "sectionTitle": "Conditional class probability",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "Conditional class probability",
-          "content": "“Each grid cell also predicts C conditional class probabilities, Pr(Class_i|Object).”",
+          "content": "“Each grid cell also predicts C conditional class probabilities, Pr(Class_i|Object).”\n\nEach grid cell also predicts C conditional class probabilities, \\Pr(\\textrm{Class}_{i}|\\textrm{Object}) . These probabilities are conditioned on the grid cell containing an object. We only predict one set of class probabilities per grid cell, regardless of the number of boxes B .",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-18 / 판정 `DIRECT`\n\n각 cell마다 20개의 class prediction을 갖습니다."
+          "_comment": "노트 p2-18 / 판정 `DIRECT`\n\n각 cell마다 20개의 class prediction을 갖습니다. | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 18,
-          "sectionTitle": "Box별 class probability가 아니라 cell당 한 세트",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "Box별 class probability가 아니라 cell당 한 세트",
-          "content": "“We only predict one set of class probabilities per grid cell, regardless of the number of boxes B.”",
+          "content": "“We only predict one set of class probabilities per grid cell, regardless of the number of boxes B.”\n\nEach grid cell also predicts C conditional class probabilities, \\Pr(\\textrm{Class}_{i}|\\textrm{Object}) . These probabilities are conditioned on the grid cell containing an object. We only predict one set of class probabilities per grid cell, regardless of the number of boxes B .",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-19 / 판정 `DIRECT-CONCEPTUAL`\n\n---"
+          "_comment": "노트 p2-19 / 판정 `DIRECT-CONCEPTUAL`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 19,
@@ -230,34 +507,52 @@
           "content": "Equation (1) — class-specific confidence",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-20 / 판정 `DIRECT`\n\n추론 시 box confidence와 class probability를 곱해 class별 "
+          "_comment": "노트 p2-20 / 판정 `DIRECT`\n\n추론 시 box confidence와 class probability를 곱해 class별  / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 20,
-          "sectionTitle": "Figure 2 — `S×S×(B×5+C)` tensor",
+          "sectionTitle": "2 Unified Detection",
           "subsectionTitle": "Figure 2 — `S×S×(B×5+C)` tensor",
-          "content": "“These predictions are encoded as an S × S × (B ∗ 5 + C) tensor.”\n\n“For PASCAL VOC, S=7, B=2, C=20. Our final prediction is a 7×7×30 tensor.”",
+          "content": "“These predictions are encoded as an S × S × (B ∗ 5 + C) tensor.”\n\n“For PASCAL VOC, S=7, B=2, C=20. Our final prediction is a 7×7×30 tensor.”\n\nFor evaluating YOLO on Pascal VOC, we use S=7 , B=2 . Pascal VOC has 20 labelled classes so C=20 . Our final prediction is a 7\\times 7\\times 30 tensor.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-21 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p2-21 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 21,
-          "sectionTitle": "24 convolution + 2 fully connected layers",
+          "sectionTitle": "2.1 Network Design",
           "subsectionTitle": "24 convolution + 2 fully connected layers",
-          "content": "“Our network has 24 convolutional layers followed by 2 fully connected layers.”",
+          "content": "“Our network has 24 convolutional layers followed by 2 fully connected layers.”\n\nOur network architecture is inspired by the GoogLeNet model for image classification DBLP:journals/corr/SzegedyLJSRAEVR14. Our network has 24 convolutional layers followed by 2 fully connected layers. Instead of the inception modules used by GoogLeNet, we simply use 1\\times 1 reduction layers followed by 3\\times 3 convolutional layers, similar to Lin et al DBLP:journals/corr/LinCY13. The full network is shown in Figure 3.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-22 / 판정 `PARTIAL`\n\n- 24 convolution backbone: 대응\n- 논문의 `4096 FC → ou EXPECTED"
+          "_comment": "노트 p2-22 / 판정 `PARTIAL`\n\n- 24 convolution backbone: 대응\n- 논문의 `4096 FC → ou EXPECTED | 논문 원문 문단 보강 (ar5iv 1506.02640)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/yolov1.cfg",
+              "symbolName": "local[29]",
+              "startLine": 233,
+              "reason": "공식 현재 `yolov1.cfg`에는 24개의 convolution 계층이 있지만, 말단은 논문의 두 FC와 정확히 동일하지 않습니다."
+            }
+          ]
         },
         {
           "chunkIndex": 22,
-          "sectionTitle": "1×1 reduction 뒤 3×3 convolution",
+          "sectionTitle": "2.1 Network Design",
           "subsectionTitle": "1×1 reduction 뒤 3×3 convolution",
-          "content": "“We simply use 1 × 1 reduction layers followed by 3 × 3 convolutional layers.”",
+          "content": "“We simply use 1 × 1 reduction layers followed by 3 × 3 convolutional layers.”\n\nOur network architecture is inspired by the GoogLeNet model for image classification DBLP:journals/corr/SzegedyLJSRAEVR14. Our network has 24 convolutional layers followed by 2 fully connected layers. Instead of the inception modules used by GoogLeNet, we simply use 1\\times 1 reduction layers followed by 3\\times 3 convolutional layers, similar to Lin et al DBLP:journals/corr/LinCY13. The full network is shown in Figure 3.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 p2-23 / 판정 `DIRECT`\n\n이 패턴이 반복적으로 사용됩니다. [GitHub](https://github.com/pjr"
+          "_comment": "노트 p2-23 / 판정 `DIRECT`\n\n이 패턴이 반복적으로 사용됩니다. [GitHub](https://github.com/pjr | 논문 원문 문단 보강 (ar5iv 1506.02640)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/tiny.cfg",
+              "symbolName": "convolutional[1]",
+              "startLine": 26,
+              "reason": "cfg/tiny.cfg:26 의 convolutional[1] 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 23,
@@ -275,7 +570,16 @@
           "content": "“Conv. Layer 7x7x64-s-2”",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-25 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-25 / 판정 `DIRECT`\n\n---",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/tiny.cfg",
+              "symbolName": "convolutional[1]",
+              "startLine": 26,
+              "reason": "cfg/tiny.cfg:26 의 convolutional[1] 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 25,
@@ -293,7 +597,16 @@
           "content": "“Conv. Layer 3x3x192”",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-27 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-27 / 판정 `DIRECT`\n\n---",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/tiny.cfg",
+              "symbolName": "convolutional[1]",
+              "startLine": 26,
+              "reason": "cfg/tiny.cfg:26 의 convolutional[1] 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 27,
@@ -302,61 +615,79 @@
           "content": "“1x1x256 → 3x3x512” ×4\n\n“1x1x512 → 3x3x1024” ×2",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-28 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-28 / 판정 `DIRECT`\n\n---",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/yolov3-openimages.cfg",
+              "symbolName": "convolutional[63]",
+              "startLine": 461,
+              "reason": "이 조합이 네 번 반복됩니다. 이 조합이 두 번 반복됩니다."
+            }
+          ]
         },
         {
           "chunkIndex": 28,
-          "sectionTitle": "ImageNet에서 224×224로 pretraining",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "ImageNet에서 224×224로 pretraining",
-          "content": "“We pretrain the convolutional layers on the ImageNet classification task at half the resolution (224 × 224 input image).”",
+          "content": "“We pretrain the convolutional layers on the ImageNet classification task at half the resolution (224 × 224 input image).”\n\nWe pretrain our convolutional layers on the ImageNet 1000-class competition dataset ILSVRC15. For pretraining we use the first 20 convolutional layers from Figure 3 followed by a average-pooling layer and a fully connected layer. We train this network for approximately a week and achieve a single crop top-5 accuracy of 88% on the ImageNet 2012 validation set, comparable to the GoogLeNet models in Caffe’s Model Zoo zoo. We use the Darknet framework for all training and inference darknet13.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-29 / 판정 `PARTIAL / 예상코드`\n\n저장소의 classification 기능으로 구현할 수 있지만, 논문에 대응"
+          "_comment": "노트 p3-29 / 판정 `PARTIAL / 예상코드`\n\n저장소의 classification 기능으로 구현할 수 있지만, 논문에 대응 | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 29,
-          "sectionTitle": "ImageNet 1000-class pretraining",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "ImageNet 1000-class pretraining",
-          "content": "“For pretraining we use the first 20 convolutional layers … followed by an average-pooling layer and a fully connected layer.”",
+          "content": "“For pretraining we use the first 20 convolutional layers … followed by an average-pooling layer and a fully connected layer.”\n\nWe pretrain our convolutional layers on the ImageNet 1000-class competition dataset ILSVRC15. For pretraining we use the first 20 convolutional layers from Figure 3 followed by a average-pooling layer and a fully connected layer. We train this network for approximately a week and achieve a single crop top-5 accuracy of 88% on the ImageNet 2012 validation set, comparable to the GoogLeNet models in Caffe’s Model Zoo zoo. We use the Darknet framework for all training and inference darknet13.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-30 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p3-30 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 30,
-          "sectionTitle": "Detection용으로 네 convolution과 두 connected layer 추가",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Detection용으로 네 convolution과 두 connected layer 추가",
-          "content": "“We add four convolutional layers and two fully connected layers with randomly initialized weights.”",
+          "content": "“We add four convolutional layers and two fully connected layers with randomly initialized weights.”\n\nWe then convert the model to perform detection. Ren et al. show that adding both convolutional and connected layers to pretrained networks can improve performance DBLP:journals/corr/RenHGZ015. Following their example, we add four convolutional layers and two fully connected layers with randomly initialized weights. Detection often requires fine-grained visual information so we increase the input resolution of the network from 224\\times 224 to 448\\times 448 .",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-31 / 판정 `PARTIAL`\n\n네 convolution은 직접 대응하지만 FC head는 현재 설정에서 변형되었습니다."
+          "_comment": "노트 p3-31 / 판정 `PARTIAL`\n\n네 convolution은 직접 대응하지만 FC head는 현재 설정에서 변형되었습니다. | 논문 원문 문단 보강 (ar5iv 1506.02640)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/yolov3-openimages.cfg",
+              "symbolName": "convolutional[63]",
+              "startLine": 461,
+              "reason": "현재 공식 cfg의 마지막 convolution은 다음과 같습니다. 그러나 뒤의 두 FC는 현재 cfg와 정확히 일치하지 않습니다."
+            }
+          ]
         },
         {
           "chunkIndex": 31,
-          "sectionTitle": "224에서 448로 해상도 증가",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "224에서 448로 해상도 증가",
-          "content": "“We increase the input resolution of the network from 224 × 224 to 448 × 448.”",
+          "content": "“We increase the input resolution of the network from 224 × 224 to 448 × 448.”\n\nWe then convert the model to perform detection. Ren et al. show that adding both convolutional and connected layers to pretrained networks can improve performance DBLP:journals/corr/RenHGZ015. Following their example, we add four convolutional layers and two fully connected layers with randomly initialized weights. Detection often requires fine-grained visual information so we increase the input resolution of the network from 224\\times 224 to 448\\times 448 .",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-32 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-32 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 32,
-          "sectionTitle": "Width와 height를 0~1로 정규화",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Width와 height를 0~1로 정규화",
-          "content": "“We normalize the bounding box width and height by the image width and height so that they fall between 0 and 1.”",
+          "content": "“We normalize the bounding box width and height by the image width and height so that they fall between 0 and 1.”\n\nOur final layer predicts both class probabilities and bounding box coordinates. We normalize the bounding box width and height by the image width and height so that they fall between 0 and 1. We parametrize the bounding box x and y coordinates to be offsets of a particular grid cell location so they are also bounded between 0 and 1.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-33 / 판정 `DIRECT-CONCEPTUAL / 예상코드`\n\n---"
+          "_comment": "노트 p3-33 / 판정 `DIRECT-CONCEPTUAL / 예상코드`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 33,
-          "sectionTitle": "최종 layer는 linear activation",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "최종 layer는 linear activation",
-          "content": "“We use a linear activation function for the final layer.”",
+          "content": "“We use a linear activation function for the final layer.”\n\nWe use a linear activation function for the final layer and all other layers use the following leaky rectified linear activation:",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-34 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-34 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 34,
@@ -365,16 +696,16 @@
           "content": "Darknet의 Leaky ReLU 예상 구현:",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-35 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-35 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 35,
-          "sectionTitle": "Sum-squared error 사용",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Sum-squared error 사용",
-          "content": "“We optimize for sum-squared error in the output of our model.”",
+          "content": "“We optimize for sum-squared error in the output of our model.”\n\nWe optimize for sum-squared error in the output of our model. We use sum-squared error because it is easy to optimize, however it does not perfectly align with our goal of maximizing average precision. It weights localization error equally with classification error which may not be ideal. Also, in every image many grid cells do not contain any object. This pushes the “confidence” scores of those cells towards zero, often overpowering the gradient from cells that do contain objects. This can lead to model instability, causing training to diverge early on.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-36 / 판정 `DIRECT-CONCEPTUAL`\n\n---"
+          "_comment": "노트 p3-36 / 판정 `DIRECT-CONCEPTUAL`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 36,
@@ -383,25 +714,34 @@
           "content": "“We set λcoord = 5 and λnoobj = .5.”",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-37 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-37 / 판정 `DIRECT`\n\n---",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/yolov1-tiny.cfg",
+              "symbolName": "detection[16]",
+              "startLine": 116,
+              "reason": "cfg/yolov1-tiny.cfg:116 의 detection[16] 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 37,
-          "sectionTitle": "Width와 height의 square root 예측",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Width와 height의 square root 예측",
-          "content": "“We predict the square root of the bounding box width and height instead of the width and height directly.”",
+          "content": "“We predict the square root of the bounding box width and height instead of the width and height directly.”\n\nSum-squared error also equally weights errors in large boxes and small boxes. Our error metric should reflect that small deviations in large boxes matter less than in small boxes. To partially address this we predict the square root of the bounding box width and height instead of the width and height directly.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-38 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p3-38 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 38,
-          "sectionTitle": "가장 높은 IoU predictor가 책임",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "가장 높은 IoU predictor가 책임",
-          "content": "“We assign one predictor to be responsible … based on which prediction has the highest current IOU with the ground truth.”",
+          "content": "“We assign one predictor to be responsible … based on which prediction has the highest current IOU with the ground truth.”\n\nYOLO predicts multiple bounding boxes per grid cell. At training time we only want one bounding box predictor to be responsible for each object. We assign one predictor to be “responsible” for predicting an object based on which prediction has the highest current IOU with the ground truth. This leads to specialization between the bounding box predictors. Each predictor gets better at predicting certain sizes, aspect ratios, or classes of object, improving overall recall.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-39 / 판정 `DIRECT-CONCEPTUAL / 예상코드`\n\n공식 detection layer 내부 동작과 대응하지만 "
+          "_comment": "노트 p3-39 / 판정 `DIRECT-CONCEPTUAL / 예상코드`\n\n공식 detection layer 내부 동작과 대응하지만  | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 39,
@@ -410,178 +750,205 @@
           "content": "공식 cfg의 가중치:",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-40 / 판정 `DIRECT SETTINGS / 예상코드`\n\n공식 Darknet은 이 로직을 C detection laye"
+          "_comment": "노트 p4-40 / 판정 `DIRECT SETTINGS / 예상코드`\n\n공식 Darknet은 이 로직을 C detection laye / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/yolov1-tiny.cfg",
+              "symbolName": "detection[16]",
+              "startLine": 116,
+              "reason": "공식 cfg의 가중치:"
+            }
+          ]
         },
         {
           "chunkIndex": 40,
-          "sectionTitle": "Classification loss는 object cell에만 적용",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Classification loss는 object cell에만 적용",
-          "content": "“The loss function only penalizes classification error if an object is present in that grid cell.”",
+          "content": "“The loss function only penalizes classification error if an object is present in that grid cell.”\n\nNote that the loss function only penalizes classification error if an object is present in that grid cell (hence the conditional class probability discussed earlier). It also only penalizes bounding box coordinate error if that predictor is “responsible” for the ground truth box (i.e. has the highest IOU of any predictor in that grid cell).",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-41 / 판정 `DIRECT-CONCEPTUAL / 예상코드`\n\n---"
+          "_comment": "노트 p4-41 / 판정 `DIRECT-CONCEPTUAL / 예상코드`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 41,
-          "sectionTitle": "Coordinate loss는 responsible predictor에만 적용",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Coordinate loss는 responsible predictor에만 적용",
-          "content": "“It also only penalizes bounding box coordinate error if that predictor is responsible for the ground truth box.”",
+          "content": "“It also only penalizes bounding box coordinate error if that predictor is responsible for the ground truth box.”\n\nNote that the loss function only penalizes classification error if an object is present in that grid cell (hence the conditional class probability discussed earlier). It also only penalizes bounding box coordinate error if that predictor is “responsible” for the ground truth box (i.e. has the highest IOU of any predictor in that grid cell).",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-42 / 판정 `DIRECT-CONCEPTUAL / 예상코드`\n\n---"
+          "_comment": "노트 p4-42 / 판정 `DIRECT-CONCEPTUAL / 예상코드`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 42,
-          "sectionTitle": "135 epochs",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "135 epochs",
-          "content": "“We train the network for about 135 epochs…”",
+          "content": "“We train the network for about 135 epochs…”\n\nWe train the network for about 135 epochs on the training and validation data sets from Pascal VOC 2007 and 2012. When testing on 2012 we also include the VOC 2007 test data for training. Throughout training we use a batch size of 64, a momentum of 0.9 and a decay of 0.0005 .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-43 / 판정 `PARTIAL`\n\n논문의 epoch 기준과 cfg의 iteration 기준은 직접 같지 않습니다. EXPECTED"
+          "_comment": "노트 p4-43 / 판정 `PARTIAL`\n\n논문의 epoch 기준과 cfg의 iteration 기준은 직접 같지 않습니다. EXPECTED | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 43,
-          "sectionTitle": "PASCAL VOC 2007·2012 학습",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "PASCAL VOC 2007·2012 학습",
-          "content": "“On the training and validation data sets from PASCAL VOC 2007 and 2012.”",
+          "content": "“On the training and validation data sets from PASCAL VOC 2007 and 2012.”\n\nWe train the network for about 135 epochs on the training and validation data sets from Pascal VOC 2007 and 2012. When testing on 2012 we also include the VOC 2007 test data for training. Throughout training we use a batch size of 64, a momentum of 0.9 and a decay of 0.0005 .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-44 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p4-44 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 44,
-          "sectionTitle": "Batch size 64",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Batch size 64",
-          "content": "“Throughout training we use a batch size of 64…”",
+          "content": "“Throughout training we use a batch size of 64…”\n\nWe train the network for about 135 epochs on the training and validation data sets from Pascal VOC 2007 and 2012. When testing on 2012 we also include the VOC 2007 test data for training. Throughout training we use a batch size of 64, a momentum of 0.9 and a decay of 0.0005 .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-45 / 판정 `DIRECT`, 단 현재 파일에서는 testing 설정이 활성화되고 training 설정은 주석 처리되어 "
+          "_comment": "노트 p4-45 / 판정 `DIRECT`, 단 현재 파일에서는 testing 설정이 활성화되고 training 설정은 주석 처리되어  | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 45,
-          "sectionTitle": "Momentum 0.9",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Momentum 0.9",
-          "content": "“A momentum of 0.9…”",
+          "content": "“A momentum of 0.9…”\n\nWe train the network for about 135 epochs on the training and validation data sets from Pascal VOC 2007 and 2012. When testing on 2012 we also include the VOC 2007 test data for training. Throughout training we use a batch size of 64, a momentum of 0.9 and a decay of 0.0005 .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-46 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p4-46 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 46,
-          "sectionTitle": "Weight decay 0.0005",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Weight decay 0.0005",
-          "content": "“A decay of 0.0005.”",
+          "content": "“A decay of 0.0005.”\n\nWe train the network for about 135 epochs on the training and validation data sets from Pascal VOC 2007 and 2012. When testing on 2012 we also include the VOC 2007 test data for training. Throughout training we use a batch size of 64, a momentum of 0.9 and a decay of 0.0005 .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-47 / 판정 `DIRECT`"
+          "_comment": "노트 p4-47 / 판정 `DIRECT` | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 47,
-          "sectionTitle": "Learning-rate schedule",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Learning-rate schedule",
-          "content": "“Slowly raise the learning rate from 10⁻³ to 10⁻².”\n\n“Continue with 10⁻² for 75 epochs, then 10⁻³ for 30 epochs, and finally 10⁻⁴ for 30 epochs.”",
+          "content": "“Slowly raise the learning rate from 10⁻³ to 10⁻².”\n\n“Continue with 10⁻² for 75 epochs, then 10⁻³ for 30 epochs, and finally 10⁻⁴ for 30 epochs.”\n\nOur learning rate schedule is as follows: For the first epochs we slowly raise the learning rate from 10^{-3} to 10^{-2} . If we start at a high learning rate our model often diverges due to unstable gradients. We continue training with 10^{-2} for 75 epochs, then 10^{-3} for 30 epochs, and finally 10^{-4} for 30 epochs.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-48 / 판정 `PARTIAL / CURRENT CFG DIFFERS`\n\n논문과 정확히 일치하는 예상 scheduler: EXPECTED"
+          "_comment": "노트 p4-48 / 판정 `PARTIAL / CURRENT CFG DIFFERS`\n\n논문과 정확히 일치하는 예상 scheduler: EXPECTED | 논문 원문 문단 보강 (ar5iv 1506.02640)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/t1.test.cfg",
+              "symbolName": "net[0]",
+              "startLine": 1,
+              "reason": "현재 공식 cfg는 논문과 다른 step schedule을 사용합니다. 실제 sequence:"
+            }
+          ]
         },
         {
           "chunkIndex": 48,
-          "sectionTitle": "Dropout 0.5",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Dropout 0.5",
-          "content": "“A dropout layer with rate=.5 after the first connected layer…”",
+          "content": "“A dropout layer with rate=.5 after the first connected layer…”\n\nTo avoid overfitting we use dropout and extensive data augmentation. A dropout layer with rate = .5 after the first connected layer prevents co-adaptation between layers hinton2012improving. For data augmentation we introduce random scaling and translations of up to 20% of the original image size. We also randomly adjust the exposure and saturation of the image by up to a factor of 1.5 in the HSV color space.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-49 / 판정 `PARTIAL`\n\n`probability=.5`는 일치하지만, 현재 cfg에서는 dropout 위치가 논문 EXPECTED"
+          "_comment": "노트 p4-49 / 판정 `PARTIAL`\n\n`probability=.5`는 일치하지만, 현재 cfg에서는 dropout 위치가 논문 EXPECTED | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 49,
-          "sectionTitle": "Random scaling·translation 최대 20%",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Random scaling·translation 최대 20%",
-          "content": "“Random scaling and translations of up to 20% of the original image size.”",
+          "content": "“Random scaling and translations of up to 20% of the original image size.”\n\nTo avoid overfitting we use dropout and extensive data augmentation. A dropout layer with rate = .5 after the first connected layer prevents co-adaptation between layers hinton2012improving. For data augmentation we introduce random scaling and translations of up to 20% of the original image size. We also randomly adjust the exposure and saturation of the image by up to a factor of 1.5 in the HSV color space.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-50 / 판정 `DIRECT`\n\n`jitter=.2`가 bounding-box crop·translation·scale a"
+          "_comment": "노트 p4-50 / 판정 `DIRECT`\n\n`jitter=.2`가 bounding-box crop·translation·scale a | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 50,
-          "sectionTitle": "Exposure와 saturation factor 1.5",
+          "sectionTitle": "2.2 Training",
           "subsectionTitle": "Exposure와 saturation factor 1.5",
-          "content": "“Randomly adjust the exposure and saturation … by up to a factor of 1.5 in HSV color space.”",
+          "content": "“Randomly adjust the exposure and saturation … by up to a factor of 1.5 in HSV color space.”\n\nTo avoid overfitting we use dropout and extensive data augmentation. A dropout layer with rate = .5 after the first connected layer prevents co-adaptation between layers hinton2012improving. For data augmentation we introduce random scaling and translations of up to 20% of the original image size. We also randomly adjust the exposure and saturation of the image by up to a factor of 1.5 in the HSV color space.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-51 / 판정 `DIRECT`\n\n현재 `yolov1.cfg` 설정이 논문과 일치합니다. [GitHub](https://gi"
+          "_comment": "노트 p4-51 / 판정 `DIRECT`\n\n현재 `yolov1.cfg` 설정이 논문과 일치합니다. [GitHub](https://gi | 논문 원문 문단 보강 (ar5iv 1506.02640)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pjreddie/darknet",
+              "filePath": "cfg/yolov1.cfg",
+              "symbolName": "net[0]",
+              "startLine": 1,
+              "reason": "cfg/yolov1.cfg:1 의 net[0] 이 이 단락의 구현"
+            }
+          ]
         },
         {
           "chunkIndex": 51,
-          "sectionTitle": "한 번의 network evaluation",
+          "sectionTitle": "2.3 Inference",
           "subsectionTitle": "한 번의 network evaluation",
-          "content": "“Predicting detections for a test image only requires one network evaluation.”",
+          "content": "“Predicting detections for a test image only requires one network evaluation.”\n\nJust like in training, predicting detections for a test image only requires one network evaluation. On Pascal VOC the network predicts 98 bounding boxes per image and class probabilities for each box. YOLO is extremely fast at test time since it only requires a single network evaluation, unlike classifier-based methods.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-52 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p4-52 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 52,
-          "sectionTitle": "이미지당 98개 bounding box",
+          "sectionTitle": "2.3 Inference",
           "subsectionTitle": "이미지당 98개 bounding box",
-          "content": "“The network predicts 98 bounding boxes per image…”",
+          "content": "“The network predicts 98 bounding boxes per image…”\n\nJust like in training, predicting detections for a test image only requires one network evaluation. On Pascal VOC the network predicts 98 bounding boxes per image and class probabilities for each box. YOLO is extremely fast at test time since it only requires a single network evaluation, unlike classifier-based methods.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-53 / 판정 `DIRECT`\n\n현재 `yolov1.cfg`의 `num=3`를 쓰면 147개이므로, 논문 재현에는 `t1."
+          "_comment": "노트 p4-53 / 판정 `DIRECT`\n\n현재 `yolov1.cfg`의 `num=3`를 쓰면 147개이므로, 논문 재현에는 `t1. | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 53,
-          "sectionTitle": "Non-maximal suppression",
+          "sectionTitle": "2.3 Inference",
           "subsectionTitle": "Non-maximal suppression",
-          "content": "“Non-maximal suppression can be used to fix these multiple detections.”",
+          "content": "“Non-maximal suppression can be used to fix these multiple detections.”\n\nThe grid design enforces spatial diversity in the bounding box predictions. Often it is clear which grid cell an object falls in to and the network only predicts one box for each object. However, some large objects or objects near the border of multiple cells can be well localized by multiple cells. Non-maximal suppression can be used to fix these multiple detections. While not critical to performance as it is for R-CNN or DPM, non-maximal suppression adds 2-3% in mAP.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-54 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p4-54 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 54,
-          "sectionTitle": "NMS로 2~3% mAP 개선",
+          "sectionTitle": "2.3 Inference",
           "subsectionTitle": "NMS로 2~3% mAP 개선",
-          "content": "“Non-maximal suppression adds 2–3% in mAP.”",
+          "content": "“Non-maximal suppression adds 2–3% in mAP.”\n\nThe grid design enforces spatial diversity in the bounding box predictions. Often it is clear which grid cell an object falls in to and the network only predicts one box for each object. However, some large objects or objects near the border of multiple cells can be well localized by multiple cells. Non-maximal suppression can be used to fix these multiple detections. While not critical to performance as it is for R-CNN or DPM, non-maximal suppression adds 2-3% in mAP.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-55 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p4-55 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 55,
-          "sectionTitle": "YOLO의 small-object 한계",
+          "sectionTitle": "2.4 Limitations of YOLO",
           "subsectionTitle": "YOLO의 small-object 한계",
-          "content": "“Our model struggles with small objects that appear in groups…”",
+          "content": "“Our model struggles with small objects that appear in groups…”\n\nYOLO imposes strong spatial constraints on bounding box predictions since each grid cell only predicts two boxes and can only have one class. This spatial constraint limits the number of nearby objects that our model can predict. Our model struggles with small objects that appear in groups, such as flocks of birds.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-56 / 판정 `ANALYSIS / 예상코드`\n\n---"
+          "_comment": "노트 p4-56 / 판정 `ANALYSIS / 예상코드`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 56,
-          "sectionTitle": "DPM과 비교",
+          "sectionTitle": "3 Comparison to Other Detection Systems",
           "subsectionTitle": "DPM과 비교",
-          "content": "“DPM uses a disjoint pipeline…”\n\n“Our system replaces all of these disparate parts with a single convolutional neural network.”",
+          "content": "“DPM uses a disjoint pipeline…”\n\n“Our system replaces all of these disparate parts with a single convolutional neural network.”\n\nDeformable parts models. Deformable parts models (DPM) use a sliding window approach to object detection lsvm-pami. DPM uses a disjoint pipeline to extract static features, classify regions, predict bounding boxes for high scoring regions, etc. Our system replaces all of these disparate parts with a single convolutional neural network. The network performs feature extraction, bounding box prediction, non-maximal suppression, and contextual reasoning all concurrently. Instead of static features, the network trains the features in-line and optimizes them for the detection task. Our unified architecture leads to a faster, more accurate model than DPM.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-57 / 판정 `DIRECT-CONCEPTUAL`\n\nYOLO 쪽 통합 실행은 한 network forward지만 DPM 비"
+          "_comment": "노트 p5-57 / 판정 `DIRECT-CONCEPTUAL`\n\nYOLO 쪽 통합 실행은 한 network forward지만 DPM 비 | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 57,
-          "sectionTitle": "R-CNN의 약 2000 proposal과 YOLO의 98 box",
+          "sectionTitle": "3 Comparison to Other Detection Systems",
           "subsectionTitle": "R-CNN의 약 2000 proposal과 YOLO의 98 box",
-          "content": "“Only 98 per image compared to about 2000 from Selective Search.”",
+          "content": "“Only 98 per image compared to about 2000 from Selective Search.”\n\nYOLO shares some similarities with R-CNN. Each grid cell proposes potential bounding boxes and scores those boxes using convolutional features. However, our system puts spatial constraints on the grid cell proposals which helps mitigate multiple detections of the same object. Our system also proposes far fewer bounding boxes, only 98 per image compared to about 2000 from Selective Search. Finally, our system combines these individual components into a single, jointly optimized model.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-58 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p5-58 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 58,
-          "sectionTitle": "여러 class를 동시에 검출하는 general-purpose detector",
+          "sectionTitle": "3 Comparison to Other Detection Systems",
           "subsectionTitle": "여러 class를 동시에 검출하는 general-purpose detector",
-          "content": "“YOLO is a general purpose detector that learns to detect a variety of objects simultaneously.”",
+          "content": "“YOLO is a general purpose detector that learns to detect a variety of objects simultaneously.”\n\nDetectors for single classes like faces or people can be highly optimized since they have to deal with much less variation viola2004robust. YOLO is a general purpose detector that learns to detect a variety of objects simultaneously.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-59 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p5-59 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 59,
@@ -590,7 +957,7 @@
           "content": "Table 1 — mAP와 FPS 비교",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-60 / 판정 `MISSING-BUT-PROVIDED`"
+          "_comment": "노트 p6-60 / 판정 `MISSING-BUT-PROVIDED` / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 60,
@@ -599,43 +966,43 @@
           "content": "Error Analysis 기준",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-61 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p6-61 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 61,
-          "sectionTitle": "Fast R-CNN 결과를 YOLO로 재점수화",
+          "sectionTitle": "4.3 Combining Fast R-CNN and YOLO",
           "subsectionTitle": "Fast R-CNN 결과를 YOLO로 재점수화",
-          "content": "“For every bounding box that R-CNN predicts we check to see if YOLO predicts a similar box.”\n\n“We give that prediction a boost based on the probability predicted by YOLO and the overlap…”",
+          "content": "“For every bounding box that R-CNN predicts we check to see if YOLO predicts a similar box.”\n\n“We give that prediction a boost based on the probability predicted by YOLO and the overlap…”\n\nYOLO makes far fewer background mistakes than Fast R-CNN. By using YOLO to eliminate background detections from Fast R-CNN we get a significant boost in performance. For every bounding box that R-CNN predicts we check to see if YOLO predicts a similar box. If it does, we give that prediction a boost based on the probability predicted by YOLO and the overlap between the two boxes.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-62 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p6-62 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 62,
-          "sectionTitle": "VOC 2012 mAP 57.9",
+          "sectionTitle": "4.4 VOC 2012 Results",
           "subsectionTitle": "VOC 2012 mAP 57.9",
-          "content": "“On the VOC 2012 test set, YOLO scores 57.9% mAP.”",
+          "content": "“On the VOC 2012 test set, YOLO scores 57.9% mAP.”\n\nOn the VOC 2012 test set, YOLO scores 57.9% mAP. This is lower than the current state of the art, closer to the original R-CNN using VGG-16, see Table 3. Our system struggles with small objects compared to its closest competitors. On categories like bottle, sheep, and tv/monitor YOLO scores 8-10% lower than R-CNN or Feature Edit. However, on other categories like cat and train YOLO achieves higher performance.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-63 / 판정 `EXPERIMENT RESULT / 예상코드`\n\n---"
+          "_comment": "노트 p7-63 / 판정 `EXPERIMENT RESULT / 예상코드`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 63,
-          "sectionTitle": "Small object class 성능 저하",
+          "sectionTitle": "4.4 VOC 2012 Results",
           "subsectionTitle": "Small object class 성능 저하",
-          "content": "“On categories like bottle, sheep, and tv/monitor YOLO scores 8–10% lower…”",
+          "content": "“On categories like bottle, sheep, and tv/monitor YOLO scores 8–10% lower…”\n\nOn the VOC 2012 test set, YOLO scores 57.9% mAP. This is lower than the current state of the art, closer to the original R-CNN using VGG-16, see Table 3. Our system struggles with small objects compared to its closest competitors. On categories like bottle, sheep, and tv/monitor YOLO scores 8-10% lower than R-CNN or Feature Edit. However, on other categories like cat and train YOLO achieves higher performance.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-64 / 판정 `ANALYSIS / 예상코드`\n\n---"
+          "_comment": "노트 p7-64 / 판정 `ANALYSIS / 예상코드`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 64,
-          "sectionTitle": "Artwork generalization",
+          "sectionTitle": "4.5 Generalizability: Person Detection in Artwork",
           "subsectionTitle": "Artwork generalization",
-          "content": "“We compare YOLO … on the Picasso Dataset and the People-Art Dataset.”",
+          "content": "“We compare YOLO … on the Picasso Dataset and the People-Art Dataset.”\n\nAcademic datasets for object detection draw the training and testing data from the same distribution. In real-world applications it is hard to predict all possible use cases and the test data can diverge from what the system has seen before cai2015cross.\nWe compare YOLO to other detection systems on the Picasso Dataset ginosar2014detecting and the People-Art Dataset cai2015cross, two datasets for testing person detection on artwork.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 p7-65 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p7-65 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 65,
@@ -644,34 +1011,34 @@
           "content": "Figure 5 — Precision-Recall curve, AP, F1",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 p8-66 / 판정 `MISSING-BUT-PROVIDED`\n\n---"
+          "_comment": "노트 p8-66 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
         },
         {
           "chunkIndex": 66,
-          "sectionTitle": "Webcam 실시간 detection",
+          "sectionTitle": "5 Real-Time Detection In The Wild",
           "subsectionTitle": "Webcam 실시간 detection",
-          "content": "“We connect YOLO to a webcam and verify that it maintains real-time performance…”",
+          "content": "“We connect YOLO to a webcam and verify that it maintains real-time performance…”\n\nYOLO is a fast, accurate object detector, making it ideal for computer vision applications. We connect YOLO to a webcam and verify that it maintains real-time performance, including the time to fetch images from the camera and display the detections.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 p8-67 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p8-67 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 67,
-          "sectionTitle": "Tracking처럼 동작",
+          "sectionTitle": "5 Real-Time Detection In The Wild",
           "subsectionTitle": "Tracking처럼 동작",
-          "content": "“While YOLO processes images individually, when attached to a webcam it functions like a tracking system…”",
+          "content": "“While YOLO processes images individually, when attached to a webcam it functions like a tracking system…”\n\nThe resulting system is interactive and engaging. While YOLO processes images individually, when attached to a webcam it functions like a tracking system, detecting objects as they move around and change in appearance. A demo of the system and the source code can be found on our project website: http://pjreddie.com/yolo/.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 p8-68 / 판정 `DIRECT-CONCEPTUAL`\n\n이는 실제 object tracking ID를 유지하는 tracker가"
+          "_comment": "노트 p8-68 / 판정 `DIRECT-CONCEPTUAL`\n\n이는 실제 object tracking ID를 유지하는 tracker가 | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         },
         {
           "chunkIndex": 68,
-          "sectionTitle": "Conclusion — full-image joint training",
+          "sectionTitle": "6 Conclusion",
           "subsectionTitle": "Conclusion — full-image joint training",
-          "content": "“Our model … can be trained directly on full images.”\n\n“The entire model is trained jointly.”",
+          "content": "“Our model … can be trained directly on full images.”\n\n“The entire model is trained jointly.”\n\nWe introduce YOLO, a unified model for object detection. Our model is simple to construct and can be trained directly on full images. Unlike classifier-based approaches, YOLO is trained on a loss function that directly corresponds to detection performance and the entire model is trained jointly.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 p8-69 / 판정 `DIRECT`\n\n---"
+          "_comment": "노트 p8-69 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1506.02640)"
         }
       ],
       "repositories": [
@@ -680,13 +1047,91 @@
           "ownerName": "pjreddie",
           "repositoryName": "darknet",
           "defaultBranch": "master",
-          "commitHash": null,
+          "commitHash": "f6afaabcdf85f77e7aff2ec55c020c0e297c77f9",
           "licenseName": "NOASSERTION",
-          "primaryLanguage": "C",
+          "primaryLanguage": "Config",
           "starCount": 26492,
           "relationType": "OFFICIAL",
           "isPrimary": true,
-          "codeBlocks": []
+          "codeBlocks": [
+            {
+              "filePath": "cfg/yolov1-tiny.cfg",
+              "symbolName": "detection[16]",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Config",
+              "startLine": 116,
+              "endLine": 130,
+              "codeContent": "[detection]\nclasses=20\ncoords=4\nrescore=1\nside=7\nnum=2\nsoftmax=0\nsqrt=1\njitter=.2\n\nobject_scale=1\nnoobject_scale=.5\nclass_scale=1\ncoord_scale=5\n",
+              "_comment": "Verbatim from https://github.com/pjreddie/darknet @ f6afaab — cfg/yolov1-tiny.cfg:116-130"
+            },
+            {
+              "filePath": "examples/detector.c",
+              "symbolName": "test_detector",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "C",
+              "startLine": 562,
+              "endLine": 621,
+              "codeContent": "void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filename, float thresh, float hier_thresh, char *outfile, int fullscreen)\n{\n    list *options = read_data_cfg(datacfg);\n    char *name_list = option_find_str(options, \"names\", \"data/names.list\");\n    char **names = get_labels(name_list);\n\n    image **alphabet = load_alphabet();\n    network *net = load_network(cfgfile, weightfile, 0);\n    set_batch_network(net, 1);\n    srand(2222222);\n    double time;\n    char buff[256];\n    char *input = buff;\n    float nms=.45;\n    while(1){\n        if(filename){\n            strncpy(input, filename, 256);\n        } else {\n            printf(\"Enter Image Path: \");\n            fflush(stdout);\n            input = fgets(input, 256, stdin);\n            if(!input) return;\n            strtok(input, \"\\n\");\n        }\n        image im = load_image_color(input,0,0);\n        image sized = letterbox_image(im, net->w, net->h);\n        //image sized = resize_image(im, net->w, net->h);\n        //image sized2 = resize_max(im, net->w);\n        //image sized = crop_image(sized2, -((net->w - sized2.w)/2), -((net->h - sized2.h)/2), net->w, net->h);\n        //resize_network(net, sized.w, sized.h);\n        layer l = net->layers[net->n-1];\n\n\n        float *X = sized.data;\n        time=what_time_is_it_now();\n        network_predict(net, X);\n        printf(\"%s: Predicted in %f seconds.\\n\", input, what_time_is_it_now()-time);\n        int nboxes = 0;\n        detection *dets = get_network_boxes(net, im.w, im.h, thresh, hier_thresh, 0, 1, &nboxes);\n        //printf(\"%d\\n\", nboxes);\n        //if (nms) do_nms_obj(boxes, probs, l.w*l.h*l.n, l.classes, nms);\n        if (nms) do_nms_sort(dets, nboxes, l.classes, nms);\n        draw_detections(im, dets, nboxes, thresh, names, alphabet, l.classes);\n        free_detections(dets, nboxes);\n        if(outfile){\n            save_image(im, outfile);\n        }\n        else{\n            save_image(im, \"predictions\");\n#ifdef OPENCV\n            make_window(\"predictions\", 512, 512, 0);\n            show_image(im, \"predictions\", 0);\n#endif\n        }\n\n        free_image(im);\n        free_image(sized);\n        if (filename) break;\n    }\n}",
+              "_comment": "Verbatim from https://github.com/pjreddie/darknet @ f6afaab — examples/detector.c:562-621"
+            },
+            {
+              "filePath": "cfg/yolov3-openimages.cfg",
+              "symbolName": "convolutional[63]",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Config",
+              "startLine": 461,
+              "endLine": 468,
+              "codeContent": "[convolutional]\nbatch_normalize=1\nfilters=1024\nsize=3\nstride=2\npad=1\nactivation=leaky\n",
+              "_comment": "Verbatim from https://github.com/pjreddie/darknet @ f6afaab — cfg/yolov3-openimages.cfg:461-468"
+            },
+            {
+              "filePath": "cfg/yolov1.cfg",
+              "symbolName": "local[29]",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Config",
+              "startLine": 233,
+              "endLine": 239,
+              "codeContent": "[local]\nsize=3\nstride=1\npad=1\nfilters=256\nactivation=leaky\n",
+              "_comment": "Verbatim from https://github.com/pjreddie/darknet @ f6afaab — cfg/yolov1.cfg:233-239"
+            },
+            {
+              "filePath": "cfg/tiny.cfg",
+              "symbolName": "convolutional[1]",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Config",
+              "startLine": 26,
+              "endLine": 33,
+              "codeContent": "[convolutional]\nbatch_normalize=1\nfilters=16\nsize=3\nstride=1\npad=1\nactivation=leaky\n",
+              "_comment": "Verbatim from https://github.com/pjreddie/darknet @ f6afaab — cfg/tiny.cfg:26-33"
+            },
+            {
+              "filePath": "cfg/t1.test.cfg",
+              "symbolName": "net[0]",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Config",
+              "startLine": 1,
+              "endLine": 15,
+              "codeContent": "[net]\nbatch=1\nsubdivisions=1\nheight=224\nwidth=224\nchannels=3\nmomentum=0.9\ndecay=0.0005\n\nlearning_rate=0.0005\npolicy=steps\nsteps=200,400,600,20000,30000\nscales=2.5,2,2,.1,.1\nmax_batches = 40000\n",
+              "_comment": "Verbatim from https://github.com/pjreddie/darknet @ f6afaab — cfg/t1.test.cfg:1-15"
+            },
+            {
+              "filePath": "cfg/yolov1.cfg",
+              "symbolName": "net[0]",
+              "symbolType": "MODULE",
+              "parentSymbolName": null,
+              "programmingLanguage": "Config",
+              "startLine": 1,
+              "endLine": 22,
+              "codeContent": "[net]\n# Testing\nbatch=1\nsubdivisions=1\n# Training\n# batch=64\n# subdivisions=8\nheight=448\nwidth=448\nchannels=3\nmomentum=0.9\ndecay=0.0005\nsaturation=1.5\nexposure=1.5\nhue=.1\n\nlearning_rate=0.0005\npolicy=steps\nsteps=200,400,600,20000,30000\nscales=2.5,2,2,.1,.1\nmax_batches = 40000\n",
+              "_comment": "Verbatim from https://github.com/pjreddie/darknet @ f6afaab — cfg/yolov1.cfg:1-22"
+            }
+          ]
         }
       ]
     }

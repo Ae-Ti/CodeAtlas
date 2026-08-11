@@ -1,66 +1,56 @@
 {
-  "_comment": "Stable Diffusion 3b40f4e8fef7808ea45afff64bd0d5b1.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_comment": "노트 마크다운에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것(줄 번호는 AST·블록 파서 실측). 노트에 경로·심볼이 없는 경우 코드 본문을 저장소에 역매칭해 특정했습니다.",
   "_sourceMarkdown": "Stable Diffusion 3b40f4e8fef7808ea45afff64bd0d5b1.md",
   "_unresolved": [
     {
-      "chunk": "LD-10",
-      "title": "Attention Block",
-      "issue": "ldm/modules/attention.py 에서 심볼을 특정할 수 없음 (노트 표기 AttentionBlock)"
-    },
-    {
       "chunk": "LD-12",
       "title": "CLIP Text Conditioning",
-      "issue": "ldm/modules/encoders/modules.py 에서 심볼을 특정할 수 없음 (노트 표기 FrozenCLIPEmbedder)"
+      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "LD-13",
       "title": "Time Embedding",
-      "issue": "ldm/modules/diffusionmodules/openaimodel.py 에서 심볼을 특정할 수 없음 (노트 표기 timestep_embedding)"
-    },
-    {
-      "chunk": "LD-15",
-      "title": "Training Objective",
-      "issue": "ldm/models/diffusion/ddpm.py 에 심볼 p_losses 이(가) 2개라 하나로 특정 불가 (노트에 부모 클래스 표기 없음)"
+      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "LD-17",
       "title": "Sampling Algorithm",
-      "issue": "ldm/models/diffusion/ddpm.py 에 심볼 p_sample_loop 이(가) 2개라 하나로 특정 불가 (노트에 부모 클래스 표기 없음)"
+      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "LD-24",
       "title": "Text-to-Image Generation",
-      "issue": "scripts/txt2img.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "LD-25",
       "title": "Image-to-Image Generation",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "LD-26",
       "title": "Inpainting",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+      "issue": "노트에 대응 코드가 없음"
     },
     {
-      "chunk": "LD-28",
-      "title": "Training Configuration",
-      "issue": "main.py 에서 심볼을 특정할 수 없음 (노트 표기 DDPM)"
+      "chunk": "LD-27",
+      "title": "Dataset",
+      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "LD-29",
       "title": "Experiments",
-      "issue": "저장소(CompVis/latent-diffusion@a506df5)에 없는 경로: scripts/"
-    },
-    {
-      "chunk": "LD-30",
-      "title": "Ablation / Performance Analysis",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "-",
-      "title": "입도 정리",
-      "issue": "부모 블록 2개를 자식 메서드로 대체 (['LatentDiffusion', 'DDPM'])"
+      "title": "입도 정리 (§4 규칙 3)",
+      "issue": "부모 블록 2개를 자식 심볼로 대체: ['DDPM', 'LatentDiffusion']"
+    },
+    {
+      "chunk": "-",
+      "title": "content 보강",
+      "issue": "4개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
     }
   ],
   "papers": [
@@ -80,37 +70,37 @@
       "chunks": [
         {
           "chunkIndex": 0,
-          "sectionTitle": "Section 1. Introduction",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "Latent Diffusion Model Overview",
-          "content": "Diffusion models have recently emerged as a powerful class of generative models that achieve state-of-the-art image synthesis results.\n\nHowever, their application to high-resolution synthesis is challenging due to the enormous computational requirements.\n\nWe propose latent diffusion models (LDMs), which reduce computational complexity by performing the diffusion process in a compressed latent space instead of pixel space.",
+          "content": "Diffusion models have recently emerged as a powerful class of generative models that achieve state-of-the-art image synthesis results.\n\nHowever, their application to high-resolution synthesis is challenging due to the enormous computational requirements.\n\nWe propose latent diffusion models (LDMs), which reduce computational complexity by performing the diffusion process in a compressed latent space instead of pixel space.\n\nBy decomposing the image formation process into a sequential application of denoising autoencoders, diffusion models (DMs) achieve state-of-the-art synthesis results on image data and beyond.\nAdditionally, their formulation allows for a guiding mechanism to control the image generation process without retraining.\nHowever, since these models typically operate directly in pixel space, optimization of powerful DMs often consumes hundreds of GPU days and inference is expensive due to\nsequential evaluations.\nTo enable DM training on limited computational resources while retaining their quality and flexibility,\nwe apply them in the latent space of powerful pretrained autoencoders.\nIn contrast to previous work, training diffusion models on such a representation allows for the first time to reach a near-optimal point\nbetween complexity reduction and detail preservation,\ngreatly boosting visual fidelity.\nBy introducing cross-attention layers into the model architecture,\nwe turn diffusion models into powerful and flexible\ngenerators for general conditioning inputs such as text or bounding boxes and high-resolution synthesis becomes possible in a convolutional manner.\nOur latent diffusion models (LDMs) achieve new state-of-the-art scores for image\ninpainting and class-conditional image synthesis and highly competitive performance on various tasks, including\ntext-to-image synthesis, unconditional image generation and super-resolution, while\nsignificantly reducing computational requirements compared to pixel-based DMs.",
           "pageStart": 1,
           "pageEnd": 1,
-          "_comment": "노트 LD-01",
+          "_comment": "노트 LD-01 | 논문 원문 문단 보강 (ar5iv 2112.10752)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddpm.py",
-              "symbolName": "get_loss",
-              "startLine": 279,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> diffusion process in compressed latent space\n> \n\n↓\n\n코드:\n\n```\nx_start\n```\n\n이 입력 latent.\n\n실제 Stable Diffusion에서는:\n\n```\nImage\n\n↓\n\nVAE encode\n\n↓\n\nz latent\n\n↓\n\nDDPM\n```\n\n순서.\n\n---"
+              "symbolName": "configure_optimizers",
+              "startLine": 415,
+              "reason": "``` DIRECT ``` --- 논문: > diffusion process in compressed latent space > ↓ 코드: ``` x_start ``` 이 입력 latent. 실제 Stable Diffusion에서는: ``` Image ↓ VAE encode ↓ z latent ↓ DDPM ``` 순서. ---"
             }
           ]
         },
         {
           "chunkIndex": 1,
-          "sectionTitle": "Section 2.",
+          "sectionTitle": "2 Related Work",
           "subsectionTitle": "Latent Space Compression (VAE)",
-          "content": "We first train an autoencoder that learns a lower-dimensional latent representation of the data.\n\nThis allows us to perform diffusion in a compressed representation space.",
+          "content": "We first train an autoencoder that learns a lower-dimensional latent representation of the data.\n\nThis allows us to perform diffusion in a compressed representation space.\n\nGenerative Models for Image Synthesis\nThe high dimensional nature of images presents distinct challenges to generative modeling.\nGenerative Adversarial Networks (GAN) goodfellow2014GAN\nallow for efficient sampling of high resolution images with good perceptual quality bigganbrock; DBLP:journals/corr/abs-1912-04958, but are difficult to optimize DBLP:journals/corr/abs-1801-04406; arjovsky2017wasserstein; gulrajani2017improved and struggle to capture the full data distribution\nDBLP:conf/iclr/MetzPPS17.\nIn contrast, likelihood-based methods emphasize good density estimation which renders optimization more well-behaved.\nVariational autoencoders (VAE) VAE\nand flow-based models dinh2015nice; DBLP:conf/iclr/DinhSB17 enable efficient synthesis of high resolution images DBLP:journals/corr/abs-2011-10650; DBLP:conf/nips/VahdatK20; glow, but sample quality is not on par with GANs.\nWhile autoregressive models (ARM) DBLP:journals/corr/OordKK16; NIPS2016_b1301141; DBLP:conf/icml/ChenRC0JLS20; DBLP:journals/corr/abs-1904-10509 achieve strong performance in density\nestimation, computationally demanding architectures\nDBLP:conf/nips/VaswaniSPUJGKP17 and a sequential sampling process limit them to low resolution images.\nBecause pixel based representations of images contain barely\nperceptible, high-frequency details dieleman2020typicality; DBLP:journals/corr/SalimansKCK17, maximum-likelihood training spends a\ndisproportionate amount of capacity on modeling them, resulting in\nlong training times.\nTo scale to higher resolutions,\nseveral two-stage approaches DBLP:journals/corr/abs-2104-10157; DBLP:conf/nips/RazaviOV19; DBLP:journals/corr/abs-2012-09841; yu2021vectorquantized\nuse ARMs to model a compressed latent image space instead of raw pixels.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 LD-02",
+          "_comment": "노트 LD-02 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/autoencoder.py",
               "symbolName": "AutoencoderKL",
               "startLine": 285,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> lower-dimensional latent representation\n> \n\n↓\n\n코드:\n\n```\nself.encoder()\n```\n\n↓\n\nlatent 생성\n\n논문:\n\n> reconstruct image\n> \n\n↓\n\n코드:\n\n```\nself.decoder()\n```\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: > lower-dimensional latent representation > ↓ 코드: ``` self.encoder() ``` ↓ latent 생성 논문: > reconstruct image > ↓ 코드: ``` self.decoder() ``` ---"
             }
           ]
         },
@@ -128,7 +118,7 @@
               "filePath": "ldm/models/autoencoder.py",
               "symbolName": "AutoencoderKL",
               "startLine": 285,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n```\nencoder E\ndecoder D\n```\n\n↓\n\n코드:\n\n```\nself.encoder\n\nself.decoder\n```\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: ``` encoder E decoder D ``` ↓ 코드: ``` self.encoder self.decoder ``` ---"
             }
           ]
         },
@@ -146,7 +136,7 @@
               "filePath": "ldm/modules/losses/vqperceptual.py",
               "symbolName": "VQLPIPSWithDiscriminator",
               "startLine": 43,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> perceptual loss\n> \n\n↓\n\n코드:\n\n```\nself.perceptual_loss()\n```\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: > perceptual loss > ↓ 코드: ``` self.perceptual_loss() ``` ---"
             }
           ]
         },
@@ -164,232 +154,250 @@
               "filePath": "ldm/modules/distributions/distributions.py",
               "symbolName": "DiagonalGaussianDistribution",
               "startLine": 24,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> KL-regulated autoencoder\n> \n\n↓\n\n코드:\n\n```\nkl()\n```\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: > KL-regulated autoencoder > ↓ 코드: ``` kl() ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 5,
-          "sectionTitle": "Section 3. Latent Diffusion Models",
+          "sectionTitle": "3 Method",
           "subsectionTitle": "Forward Diffusion Process (Noise Addition)",
-          "content": "Diffusion models are latent variable models that are trained to reverse a gradual noising process.",
+          "content": "Diffusion models are latent variable models that are trained to reverse a gradual noising process.\n\nTo lower the computational demands of training diffusion models towards high-resolution image synthesis,\nwe observe\nthat although diffusion models\nallow\nto ignore perceptually irrelevant details by undersampling the corresponding loss terms DBLP:conf/nips/HoJA20,\nthey still require costly function evaluations in pixel space,\nwhich causes\nhuge demands in computation time and energy resources.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 LD-06",
+          "_comment": "노트 LD-06 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddpm.py",
-              "symbolName": "get_loss",
-              "startLine": 279,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> gradual noising process\n> \n\n↓\n\n코드:\n\n```\nq_sample()\n```\n\n↓\n\nNoise 추가\n\n논문 수식:\n\n\\[\nz_t\n=\n\\sqrt{\\bar{\\alpha_t}}z_0\n+\n\\sqrt{1-\\bar{\\alpha_t}}\\epsilon\n\\]\n\n↓\n\n코드:\n\n```\nsqrt_alphas_cumprod_t * x_start\n\n+\n\nsqrt_one_minus_alphas_cumprod_t * noise\n```\n\n---"
+              "symbolName": "configure_optimizers",
+              "startLine": 415,
+              "reason": "``` DIRECT ``` --- 논문: > gradual noising process > ↓ 코드: ``` q_sample() ``` ↓ Noise 추가 논문 수식: \\[ z_t = \\sqrt{\\bar{\\alpha_t}}z_0 + \\sqrt{1-\\bar{\\alpha_t}}\\epsilon \\] ↓ 코드: ``` sqrt_alphas_cumprod_t * x_start + sqrt_one_minus_alphas_cumprod_t * noise ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 6,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "3 Method",
           "subsectionTitle": "Reverse Denoising Process",
-          "content": "During sampling, the model learns to reverse the diffusion process by predicting the noise added to the latent representation.",
+          "content": "During sampling, the model learns to reverse the diffusion process by predicting the noise added to the latent representation.\n\nTo lower the computational demands of training diffusion models towards high-resolution image synthesis,\nwe observe\nthat although diffusion models\nallow\nto ignore perceptually irrelevant details by undersampling the corresponding loss terms DBLP:conf/nips/HoJA20,\nthey still require costly function evaluations in pixel space,\nwhich causes\nhuge demands in computation time and energy resources.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 LD-07",
+          "_comment": "노트 LD-07 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddpm.py",
-              "symbolName": "get_loss",
-              "startLine": 279,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> reverse diffusion process\n> \n\n↓\n\n코드:\n\n```\np_sample()\n```\n\n논문:\n\n> predicting noise\n> \n\n↓\n\n코드:\n\n```\nself.model()\n```\n\n(UNet 호출)\n\n---"
+              "symbolName": "configure_optimizers",
+              "startLine": 415,
+              "reason": "``` DIRECT ``` --- 논문: > reverse diffusion process > ↓ 코드: ``` p_sample() ``` 논문: > predicting noise > ↓ 코드: ``` self.model() ``` (UNet 호출) ---"
             }
           ]
         },
         {
           "chunkIndex": 7,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "3 Method",
           "subsectionTitle": "Latent UNet Backbone",
-          "content": "We use a UNet architecture as the backbone of our diffusion model.\n\nThe model consists of a sequence of downsampling and upsampling blocks with attention layers.",
+          "content": "We use a UNet architecture as the backbone of our diffusion model.\n\nThe model consists of a sequence of downsampling and upsampling blocks with attention layers.\n\nWe propose to circumvent this drawback by introducing an explicit separation\nof the compressive from the generative learning phase (see\nFig. 2).\nTo achieve this, we utilize an autoencoding model which learns a space that is perceptually equivalent to the image space,\nbut offers significantly reduced computational complexity.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-08",
+          "_comment": "노트 LD-08 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
               "symbolName": "UNetModel",
               "startLine": 413,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> UNet architecture\n> \n\n↓\n\n코드:\n\n```\nUNetModel\n```\n\n논문:\n\n> downsampling and upsampling blocks\n> \n\n↓\n\n코드:\n\n```\ninput_blocks\n\noutput_blocks\n```\n\n논문:\n\n> attention layers\n> \n\n↓\n\n코드:\n\n```\nSpatialTransformer\n```\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: > UNet architecture > ↓ 코드: ``` UNetModel ``` 논문: > downsampling and upsampling blocks > ↓ 코드: ``` input_blocks output_blocks ``` 논문: > attention layers > ↓ 코드: ``` SpatialTransformer ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 8,
-          "sectionTitle": "Section 3.",
+          "sectionTitle": "3 Method",
           "subsectionTitle": "ResBlock (Residual Block)",
-          "content": "Our diffusion model architecture is based on the UNet architecture introduced by Ho et al.\n\nIt consists of residual blocks and attention mechanisms.",
+          "content": "Our diffusion model architecture is based on the UNet architecture introduced by Ho et al.\n\nIt consists of residual blocks and attention mechanisms.\n\nTo lower the computational demands of training diffusion models towards high-resolution image synthesis,\nwe observe\nthat although diffusion models\nallow\nto ignore perceptually irrelevant details by undersampling the corresponding loss terms DBLP:conf/nips/HoJA20,\nthey still require costly function evaluations in pixel space,\nwhich causes\nhuge demands in computation time and energy resources.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-09",
+          "_comment": "노트 LD-09 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
               "symbolName": "ResBlock",
               "startLine": 163,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> residual blocks\n> \n\n↓\n\n코드:\n\n```\nclass ResBlock\n```\n\nResidual 연결:\n\n논문:\n\n```\ninput + residual\n```\n\n↓\n\n코드:\n\n```\nreturn self.skip_connection(x)+h\n```\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: > residual blocks > ↓ 코드: ``` class ResBlock ``` Residual 연결: 논문: ``` input + residual ``` ↓ 코드: ``` return self.skip_connection(x)+h ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 9,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "3 Method",
           "subsectionTitle": "Attention Block",
-          "content": "We introduce attention layers into the UNet architecture to improve the quality of generated images.",
+          "content": "We introduce attention layers into the UNet architecture to improve the quality of generated images.\n\nSuch an approach offers several advantages: (i)\nBy leaving the high-dimensional image space, we\nobtain DMs which are computationally much more efficient\nbecause sampling is performed on a low-dimensional space.\n(ii)\nWe exploit the inductive bias of DMs inherited from their UNet architecture\nDBLP:conf/miccai/RonnebergerFB15, which makes them particularly effective for data with spatial\nstructure and therefore\nalleviates the need for aggressive, quality-reducing compression levels as required by previous\napproaches DBLP:journals/corr/abs-2012-09841; DBLP:journals/corr/abs-2102-12092.\n(iii)\nFinally, we obtain general-purpose compression models whose latent space\ncan be used to train multiple generative models\nand which can also be utilized\nfor other downstream applications such as single-image CLIP-guided synthesis Frans2021CLIPDrawET.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-10"
+          "_comment": "노트 LD-10 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
+              "symbolName": "__init__",
+              "startLine": 37,
+              "reason": "``` DIRECT ``` --- 논문: > attention layers > ↓ 코드: ``` AttentionBlock ``` Residual: ``` x+h ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 10,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "Cross Attention Conditioning",
-          "content": "To condition the image generation process, we introduce cross-attention layers into the model.",
+          "content": "To condition the image generation process, we introduce cross-attention layers into the model.\n\nBy decomposing the image formation process into a sequential application of denoising autoencoders, diffusion models (DMs) achieve state-of-the-art synthesis results on image data and beyond.\nAdditionally, their formulation allows for a guiding mechanism to control the image generation process without retraining.\nHowever, since these models typically operate directly in pixel space, optimization of powerful DMs often consumes hundreds of GPU days and inference is expensive due to\nsequential evaluations.\nTo enable DM training on limited computational resources while retaining their quality and flexibility,\nwe apply them in the latent space of powerful pretrained autoencoders.\nIn contrast to previous work, training diffusion models on such a representation allows for the first time to reach a near-optimal point\nbetween complexity reduction and detail preservation,\ngreatly boosting visual fidelity.\nBy introducing cross-attention layers into the model architecture,\nwe turn diffusion models into powerful and flexible\ngenerators for general conditioning inputs such as text or bounding boxes and high-resolution synthesis becomes possible in a convolutional manner.\nOur latent diffusion models (LDMs) achieve new state-of-the-art scores for image\ninpainting and class-conditional image synthesis and highly competitive performance on various tasks, including\ntext-to-image synthesis, unconditional image generation and super-resolution, while\nsignificantly reducing computational requirements compared to pixel-based DMs.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-11",
+          "_comment": "노트 LD-11 | 논문 원문 문단 보강 (ar5iv 2112.10752)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/modules/attention.py",
               "symbolName": "CrossAttention",
               "startLine": 152,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> cross-attention layers\n> \n\n↓\n\n코드:\n\n```\nCrossAttention\n```\n\nQuery:\n\n```\nself.to_q()\n```\n\nText:\n\n```\nself.to_k()\nself.to_v()\n```\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: > cross-attention layers > ↓ 코드: ``` CrossAttention ``` Query: ``` self.to_q() ``` Text: ``` self.to_k() self.to_v() ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 11,
-          "sectionTitle": "Section 3.3",
+          "sectionTitle": "3.3 Conditioning Mechanisms",
           "subsectionTitle": "CLIP Text Conditioning",
-          "content": "We use pretrained models such as CLIP text encoders to provide conditioning information.",
+          "content": "We use pretrained models such as CLIP text encoders to provide conditioning information.\n\nSimilar to other types of generative\nmodels DBLP:journals/corr/MirzaO14; NIPS2015_8d55a249, diffusion models\nare in principle capable of modeling conditional distributions of the form\n p(z|y) .\nThis can be implemented with\na conditional denoising autoencoder \\epsilon_{\\theta}(z_{t},t,y) and\npaves the way to controlling the synthesis process through\ninputs y such as text Reed2016GenerativeAT, semantic maps  spade; DBLP:conf/cvpr/IsolaZZE17 or other image-to-image translation tasks Isola2017ImagetoImageTW.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 LD-12"
+          "_comment": "노트 LD-12 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
         },
         {
           "chunkIndex": 12,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "3.1 Perceptual Image Compression",
           "subsectionTitle": "Time Embedding",
-          "content": "The diffusion timestep is provided to the network through sinusoidal positional embeddings.",
+          "content": "The diffusion timestep is provided to the network through sinusoidal positional embeddings.\n\nOur perceptual compression model\nis based on previous work DBLP:journals/corr/abs-2012-09841 and\nconsists of an autoencoder trained by combination of a perceptual\nloss lpips and a patch-based DBLP:conf/cvpr/IsolaZZE17 adversarial objective dosovitskiy201perceptual; DBLP:journals/corr/abs-2012-09841; yu2021vectorquantized.\nThis ensures that the reconstructions are\nconfined to the image manifold by enforcing local realism and avoids bluriness introduced by relying solely on pixel-space losses\nsuch as L_{2} or L_{1} objectives.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-13"
+          "_comment": "노트 LD-13 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
         },
         {
           "chunkIndex": 13,
-          "sectionTitle": "Section 3.",
+          "sectionTitle": "3 Method",
           "subsectionTitle": "Noise Scheduler (Beta Schedule)",
-          "content": "We use the same diffusion process as in previous diffusion models, where a variance schedule controls the amount of noise added at each timestep.",
+          "content": "We use the same diffusion process as in previous diffusion models, where a variance schedule controls the amount of noise added at each timestep.\n\nWe propose to circumvent this drawback by introducing an explicit separation\nof the compressive from the generative learning phase (see\nFig. 2).\nTo achieve this, we utilize an autoencoding model which learns a space that is perceptually equivalent to the image space,\nbut offers significantly reduced computational complexity.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-14",
+          "_comment": "노트 LD-14 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddpm.py",
-              "symbolName": "get_loss",
-              "startLine": 279,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> variance schedule controls noise\n> \n\n↓\n\n코드:\n\n```\nbetas\n```\n\n↓\n\nNoise 크기 결정\n\n논문:\n\n\\[\n\\alpha_t=1-\\beta_t\n\\]\n\n↓\n\n코드:\n\n```\nalphas = 1.0-betas\n```\n\n---"
+              "symbolName": "configure_optimizers",
+              "startLine": 415,
+              "reason": "``` DIRECT ``` --- 논문: > variance schedule controls noise > ↓ 코드: ``` betas ``` ↓ Noise 크기 결정 논문: \\[ \\alpha_t=1-\\beta_t \\] ↓ 코드: ``` alphas = 1.0-betas ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 14,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "3.1 Perceptual Image Compression",
           "subsectionTitle": "Training Objective",
-          "content": "The diffusion model is trained to predict the noise added to the latent representation.",
+          "content": "The diffusion model is trained to predict the noise added to the latent representation.\n\nMore precisely, given an image x\\in\\mathbb{R}^{H\\times W\\times 3} in RGB space,\nthe encoder \\mathcal{E} encodes x into a latent representation z=\\mathcal{E}(x) , and the decoder \\mathcal{D} \nreconstructs the image from the latent, giving \\tilde{x}=\\mathcal{D}(z)=\\mathcal{D}(\\mathcal{E}(x)) , where z\\in\\mathbb{R}^{h\\times w\\times c} .\nImportantly, the encoder downsamples the image by a factor f=H/h=W/w , and we investigate different downsampling\nfactors f=2^{m} , with m\\in\\mathbb{N} .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-15"
+          "_comment": "노트 LD-15 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "ldm/models/diffusion/ddpm.py",
+              "symbolName": "p_losses",
+              "startLine": 1012,
+              "reason": "``` DIRECT ``` --- 논문: > predict the noise > ↓ 코드: ``` model_output ``` 실제 noise: ``` noise ``` Loss: ``` get_loss() ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 15,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "3.1 Perceptual Image Compression",
           "subsectionTitle": "LDM Loss Function",
-          "content": "We optimize the objective of predicting the noise using the variational lower bound objective.",
+          "content": "We optimize the objective of predicting the noise using the variational lower bound objective.\n\nIn order to avoid arbitrarily\nhigh-variance\nlatent spaces, we experiment with two different kinds of regularizations. The\nfirst variant, KL-reg., imposes a slight KL-penalty towards a standard\nnormal on the learned latent, similar to\na VAE VAE; VAE2, whereas VQ-reg.\nuses a vector quantization layer DBLP:conf/nips/OordVK17 within\nthe decoder. This model can be interpreted as a VQGAN DBLP:journals/corr/abs-2012-09841 but with the quantization layer\nabsorbed by the decoder. Because our subsequent DM\nis designed to work with the two-dimensional structure of\nour learned latent space z=\\mathcal{E}(x) , we can use relatively mild\ncompression rates and achieve very good reconstructions. This is in contrast to\nprevious works DBLP:journals/corr/abs-2012-09841; DBLP:journals/corr/abs-2102-12092,\nwhich relied on an arbitrary 1D ordering of the learned space z to model its\ndistribution autoregressively and thereby ignored much of the\ninherent structure of z .\nHence, our compression model preserves details of x better (see Tab. 8).\nThe full objective and training details can be found in the supplement.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-16",
+          "_comment": "노트 LD-16 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "get_loss",
               "startLine": 279,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> predicting noise objective\n> \n\n↓\n\n코드:\n\n```\n(target-pred)**2\n```\n\n↓\n\nNoise prediction MSE\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: > predicting noise objective > ↓ 코드: ``` (target-pred)**2 ``` ↓ Noise prediction MSE ---"
             }
           ]
         },
         {
           "chunkIndex": 16,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "3.2 Latent Diffusion Models",
           "subsectionTitle": "Sampling Algorithm",
-          "content": "Sampling is performed by iteratively applying the learned denoising network.",
+          "content": "Sampling is performed by iteratively applying the learned denoising network.\n\nDiffusion Models DBLP:journals/corr/Sohl-DicksteinW15 are probabilistic models designed to learn a data distribution p(x) by\ngradually denoising a normally distributed variable, which corresponds to learning\nthe reverse process of a fixed Markov Chain of length T .\nFor image synthesis, the most successful models DBLP:conf/nips/HoJA20; DBLP:journals/corr/abs-2105-05233; DBLP:journals/corr/abs-2104-07636\nrely on a reweighted variant of the variational lower bound on p(x) , which mirrors denoising score-matching DBLP:journals/corr/abs-2011-13456.\nThese models can be interpreted as an equally weighted sequence of denoising autoencoders \\epsilon_{\\theta}(x_{t},t);\\,t=1\\dots T ,\nwhich are trained to predict a denoised variant of their input x_{t} , where x_{t} is a noisy version of the input x .\nThe corresponding objective can be simplified to (Sec. B)",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-17"
+          "_comment": "노트 LD-17 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
         },
         {
           "chunkIndex": 17,
-          "sectionTitle": "Section 4",
+          "sectionTitle": "4 Experiments",
           "subsectionTitle": "DDIM Sampling",
-          "content": "We use DDIM sampling to accelerate the generation process.",
+          "content": "We use DDIM sampling to accelerate the generation process.\n\nLDMs provide means to flexible and computationally tractable diffusion based image synthesis\nof various image modalities, which we empirically show in the following.\nFirstly, however, we analyze the gains of our models compared to pixel-based diffusion models in both training and inference.\nInterestingly, we find that LDMs trained in VQ-regularized latent spaces sometimes achieve better sample quality, even though the reconstruction capabilities of VQ-regularized first stage models slightly fall behind those of their continuous counterparts, cf. Tab. 8.\nA visual comparison between the effects of first stage regularization schemes on LDM training and their generalization abilities to resolutions >256^{2} can be found in Appendix D.1. In E.2 we list details on architecture, implementation, training and evaluation for all results presented in this section.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 LD-18",
+          "_comment": "노트 LD-18 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddim.py",
               "symbolName": "DDIMSampler",
               "startLine": 11,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 18,
-          "sectionTitle": "Section 3.3",
+          "sectionTitle": "3.3 Conditioning Mechanisms",
           "subsectionTitle": "Classifier-Free Guidance (CFG)",
-          "content": "We use classifier-free guidance to improve the alignment between generated samples and conditioning information.",
+          "content": "We use classifier-free guidance to improve the alignment between generated samples and conditioning information.\n\nIn the context of image synthesis, however, combining the\ngenerative power of DMs with other types of conditionings beyond class-labels DBLP:journals/corr/abs-2105-05233\nor blurred variants\nof the input image DBLP:journals/corr/abs-2104-07636\nis so far an under-explored area of research.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 LD-19",
+          "_comment": "노트 LD-19 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddim.py",
               "symbolName": "DDIMSampler",
               "startLine": 11,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> classifier-free guidance\n> \n\n↓\n\n코드:\n\n```\ne_t_uncond\n```\n\n↓\n\n조건 없는 noise\n\n```\ne_t_cond\n```\n\n↓\n\nText 조건 noise\n\n```\nunconditional_guidance_scale\n```\n\n↓\n\nguidance strength\n\n---"
+              "reason": "``` DIRECT ``` --- 논문: > classifier-free guidance > ↓ 코드: ``` e_t_uncond ``` ↓ 조건 없는 noise ``` e_t_cond ``` ↓ Text 조건 noise ``` unconditional_guidance_scale ``` ↓ guidance strength ---"
             }
           ]
         },
         {
           "chunkIndex": 19,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "Abstract",
           "subsectionTitle": "Stable Diffusion Pipeline",
-          "content": "Instead of performing diffusion directly in pixel space, we perform diffusion in the latent space of an autoencoder.",
+          "content": "Instead of performing diffusion directly in pixel space, we perform diffusion in the latent space of an autoencoder.\n\nBy decomposing the image formation process into a sequential application of denoising autoencoders, diffusion models (DMs) achieve state-of-the-art synthesis results on image data and beyond.\nAdditionally, their formulation allows for a guiding mechanism to control the image generation process without retraining.\nHowever, since these models typically operate directly in pixel space, optimization of powerful DMs often consumes hundreds of GPU days and inference is expensive due to\nsequential evaluations.\nTo enable DM training on limited computational resources while retaining their quality and flexibility,\nwe apply them in the latent space of powerful pretrained autoencoders.\nIn contrast to previous work, training diffusion models on such a representation allows for the first time to reach a near-optimal point\nbetween complexity reduction and detail preservation,\ngreatly boosting visual fidelity.\nBy introducing cross-attention layers into the model architecture,\nwe turn diffusion models into powerful and flexible\ngenerators for general conditioning inputs such as text or bounding boxes and high-resolution synthesis becomes possible in a convolutional manner.\nOur latent diffusion models (LDMs) achieve new state-of-the-art scores for image\ninpainting and class-conditional image synthesis and highly competitive performance on various tasks, including\ntext-to-image synthesis, unconditional image generation and super-resolution, while\nsignificantly reducing computational requirements compared to pixel-based DMs.",
           "pageStart": 3,
           "pageEnd": 4,
-          "_comment": "노트 LD-20",
+          "_comment": "노트 LD-20 | 논문 원문 문단 보강 (ar5iv 2112.10752)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddpm.py",
-              "symbolName": "encode_first_stage",
-              "startLine": 826,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "symbolName": "p_losses",
+              "startLine": 1012,
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
@@ -407,117 +415,126 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "encode_first_stage",
               "startLine": 826,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 21,
-          "sectionTitle": "Section 3",
+          "sectionTitle": "3.2 Latent Diffusion Models",
           "subsectionTitle": "UNet Forward Pipeline",
-          "content": "The UNet predicts the noise residual at each diffusion timestep.",
+          "content": "The UNet predicts the noise residual at each diffusion timestep.\n\nGenerative Modeling of Latent Representations\nWith our trained perceptual compression models consisting of \\mathcal{E} and \\mathcal{D} ,\nwe now have access to an efficient, low-dimensional latent space in which high-frequency, imperceptible details are\nabstracted away.\nCompared to the high-dimensional pixel space, this space is more suitable\nfor likelihood-based generative models, as they can now (i) focus on the important, semantic bits of the data\nand (ii) train in a lower dimensional, computationally much more efficient space.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-22",
+          "_comment": "노트 LD-22 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "apply_model",
               "startLine": 891,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 22,
-          "sectionTitle": "Section 3.3",
+          "sectionTitle": "3.3 Conditioning Mechanisms",
           "subsectionTitle": "Conditioning Injection",
-          "content": "We condition the UNet through cross-attention layers.",
+          "content": "We condition the UNet through cross-attention layers.\n\nWe turn DMs into more flexible conditional image generators by\naugmenting their underlying UNet backbone with the cross-attention mechanism DBLP:conf/nips/VaswaniSPUJGKP17,\nwhich\nis\neffective for learning attention-based models of various input modalities DBLP:conf/icml/JaegleGBVZC21; DBLP:journals/corr/abs-2107-14795.\nTo pre-process y from various modalities (such as language prompts) we introduce a domain specific\nencoder \\tau_{\\theta} that projects y to an intermediate representation \\tau_{\\theta}(y)\\in\\mathbb{R}^{M\\times d_{\\tau}} , which\nis then mapped to the intermediate layers of the UNet via a cross-attention\nlayer implementing \\text{Attention}(Q,K,V)=\\text{softmax}\\left(\\frac{QK^{T}}{\\sqrt{d}}\\right)\\cdot V , with",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 LD-23",
+          "_comment": "노트 LD-23 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/modules/attention.py",
               "symbolName": "SpatialTransformer",
               "startLine": 218,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 23,
-          "sectionTitle": "Section 4",
+          "sectionTitle": "4.1 On Perceptual Compression Tradeoffs",
           "subsectionTitle": "Text-to-Image Generation",
-          "content": "We demonstrate high-resolution text-to-image synthesis using latent diffusion models.",
+          "content": "We demonstrate high-resolution text-to-image synthesis using latent diffusion models.\n\nThis section analyzes the behavior of our LDMs with different downsampling\nfactors f\\in\\{1,2,4,8,16,32\\} (abbreviated as LDM- f , where\nLDM-1 corresponds to pixel-based DMs).\nTo obtain a\ncomparable test-field, we fix the computational resources\nto a\nsingle NVIDIA A100 for all experiments in this section and train all models for\nthe same number of steps and with the same number of parameters.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 LD-24"
+          "_comment": "노트 LD-24 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
         },
         {
           "chunkIndex": 24,
-          "sectionTitle": "Section 4",
+          "sectionTitle": "3.3 Conditioning Mechanisms",
           "subsectionTitle": "Image-to-Image Generation",
-          "content": "Latent diffusion models can be adapted for image-to-image translation tasks.",
+          "content": "Latent diffusion models can be adapted for image-to-image translation tasks.\n\nSimilar to other types of generative\nmodels DBLP:journals/corr/MirzaO14; NIPS2015_8d55a249, diffusion models\nare in principle capable of modeling conditional distributions of the form\n p(z|y) .\nThis can be implemented with\na conditional denoising autoencoder \\epsilon_{\\theta}(z_{t},t,y) and\npaves the way to controlling the synthesis process through\ninputs y such as text Reed2016GenerativeAT, semantic maps  spade; DBLP:conf/cvpr/IsolaZZE17 or other image-to-image translation tasks Isola2017ImagetoImageTW.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 LD-25"
+          "_comment": "노트 LD-25 | 논문 원문 문단 보강 (ar5iv 2112.10752)"
         },
         {
           "chunkIndex": 25,
-          "sectionTitle": "Section 4",
+          "sectionTitle": "4.1 On Perceptual Compression Tradeoffs",
           "subsectionTitle": "Inpainting",
-          "content": "Latent diffusion models can perform image completion and inpainting.",
+          "content": "Latent diffusion models can perform image completion and inpainting.\n\nTab. 8 shows hyperparameters and reconstruction performance of the first stage models used for the LDMs compared in this section.\nFig. 6 shows sample quality as a function of training\nprogress for 2M steps of class-conditional models on the\nImageNet DBLP:conf/cvpr/DengDSLL009 dataset. We see that, i) small\ndownsampling factors for LDM- \\{ 1,2 \\} result in slow training\nprogress, whereas ii) overly large values of f cause stagnating fidelity\nafter comparably few training steps. Revisiting the analysis above\n(Fig. 1 and 2) we\nattribute this to i) leaving most of perceptual compression to the diffusion\nmodel and ii) too strong first stage compression resulting in information loss\nand thus limiting the achievable quality. LDM- \\{ 4-16 \\} \nstrike a good balance between efficiency and perceptually faithful results,\nwhich manifests in a significant FID FID gap of 38 between pixel-based diffusion (LDM-1) and LDM-8 after 2M training steps.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 LD-26"
+          "_comment": "노트 LD-26 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
         },
         {
           "chunkIndex": 26,
-          "sectionTitle": "Section 4.",
+          "sectionTitle": "4.3.1 Transformer Encoders for LDMs",
           "subsectionTitle": "Dataset",
-          "content": "We train our models on large-scale datasets consisting of image-text pairs.\n\nFor text-to-image synthesis we use datasets such as LAION-400M.",
+          "content": "We train our models on large-scale datasets consisting of image-text pairs.\n\nFor text-to-image synthesis we use datasets such as LAION-400M.\n\nBy introducing cross-attention based conditioning into LDMs\nwe open them up for various\nconditioning modalities previously unexplored for diffusion models.\nFor text-to-image image modeling, we train a 1.45B parameter KL-regularized LDM conditioned on language prompts on LAION-400M schuhmann2021laion400m.\nWe employ the BERT-tokenizer DBLP:journals/corr/abs-1810-04805 and implement \\tau_{\\theta} as a transformer DBLP:conf/nips/VaswaniSPUJGKP17 to infer a latent code which\nis mapped into the UNet via (multi-head) cross-attention (Sec. 3.3).\nThis combination of domain specific experts for learning a language representation and visual synthesis results in a powerful model, which generalizes well to complex, user-defined text prompts, cf. Fig. 8 and 5. For quantitative analysis, we follow prior work and evaluate text-to-image generation on the MS-COCO DBLP:journals/corr/LinMBHPRDZ14 validation set, where our model improves upon powerful AR DBLP:journals/corr/abs-2102-12092; DBLP:journals/corr/abs-2105-13290 and GAN-based DBLP:journals/corr/abs-2111-13792 methods, cf. Tab. 2. We note that applying classifier-free diffusion guidance ho2021classifier greatly boosts sample quality, such that the guided LDM-KL-8-G is on par with the recent state-of-the-art AR DBLP:journals/corr/abs-2203-13131 and diffusion models DBLP:journals/corr/abs-2112-10741 for text-to-image synthesis, while substantially reducing parameter count.\nTo further analyze the flexibility of the cross-attention based conditioning mechanism we also train models to synthesize images based on semantic layouts on OpenImages  DBLP:journals/corr/abs-1811-00982,\nand finetune on COCO DBLP:conf/cvpr/CaesarUF18, see Fig. 8.\nSee Sec. D.3 for the quantitative evaluation and implementation details.",
           "pageStart": 6,
           "pageEnd": 7,
-          "_comment": "노트 LD-27",
+          "_comment": "노트 LD-27 | 논문 원문 문단 보강 (ar5iv 2112.10752)"
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "4 Experiments",
+          "subsectionTitle": "Training Configuration",
+          "content": "We train the diffusion models using Adam optimizer with a learning rate of 1e-4.\n\nThe models are trained on multiple GPUs.\n\nLDMs provide means to flexible and computationally tractable diffusion based image synthesis\nof various image modalities, which we empirically show in the following.\nFirstly, however, we analyze the gains of our models compared to pixel-based diffusion models in both training and inference.\nInterestingly, we find that LDMs trained in VQ-regularized latent spaces sometimes achieve better sample quality, even though the reconstruction capabilities of VQ-regularized first stage models slightly fall behind those of their continuous counterparts, cf. Tab. 8.\nA visual comparison between the effects of first stage regularization schemes on LDM training and their generalization abilities to resolutions >256^{2} can be found in Appendix D.1. In E.2 we list details on architecture, implementation, training and evaluation for all results presented in this section.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 LD-28 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
-              "filePath": "ldm/data/base.py",
-              "symbolName": "__init__",
-              "startLine": 9,
-              "reason": "```\nDIRECT\n```\n\n---\n\n\n논문:\n\n> image-text pairs\n> \n\n↓\n\n코드:\n\n```\nimage\n\ncaption\n```\n\n논문:\n\n> large-scale dataset\n> \n\n↓\n\n코드:\n\n```\nDataset\n```\n\n---"
+              "filePath": "ldm/models/diffusion/ddpm.py",
+              "symbolName": "configure_optimizers",
+              "startLine": 415,
+              "reason": "``` DIRECT ``` --- 논문: > Adam optimizer > ↓ 코드: ``` torch.optim.AdamW() ``` 논문: > learning rate > ↓ 코드: ``` lr ``` ---"
             }
           ]
         },
         {
-          "chunkIndex": 27,
-          "sectionTitle": "Section 4.",
-          "subsectionTitle": "Training Configuration",
-          "content": "We train the diffusion models using Adam optimizer with a learning rate of 1e-4.\n\nThe models are trained on multiple GPUs.",
-          "pageStart": 6,
-          "pageEnd": 6,
-          "_comment": "노트 LD-28"
-        },
-        {
           "chunkIndex": 28,
-          "sectionTitle": "Section 4.",
+          "sectionTitle": "4.1 On Perceptual Compression Tradeoffs",
           "subsectionTitle": "Experiments",
-          "content": "We evaluate our models on several benchmarks for image synthesis.\n\nOur model achieves state-of-the-art performance while requiring substantially less computation.",
+          "content": "We evaluate our models on several benchmarks for image synthesis.\n\nOur model achieves state-of-the-art performance while requiring substantially less computation.\n\nThis section analyzes the behavior of our LDMs with different downsampling\nfactors f\\in\\{1,2,4,8,16,32\\} (abbreviated as LDM- f , where\nLDM-1 corresponds to pixel-based DMs).\nTo obtain a\ncomparable test-field, we fix the computational resources\nto a\nsingle NVIDIA A100 for all experiments in this section and train all models for\nthe same number of steps and with the same number of parameters.",
           "pageStart": 6,
           "pageEnd": 8,
-          "_comment": "노트 LD-29"
+          "_comment": "노트 LD-29 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
         },
         {
           "chunkIndex": 29,
-          "sectionTitle": "Section 4.3",
+          "sectionTitle": "4.3.1 Transformer Encoders for LDMs",
           "subsectionTitle": "Ablation / Performance Analysis",
-          "content": "We investigate the influence of the latent space compression and conditioning mechanisms.",
+          "content": "We investigate the influence of the latent space compression and conditioning mechanisms.\n\nBy introducing cross-attention based conditioning into LDMs\nwe open them up for various\nconditioning modalities previously unexplored for diffusion models.\nFor text-to-image image modeling, we train a 1.45B parameter KL-regularized LDM conditioned on language prompts on LAION-400M schuhmann2021laion400m.\nWe employ the BERT-tokenizer DBLP:journals/corr/abs-1810-04805 and implement \\tau_{\\theta} as a transformer DBLP:conf/nips/VaswaniSPUJGKP17 to infer a latent code which\nis mapped into the UNet via (multi-head) cross-attention (Sec. 3.3).\nThis combination of domain specific experts for learning a language representation and visual synthesis results in a powerful model, which generalizes well to complex, user-defined text prompts, cf. Fig. 8 and 5. For quantitative analysis, we follow prior work and evaluate text-to-image generation on the MS-COCO DBLP:journals/corr/LinMBHPRDZ14 validation set, where our model improves upon powerful AR DBLP:journals/corr/abs-2102-12092; DBLP:journals/corr/abs-2105-13290 and GAN-based DBLP:journals/corr/abs-2111-13792 methods, cf. Tab. 2. We note that applying classifier-free diffusion guidance ho2021classifier greatly boosts sample quality, such that the guided LDM-KL-8-G is on par with the recent state-of-the-art AR DBLP:journals/corr/abs-2203-13131 and diffusion models DBLP:journals/corr/abs-2112-10741 for text-to-image synthesis, while substantially reducing parameter count.\nTo further analyze the flexibility of the cross-attention based conditioning mechanism we also train models to synthesize images based on semantic layouts on OpenImages  DBLP:journals/corr/abs-1811-00982,\nand finetune on COCO DBLP:conf/cvpr/CaesarUF18, see Fig. 8.\nSee Sec. D.3 for the quantitative evaluation and implementation details.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 LD-30"
+          "_comment": "노트 LD-30 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "ldm/models/autoencoder.py",
+              "symbolName": "ema_scope",
+              "startLine": 64,
+              "reason": "논문: > conditioning mechanisms > ↓ 코드: ``` cross_attention() ``` 논문: > latent compression > ↓ 코드: ``` AutoencoderKL ``` ---"
+            }
+          ]
         }
       ],
       "repositories": [
@@ -589,6 +606,17 @@
               "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/modules/diffusionmodules/openaimodel.py:163-275"
             },
             {
+              "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "AttentionPool2d",
+              "programmingLanguage": "Python",
+              "startLine": 37,
+              "endLine": 49,
+              "codeContent": "    def __init__(\n        self,\n        spacial_dim: int,\n        embed_dim: int,\n        num_heads_channels: int,\n        output_dim: int = None,\n    ):\n        super().__init__()\n        self.positional_embedding = nn.Parameter(th.randn(embed_dim, spacial_dim ** 2 + 1) / embed_dim ** 0.5)\n        self.qkv_proj = conv_nd(1, embed_dim, 3 * embed_dim, 1)\n        self.c_proj = conv_nd(1, embed_dim, output_dim or embed_dim, 1)\n        self.num_heads = embed_dim // num_heads_channels\n        self.attention = QKVAttention(self.num_heads)",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/modules/diffusionmodules/openaimodel.py:37-49"
+            },
+            {
               "filePath": "ldm/modules/attention.py",
               "symbolName": "CrossAttention",
               "symbolType": "CLASS",
@@ -598,6 +626,17 @@
               "endLine": 193,
               "codeContent": "class CrossAttention(nn.Module):\n    def __init__(self, query_dim, context_dim=None, heads=8, dim_head=64, dropout=0.):\n        super().__init__()\n        inner_dim = dim_head * heads\n        context_dim = default(context_dim, query_dim)\n\n        self.scale = dim_head ** -0.5\n        self.heads = heads\n\n        self.to_q = nn.Linear(query_dim, inner_dim, bias=False)\n        self.to_k = nn.Linear(context_dim, inner_dim, bias=False)\n        self.to_v = nn.Linear(context_dim, inner_dim, bias=False)\n\n        self.to_out = nn.Sequential(\n            nn.Linear(inner_dim, query_dim),\n            nn.Dropout(dropout)\n        )\n\n    def forward(self, x, context=None, mask=None):\n        h = self.heads\n\n        q = self.to_q(x)\n        context = default(context, x)\n        k = self.to_k(context)\n        v = self.to_v(context)\n\n        q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> (b h) n d', h=h), (q, k, v))\n\n        sim = einsum('b i d, b j d -> b i j', q, k) * self.scale\n\n        if exists(mask):\n            mask = rearrange(mask, 'b ... -> b (...)')\n            max_neg_value = -torch.finfo(sim.dtype).max\n            mask = repeat(mask, 'b j -> (b h) () j', h=h)\n            sim.masked_fill_(~mask, max_neg_value)\n\n        # attention, what we cannot get enough of\n        attn = sim.softmax(dim=-1)\n\n        out = einsum('b i j, b j d -> b i d', attn, v)\n        out = rearrange(out, '(b h) n d -> b n (h d)', h=h)\n        return self.to_out(out)",
               "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/modules/attention.py:152-193"
+            },
+            {
+              "filePath": "ldm/models/diffusion/ddpm.py",
+              "symbolName": "p_losses",
+              "symbolType": "METHOD",
+              "parentSymbolName": "LatentDiffusion",
+              "programmingLanguage": "Python",
+              "startLine": 1012,
+              "endLine": 1045,
+              "codeContent": "    def p_losses(self, x_start, cond, t, noise=None):\n        noise = default(noise, lambda: torch.randn_like(x_start))\n        x_noisy = self.q_sample(x_start=x_start, t=t, noise=noise)\n        model_output = self.apply_model(x_noisy, t, cond)\n\n        loss_dict = {}\n        prefix = 'train' if self.training else 'val'\n\n        if self.parameterization == \"x0\":\n            target = x_start\n        elif self.parameterization == \"eps\":\n            target = noise\n        else:\n            raise NotImplementedError()\n\n        loss_simple = self.get_loss(model_output, target, mean=False).mean([1, 2, 3])\n        loss_dict.update({f'{prefix}/loss_simple': loss_simple.mean()})\n\n        logvar_t = self.logvar[t].to(self.device)\n        loss = loss_simple / torch.exp(logvar_t) + logvar_t\n        # loss = loss_simple / torch.exp(self.logvar) + self.logvar\n        if self.learn_logvar:\n            loss_dict.update({f'{prefix}/loss_gamma': loss.mean()})\n            loss_dict.update({'logvar': self.logvar.data.mean()})\n\n        loss = self.l_simple_weight * loss.mean()\n\n        loss_vlb = self.get_loss(model_output, target, mean=False).mean(dim=(1, 2, 3))\n        loss_vlb = (self.lvlb_weights[t] * loss_vlb).mean()\n        loss_dict.update({f'{prefix}/loss_vlb': loss_vlb})\n        loss += (self.original_elbo_weight * loss_vlb)\n        loss_dict.update({f'{prefix}/loss': loss})\n\n        return loss, loss_dict",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/models/diffusion/ddpm.py:1012-1045"
             },
             {
               "filePath": "ldm/models/diffusion/ddpm.py",
@@ -655,15 +694,26 @@
               "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/modules/attention.py:218-261"
             },
             {
-              "filePath": "ldm/data/base.py",
-              "symbolName": "__init__",
+              "filePath": "ldm/models/diffusion/ddpm.py",
+              "symbolName": "configure_optimizers",
               "symbolType": "METHOD",
-              "parentSymbolName": "Txt2ImgIterableBaseDataset",
+              "parentSymbolName": "DDPM",
               "programmingLanguage": "Python",
-              "startLine": 9,
-              "endLine": 16,
-              "codeContent": "    def __init__(self, num_records=0, valid_ids=None, size=256):\n        super().__init__()\n        self.num_records = num_records\n        self.valid_ids = valid_ids\n        self.sample_ids = valid_ids\n        self.size = size\n\n        print(f'{self.__class__.__name__} dataset contains {self.__len__()} examples.')",
-              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/data/base.py:9-16"
+              "startLine": 415,
+              "endLine": 421,
+              "codeContent": "    def configure_optimizers(self):\n        lr = self.learning_rate\n        params = list(self.model.parameters())\n        if self.learn_logvar:\n            params = params + [self.logvar]\n        opt = torch.optim.AdamW(params, lr=lr)\n        return opt",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/models/diffusion/ddpm.py:415-421"
+            },
+            {
+              "filePath": "ldm/models/autoencoder.py",
+              "symbolName": "ema_scope",
+              "symbolType": "METHOD",
+              "parentSymbolName": "VQModel",
+              "programmingLanguage": "Python",
+              "startLine": 64,
+              "endLine": 76,
+              "codeContent": "    def ema_scope(self, context=None):\n        if self.use_ema:\n            self.model_ema.store(self.parameters())\n            self.model_ema.copy_to(self)\n            if context is not None:\n                print(f\"{context}: Switched to EMA weights\")\n        try:\n            yield None\n        finally:\n            if self.use_ema:\n                self.model_ema.restore(self.parameters())\n                if context is not None:\n                    print(f\"{context}: Restored training weights\")",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/models/autoencoder.py:64-76"
             }
           ]
         }

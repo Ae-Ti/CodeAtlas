@@ -1,116 +1,46 @@
 {
-  "_comment": "BERT 3b30f4e8fef7809a99f9c6a0187acada.md 노트에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것. 해결 못한 항목은 _unresolved 참고.",
+  "_comment": "노트 마크다운에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것(줄 번호는 AST·블록 파서 실측). 노트에 경로·심볼이 없는 경우 코드 본문을 저장소에 역매칭해 특정했습니다.",
   "_sourceMarkdown": "BERT 3b30f4e8fef7809a99f9c6a0187acada.md",
   "_unresolved": [
     {
-      "chunk": "06",
-      "title": "Special Token [CLS]",
-      "issue": "create_pretraining_data.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
-    },
-    {
-      "chunk": "09",
-      "title": "Query / Key / Value Projection",
-      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
-    },
-    {
-      "chunk": "10",
-      "title": "Attention Score 계산",
-      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
-    },
-    {
-      "chunk": "12",
-      "title": "Softmax Attention Probability",
-      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
-    },
-    {
-      "chunk": "13",
-      "title": "Attention Output 계산",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
-    },
-    {
-      "chunk": "16",
-      "title": "Residual Connection + Layer Normalization",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
-    },
-    {
-      "chunk": "17",
-      "title": "Dropout",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
-    },
-    {
-      "chunk": "19",
-      "title": "15% Token Masking Strategy",
-      "issue": "create_pretraining_data.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+      "chunk": "15",
+      "title": "GELU Activation",
+      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "21",
       "title": "Masked LM Label 저장",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
-    },
-    {
-      "chunk": "22",
-      "title": "Next Sentence Prediction (NSP)",
-      "issue": "create_pretraining_data.py 에서 심볼을 특정할 수 없음 (노트 표기 rng.random)"
-    },
-    {
-      "chunk": "24",
-      "title": "MLM Prediction Head",
-      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트 표기 get_masked_lm_output)"
+      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "25",
       "title": "MLM Loss",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
-    },
-    {
-      "chunk": "26",
-      "title": "NSP Classifier",
-      "issue": "modeling.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "28",
       "title": "BERT Configuration (Base / Large)",
-      "issue": "저장소(google-research/bert@eedf571)에 없는 경로: bert_config.json"
+      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "34",
       "title": "Classification Loss",
-      "issue": "run_classifier.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "35",
       "title": "SQuAD Question Answering Fine-tuning",
-      "issue": "run_squad.py 에서 심볼을 특정할 수 없음 (노트에 심볼명 없음, 코드 본문 매칭도 실패)"
+      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "37",
       "title": "BERT 전체 Training Pipeline",
-      "issue": "노트에 Git 코드 위치(파일 경로)가 없음"
+      "issue": "노트에 대응 코드가 없음"
     },
     {
-      "chunk": "11",
-      "title": "Attention Mask",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
-    },
-    {
-      "chunk": "23",
-      "title": "NSP Training Instance 생성",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
-    },
-    {
-      "chunk": "27",
-      "title": "Total Pre-training Loss",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
-    },
-    {
-      "chunk": "36",
-      "title": "SQuAD Output Layer",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
-    },
-    {
-      "chunk": "37",
-      "title": "BERT 전체 Training Pipeline",
-      "issue": "노트에 논문 원문 인용이 없어 구현 설명을 content 로 사용"
+      "chunk": "-",
+      "title": "content 보강",
+      "issue": "8개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
     }
   ],
   "papers": [
@@ -129,156 +59,183 @@
       "chunks": [
         {
           "chunkIndex": 0,
-          "sectionTitle": "Section 2 BERT",
+          "sectionTitle": "Model Architecture",
           "subsectionTitle": "BERT Encoder Architecture",
-          "content": "BERT’s model architecture is a multi-layer bidirectional Transformer encoder based on the original implementation described in Vaswani et al.",
+          "content": "BERT’s model architecture is a multi-layer bidirectional Transformer encoder based on the original implementation described in Vaswani et al.\n\nBERT’s model architecture is a multi-layer bidirectional Transformer encoder based on the original implementation described in Vaswani et al. 2017 and released in the tensor2tensor library.11\n 1\n \n \n \n https://github.com/tensorflow/tensor2tensor Because the use of Transformers has become common and our implementation is almost identical to the original, we will omit an exhaustive background description of the model architecture and refer readers to Vaswani et al. 2017 as well as excellent guides such as ‘‘The Annotated Transformer.’’22\n 2\n \n \n \n http://nlp.seas.harvard.edu/2018/04/03/attention.html",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 01",
+          "_comment": "노트 01 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "BertModel",
               "startLine": 107,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 1,
-          "sectionTitle": "Section 3.1 Input Representation",
+          "sectionTitle": "3.1 Pre-training BERT",
           "subsectionTitle": "Input Representation",
-          "content": "The input embeddings are constructed from the sum of the token embeddings, segmentation embeddings, and position embeddings.",
+          "content": "The input embeddings are constructed from the sum of the token embeddings, segmentation embeddings, and position embeddings.\n\nUnlike Peters et al. 2018a and Radford et al. 2018, we do not use traditional left-to-right or right-to-left language models to pre-train BERT. Instead, we pre-train BERT using two unsupervised tasks, described in this section. This step\nis presented in the left part of Figure 1.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 02",
+          "_comment": "노트 02 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "embedding_postprocessor",
               "startLine": 428,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 2,
-          "sectionTitle": "Section 3.1",
+          "sectionTitle": "Input/Output Representations",
           "subsectionTitle": "Token Embedding",
-          "content": "The first token of every sequence is always a special classification token ([CLS]).",
+          "content": "The first token of every sequence is always a special classification token ([CLS]).\n\nWe use WordPiece embeddings Wu et al. 2016 with a 30,000 token vocabulary.\nThe first token of every sequence is always a special classification token ([CLS]). The final hidden state corresponding to this token is used as the aggregate sequence representation for classification tasks.\nSentence pairs are packed together into a single sequence. We differentiate the sentences in two ways. First, we separate them with a special token ([SEP]). Second, we add a learned embedding to every token indicating whether it belongs to sentence A or sentence B.\nAs shown in Figure 1, we denote\ninput embedding as E , the final hidden vector of the special [CLS] token as C\\in\\mathbb{R}^{H} , and the final hidden vector for the i^{\\rm th} input token as T_{i}\\in\\mathbb{R}^{H} .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 03",
+          "_comment": "노트 03 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "embedding_lookup",
               "startLine": 380,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 3,
-          "sectionTitle": "Section 3.1 Input Representation",
+          "sectionTitle": "Input/Output Representations",
           "subsectionTitle": "Segment Embedding",
-          "content": "Sentence pairs are packed together into a single sequence.\n\nWe use learned embeddings to indicate whether a token belongs to sentence A or sentence B.",
+          "content": "Sentence pairs are packed together into a single sequence.\n\nWe use learned embeddings to indicate whether a token belongs to sentence A or sentence B.\n\nWe use WordPiece embeddings Wu et al. 2016 with a 30,000 token vocabulary.\nThe first token of every sequence is always a special classification token ([CLS]). The final hidden state corresponding to this token is used as the aggregate sequence representation for classification tasks.\nSentence pairs are packed together into a single sequence. We differentiate the sentences in two ways. First, we separate them with a special token ([SEP]). Second, we add a learned embedding to every token indicating whether it belongs to sentence A or sentence B.\nAs shown in Figure 1, we denote\ninput embedding as E , the final hidden vector of the special [CLS] token as C\\in\\mathbb{R}^{H} , and the final hidden vector for the i^{\\rm th} input token as T_{i}\\in\\mathbb{R}^{H} .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 04",
+          "_comment": "노트 04 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "embedding_postprocessor",
               "startLine": 428,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 4,
-          "sectionTitle": "Section 3.1",
+          "sectionTitle": "3.1 Pre-training BERT",
           "subsectionTitle": "Position Embedding",
-          "content": "Position embeddings are added to give the model information about the position of each token.",
+          "content": "Position embeddings are added to give the model information about the position of each token.\n\nUnlike Peters et al. 2018a and Radford et al. 2018, we do not use traditional left-to-right or right-to-left language models to pre-train BERT. Instead, we pre-train BERT using two unsupervised tasks, described in this section. This step\nis presented in the left part of Figure 1.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 05",
+          "_comment": "노트 05 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "embedding_postprocessor",
               "startLine": 428,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 5,
-          "sectionTitle": "Section 3.1",
+          "sectionTitle": "Input/Output Representations",
           "subsectionTitle": "Special Token [CLS]",
-          "content": "The first token of every sequence is always a special classification token ([CLS]).",
+          "content": "The first token of every sequence is always a special classification token ([CLS]).\n\nWe use WordPiece embeddings Wu et al. 2016 with a 30,000 token vocabulary.\nThe first token of every sequence is always a special classification token ([CLS]). The final hidden state corresponding to this token is used as the aggregate sequence representation for classification tasks.\nSentence pairs are packed together into a single sequence. We differentiate the sentences in two ways. First, we separate them with a special token ([SEP]). Second, we add a learned embedding to every token indicating whether it belongs to sentence A or sentence B.\nAs shown in Figure 1, we denote\ninput embedding as E , the final hidden vector of the special [CLS] token as C\\in\\mathbb{R}^{H} , and the final hidden vector for the i^{\\rm th} input token as T_{i}\\in\\mathbb{R}^{H} .",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 06"
+          "_comment": "노트 06 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_instances_from_document",
+              "startLine": 223,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 6,
-          "sectionTitle": "Section 2",
+          "sectionTitle": "Model Architecture",
           "subsectionTitle": "Transformer Encoder Layer",
-          "content": "BERT uses a multi-layer bidirectional Transformer encoder.",
+          "content": "BERT uses a multi-layer bidirectional Transformer encoder.\n\nBERT’s model architecture is a multi-layer bidirectional Transformer encoder based on the original implementation described in Vaswani et al. 2017 and released in the tensor2tensor library.11\n 1\n \n \n \n https://github.com/tensorflow/tensor2tensor Because the use of Transformers has become common and our implementation is almost identical to the original, we will omit an exhaustive background description of the model architecture and refer readers to Vaswani et al. 2017 as well as excellent guides such as ‘‘The Annotated Transformer.’’22\n 2\n \n \n \n http://nlp.seas.harvard.edu/2018/04/03/attention.html",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 07",
+          "_comment": "노트 07 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "transformer_model",
               "startLine": 754,
-              "reason": "```\nDIRECT\n```"
+              "reason": "``` DIRECT ```"
             }
           ]
         },
         {
           "chunkIndex": 7,
-          "sectionTitle": "Section 3.2 BERT Architecture",
+          "sectionTitle": "3.2 Fine-tuning BERT",
           "subsectionTitle": "Multi-Head Self Attention",
-          "content": "We use a bidirectional self-attention mechanism in all layers.",
+          "content": "We use a bidirectional self-attention mechanism in all layers.\n\nFine-tuning is straightforward since the self-attention mechanism in the Transformer allows BERT to model many downstream tasks—whether they involve single text or text pairs—by swapping out the appropriate inputs and outputs.\nFor applications involving text pairs, a common pattern is to independently encode text pairs before applying bidirectional cross attention, such as Parikh et al. 2016; Seo et al. 2017. BERT instead uses the self-attention mechanism to unify these two stages, as encoding\na concatenated text pair with self-attention effectively includes bidirectional cross attention between two sentences.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 08",
+          "_comment": "노트 08 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 8,
-          "sectionTitle": "Section 3.2",
+          "sectionTitle": "3.2 Fine-tuning BERT",
           "subsectionTitle": "Query / Key / Value Projection",
-          "content": "Each attention head projects the input representations into queries, keys, and values.",
+          "content": "Each attention head projects the input representations into queries, keys, and values.\n\nFine-tuning is straightforward since the self-attention mechanism in the Transformer allows BERT to model many downstream tasks—whether they involve single text or text pairs—by swapping out the appropriate inputs and outputs.\nFor applications involving text pairs, a common pattern is to independently encode text pairs before applying bidirectional cross attention, such as Parikh et al. 2016; Seo et al. 2017. BERT instead uses the self-attention mechanism to unify these two stages, as encoding\na concatenated text pair with self-attention effectively includes bidirectional cross attention between two sentences.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 09"
+          "_comment": "노트 09 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "attention_layer",
+              "startLine": 558,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 9,
-          "sectionTitle": "Section 3.2",
+          "sectionTitle": "3.2 Fine-tuning BERT",
           "subsectionTitle": "Attention Score 계산",
-          "content": "Attention is computed as a scaled dot product between query and key representations.",
+          "content": "Attention is computed as a scaled dot product between query and key representations.\n\nFor each task, we simply plug in the task-specific inputs and outputs into BERT and fine-tune all the parameters end-to-end.\nAt the input, sentence A and sentence B from pre-training are analogous to (1) sentence pairs in paraphrasing, (2) hypothesis-premise pairs in entailment, (3) question-passage pairs in question answering, and (4) a degenerate text- \\varnothing pair in text classification or sequence tagging. At the output, the token representations are fed into an output layer for token-level tasks, such as sequence tagging or question answering, and the [CLS] representation is fed into an output layer for classification, such as entailment or sentiment analysis.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 10"
+          "_comment": "노트 10 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "attention_layer",
+              "startLine": 558,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 10,
@@ -287,50 +244,68 @@
           "content": "문장 길이가 다를 때 padding 위치 무시.\n\n예:\n\n```\nhello world [PAD] [PAD]\n```\n\nPAD는 학습 대상 X.\n\n---",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 11",
+          "_comment": "노트 11 / content=구현 설명 (노트에 논문 인용 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 11,
-          "sectionTitle": "Section 3.2",
+          "sectionTitle": "3.2 Fine-tuning BERT",
           "subsectionTitle": "Softmax Attention Probability",
-          "content": "The attention weights are obtained by applying softmax.",
+          "content": "The attention weights are obtained by applying softmax.\n\nCompared to pre-training, fine-tuning is relatively inexpensive. All of the results in the paper can be replicated in at most 1 hour on a single Cloud TPU, or a few hours on a GPU, starting from the exact same pre-trained model.77\n 7\n \n \n \n For example, the BERT SQuAD model can be trained in around 30 minutes on a single Cloud TPU to achieve a Dev F1 score of 91.0%.\nWe describe the task-specific details in the corresponding subsections of Section 4.\nMore details can be found in Appendix A.5.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 12"
+          "_comment": "노트 12 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "attention_layer",
+              "startLine": 558,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 12,
-          "sectionTitle": "Section 3.2",
+          "sectionTitle": "3.2 Fine-tuning BERT",
           "subsectionTitle": "Attention Output 계산",
-          "content": "The output is the weighted sum of the value representations.",
+          "content": "The output is the weighted sum of the value representations.\n\nFine-tuning is straightforward since the self-attention mechanism in the Transformer allows BERT to model many downstream tasks—whether they involve single text or text pairs—by swapping out the appropriate inputs and outputs.\nFor applications involving text pairs, a common pattern is to independently encode text pairs before applying bidirectional cross attention, such as Parikh et al. 2016; Seo et al. 2017. BERT instead uses the self-attention mechanism to unify these two stages, as encoding\na concatenated text pair with self-attention effectively includes bidirectional cross attention between two sentences.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 13"
+          "_comment": "노트 13 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "attention_layer",
+              "startLine": 558,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 13,
-          "sectionTitle": "Section 3.2",
+          "sectionTitle": "3.2 Fine-tuning BERT",
           "subsectionTitle": "Feed Forward Network",
-          "content": "Each Transformer block contains a fully connected feed-forward network.",
+          "content": "Each Transformer block contains a fully connected feed-forward network.\n\nFor each task, we simply plug in the task-specific inputs and outputs into BERT and fine-tune all the parameters end-to-end.\nAt the input, sentence A and sentence B from pre-training are analogous to (1) sentence pairs in paraphrasing, (2) hypothesis-premise pairs in entailment, (3) question-passage pairs in question answering, and (4) a degenerate text- \\varnothing pair in text classification or sequence tagging. At the output, the token representations are fed into an output layer for token-level tasks, such as sequence tagging or question answering, and the [CLS] representation is fed into an output layer for classification, such as entailment or sentiment analysis.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 14",
+          "_comment": "노트 14 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
               "symbolName": "transformer_model",
               "startLine": 754,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
@@ -341,25 +316,25 @@
           "content": "We use the GELU activation function.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 15",
+          "_comment": "노트 15"
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "3.2 Fine-tuning BERT",
+          "subsectionTitle": "Residual Connection + Layer Normalization",
+          "content": "Each layer consists of two sub-layers: self-attention and feed-forward network, each followed by residual connection and layer normalization.\n\nCompared to pre-training, fine-tuning is relatively inexpensive. All of the results in the paper can be replicated in at most 1 hour on a single Cloud TPU, or a few hours on a GPU, starting from the exact same pre-trained model.77\n 7\n \n \n \n For example, the BERT SQuAD model can be trained in around 30 minutes on a single Cloud TPU to achieve a Dev F1 score of 91.0%.\nWe describe the task-specific details in the corresponding subsections of Section 4.\nMore details can be found in Appendix A.5.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 16 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "modeling.py",
-              "symbolName": "gelu",
-              "startLine": 264,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "symbolName": "layer_norm",
+              "startLine": 362,
+              "reason": "``` DIRECT ``` ---"
             }
           ]
-        },
-        {
-          "chunkIndex": 15,
-          "sectionTitle": "Section 3.2",
-          "subsectionTitle": "Residual Connection + Layer Normalization",
-          "content": "Each layer consists of two sub-layers: self-attention and feed-forward network, each followed by residual connection and layer normalization.",
-          "pageStart": 4,
-          "pageEnd": 4,
-          "_comment": "노트 16"
         },
         {
           "chunkIndex": 16,
@@ -368,70 +343,97 @@
           "content": "We apply dropout with probability 0.1.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 17"
+          "_comment": "노트 17",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "attention_layer",
+              "startLine": 558,
+              "reason": "``` DIRECT ``` 계속 진행합니다. ---"
+            }
+          ]
         },
         {
           "chunkIndex": 17,
-          "sectionTitle": "Section 3.3 Pre-training Tasks",
+          "sectionTitle": "Task #1: Masked LM",
           "subsectionTitle": "Masked Language Model (MLM) Pre-training Objective",
-          "content": "In order to train a deep bidirectional representation, we introduce a new training objective called Masked LM (MLM).",
+          "content": "In order to train a deep bidirectional representation, we introduce a new training objective called Masked LM (MLM).\n\nIn order to train a deep bidirectional representation, we simply mask some percentage of the input tokens at random, and then predict those masked tokens. We refer to this procedure as a “masked LM” (MLM), although it is often referred to as a Cloze task in the literature Taylor 1953. In this case, the final hidden vectors corresponding to the mask tokens are fed into an output softmax over the vocabulary, as in a standard LM. In all of our experiments, we mask 15% of all WordPiece tokens in each sequence at random. In contrast to denoising auto-encoders Vincent et al. 2008, we only predict the masked words rather than reconstructing the entire input.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 18",
+          "_comment": "노트 18 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_masked_lm_predictions",
               "startLine": 342,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 18,
-          "sectionTitle": "Section 3.3 Pre-training Tasks",
+          "sectionTitle": "Task #1: Masked LM",
           "subsectionTitle": "15% Token Masking Strategy",
-          "content": "We randomly mask 15% of all WordPiece tokens in each sequence.",
+          "content": "We randomly mask 15% of all WordPiece tokens in each sequence.\n\nIn order to train a deep bidirectional representation, we simply mask some percentage of the input tokens at random, and then predict those masked tokens. We refer to this procedure as a “masked LM” (MLM), although it is often referred to as a Cloze task in the literature Taylor 1953. In this case, the final hidden vectors corresponding to the mask tokens are fed into an output softmax over the vocabulary, as in a standard LM. In all of our experiments, we mask 15% of all WordPiece tokens in each sequence at random. In contrast to denoising auto-encoders Vincent et al. 2008, we only predict the masked words rather than reconstructing the entire input.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 19"
-        },
-        {
-          "chunkIndex": 19,
-          "sectionTitle": "Section 3.3 Pre-training Tasks",
-          "subsectionTitle": "80-10-10 Mask Replacement Rule",
-          "content": "The token is replaced with the [MASK] token 80% of the time, with a random token 10% of the time, and unchanged 10% of the time.",
-          "pageStart": 5,
-          "pageEnd": 5,
-          "_comment": "노트 20",
+          "_comment": "노트 19 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_masked_lm_predictions",
               "startLine": 342,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "Task #1: Masked LM",
+          "subsectionTitle": "80-10-10 Mask Replacement Rule",
+          "content": "The token is replaced with the [MASK] token 80% of the time, with a random token 10% of the time, and unchanged 10% of the time.\n\nAlthough this allows us to obtain a bidirectional pre-trained model, a downside is that we are creating a mismatch between pre-training and fine-tuning, since the [MASK] token does not appear during fine-tuning. To mitigate this, we do not always replace “masked” words with the actual [MASK] token. The training data generator chooses 15% of the token positions at random for prediction. If the i -th token is chosen, we replace the i -th token with (1) the [MASK] token 80% of the time (2) a random token 10% of the time (3) the unchanged i -th token 10% of the time. Then, T_{i} will be used to predict the original token with cross entropy loss.\nWe compare variations of this procedure in Appendix C.2.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 20 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_masked_lm_predictions",
+              "startLine": 342,
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 20,
-          "sectionTitle": "Section 3.3",
+          "sectionTitle": "1 Introduction",
           "subsectionTitle": "Masked LM Label 저장",
-          "content": "The objective is to predict the original vocabulary ID of the masked token.",
+          "content": "The objective is to predict the original vocabulary ID of the masked token.\n\nIn this paper, we improve the fine-tuning based approaches by proposing BERT: Bidirectional Encoder Representations from Transformers. BERT alleviates the previously mentioned unidirectionality constraint by using a “masked language model” (MLM) pre-training objective, inspired by the Cloze task Taylor 1953. The masked language model randomly masks some of the tokens from the input, and the objective is to predict the original vocabulary id of the masked word based only on its context. Unlike left-to-right language model pre-training, the MLM objective enables the representation to fuse the left and the right context, which allows us to pre-train a deep bidirectional Transformer. In addition to the masked language model, we also use a “next sentence prediction” task that jointly pre-trains text-pair representations. The contributions of our paper are as follows:",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 21"
+          "_comment": "노트 21 | 논문 원문 문단 보강 (ar5iv 1810.04805)"
         },
         {
           "chunkIndex": 21,
-          "sectionTitle": "Section 3.3 Pre-training Tasks",
+          "sectionTitle": "Task #2: Next Sentence Prediction (NSP)",
           "subsectionTitle": "Next Sentence Prediction (NSP)",
-          "content": "Many important downstream tasks such as Natural Language Inference are based on understanding the relationship between two sentences.\n\nWe train a model that predicts whether the second sentence is the actual next sentence.",
+          "content": "Many important downstream tasks such as Natural Language Inference are based on understanding the relationship between two sentences.\n\nWe train a model that predicts whether the second sentence is the actual next sentence.\n\nMany important downstream tasks such as Question Answering (QA) and Natural Language Inference (NLI) are based on understanding the relationship between two sentences, which is not directly captured by language modeling. In order to train a model that understands sentence relationships, we pre-train for a binarized next sentence prediction task that can be trivially generated from any monolingual corpus. Specifically, when choosing the sentences A and B for each pre-training example, 50% of the time B is the actual next sentence that follows A (labeled\nas IsNext), and 50% of the time it is a random sentence from the corpus\n(labeled as NotNext).\nAs we show in Figure 1, C is used for next sentence prediction (NSP).55\n 5\n \n \n \n The final model achieves 97%-98% accuracy on NSP. Despite its simplicity, we demonstrate in Section 5.1 that pre-training towards this task is very beneficial to both QA and NLI.\n66\n 6\n \n \n \n The vector C is not a meaningful sentence representation without fine-tuning, since it was trained with NSP.\nThe NSP task is closely related to representation-learning objectives used in Jernite et al. 2017 and Logeswaran and Lee 2018. However, in prior work, only sentence embeddings are transferred to down-stream tasks, where BERT transfers all parameters to initialize end-task model parameters.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 22"
+          "_comment": "노트 22 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_instances_from_document",
+              "startLine": 223,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 22,
@@ -440,25 +442,34 @@
           "content": "MLM과 NSP 데이터를 하나의 학습 instance로 저장.\n\n---",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 23",
+          "_comment": "노트 23 / content=구현 설명 (노트에 논문 인용 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_instances_from_document",
               "startLine": 223,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 23,
-          "sectionTitle": "Section 3.4",
+          "sectionTitle": "Task #1: Masked LM",
           "subsectionTitle": "MLM Prediction Head",
-          "content": "The final hidden vectors corresponding to the masked positions are fed into an output softmax over the vocabulary.",
+          "content": "The final hidden vectors corresponding to the masked positions are fed into an output softmax over the vocabulary.\n\nIn order to train a deep bidirectional representation, we simply mask some percentage of the input tokens at random, and then predict those masked tokens. We refer to this procedure as a “masked LM” (MLM), although it is often referred to as a Cloze task in the literature Taylor 1953. In this case, the final hidden vectors corresponding to the mask tokens are fed into an output softmax over the vocabulary, as in a standard LM. In all of our experiments, we mask 15% of all WordPiece tokens in each sequence at random. In contrast to denoising auto-encoders Vincent et al. 2008, we only predict the masked words rather than reconstructing the entire input.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 24"
+          "_comment": "노트 24 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_pretraining.py",
+              "symbolName": "get_masked_lm_output",
+              "startLine": 240,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 24,
@@ -471,12 +482,21 @@
         },
         {
           "chunkIndex": 25,
-          "sectionTitle": "Section 3.4",
+          "sectionTitle": "Task #2: Next Sentence Prediction (NSP)",
           "subsectionTitle": "NSP Classifier",
-          "content": "The [CLS] representation is used for next sentence prediction.",
+          "content": "The [CLS] representation is used for next sentence prediction.\n\nMany important downstream tasks such as Question Answering (QA) and Natural Language Inference (NLI) are based on understanding the relationship between two sentences, which is not directly captured by language modeling. In order to train a model that understands sentence relationships, we pre-train for a binarized next sentence prediction task that can be trivially generated from any monolingual corpus. Specifically, when choosing the sentences A and B for each pre-training example, 50% of the time B is the actual next sentence that follows A (labeled\nas IsNext), and 50% of the time it is a random sentence from the corpus\n(labeled as NotNext).\nAs we show in Figure 1, C is used for next sentence prediction (NSP).55\n 5\n \n \n \n The final model achieves 97%-98% accuracy on NSP. Despite its simplicity, we demonstrate in Section 5.1 that pre-training towards this task is very beneficial to both QA and NLI.\n66\n 6\n \n \n \n The vector C is not a meaningful sentence representation without fine-tuning, since it was trained with NSP.\nThe NSP task is closely related to representation-learning objectives used in Jernite et al. 2017 and Logeswaran and Lee 2018. However, in prior work, only sentence embeddings are transferred to down-stream tasks, where BERT transfers all parameters to initialize end-task model parameters.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 26"
+          "_comment": "노트 26 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_pretraining.py",
+              "symbolName": "get_next_sentence_output",
+              "startLine": 285,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
         },
         {
           "chunkIndex": 26,
@@ -485,59 +505,59 @@
           "content": "BERT 학습 loss:\n\n```\nTotal Loss\n\n=\nMLM Loss\n+\nNSP Loss\n```\n\n---",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 27",
+          "_comment": "노트 27 / content=구현 설명 (노트에 논문 인용 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "run_pretraining.py",
               "symbolName": "model_fn",
               "startLine": 114,
-              "reason": "```\nDIRECT\n```\n\n계속 진행합니다.\n\n---"
+              "reason": "``` DIRECT ``` 계속 진행합니다. ---"
             }
           ]
         },
         {
           "chunkIndex": 27,
-          "sectionTitle": "Section 3.4 BERT Architecture",
+          "sectionTitle": "Model Architecture",
           "subsectionTitle": "BERT Configuration (Base / Large)",
-          "content": "We use two model sizes: BERT_BASE and BERT_LARGE.\n\nBERT_BASE: L=12, H=768, A=12\n\nBERT_LARGE: L=24, H=1024, A=16",
+          "content": "We use two model sizes: BERT_BASE and BERT_LARGE.\n\nBERT_BASE: L=12, H=768, A=12\n\nBERT_LARGE: L=24, H=1024, A=16\n\nIn this work, we denote the number of layers (i.e., Transformer blocks) as L , the hidden size as H , and the number of self-attention heads as A .33\n 3\n \n \n \n In all cases we set the feed-forward/filter size to be 4H , i.e., 3072 for the H=768 and 4096 for the H=1024 . We primarily report results on two model sizes: BERT {}_{\\textsc{BASE}} (L=12, H=768, A=12, Total Parameters=110M) and BERT {}_{\\textsc{LARGE}} (L=24, H=1024, A=16, Total Parameters=340M).",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 28"
+          "_comment": "노트 28 | 논문 원문 문단 보강 (ar5iv 1810.04805)"
         },
         {
           "chunkIndex": 28,
-          "sectionTitle": "Section 3.4 Implementation Details",
+          "sectionTitle": "A.2 Pre-training Procedure",
           "subsectionTitle": "Optimizer - Adam with Weight Decay",
-          "content": "We use Adam with learning rate 1e-4, β1=0.9, β2=0.999.",
+          "content": "We use Adam with learning rate 1e-4, β1=0.9, β2=0.999.\n\nWe train with batch size of 256 sequences (256 sequences * 512 tokens = 128,000 tokens/batch) for 1,000,000 steps, which is approximately 40 epochs over the 3.3 billion word corpus. We use Adam with learning rate of 1e-4, {\\beta}_{1}=0.9 , {\\beta}_{2}=0.999 , L2 weight decay of 0.01 , learning rate warmup over the first 10,000 steps, and linear decay of the learning rate. We use a dropout probability of 0.1 on all layers. We use a gelu activation Hendrycks and Gimpel 2016 rather than the standard relu, following OpenAI GPT. The training loss is the sum of the mean masked LM likelihood and the mean next sentence prediction likelihood.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 29",
+          "_comment": "노트 29 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "optimization.py",
               "symbolName": "create_optimizer",
               "startLine": 25,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 29,
-          "sectionTitle": "Section 3.4 Implementation Details",
+          "sectionTitle": "A.2 Pre-training Procedure",
           "subsectionTitle": "Learning Rate Warmup",
-          "content": "We use a learning rate of 1e-4 with a warmup over the first 10,000 steps.",
+          "content": "We use a learning rate of 1e-4 with a warmup over the first 10,000 steps.\n\nWe train with batch size of 256 sequences (256 sequences * 512 tokens = 128,000 tokens/batch) for 1,000,000 steps, which is approximately 40 epochs over the 3.3 billion word corpus. We use Adam with learning rate of 1e-4, {\\beta}_{1}=0.9 , {\\beta}_{2}=0.999 , L2 weight decay of 0.01 , learning rate warmup over the first 10,000 steps, and linear decay of the learning rate. We use a dropout probability of 0.1 on all layers. We use a gelu activation Hendrycks and Gimpel 2016 rather than the standard relu, following OpenAI GPT. The training loss is the sum of the mean masked LM likelihood and the mean next sentence prediction likelihood.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 30",
+          "_comment": "노트 30 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "optimization.py",
               "symbolName": "create_optimizer",
               "startLine": 25,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
@@ -555,7 +575,7 @@
               "filePath": "optimization.py",
               "symbolName": "create_optimizer",
               "startLine": 25,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
@@ -573,72 +593,72 @@
               "filePath": "modeling.py",
               "symbolName": "dropout",
               "startLine": 344,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 32,
-          "sectionTitle": "Section 4 Fine-tuning BERT",
+          "sectionTitle": "4 Experiments",
           "subsectionTitle": "Fine-tuning Classification",
-          "content": "For sentence-level classification tasks, the representation of the [CLS] token is used.",
+          "content": "For sentence-level classification tasks, the representation of the [CLS] token is used.\n\nIn this section, we present BERT fine-tuning results on 11 NLP tasks.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 33",
+          "_comment": "노트 33 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "run_classifier.py",
               "symbolName": "create_model",
               "startLine": 574,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 33,
-          "sectionTitle": "Section 4 Fine-tuning",
+          "sectionTitle": "4 Experiments",
           "subsectionTitle": "Classification Loss",
-          "content": "The fine-tuning procedure introduces only minimal changes compared to pre-training.",
+          "content": "The fine-tuning procedure introduces only minimal changes compared to pre-training.\n\nIn this section, we present BERT fine-tuning results on 11 NLP tasks.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 34"
+          "_comment": "노트 34 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)"
         },
         {
           "chunkIndex": 34,
-          "sectionTitle": "Section 4.2 SQuAD",
+          "sectionTitle": "4.2 SQuAD v1.1",
           "subsectionTitle": "SQuAD Question Answering Fine-tuning",
-          "content": "The task is to predict the start and end token positions of the answer span.",
+          "content": "The task is to predict the start and end token positions of the answer span.\n\nThe Stanford Question Answering Dataset (SQuAD v1.1) is a collection of 100k crowdsourced question/answer pairs Rajpurkar et al. 2016. Given a question and a passage from Wikipedia containing the answer, the task is to predict the answer text span in the passage.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 35"
+          "_comment": "노트 35 | 논문 원문 문단 보강 (ar5iv 1810.04805)"
         },
         {
           "chunkIndex": 35,
-          "sectionTitle": "Section 4.2",
+          "sectionTitle": "4.2 SQuAD v1.1",
           "subsectionTitle": "SQuAD Output Layer",
-          "content": "각 token hidden state를 이용해 answer span 결정.\n\n---",
+          "content": "각 token hidden state를 이용해 answer span 결정.\n\n---\n\nThe Stanford Question Answering Dataset (SQuAD v1.1) is a collection of 100k crowdsourced question/answer pairs Rajpurkar et al. 2016. Given a question and a passage from Wikipedia containing the answer, the task is to predict the answer text span in the passage.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 36",
+          "_comment": "노트 36 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
           "mappedCode": [
             {
               "githubUrl": "https://github.com/google-research/bert",
               "filePath": "run_squad.py",
               "symbolName": "create_model",
               "startLine": 550,
-              "reason": "```\nDIRECT\n```\n\n---"
+              "reason": "``` DIRECT ``` ---"
             }
           ]
         },
         {
           "chunkIndex": 36,
-          "sectionTitle": "Section 3 Pre-training",
+          "sectionTitle": "3 BERT",
           "subsectionTitle": "BERT 전체 Training Pipeline",
-          "content": "```\nRaw Text\n\n↓\n\ncreate_pretraining_data.py\n\n↓\n\nTFRecord Dataset\n\n↓\n\nrun_pretraining.py\n\n↓\n\nBERT Model\n\n↓\n\nMLM + NSP Loss\n\n↓\n\nAdam Optimizer\n\n↓\n\nCheckpoint\n```\n\n---",
+          "content": "```\nRaw Text\n\n↓\n\ncreate_pretraining_data.py\n\n↓\n\nTFRecord Dataset\n\n↓\n\nrun_pretraining.py\n\n↓\n\nBERT Model\n\n↓\n\nMLM + NSP Loss\n\n↓\n\nAdam Optimizer\n\n↓\n\nCheckpoint\n```\n\n---\n\nWe introduce BERT and its detailed implementation in this section. There are two steps in our framework: pre-training and fine-tuning.\nDuring pre-training, the model is trained on unlabeled data over different pre-training tasks.\nFor fine-tuning, the BERT model is first initialized with the pre-trained parameters, and all of the parameters are fine-tuned using labeled data from the downstream tasks.\nEach downstream task has separate fine-tuned models, even though they\nare initialized with the same pre-trained parameters. The question-answering example in Figure 1 will serve as a running example for this section.",
           "pageStart": 5,
           "pageEnd": 6,
-          "_comment": "노트 37"
+          "_comment": "노트 37 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)"
         }
       ],
       "repositories": [
@@ -688,6 +708,17 @@
               "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:380-425"
             },
             {
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_instances_from_document",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 223,
+              "endLine": 335,
+              "codeContent": "def create_instances_from_document(\n    all_documents, document_index, max_seq_length, short_seq_prob,\n    masked_lm_prob, max_predictions_per_seq, vocab_words, rng):\n  \"\"\"Creates `TrainingInstance`s for a single document.\"\"\"\n  document = all_documents[document_index]\n\n  # Account for [CLS], [SEP], [SEP]\n  max_num_tokens = max_seq_length - 3\n\n  # We *usually* want to fill up the entire sequence since we are padding\n  # to `max_seq_length` anyways, so short sequences are generally wasted\n  # computation. However, we *sometimes*\n  # (i.e., short_seq_prob == 0.1 == 10% of the time) want to use shorter\n  # sequences to minimize the mismatch between pre-training and fine-tuning.\n  # The `target_seq_length` is just a rough target however, whereas\n  # `max_seq_length` is a hard limit.\n  target_seq_length = max_num_tokens\n  if rng.random() < short_seq_prob:\n    target_seq_length = rng.randint(2, max_num_tokens)\n\n  # We DON'T just concatenate all of the tokens from a document into a long\n  # sequence and choose an arbitrary split point because this would make the\n  # next sentence prediction task too easy. Instead, we split the input into\n  # segments \"A\" and \"B\" based on the actual \"sentences\" provided by the user\n  # input.\n  instances = []\n  current_chunk = []\n  current_length = 0\n  i = 0\n  while i < len(document):\n    segment = document[i]\n    current_chunk.append(segment)\n    current_length += len(segment)\n    if i == len(document) - 1 or current_length >= target_seq_length:\n      if current_chunk:\n        # `a_end` is how many segments from `current_chunk` go into the `A`\n        # (first) sentence.\n        a_end = 1\n        if len(current_chunk) >= 2:\n          a_end = rng.randint(1, len(current_chunk) - 1)\n\n        tokens_a = []\n        for j in range(a_end):\n          tokens_a.extend(current_chunk[j])\n\n        tokens_b = []\n        # Random next\n        is_random_next = False\n        if len(current_chunk) == 1 or rng.random() < 0.5:\n          is_random_next = True\n          target_b_length = target_seq_length - len(tokens_a)\n\n          # This should rarely go for more than one iteration for large\n          # corpora. However, just to be careful, we try to make sure that\n          # the random document is not the same as the document\n          # we're processing.\n          for _ in range(10):\n            random_document_index = rng.randint(0, len(all_documents) - 1)\n            if random_document_index != document_index:\n              break\n\n          random_document = all_documents[random_document_index]\n          random_start = rng.randint(0, len(random_document) - 1)\n          for j in range(random_start, len(random_document)):\n            tokens_b.extend(random_document[j])\n            if len(tokens_b) >= target_b_length:\n              break\n          # We didn't actually use these segments so we \"put them back\" so\n          # they don't go to waste.\n          num_unused_segments = len(current_chunk) - a_end\n          i -= num_unused_segments\n        # Actual next\n        else:\n          is_random_next = False\n          for j in range(a_end, len(current_chunk)):\n            tokens_b.extend(current_chunk[j])\n        truncate_seq_pair(tokens_a, tokens_b, max_num_tokens, rng)\n\n        assert len(tokens_a) >= 1\n        assert len(tokens_b) >= 1\n\n        tokens = []\n        segment_ids = []\n        tokens.append(\"[CLS]\")\n        segment_ids.append(0)\n        for token in tokens_a:\n          tokens.append(token)\n          segment_ids.append(0)\n\n        tokens.append(\"[SEP]\")\n        segment_ids.append(0)\n\n        for token in tokens_b:\n          tokens.append(token)\n          segment_ids.append(1)\n        tokens.append(\"[SEP]\")\n        segment_ids.append(1)\n\n        (tokens, masked_lm_positions,\n         masked_lm_labels) = create_masked_lm_predictions(\n             tokens, masked_lm_prob, max_predictions_per_seq, vocab_words, rng)\n        instance = TrainingInstance(\n            tokens=tokens,\n            segment_ids=segment_ids,\n            is_random_next=is_random_next,\n            masked_lm_positions=masked_lm_positions,\n            masked_lm_labels=masked_lm_labels)\n        instances.append(instance)\n      current_chunk = []\n      current_length = 0\n    i += 1\n\n  return instances",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — create_pretraining_data.py:223-335"
+            },
+            {
               "filePath": "modeling.py",
               "symbolName": "transformer_model",
               "symbolType": "FUNCTION",
@@ -711,14 +742,14 @@
             },
             {
               "filePath": "modeling.py",
-              "symbolName": "gelu",
+              "symbolName": "layer_norm",
               "symbolType": "FUNCTION",
               "parentSymbolName": null,
               "programmingLanguage": "Python",
-              "startLine": 264,
-              "endLine": 277,
-              "codeContent": "def gelu(x):\n  \"\"\"Gaussian Error Linear Unit.\n\n  This is a smoother version of the RELU.\n  Original paper: https://arxiv.org/abs/1606.08415\n  Args:\n    x: float Tensor to perform activation.\n\n  Returns:\n    `x` with the GELU activation applied.\n  \"\"\"\n  cdf = 0.5 * (1.0 + tf.tanh(\n      (np.sqrt(2 / np.pi) * (x + 0.044715 * tf.pow(x, 3)))))\n  return x * cdf",
-              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:264-277"
+              "startLine": 362,
+              "endLine": 365,
+              "codeContent": "def layer_norm(input_tensor, name=None):\n  \"\"\"Run layer normalization on the last dimension of the tensor.\"\"\"\n  return tf.contrib.layers.layer_norm(\n      inputs=input_tensor, begin_norm_axis=-1, begin_params_axis=-1, scope=name)",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:362-365"
             },
             {
               "filePath": "create_pretraining_data.py",
@@ -732,15 +763,26 @@
               "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — create_pretraining_data.py:342-415"
             },
             {
-              "filePath": "create_pretraining_data.py",
-              "symbolName": "create_instances_from_document",
+              "filePath": "run_pretraining.py",
+              "symbolName": "get_masked_lm_output",
               "symbolType": "FUNCTION",
               "parentSymbolName": null,
               "programmingLanguage": "Python",
-              "startLine": 223,
-              "endLine": 335,
-              "codeContent": "def create_instances_from_document(\n    all_documents, document_index, max_seq_length, short_seq_prob,\n    masked_lm_prob, max_predictions_per_seq, vocab_words, rng):\n  \"\"\"Creates `TrainingInstance`s for a single document.\"\"\"\n  document = all_documents[document_index]\n\n  # Account for [CLS], [SEP], [SEP]\n  max_num_tokens = max_seq_length - 3\n\n  # We *usually* want to fill up the entire sequence since we are padding\n  # to `max_seq_length` anyways, so short sequences are generally wasted\n  # computation. However, we *sometimes*\n  # (i.e., short_seq_prob == 0.1 == 10% of the time) want to use shorter\n  # sequences to minimize the mismatch between pre-training and fine-tuning.\n  # The `target_seq_length` is just a rough target however, whereas\n  # `max_seq_length` is a hard limit.\n  target_seq_length = max_num_tokens\n  if rng.random() < short_seq_prob:\n    target_seq_length = rng.randint(2, max_num_tokens)\n\n  # We DON'T just concatenate all of the tokens from a document into a long\n  # sequence and choose an arbitrary split point because this would make the\n  # next sentence prediction task too easy. Instead, we split the input into\n  # segments \"A\" and \"B\" based on the actual \"sentences\" provided by the user\n  # input.\n  instances = []\n  current_chunk = []\n  current_length = 0\n  i = 0\n  while i < len(document):\n    segment = document[i]\n    current_chunk.append(segment)\n    current_length += len(segment)\n    if i == len(document) - 1 or current_length >= target_seq_length:\n      if current_chunk:\n        # `a_end` is how many segments from `current_chunk` go into the `A`\n        # (first) sentence.\n        a_end = 1\n        if len(current_chunk) >= 2:\n          a_end = rng.randint(1, len(current_chunk) - 1)\n\n        tokens_a = []\n        for j in range(a_end):\n          tokens_a.extend(current_chunk[j])\n\n        tokens_b = []\n        # Random next\n        is_random_next = False\n        if len(current_chunk) == 1 or rng.random() < 0.5:\n          is_random_next = True\n          target_b_length = target_seq_length - len(tokens_a)\n\n          # This should rarely go for more than one iteration for large\n          # corpora. However, just to be careful, we try to make sure that\n          # the random document is not the same as the document\n          # we're processing.\n          for _ in range(10):\n            random_document_index = rng.randint(0, len(all_documents) - 1)\n            if random_document_index != document_index:\n              break\n\n          random_document = all_documents[random_document_index]\n          random_start = rng.randint(0, len(random_document) - 1)\n          for j in range(random_start, len(random_document)):\n            tokens_b.extend(random_document[j])\n            if len(tokens_b) >= target_b_length:\n              break\n          # We didn't actually use these segments so we \"put them back\" so\n          # they don't go to waste.\n          num_unused_segments = len(current_chunk) - a_end\n          i -= num_unused_segments\n        # Actual next\n        else:\n          is_random_next = False\n          for j in range(a_end, len(current_chunk)):\n            tokens_b.extend(current_chunk[j])\n        truncate_seq_pair(tokens_a, tokens_b, max_num_tokens, rng)\n\n        assert len(tokens_a) >= 1\n        assert len(tokens_b) >= 1\n\n        tokens = []\n        segment_ids = []\n        tokens.append(\"[CLS]\")\n        segment_ids.append(0)\n        for token in tokens_a:\n          tokens.append(token)\n          segment_ids.append(0)\n\n        tokens.append(\"[SEP]\")\n        segment_ids.append(0)\n\n        for token in tokens_b:\n          tokens.append(token)\n          segment_ids.append(1)\n        tokens.append(\"[SEP]\")\n        segment_ids.append(1)\n\n        (tokens, masked_lm_positions,\n         masked_lm_labels) = create_masked_lm_predictions(\n             tokens, masked_lm_prob, max_predictions_per_seq, vocab_words, rng)\n        instance = TrainingInstance(\n            tokens=tokens,\n            segment_ids=segment_ids,\n            is_random_next=is_random_next,\n            masked_lm_positions=masked_lm_positions,\n            masked_lm_labels=masked_lm_labels)\n        instances.append(instance)\n      current_chunk = []\n      current_length = 0\n    i += 1\n\n  return instances",
-              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — create_pretraining_data.py:223-335"
+              "startLine": 240,
+              "endLine": 282,
+              "codeContent": "def get_masked_lm_output(bert_config, input_tensor, output_weights, positions,\n                         label_ids, label_weights):\n  \"\"\"Get loss and log probs for the masked LM.\"\"\"\n  input_tensor = gather_indexes(input_tensor, positions)\n\n  with tf.variable_scope(\"cls/predictions\"):\n    # We apply one more non-linear transformation before the output layer.\n    # This matrix is not used after pre-training.\n    with tf.variable_scope(\"transform\"):\n      input_tensor = tf.layers.dense(\n          input_tensor,\n          units=bert_config.hidden_size,\n          activation=modeling.get_activation(bert_config.hidden_act),\n          kernel_initializer=modeling.create_initializer(\n              bert_config.initializer_range))\n      input_tensor = modeling.layer_norm(input_tensor)\n\n    # The output weights are the same as the input embeddings, but there is\n    # an output-only bias for each token.\n    output_bias = tf.get_variable(\n        \"output_bias\",\n        shape=[bert_config.vocab_size],\n        initializer=tf.zeros_initializer())\n    logits = tf.matmul(input_tensor, output_weights, transpose_b=True)\n    logits = tf.nn.bias_add(logits, output_bias)\n    log_probs = tf.nn.log_softmax(logits, axis=-1)\n\n    label_ids = tf.reshape(label_ids, [-1])\n    label_weights = tf.reshape(label_weights, [-1])\n\n    one_hot_labels = tf.one_hot(\n        label_ids, depth=bert_config.vocab_size, dtype=tf.float32)\n\n    # The `positions` tensor might be zero-padded (if the sequence is too\n    # short to have the maximum number of predictions). The `label_weights`\n    # tensor has a value of 1.0 for every real prediction and 0.0 for the\n    # padding predictions.\n    per_example_loss = -tf.reduce_sum(log_probs * one_hot_labels, axis=[-1])\n    numerator = tf.reduce_sum(label_weights * per_example_loss)\n    denominator = tf.reduce_sum(label_weights) + 1e-5\n    loss = numerator / denominator\n\n  return (loss, per_example_loss, log_probs)",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — run_pretraining.py:240-282"
+            },
+            {
+              "filePath": "run_pretraining.py",
+              "symbolName": "get_next_sentence_output",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 285,
+              "endLine": 305,
+              "codeContent": "def get_next_sentence_output(bert_config, input_tensor, labels):\n  \"\"\"Get loss and log probs for the next sentence prediction.\"\"\"\n\n  # Simple binary classification. Note that 0 is \"next sentence\" and 1 is\n  # \"random sentence\". This weight matrix is not used after pre-training.\n  with tf.variable_scope(\"cls/seq_relationship\"):\n    output_weights = tf.get_variable(\n        \"output_weights\",\n        shape=[2, bert_config.hidden_size],\n        initializer=modeling.create_initializer(bert_config.initializer_range))\n    output_bias = tf.get_variable(\n        \"output_bias\", shape=[2], initializer=tf.zeros_initializer())\n\n    logits = tf.matmul(input_tensor, output_weights, transpose_b=True)\n    logits = tf.nn.bias_add(logits, output_bias)\n    log_probs = tf.nn.log_softmax(logits, axis=-1)\n    labels = tf.reshape(labels, [-1])\n    one_hot_labels = tf.one_hot(labels, depth=2, dtype=tf.float32)\n    per_example_loss = -tf.reduce_sum(one_hot_labels * log_probs, axis=-1)\n    loss = tf.reduce_mean(per_example_loss)\n    return (loss, per_example_loss, log_probs)",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — run_pretraining.py:285-305"
             },
             {
               "filePath": "run_pretraining.py",
