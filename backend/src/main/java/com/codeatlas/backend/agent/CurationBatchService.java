@@ -2,6 +2,7 @@ package com.codeatlas.backend.agent;
 
 import com.codeatlas.backend.mcp.dto.McpDtos.CodeCandidate;
 import com.codeatlas.backend.mcp.dto.McpDtos.CuratedContext;
+import com.codeatlas.backend.mcp.dto.McpDtos.ScopedCandidates;
 import com.codeatlas.backend.mcp.port.CodeAtlasPorts.CodeSearchPort;
 import com.codeatlas.backend.mcp.tools.CurateContextTool;
 import org.slf4j.Logger;
@@ -122,10 +123,25 @@ public class CurationBatchService {
             Long chunkId = ((Number) row.get("id")).longValue();
             String content = (String) row.get("content");
 
-            List<CodeCandidate> candidates = codeSearchPort.findImplementations(chunkId, candidatesPerChunk);
+            // 읽고 버리는 REST/MCP 경로와 달리 이 배치는 결과를 paper_code_mappings 에 영구 저장합니다.
+            // 그래서 후보만 받지 않고 "그 논문 저장소 안에서 찾은 것인지"까지 확인합니다.
+            ScopedCandidates found = codeSearchPort.findImplementationsScoped(chunkId, candidatesPerChunk);
+            List<CodeCandidate> candidates = found.candidates();
+
             if (candidates.isEmpty()) {
                 // code_blocks가 아직 임베딩되지 않았거나 매칭 후보가 전혀 없는 chunk
                 log.debug("chunk {} 건너뜀 — 후보 없음", chunkId);
+                skipped++;
+                progressDone.incrementAndGet();
+                continue;
+            }
+            if (!found.paperScoped()) {
+                // 이 논문에 연결된 저장소가 없어 전체 코퍼스로 폴백한 경우다.
+                // 후보가 전부 다른 논문의 코드이므로 저장하면 잘못된 매핑이 mapping_method='AI'로
+                // 영구히 남는다. REST 응답에는 paperScoped 플래그가 실려 화면이 걸러낼 수 있지만
+                // paper_code_mappings 에는 그런 표시를 남길 컬럼이 없다. 그래서 건너뛴다.
+                log.warn("chunk {} 건너뜀 — 논문에 연결된 저장소가 없어 폴백됨. "
+                        + "ingest JSON 의 repositories 를 확인하세요.", chunkId);
                 skipped++;
                 progressDone.incrementAndGet();
                 continue;

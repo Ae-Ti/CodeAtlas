@@ -1,6 +1,7 @@
 package com.codeatlas.backend.mapping;
 
 import com.codeatlas.backend.mcp.dto.McpDtos.CodeCandidate;
+import com.codeatlas.backend.mcp.dto.McpDtos.ScopedCandidates;
 import com.codeatlas.backend.mcp.port.CodeAtlasPorts.CodeSearchPort;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -147,6 +148,14 @@ public class CodeSearchService implements CodeSearchPort {
         return findMatches(chunkId, topK).stream()
                 .map(CodeMatch::toCandidate)
                 .toList();
+    }
+
+    @Override
+    public ScopedCandidates findImplementationsScoped(Long chunkId, int topK) {
+        ScopedMatches found = findMatchesScoped(chunkId, topK);
+        return new ScopedCandidates(
+                found.matches().stream().map(CodeMatch::toCandidate).toList(),
+                found.paperScoped());
     }
 
     /** REST 응답용 — MCP 계약에 없는 라인 번호/GitHub URL까지 포함. */
