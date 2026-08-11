@@ -51,6 +51,16 @@
       "chunk": "-",
       "title": "content 보강",
       "issue": "4개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
+    },
+    {
+      "chunk": "-",
+      "title": "입도 정리 (§4 규칙 3)",
+      "issue": "자식 심볼이 인덱싱된 부모 블록 1개를 제거하고 정답 재지정: ['DDIMSampler']"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 4건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -273,7 +283,16 @@
           "content": "We use pretrained models such as CLIP text encoders to provide conditioning information.\n\nSimilar to other types of generative\nmodels DBLP:journals/corr/MirzaO14; NIPS2015_8d55a249, diffusion models\nare in principle capable of modeling conditional distributions of the form\n p(z|y) .\nThis can be implemented with\na conditional denoising autoencoder \\epsilon_{\\theta}(z_{t},t,y) and\npaves the way to controlling the synthesis process through\ninputs y such as text Reed2016GenerativeAT, semantic maps  spade; DBLP:conf/cvpr/IsolaZZE17 or other image-to-image translation tasks Isola2017ImagetoImageTW.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 LD-12 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
+          "_comment": "노트 LD-12 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "ldm/modules/encoders/modules.py",
+              "symbolName": "FrozenCLIPTextEmbedder",
+              "startLine": 138,
+              "reason": "CLIP 텍스트 인코더를 고정한 채 conditioning 임베딩을 만드는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 12,
@@ -282,7 +301,16 @@
           "content": "The diffusion timestep is provided to the network through sinusoidal positional embeddings.\n\nOur perceptual compression model\nis based on previous work DBLP:journals/corr/abs-2012-09841 and\nconsists of an autoencoder trained by combination of a perceptual\nloss lpips and a patch-based DBLP:conf/cvpr/IsolaZZE17 adversarial objective dosovitskiy201perceptual; DBLP:journals/corr/abs-2012-09841; yu2021vectorquantized.\nThis ensures that the reconstructions are\nconfined to the image manifold by enforcing local realism and avoids bluriness introduced by relying solely on pixel-space losses\nsuch as L_{2} or L_{1} objectives.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-13 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
+          "_comment": "노트 LD-13 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
+              "symbolName": "forward",
+              "startLine": 80,
+              "reason": "timestep 임베딩을 각 residual block 에 전달하는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 13,
@@ -345,7 +373,16 @@
           "content": "Sampling is performed by iteratively applying the learned denoising network.\n\nDiffusion Models DBLP:journals/corr/Sohl-DicksteinW15 are probabilistic models designed to learn a data distribution p(x) by\ngradually denoising a normally distributed variable, which corresponds to learning\nthe reverse process of a fixed Markov Chain of length T .\nFor image synthesis, the most successful models DBLP:conf/nips/HoJA20; DBLP:journals/corr/abs-2105-05233; DBLP:journals/corr/abs-2104-07636\nrely on a reweighted variant of the variational lower bound on p(x) , which mirrors denoising score-matching DBLP:journals/corr/abs-2011-13456.\nThese models can be interpreted as an equally weighted sequence of denoising autoencoders \\epsilon_{\\theta}(x_{t},t);\\,t=1\\dots T ,\nwhich are trained to predict a denoised variant of their input x_{t} , where x_{t} is a noisy version of the input x .\nThe corresponding objective can be simplified to (Sec. B)",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 LD-17 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
+          "_comment": "노트 LD-17 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "ldm/models/diffusion/ddim.py",
+              "symbolName": "sample",
+              "startLine": 56,
+              "reason": "DDIM 역방향 샘플링 알고리즘 진입점"
+            }
+          ]
         },
         {
           "chunkIndex": 17,
@@ -359,8 +396,8 @@
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddim.py",
-              "symbolName": "DDIMSampler",
-              "startLine": 11,
+              "symbolName": "sample",
+              "startLine": 56,
               "reason": "``` DIRECT ``` ---"
             }
           ]
@@ -377,8 +414,8 @@
             {
               "githubUrl": "https://github.com/CompVis/latent-diffusion",
               "filePath": "ldm/models/diffusion/ddim.py",
-              "symbolName": "DDIMSampler",
-              "startLine": 11,
+              "symbolName": "sample",
+              "startLine": 56,
               "reason": "``` DIRECT ``` --- 논문: > classifier-free guidance > ↓ 코드: ``` e_t_uncond ``` ↓ 조건 없는 noise ``` e_t_cond ``` ↓ Text 조건 noise ``` unconditional_guidance_scale ``` ↓ guidance strength ---"
             }
           ]
@@ -462,7 +499,16 @@
           "content": "We demonstrate high-resolution text-to-image synthesis using latent diffusion models.\n\nThis section analyzes the behavior of our LDMs with different downsampling\nfactors f\\in\\{1,2,4,8,16,32\\} (abbreviated as LDM- f , where\nLDM-1 corresponds to pixel-based DMs).\nTo obtain a\ncomparable test-field, we fix the computational resources\nto a\nsingle NVIDIA A100 for all experiments in this section and train all models for\nthe same number of steps and with the same number of parameters.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 LD-24 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)"
+          "_comment": "노트 LD-24 | 논문 원문 절 문단으로 보강 (ar5iv 2112.10752, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/CompVis/latent-diffusion",
+              "filePath": "scripts/txt2img.py",
+              "symbolName": "load_model_from_config",
+              "startLine": 15,
+              "reason": "text-to-image 생성 스크립트에서 모델을 올리는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 24,
@@ -650,17 +696,6 @@
               "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/models/diffusion/ddpm.py:279-292"
             },
             {
-              "filePath": "ldm/models/diffusion/ddim.py",
-              "symbolName": "DDIMSampler",
-              "symbolType": "CLASS",
-              "parentSymbolName": null,
-              "programmingLanguage": "Python",
-              "startLine": 11,
-              "endLine": 203,
-              "codeContent": "class DDIMSampler(object):\n    def __init__(self, model, schedule=\"linear\", **kwargs):\n        super().__init__()\n        self.model = model\n        self.ddpm_num_timesteps = model.num_timesteps\n        self.schedule = schedule\n\n    def register_buffer(self, name, attr):\n        if type(attr) == torch.Tensor:\n            if attr.device != torch.device(\"cuda\"):\n                attr = attr.to(torch.device(\"cuda\"))\n        setattr(self, name, attr)\n\n    def make_schedule(self, ddim_num_steps, ddim_discretize=\"uniform\", ddim_eta=0., verbose=True):\n        self.ddim_timesteps = make_ddim_timesteps(ddim_discr_method=ddim_discretize, num_ddim_timesteps=ddim_num_steps,\n                                                  num_ddpm_timesteps=self.ddpm_num_timesteps,verbose=verbose)\n        alphas_cumprod = self.model.alphas_cumprod\n        assert alphas_cumprod.shape[0] == self.ddpm_num_timesteps, 'alphas have to be defined for each timestep'\n        to_torch = lambda x: x.clone().detach().to(torch.float32).to(self.model.device)\n\n        self.register_buffer('betas', to_torch(self.model.betas))\n        self.register_buffer('alphas_cumprod', to_torch(alphas_cumprod))\n        self.register_buffer('alphas_cumprod_prev', to_torch(self.model.alphas_cumprod_prev))\n\n        # calculations for diffusion q(x_t | x_{t-1}) and others\n        self.register_buffer('sqrt_alphas_cumprod', to_torch(np.sqrt(alphas_cumprod.cpu())))\n        self.register_buffer('sqrt_one_minus_alphas_cumprod', to_torch(np.sqrt(1. - alphas_cumprod.cpu())))\n        self.register_buffer('log_one_minus_alphas_cumprod', to_torch(np.log(1. - alphas_cumprod.cpu())))\n        self.register_buffer('sqrt_recip_alphas_cumprod', to_torch(np.sqrt(1. / alphas_cumprod.cpu())))\n        self.register_buffer('sqrt_recipm1_alphas_cumprod', to_torch(np.sqrt(1. / alphas_cumprod.cpu() - 1)))\n\n        # ddim sampling parameters\n        ddim_sigmas, ddim_alphas, ddim_alphas_prev = make_ddim_sampling_parameters(alphacums=alphas_cumprod.cpu(),\n                                                                                   ddim_timesteps=self.ddim_timesteps,\n                                                                                   eta=ddim_eta,verbose=verbose)\n        self.register_buffer('ddim_sigmas', ddim_sigmas)\n        self.register_buffer('ddim_alphas', ddim_alphas)\n        self.register_buffer('ddim_alphas_prev', ddim_alphas_prev)\n        self.register_buffer('ddim_sqrt_one_minus_alphas', np.sqrt(1. - ddim_alphas))\n        sigmas_for_original_sampling_steps = ddim_eta * torch.sqrt(\n            (1 - self.alphas_cumprod_prev) / (1 - self.alphas_cumprod) * (\n                        1 - self.alphas_cumprod / self.alphas_cumprod_prev))\n        self.register_buffer('ddim_sigmas_for_original_num_steps', sigmas_for_original_sampling_steps)\n\n    @torch.no_grad()\n    def sample(self,\n               S,\n               batch_size,\n               shape,\n               conditioning=None,\n               callback=None,\n               normals_sequence=None,\n               img_callback=None,\n               quantize_x0=False,\n               eta=0.,\n               mask=None,\n               x0=None,\n               temperature=1.,\n               noise_dropout=0.,\n               score_corrector=None,\n               corrector_kwargs=None,\n               verbose=True,\n               x_T=None,\n               log_every_t=100,\n               unconditional_guidance_scale=1.,\n               unconditional_conditioning=None,\n               # this has to come in the same format as the conditioning, # e.g. as encoded tokens, ...\n               **kwargs\n               ):\n        if conditioning is not None:\n            if isinstance(conditioning, dict):\n                cbs = conditioning[list(conditioning.keys())[0]].shape[0]\n                if cbs != batch_size:\n                    print(f\"Warning: Got {cbs} conditionings but batch-size is {batch_size}\")\n            else:\n                if conditioning.shape[0] != batch_size:\n                    print(f\"Warning: Got {conditioning.shape[0]} conditionings but batch-size is {batch_size}\")\n\n        self.make_schedule(ddim_num_steps=S, ddim_eta=eta, verbose=verbose)\n        # sampling\n        C, H, W = shape\n        size = (batch_size, C, H, W)\n        print(f'Data shape for DDIM sampling is {size}, eta {eta}')\n\n        samples, intermediates = self.ddim_sampling(conditioning, size,\n                                                    callback=callback,\n                                                    img_callback=img_callback,\n                                                    quantize_denoised=quantize_x0,\n                                                    mask=mask, x0=x0,\n                                                    ddim_use_original_steps=False,\n                                                    noise_dropout=noise_dropout,\n                                                    temperature=temperature,\n                                                    score_corrector=score_corrector,\n                                                    corrector_kwargs=corrector_kwargs,\n                                                    x_T=x_T,\n                                                    log_every_t=log_every_t,\n                                                    unconditional_guidance_scale=unconditional_guidance_scale,\n                                                    unconditional_conditioning=unconditional_conditioning,\n                                                    )\n        return samples, intermediates\n\n    @torch.no_grad()\n    def ddim_sampling(self, cond, shape,\n                      x_T=None, ddim_use_original_steps=False,\n                      callback=None, timesteps=None, quantize_denoised=False,\n                      mask=None, x0=None, img_callback=None, log_every_t=100,\n                      temperature=1., noise_dropout=0., score_corrector=None, corrector_kwargs=None,\n                      unconditional_guidance_scale=1., unconditional_conditioning=None,):\n        device = self.model.betas.device\n        b = shape[0]\n        if x_T is None:\n            img = torch.randn(shape, device=device)\n        else:\n            img = x_T\n\n        if timesteps is None:\n            timesteps = self.ddpm_num_timesteps if ddim_use_original_steps else self.ddim_timesteps\n        elif timesteps is not None and not ddim_use_original_steps:\n            subset_end = int(min(timesteps / self.ddim_timesteps.shape[0], 1) * self.ddim_timesteps.shape[0]) - 1\n            timesteps = self.ddim_timesteps[:subset_end]\n\n        intermediates = {'x_inter': [img], 'pred_x0': [img]}\n        time_range = reversed(range(0,timesteps)) if ddim_use_original_steps else np.flip(timesteps)\n        total_steps = timesteps if ddim_use_original_steps else timesteps.shape[0]\n        print(f\"Running DDIM Sampling with {total_steps} timesteps\")\n\n        iterator = tqdm(time_range, desc='DDIM Sampler', total=total_steps)\n\n        for i, step in enumerate(iterator):\n            index = total_steps - i - 1\n            ts = torch.full((b,), step, device=device, dtype=torch.long)\n\n            if mask is not None:\n                assert x0 is not None\n                img_orig = self.model.q_sample(x0, ts)  # TODO: deterministic forward pass?\n                img = img_orig * mask + (1. - mask) * img\n\n            outs = self.p_sample_ddim(img, cond, ts, index=index, use_original_steps=ddim_use_original_steps,\n                                      quantize_denoised=quantize_denoised, temperature=temperature,\n                                      noise_dropout=noise_dropout, score_corrector=score_corrector,\n                                      corrector_kwargs=corrector_kwargs,\n                                      unconditional_guidance_scale=unconditional_guidance_scale,\n                                      unconditional_conditioning=unconditional_conditioning)\n            img, pred_x0 = outs\n            if callback: callback(i)\n            if img_callback: img_callback(pred_x0, i)\n\n            if index % log_every_t == 0 or index == total_steps - 1:\n                intermediates['x_inter'].append(img)\n                intermediates['pred_x0'].append(pred_x0)\n\n        return img, intermediates\n\n    @torch.no_grad()\n    def p_sample_ddim(self, x, c, t, index, repeat_noise=False, use_original_steps=False, quantize_denoised=False,\n                      temperature=1., noise_dropout=0., score_corrector=None, corrector_kwargs=None,\n                      unconditional_guidance_scale=1., unconditional_conditioning=None):\n        b, *_, device = *x.shape, x.device\n\n        if unconditional_conditioning is None or unconditional_guidance_scale == 1.:\n            e_t = self.model.apply_model(x, t, c)\n        else:\n            x_in = torch.cat([x] * 2)\n            t_in = torch.cat([t] * 2)\n            c_in = torch.cat([unconditional_conditioning, c])\n            e_t_uncond, e_t = self.model.apply_model(x_in, t_in, c_in).chunk(2)\n            e_t = e_t_uncond + unconditional_guidance_scale * (e_t - e_t_uncond)\n\n        if score_corrector is not None:\n            assert self.model.parameterization == \"eps\"\n            e_t = score_corrector.modify_score(self.model, e_t, x, t, c, **corrector_kwargs)\n\n        alphas = self.model.alphas_cumprod if use_original_steps else self.ddim_alphas\n        alphas_prev = self.model.alphas_cumprod_prev if use_original_steps else self.ddim_alphas_prev\n        sqrt_one_minus_alphas = self.model.sqrt_one_minus_alphas_cumprod if use_original_steps else self.ddim_sqrt_one_minus_alphas\n        sigmas = self.model.ddim_sigmas_for_original_num_steps if use_original_steps else self.ddim_sigmas\n        # select parameters corresponding to the currently considered timestep\n        a_t = torch.full((b, 1, 1, 1), alphas[index], device=device)\n        a_prev = torch.full((b, 1, 1, 1), alphas_prev[index], device=device)\n        sigma_t = torch.full((b, 1, 1, 1), sigmas[index], device=device)\n        sqrt_one_minus_at = torch.full((b, 1, 1, 1), sqrt_one_minus_alphas[index],device=device)\n\n        # current prediction for x_0\n        pred_x0 = (x - sqrt_one_minus_at * e_t) / a_t.sqrt()\n        if quantize_denoised:\n            pred_x0, _, *_ = self.model.first_stage_model.quantize(pred_x0)\n        # direction pointing to x_t\n        dir_xt = (1. - a_prev - sigma_t**2).sqrt() * e_t\n        noise = sigma_t * noise_like(x.shape, device, repeat_noise) * temperature\n        if noise_dropout > 0.:\n            noise = torch.nn.functional.dropout(noise, p=noise_dropout)\n        x_prev = a_prev.sqrt() * pred_x0 + dir_xt + noise\n        return x_prev, pred_x0",
-              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/models/diffusion/ddim.py:11-203"
-            },
-            {
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "encode_first_stage",
               "symbolType": "METHOD",
@@ -714,6 +749,50 @@
               "endLine": 76,
               "codeContent": "    def ema_scope(self, context=None):\n        if self.use_ema:\n            self.model_ema.store(self.parameters())\n            self.model_ema.copy_to(self)\n            if context is not None:\n                print(f\"{context}: Switched to EMA weights\")\n        try:\n            yield None\n        finally:\n            if self.use_ema:\n                self.model_ema.restore(self.parameters())\n                if context is not None:\n                    print(f\"{context}: Restored training weights\")",
               "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/models/autoencoder.py:64-76"
+            },
+            {
+              "filePath": "ldm/modules/encoders/modules.py",
+              "symbolName": "FrozenCLIPTextEmbedder",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 138,
+              "endLine": 167,
+              "codeContent": "class FrozenCLIPTextEmbedder(nn.Module):\n    \"\"\"\n    Uses the CLIP transformer encoder for text.\n    \"\"\"\n    def __init__(self, version='ViT-L/14', device=\"cuda\", max_length=77, n_repeat=1, normalize=True):\n        super().__init__()\n        self.model, _ = clip.load(version, jit=False, device=\"cpu\")\n        self.device = device\n        self.max_length = max_length\n        self.n_repeat = n_repeat\n        self.normalize = normalize\n\n    def freeze(self):\n        self.model = self.model.eval()\n        for param in self.parameters():\n            param.requires_grad = False\n\n    def forward(self, text):\n        tokens = clip.tokenize(text).to(self.device)\n        z = self.model.encode_text(tokens)\n        if self.normalize:\n            z = z / torch.linalg.norm(z, dim=1, keepdim=True)\n        return z\n\n    def encode(self, text):\n        z = self(text)\n        if z.ndim==2:\n            z = z[:, None, :]\n        z = repeat(z, 'b 1 d -> b k d', k=self.n_repeat)\n        return z",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/modules/encoders/modules.py:138-167"
+            },
+            {
+              "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "TimestepEmbedSequential",
+              "programmingLanguage": "Python",
+              "startLine": 80,
+              "endLine": 88,
+              "codeContent": "    def forward(self, x, emb, context=None):\n        for layer in self:\n            if isinstance(layer, TimestepBlock):\n                x = layer(x, emb)\n            elif isinstance(layer, SpatialTransformer):\n                x = layer(x, context)\n            else:\n                x = layer(x)\n        return x",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/modules/diffusionmodules/openaimodel.py:80-88"
+            },
+            {
+              "filePath": "ldm/models/diffusion/ddim.py",
+              "symbolName": "sample",
+              "symbolType": "METHOD",
+              "parentSymbolName": "DDIMSampler",
+              "programmingLanguage": "Python",
+              "startLine": 56,
+              "endLine": 110,
+              "codeContent": "    def sample(self,\n               S,\n               batch_size,\n               shape,\n               conditioning=None,\n               callback=None,\n               normals_sequence=None,\n               img_callback=None,\n               quantize_x0=False,\n               eta=0.,\n               mask=None,\n               x0=None,\n               temperature=1.,\n               noise_dropout=0.,\n               score_corrector=None,\n               corrector_kwargs=None,\n               verbose=True,\n               x_T=None,\n               log_every_t=100,\n               unconditional_guidance_scale=1.,\n               unconditional_conditioning=None,\n               # this has to come in the same format as the conditioning, # e.g. as encoded tokens, ...\n               **kwargs\n               ):\n        if conditioning is not None:\n            if isinstance(conditioning, dict):\n                cbs = conditioning[list(conditioning.keys())[0]].shape[0]\n                if cbs != batch_size:\n                    print(f\"Warning: Got {cbs} conditionings but batch-size is {batch_size}\")\n            else:\n                if conditioning.shape[0] != batch_size:\n                    print(f\"Warning: Got {conditioning.shape[0]} conditionings but batch-size is {batch_size}\")\n\n        self.make_schedule(ddim_num_steps=S, ddim_eta=eta, verbose=verbose)\n        # sampling\n        C, H, W = shape\n        size = (batch_size, C, H, W)\n        print(f'Data shape for DDIM sampling is {size}, eta {eta}')\n\n        samples, intermediates = self.ddim_sampling(conditioning, size,\n                                                    callback=callback,\n                                                    img_callback=img_callback,\n                                                    quantize_denoised=quantize_x0,\n                                                    mask=mask, x0=x0,\n                                                    ddim_use_original_steps=False,\n                                                    noise_dropout=noise_dropout,\n                                                    temperature=temperature,\n                                                    score_corrector=score_corrector,\n                                                    corrector_kwargs=corrector_kwargs,\n                                                    x_T=x_T,\n                                                    log_every_t=log_every_t,\n                                                    unconditional_guidance_scale=unconditional_guidance_scale,\n                                                    unconditional_conditioning=unconditional_conditioning,\n                                                    )\n        return samples, intermediates",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — ldm/models/diffusion/ddim.py:56-110"
+            },
+            {
+              "filePath": "scripts/txt2img.py",
+              "symbolName": "load_model_from_config",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 15,
+              "endLine": 30,
+              "codeContent": "def load_model_from_config(config, ckpt, verbose=False):\n    print(f\"Loading model from {ckpt}\")\n    pl_sd = torch.load(ckpt, map_location=\"cpu\")\n    sd = pl_sd[\"state_dict\"]\n    model = instantiate_from_config(config.model)\n    m, u = model.load_state_dict(sd, strict=False)\n    if len(m) > 0 and verbose:\n        print(\"missing keys:\")\n        print(m)\n    if len(u) > 0 and verbose:\n        print(\"unexpected keys:\")\n        print(u)\n\n    model.cuda()\n    model.eval()\n    return model",
+              "_comment": "Verbatim from https://github.com/CompVis/latent-diffusion @ a506df5 — scripts/txt2img.py:15-30"
             }
           ]
         }

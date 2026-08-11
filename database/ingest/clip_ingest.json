@@ -111,6 +111,16 @@
       "chunk": "-",
       "title": "content 보강",
       "issue": "2개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
+    },
+    {
+      "chunk": "-",
+      "title": "입도 정리 (§4 규칙 3)",
+      "issue": "자식 심볼이 인덱싱된 부모 블록 1개를 제거하고 정답 재지정: ['VisionTransformer']"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 17건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -160,7 +170,16 @@
           "content": "We use two different image encoders: ResNet and Vision Transformer.\n\nState-of-the-art computer vision systems use very large amounts of compute. Mahajan et al. 2018 required 19 GPU years to train their ResNeXt101-32x48d and Xie et al. 2020 required 33 TPUv3 core-years to train their Noisy Student EfficientNet-L2. When considering that both these systems were trained to predict only 1000 ImageNet classes, the task of learning an open set of visual concepts from natural language seems daunting. In the course of our efforts, we found training efficiency was key to successfully scaling natural language supervision and we selected our final pre-training method based on this metric.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 02 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 02 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "__init__",
+              "startLine": 207,
+              "reason": "CLIP 의 이미지 인코더로 쓰이는 ViT 정의"
+            }
+          ]
         },
         {
           "chunkIndex": 2,
@@ -174,8 +193,8 @@
             {
               "githubUrl": "https://github.com/openai/CLIP",
               "filePath": "clip/model.py",
-              "symbolName": "VisionTransformer",
-              "startLine": 206,
+              "symbolName": "__init__",
+              "startLine": 207,
               "reason": "``` DIRECT ``` ---"
             }
           ]
@@ -187,7 +206,16 @@
           "content": "The image is split into patches and treated as a sequence.\n\nState-of-the-art computer vision systems use very large amounts of compute. Mahajan et al. 2018 required 19 GPU years to train their ResNeXt101-32x48d and Xie et al. 2020 required 33 TPUv3 core-years to train their Noisy Student EfficientNet-L2. When considering that both these systems were trained to predict only 1000 ImageNet classes, the task of learning an open set of visual concepts from natural language seems daunting. In the course of our efforts, we found training efficiency was key to successfully scaling natural language supervision and we selected our final pre-training method based on this metric.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 04 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 04 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "forward",
+              "startLine": 223,
+              "reason": "conv1 출력을 reshape·permute 해 patch 시퀀스로 펼치는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 4,
@@ -196,7 +224,16 @@
           "content": "전체 이미지 정보를 대표하는 token 추가.\n\n---\n\nOur initial approach, similar to VirTex, jointly trained an image CNN and text transformer from scratch to predict the caption of an image. However, we encountered difficulties efficiently scaling this method. In Figure 2 we show that a 63 million parameter transformer language model, which already uses twice the compute of its ResNet-50 image encoder, learns to recognize ImageNet classes three times slower than a much simpler baseline that predicts a bag-of-words encoding of the same text.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 05 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 05 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "__init__",
+              "startLine": 207,
+              "reason": "class_embedding 을 학습 파라미터로 두는 지점"
+            }
+          ]
         },
         {
           "chunkIndex": 5,
@@ -205,7 +242,16 @@
           "content": "Transformer는 순서 정보를 자체적으로 알 수 없기 때문에 위치 정보를 추가.\n\n---\n\nBoth these approaches share a key similarity. They try to predict the exact words of the text accompanying each image. This is a difficult task due to the wide variety of descriptions, comments, and related text that co-occur with images. Recent work in contrastive representation learning for images has found that contrastive objectives can learn better representations than their equivalent predictive objective (Tian et al. 2019). Other work has found that although generative models of images can learn high quality image representations, they require over an order of magnitude more compute than contrastive models with the same performance (Chen et al. 2020a). Noting these findings, we explored training a system to solve the potentially easier proxy task of predicting only which text as a whole is paired with which image and not the exact words of that text. Starting with the same bag-of-words encoding baseline, we swapped the predictive objective for a contrastive objective in Figure 2 and observed a further 4x efficiency improvement in the rate of zero-shot transfer to ImageNet.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 06 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 06 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "__init__",
+              "startLine": 207,
+              "reason": "positional_embedding 을 학습 파라미터로 두는 지점"
+            }
+          ]
         },
         {
           "chunkIndex": 6,
@@ -340,7 +386,16 @@
           "content": "The image encoder output is projected to the embedding dimension.\n\nOur initial approach, similar to VirTex, jointly trained an image CNN and text transformer from scratch to predict the caption of an image. However, we encountered difficulties efficiently scaling this method. In Figure 2 we show that a 63 million parameter transformer language model, which already uses twice the compute of its ResNet-50 image encoder, learns to recognize ImageNet classes three times slower than a much simpler baseline that predicts a bag-of-words encoding of the same text.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 14 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 14 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "__init__",
+              "startLine": 207,
+              "reason": "proj 로 이미지 표현을 공통 임베딩 차원으로 사영"
+            }
+          ]
         },
         {
           "chunkIndex": 14,
@@ -367,7 +422,16 @@
           "content": "벡터 크기의 영향을 제거하고 방향만 비교.\n\n수식:\n\n\\[\n\\hat{x}=\\frac{x}{||x||}\n\\]\n\n---\n\nWe emphasize that what is common across this line of work is not any of the details of the particular methods used but the appreciation of natural language as a training signal. All these approaches are learning from natural language supervision. Although early work wrestled with the complexity of natural language when using topic model and n-gram representations, improvements in deep contextual representation learning suggest we now have the tools to effectively leverage this abundant source of supervision (McCann et al. 2017).",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 16 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 16 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "forward",
+              "startLine": 358,
+              "reason": "이미지·텍스트 feature 를 각각 L2 정규화하는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 16,
@@ -376,7 +440,16 @@
           "content": "The similarity between the image and text embeddings is computed using cosine similarity.\n\nFinally, CLIP is related to a recent burst of activity on learning joint models of vision and language (Lu et al. 2019; Tan & Bansal 2019; Chen et al. 2019; Li et al. 2020b; Yu et al. 2020). This line of work focuses on richly connecting vision and language in order to solve complex downstream tasks such as visual question answering, visual commonsense reasoning, or multimodal entailment. These approaches leverage impressively engineered models which combine 3 (or more) pre-trained subsystems, typically an image feature model, a region proposal / object detection model, and a pre-trained masked language model such as BERT. These systems are then jointly fine-tuned via various training objectives on image-text pairs and applied to the aforementioned tasks and achieve impressive results. CLIP is instead focused on learning visual models from scratch via natural language supervision and does not densely connect the two domains with a joint attention model. The only interaction in a CLIP model between the image and text domain is a single dot product in a learned joint embedding space. We are excited to see CLIP hybridized with this line of work.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 17 | 논문 원문 문단 보강 (ar5iv 2103.00020)"
+          "_comment": "노트 17 | 논문 원문 문단 보강 (ar5iv 2103.00020)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "forward",
+              "startLine": 358,
+              "reason": "정규화된 두 feature 의 내적으로 유사도 행렬을 만드는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 17,
@@ -385,7 +458,16 @@
           "content": "The temperature parameter is learned during training.\n\nLearning from natural language has several potential strengths over other training methods. It’s much easier to scale natural language supervision compared to standard crowd-sourced labeling for image classification since it does not require annotations to be in a classic “machine learning compatible format” such as the canonical 1-of-N majority vote “gold label”. Instead, methods which work on natural language can learn passively from the supervision contained in the vast amount of text on the internet. Learning from natural language also has an important advantage over most unsupervised or self-supervised learning approaches in that it doesn’t “just” learn a representation but also connects that representation to language which enables flexible zero-shot transfer. In the following subsections, we detail the specific approach we settled on.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 18 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 18 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "__init__",
+              "startLine": 244,
+              "reason": "logit_scale 을 학습 가능한 temperature 로 두는 지점"
+            }
+          ]
         },
         {
           "chunkIndex": 18,
@@ -394,7 +476,16 @@
           "content": "We optimize a symmetric cross entropy loss over the similarity matrix.\n\nGiven a batch of N (image, text) pairs, CLIP is trained to predict which of the N\\times N possible (image, text) pairings across a batch actually occurred. To do this, CLIP learns a multi-modal embedding space by jointly training an image encoder and text encoder to maximize the cosine similarity of the image and text embeddings of the N real pairs in the batch while minimizing the cosine similarity of the embeddings of the N^{2}-N incorrect pairings. We optimize a symmetric cross entropy loss over these similarity scores. In Figure 3 we include pseudocode of the core of an implementation of CLIP. To our knowledge this batch construction technique and objective was first introduced in the area of deep metric learning as the multi-class N-pair loss Sohn 2016, was popularized for contrastive representation learning by Oord et al. 2018 as the InfoNCE loss, and was recently adapted for contrastive (text, image) representation learning in the domain of medical imaging by Zhang et al. 2020.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 19 | 논문 원문 문단 보강 (ar5iv 2103.00020)"
+          "_comment": "노트 19 | 논문 원문 문단 보강 (ar5iv 2103.00020)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/mlfoundations/open_clip",
+              "filePath": "src/open_clip/loss.py",
+              "symbolName": "forward",
+              "startLine": 118,
+              "reason": "이미지→텍스트, 텍스트→이미지 양방향 대조 손실"
+            }
+          ]
         },
         {
           "chunkIndex": 19,
@@ -403,7 +494,16 @@
           "content": "한 방향으로만 학습하면 embedding alignment가 불균형해질 수 있음.\n\n---\n\nAt the core of our approach is the idea of learning perception from supervision contained in natural language. As discussed in the introduction, this is not at all a new idea, however terminology used to describe work in this space is varied, even seemingly contradictory, and stated motivations are diverse. Zhang et al. 2020, Gomez et al. 2017, Joulin et al. 2016, and Desai & Johnson 2020 all introduce methods which learn visual representations from text paired with images but describe their approaches as unsupervised, self-supervised, weakly supervised, and supervised respectively.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 20 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 20 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/mlfoundations/open_clip",
+              "filePath": "src/open_clip/loss.py",
+              "symbolName": "get_ground_truth",
+              "startLine": 78,
+              "reason": "대각선을 정답으로 두는 대칭 cross entropy 의 라벨 생성"
+            }
+          ]
         },
         {
           "chunkIndex": 20,
@@ -412,7 +512,16 @@
           "content": "We create a dataset of 400 million image-text pairs.\n\nState-of-the-art computer vision systems are trained to predict a fixed set of predetermined object categories. This restricted form of supervision limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much broader source of supervision. We demonstrate that the simple pre-training task of predicting which caption goes with which image is an efficient and scalable way to learn SOTA image representations from scratch on a dataset of 400 million (image, text) pairs collected from the internet. After pre-training, natural language is used to reference learned visual concepts (or describe new ones) enabling zero-shot transfer of the model to downstream tasks. We study the performance of this approach by benchmarking on over 30 different existing computer vision datasets, spanning tasks such as OCR, action recognition in videos, geo-localization, and many types of fine-grained object classification. The model transfers non-trivially to most tasks and is often competitive with a fully supervised baseline without the need for any dataset specific training. For instance, we match the accuracy of the original ResNet-50 on ImageNet zero-shot without needing to use any of the 1.28 million training examples it was trained on.\nWe release our code and pre-trained model weights at https://github.com/OpenAI/CLIP.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 21 | 논문 원문 문단 보강 (ar5iv 2103.00020)"
+          "_comment": "노트 21 | 논문 원문 문단 보강 (ar5iv 2103.00020)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/mlfoundations/open_clip",
+              "filePath": "src/open_clip_train/data.py",
+              "symbolName": "get_data",
+              "startLine": 1218,
+              "reason": "학습·검증 데이터로더를 구성하는 파이프라인"
+            }
+          ]
         },
         {
           "chunkIndex": 21,
@@ -421,7 +530,16 @@
           "content": "Vision Encoder 입력 형태 맞춤.\n\n---\n\nBoth these approaches share a key similarity. They try to predict the exact words of the text accompanying each image. This is a difficult task due to the wide variety of descriptions, comments, and related text that co-occur with images. Recent work in contrastive representation learning for images has found that contrastive objectives can learn better representations than their equivalent predictive objective (Tian et al. 2019). Other work has found that although generative models of images can learn high quality image representations, they require over an order of magnitude more compute than contrastive models with the same performance (Chen et al. 2020a). Noting these findings, we explored training a system to solve the potentially easier proxy task of predicting only which text as a whole is paired with which image and not the exact words of that text. Starting with the same bag-of-words encoding baseline, we swapped the predictive objective for a contrastive objective in Figure 2 and observed a further 4x efficiency improvement in the rate of zero-shot transfer to ImageNet.",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 22 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 22 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/clip.py",
+              "symbolName": "_transform",
+              "startLine": 79,
+              "reason": "Resize·CenterCrop·Normalize 로 이미지를 전처리"
+            }
+          ]
         },
         {
           "chunkIndex": 22,
@@ -430,7 +548,16 @@
           "content": "Text를 Token ID sequence로 변환.\n\n---\n\nBoth these approaches share a key similarity. They try to predict the exact words of the text accompanying each image. This is a difficult task due to the wide variety of descriptions, comments, and related text that co-occur with images. Recent work in contrastive representation learning for images has found that contrastive objectives can learn better representations than their equivalent predictive objective (Tian et al. 2019). Other work has found that although generative models of images can learn high quality image representations, they require over an order of magnitude more compute than contrastive models with the same performance (Chen et al. 2020a). Noting these findings, we explored training a system to solve the potentially easier proxy task of predicting only which text as a whole is paired with which image and not the exact words of that text. Starting with the same bag-of-words encoding baseline, we swapped the predictive objective for a contrastive objective in Figure 2 and observed a further 4x efficiency improvement in the rate of zero-shot transfer to ImageNet.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 23 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 23 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/clip.py",
+              "symbolName": "tokenize",
+              "startLine": 205,
+              "reason": "BPE 로 텍스트를 토큰화하고 컨텍스트 길이에 맞추는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 23,
@@ -439,7 +566,16 @@
           "content": "We use CLIP without training a classifier for each dataset.\n\nIn computer vision, zero-shot learning usually refers to the study of generalizing to unseen object categories in image classification (Lampert et al. 2009). We instead use the term in a broader sense and study generalization to unseen datasets. We motivate this as a proxy for performing unseen tasks, as aspired to in the zero-data learning paper of Larochelle et al. 2008. While much research in the field of unsupervised learning focuses on the representation learning capabilities of machine learning systems, we motivate studying zero-shot transfer as a way of measuring the task-learning capabilities of machine learning systems. In this view, a dataset evaluates performance on a task on a specific distribution. However, many popular computer vision datasets were created by the research community primarily as benchmarks to guide the development of generic image classification methods rather than measuring performance on a specific task. While it is reasonable to say that the SVHN dataset measures the task of street number transcription on the distribution of Google Street View photos, it is unclear what “real” task the CIFAR-10 dataset measures. It is clear, however, what distribution CIFAR-10 is drawn from - TinyImages (Torralba et al. 2008). On these kinds of datasets, zero-shot transfer is more an evaluation of CLIP’s robustness to distribution shift and domain generalization rather than task generalization. Please see Section 3.3 for analysis focused on this.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 24 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 24 | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "encode_text",
+              "startLine": 343,
+              "reason": "class 이름 프롬프트를 텍스트 임베딩으로 바꿔 zero-shot 분류에 쓰는 경로"
+            }
+          ]
         },
         {
           "chunkIndex": 24,
@@ -448,7 +584,16 @@
           "content": "We jointly train an image encoder and a text encoder to maximize the similarity of image-text pairs.\n\nGiven a batch of N (image, text) pairs, CLIP is trained to predict which of the N\\times N possible (image, text) pairings across a batch actually occurred. To do this, CLIP learns a multi-modal embedding space by jointly training an image encoder and text encoder to maximize the cosine similarity of the image and text embeddings of the N real pairs in the batch while minimizing the cosine similarity of the embeddings of the N^{2}-N incorrect pairings. We optimize a symmetric cross entropy loss over these similarity scores. In Figure 3 we include pseudocode of the core of an implementation of CLIP. To our knowledge this batch construction technique and objective was first introduced in the area of deep metric learning as the multi-class N-pair loss Sohn 2016, was popularized for contrastive representation learning by Oord et al. 2018 as the InfoNCE loss, and was recently adapted for contrastive (text, image) representation learning in the domain of medical imaging by Zhang et al. 2020.",
           "pageStart": 2,
           "pageEnd": 2,
-          "_comment": "노트 25 | 논문 원문 문단 보강 (ar5iv 2103.00020)"
+          "_comment": "노트 25 | 논문 원문 문단 보강 (ar5iv 2103.00020)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/mlfoundations/open_clip",
+              "filePath": "src/open_clip_train/train.py",
+              "symbolName": "train_one_epoch",
+              "startLine": 343,
+              "reason": "한 epoch 학습 루프 — 대조 손실 계산과 파라미터 갱신"
+            }
+          ]
         },
         {
           "chunkIndex": 25,
@@ -502,7 +647,16 @@
           "content": "실제 사용 과정.\n\n---\n\nIn computer vision, zero-shot learning usually refers to the study of generalizing to unseen object categories in image classification (Lampert et al. 2009). We instead use the term in a broader sense and study generalization to unseen datasets. We motivate this as a proxy for performing unseen tasks, as aspired to in the zero-data learning paper of Larochelle et al. 2008. While much research in the field of unsupervised learning focuses on the representation learning capabilities of machine learning systems, we motivate studying zero-shot transfer as a way of measuring the task-learning capabilities of machine learning systems. In this view, a dataset evaluates performance on a task on a specific distribution. However, many popular computer vision datasets were created by the research community primarily as benchmarks to guide the development of generic image classification methods rather than measuring performance on a specific task. While it is reasonable to say that the SVHN dataset measures the task of street number transcription on the distribution of Google Street View photos, it is unclear what “real” task the CIFAR-10 dataset measures. It is clear, however, what distribution CIFAR-10 is drawn from - TinyImages (Torralba et al. 2008). On these kinds of datasets, zero-shot transfer is more an evaluation of CLIP’s robustness to distribution shift and domain generalization rather than task generalization. Please see Section 3.3 for analysis focused on this.",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 30 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)"
+          "_comment": "노트 30 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2103.00020, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "encode_image",
+              "startLine": 340,
+              "reason": "추론 시 이미지를 임베딩으로 바꾸는 진입점"
+            }
+          ]
         },
         {
           "chunkIndex": 30,
@@ -511,7 +665,16 @@
           "content": "전체 Git Mapping",
           "pageStart": null,
           "pageEnd": null,
-          "_comment": "노트 31 / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 31 / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/openai/CLIP",
+              "filePath": "clip/model.py",
+              "symbolName": "build_model",
+              "startLine": 399,
+              "reason": "체크포인트 state_dict 로 전체 CLIP 모델을 조립하는 부분"
+            }
+          ]
         }
       ],
       "repositories": [
@@ -527,17 +690,6 @@
           "relationType": "OFFICIAL",
           "isPrimary": true,
           "codeBlocks": [
-            {
-              "filePath": "clip/model.py",
-              "symbolName": "VisionTransformer",
-              "symbolType": "CLASS",
-              "parentSymbolName": null,
-              "programmingLanguage": "Python",
-              "startLine": 206,
-              "endLine": 240,
-              "codeContent": "class VisionTransformer(nn.Module):\n    def __init__(self, input_resolution: int, patch_size: int, width: int, layers: int, heads: int, output_dim: int):\n        super().__init__()\n        self.input_resolution = input_resolution\n        self.output_dim = output_dim\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=width, kernel_size=patch_size, stride=patch_size, bias=False)\n\n        scale = width ** -0.5\n        self.class_embedding = nn.Parameter(scale * torch.randn(width))\n        self.positional_embedding = nn.Parameter(scale * torch.randn((input_resolution // patch_size) ** 2 + 1, width))\n        self.ln_pre = LayerNorm(width)\n\n        self.transformer = Transformer(width, layers, heads)\n\n        self.ln_post = LayerNorm(width)\n        self.proj = nn.Parameter(scale * torch.randn(width, output_dim))\n\n    def forward(self, x: torch.Tensor):\n        x = self.conv1(x)  # shape = [*, width, grid, grid]\n        x = x.reshape(x.shape[0], x.shape[1], -1)  # shape = [*, width, grid ** 2]\n        x = x.permute(0, 2, 1)  # shape = [*, grid ** 2, width]\n        x = torch.cat([self.class_embedding.to(x.dtype) + torch.zeros(x.shape[0], 1, x.shape[-1], dtype=x.dtype, device=x.device), x], dim=1)  # shape = [*, grid ** 2 + 1, width]\n        x = x + self.positional_embedding.to(x.dtype)\n        x = self.ln_pre(x)\n\n        x = x.permute(1, 0, 2)  # NLD -> LND\n        x = self.transformer(x)\n        x = x.permute(1, 0, 2)  # LND -> NLD\n\n        x = self.ln_post(x[:, 0, :])\n\n        if self.proj is not None:\n            x = x @ self.proj\n\n        return x",
-              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:206-240"
-            },
             {
               "filePath": "clip/model.py",
               "symbolName": "Transformer",
@@ -614,6 +766,130 @@
               "endLine": 202,
               "codeContent": "def load(name: str, device: Union[str, torch.device] = \"cuda\" if torch.cuda.is_available() else \"cpu\", jit: bool = False, download_root: str = None):\n    \"\"\"Load a CLIP model\n\n    Parameters\n    ----------\n    name : str\n        A model name listed by `clip.available_models()`, or the path to a model checkpoint containing the state_dict\n\n    device : Union[str, torch.device]\n        The device to put the loaded model\n\n    jit : bool\n        Whether to load the optimized JIT model or more hackable non-JIT model (default).\n\n    download_root: str\n        path to download the model files; by default, it uses \"~/.cache/clip\"\n\n    Returns\n    -------\n    model : torch.nn.Module\n        The CLIP model\n\n    preprocess : Callable[[PIL.Image], torch.Tensor]\n        A torchvision transform that converts a PIL image into a tensor that the returned model can take as its input\n    \"\"\"\n    if name in _MODELS:\n        model_path = _download(_MODELS[name], download_root or os.path.expanduser(\"~/.cache/clip\"))\n    elif os.path.isfile(name):\n        model_path = name\n    else:\n        raise RuntimeError(f\"Model {name} not found; available models = {available_models()}\")\n\n    with open(model_path, 'rb') as opened_file:\n        try:\n            # loading JIT archive\n            model = torch.jit.load(opened_file, map_location=device if jit else \"cpu\").eval()\n            state_dict = None\n        except RuntimeError:\n            # loading saved state dict\n            if jit:\n                warnings.warn(f\"File {model_path} is not a JIT archive. Loading as a state dict instead\")\n                jit = False\n            state_dict = torch.load(opened_file, map_location=\"cpu\")\n\n    if not jit:\n        model = build_model(state_dict or model.state_dict()).to(device)\n        if str(device) == \"cpu\":\n            model.float()\n        return model, _transform(model.visual.input_resolution)\n\n    # patch the device names\n    device_holder = torch.jit.trace(lambda: torch.ones([]).to(torch.device(device)), example_inputs=[])\n    device_node = [n for n in device_holder.graph.findAllNodes(\"prim::Constant\") if \"Device\" in repr(n)][-1]\n\n    def _node_get(node: torch._C.Node, key: str):\n        \"\"\"Gets attributes of a node which is polymorphic over return type.\n        \n        From https://github.com/pytorch/pytorch/pull/82628\n        \"\"\"\n        sel = node.kindOf(key)\n        return getattr(node, sel)(key)\n\n    def patch_device(module):\n        try:\n            graphs = [module.graph] if hasattr(module, \"graph\") else []\n        except RuntimeError:\n            graphs = []\n\n        if hasattr(module, \"forward1\"):\n            graphs.append(module.forward1.graph)\n\n        for graph in graphs:\n            for node in graph.findAllNodes(\"prim::Constant\"):\n                if \"value\" in node.attributeNames() and str(_node_get(node, \"value\")).startswith(\"cuda\"):\n                    node.copyAttributes(device_node)\n\n    model.apply(patch_device)\n    patch_device(model.encode_image)\n    patch_device(model.encode_text)\n\n    # patch dtype to float32 on CPU\n    if str(device) == \"cpu\":\n        float_holder = torch.jit.trace(lambda: torch.ones([]).float(), example_inputs=[])\n        float_input = list(float_holder.graph.findNode(\"aten::to\").inputs())[1]\n        float_node = float_input.node()\n\n        def patch_float(module):\n            try:\n                graphs = [module.graph] if hasattr(module, \"graph\") else []\n            except RuntimeError:\n                graphs = []\n\n            if hasattr(module, \"forward1\"):\n                graphs.append(module.forward1.graph)\n\n            for graph in graphs:\n                for node in graph.findAllNodes(\"aten::to\"):\n                    inputs = list(node.inputs())\n                    for i in [1, 2]:  # dtype can be the second or third argument to aten::to()\n                        if _node_get(inputs[i].node(), \"value\") == 5:\n                            inputs[i].node().copyAttributes(float_node)\n\n        model.apply(patch_float)\n        patch_float(model.encode_image)\n        patch_float(model.encode_text)\n\n        model.float()\n\n    return model, _transform(model.input_resolution.item())",
               "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/clip.py:94-202"
+            },
+            {
+              "filePath": "clip/model.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "VisionTransformer",
+              "programmingLanguage": "Python",
+              "startLine": 207,
+              "endLine": 221,
+              "codeContent": "    def __init__(self, input_resolution: int, patch_size: int, width: int, layers: int, heads: int, output_dim: int):\n        super().__init__()\n        self.input_resolution = input_resolution\n        self.output_dim = output_dim\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=width, kernel_size=patch_size, stride=patch_size, bias=False)\n\n        scale = width ** -0.5\n        self.class_embedding = nn.Parameter(scale * torch.randn(width))\n        self.positional_embedding = nn.Parameter(scale * torch.randn((input_resolution // patch_size) ** 2 + 1, width))\n        self.ln_pre = LayerNorm(width)\n\n        self.transformer = Transformer(width, layers, heads)\n\n        self.ln_post = LayerNorm(width)\n        self.proj = nn.Parameter(scale * torch.randn(width, output_dim))",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:207-221"
+            },
+            {
+              "filePath": "clip/model.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "VisionTransformer",
+              "programmingLanguage": "Python",
+              "startLine": 223,
+              "endLine": 240,
+              "codeContent": "    def forward(self, x: torch.Tensor):\n        x = self.conv1(x)  # shape = [*, width, grid, grid]\n        x = x.reshape(x.shape[0], x.shape[1], -1)  # shape = [*, width, grid ** 2]\n        x = x.permute(0, 2, 1)  # shape = [*, grid ** 2, width]\n        x = torch.cat([self.class_embedding.to(x.dtype) + torch.zeros(x.shape[0], 1, x.shape[-1], dtype=x.dtype, device=x.device), x], dim=1)  # shape = [*, grid ** 2 + 1, width]\n        x = x + self.positional_embedding.to(x.dtype)\n        x = self.ln_pre(x)\n\n        x = x.permute(1, 0, 2)  # NLD -> LND\n        x = self.transformer(x)\n        x = x.permute(1, 0, 2)  # LND -> NLD\n\n        x = self.ln_post(x[:, 0, :])\n\n        if self.proj is not None:\n            x = x @ self.proj\n\n        return x",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:223-240"
+            },
+            {
+              "filePath": "clip/model.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "CLIP",
+              "programmingLanguage": "Python",
+              "startLine": 358,
+              "endLine": 372,
+              "codeContent": "    def forward(self, image, text):\n        image_features = self.encode_image(image)\n        text_features = self.encode_text(text)\n\n        # normalized features\n        image_features = image_features / image_features.norm(dim=1, keepdim=True)\n        text_features = text_features / text_features.norm(dim=1, keepdim=True)\n\n        # cosine similarity as logits\n        logit_scale = self.logit_scale.exp()\n        logits_per_image = logit_scale * image_features @ text_features.t()\n        logits_per_text = logits_per_image.t()\n\n        # shape = [global_batch_size, global_batch_size]\n        return logits_per_image, logits_per_text",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:358-372"
+            },
+            {
+              "filePath": "clip/clip.py",
+              "symbolName": "_transform",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 79,
+              "endLine": 86,
+              "codeContent": "def _transform(n_px):\n    return Compose([\n        Resize(n_px, interpolation=BICUBIC),\n        CenterCrop(n_px),\n        _convert_image_to_rgb,\n        ToTensor(),\n        Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)),\n    ])",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/clip.py:79-86"
+            },
+            {
+              "filePath": "clip/clip.py",
+              "symbolName": "tokenize",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 205,
+              "endLine": 245,
+              "codeContent": "def tokenize(texts: Union[str, List[str]], context_length: int = 77, truncate: bool = False) -> Union[torch.IntTensor, torch.LongTensor]:\n    \"\"\"\n    Returns the tokenized representation of given input string(s)\n\n    Parameters\n    ----------\n    texts : Union[str, List[str]]\n        An input string or a list of input strings to tokenize\n\n    context_length : int\n        The context length to use; all CLIP models use 77 as the context length\n\n    truncate: bool\n        Whether to truncate the text in case its encoding is longer than the context length\n\n    Returns\n    -------\n    A two-dimensional tensor containing the resulting tokens, shape = [number of input strings, context_length].\n    We return LongTensor when torch version is <1.8.0, since older index_select requires indices to be long.\n    \"\"\"\n    if isinstance(texts, str):\n        texts = [texts]\n\n    sot_token = _tokenizer.encoder[\"<|startoftext|>\"]\n    eot_token = _tokenizer.encoder[\"<|endoftext|>\"]\n    all_tokens = [[sot_token] + _tokenizer.encode(text) + [eot_token] for text in texts]\n    if version.parse(torch.__version__) < version.parse(\"1.8.0\"):\n        result = torch.zeros(len(all_tokens), context_length, dtype=torch.long)\n    else:\n        result = torch.zeros(len(all_tokens), context_length, dtype=torch.int)\n\n    for i, tokens in enumerate(all_tokens):\n        if len(tokens) > context_length:\n            if truncate:\n                tokens = tokens[:context_length]\n                tokens[-1] = eot_token\n            else:\n                raise RuntimeError(f\"Input {texts[i]} is too long for context length {context_length}\")\n        result[i, :len(tokens)] = torch.tensor(tokens)\n\n    return result",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/clip.py:205-245"
+            },
+            {
+              "filePath": "clip/model.py",
+              "symbolName": "build_model",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 399,
+              "endLine": 436,
+              "codeContent": "def build_model(state_dict: dict):\n    vit = \"visual.proj\" in state_dict\n\n    if vit:\n        vision_width = state_dict[\"visual.conv1.weight\"].shape[0]\n        vision_layers = len([k for k in state_dict.keys() if k.startswith(\"visual.\") and k.endswith(\".attn.in_proj_weight\")])\n        vision_patch_size = state_dict[\"visual.conv1.weight\"].shape[-1]\n        grid_size = round((state_dict[\"visual.positional_embedding\"].shape[0] - 1) ** 0.5)\n        image_resolution = vision_patch_size * grid_size\n    else:\n        counts: list = [len(set(k.split(\".\")[2] for k in state_dict if k.startswith(f\"visual.layer{b}\"))) for b in [1, 2, 3, 4]]\n        vision_layers = tuple(counts)\n        vision_width = state_dict[\"visual.layer1.0.conv1.weight\"].shape[0]\n        output_width = round((state_dict[\"visual.attnpool.positional_embedding\"].shape[0] - 1) ** 0.5)\n        vision_patch_size = None\n        assert output_width ** 2 + 1 == state_dict[\"visual.attnpool.positional_embedding\"].shape[0]\n        image_resolution = output_width * 32\n\n    embed_dim = state_dict[\"text_projection\"].shape[1]\n    context_length = state_dict[\"positional_embedding\"].shape[0]\n    vocab_size = state_dict[\"token_embedding.weight\"].shape[0]\n    transformer_width = state_dict[\"ln_final.weight\"].shape[0]\n    transformer_heads = transformer_width // 64\n    transformer_layers = len(set(k.split(\".\")[2] for k in state_dict if k.startswith(\"transformer.resblocks\")))\n\n    model = CLIP(\n        embed_dim,\n        image_resolution, vision_layers, vision_width, vision_patch_size,\n        context_length, vocab_size, transformer_width, transformer_heads, transformer_layers\n    )\n\n    for key in [\"input_resolution\", \"context_length\", \"vocab_size\"]:\n        if key in state_dict:\n            del state_dict[key]\n\n    convert_weights(model)\n    model.load_state_dict(state_dict)\n    return model.eval()",
+              "_comment": "Verbatim from https://github.com/openai/CLIP @ d05afc4 — clip/model.py:399-436"
+            }
+          ]
+        },
+        {
+          "githubUrl": "https://github.com/mlfoundations/open_clip",
+          "ownerName": "mlfoundations",
+          "repositoryName": "open_clip",
+          "defaultBranch": "main",
+          "commitHash": "602d4af74f86df6f2ff81ba0f0a847b0b70ad2e5",
+          "licenseName": "NOASSERTION",
+          "primaryLanguage": "Python",
+          "starCount": 14055,
+          "relationType": "REFERENCE",
+          "isPrimary": false,
+          "codeBlocks": [
+            {
+              "filePath": "src/open_clip/loss.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ClipLoss",
+              "programmingLanguage": "Python",
+              "startLine": 118,
+              "endLine": 141,
+              "codeContent": "    def forward(\n            self,\n            image_features,\n            text_features,\n            logit_scale,\n            logit_bias=None,\n            output_dict=False,\n    ):\n        device = image_features.device\n        logits_per_image, logits_per_text = self.get_logits(\n            image_features,\n            text_features,\n            logit_scale,\n            logit_bias=logit_bias,\n        )\n\n        labels = self.get_ground_truth(device, logits_per_image.shape[0])\n\n        total_loss = (\n            F.cross_entropy(logits_per_image, labels) +\n            F.cross_entropy(logits_per_text, labels)\n        ) / 2\n\n        return {\"contrastive_loss\": total_loss} if output_dict else total_loss",
+              "_comment": "Verbatim from https://github.com/mlfoundations/open_clip @ 602d4af — src/open_clip/loss.py:118-141"
+            },
+            {
+              "filePath": "src/open_clip/loss.py",
+              "symbolName": "get_ground_truth",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ClipLoss",
+              "programmingLanguage": "Python",
+              "startLine": 78,
+              "endLine": 89,
+              "codeContent": "    def get_ground_truth(self, device, num_logits) -> torch.Tensor:\n        # calculated ground-truth and cache if enabled\n        if self.prev_num_logits != num_logits or device not in self.labels:\n            labels = torch.arange(num_logits, device=device, dtype=torch.long)\n            if self.world_size > 1 and self.local_loss:\n                labels = labels + num_logits * self.rank\n            if self.cache_labels:\n                self.labels[device] = labels\n                self.prev_num_logits = num_logits\n        else:\n            labels = self.labels[device]\n        return labels",
+              "_comment": "Verbatim from https://github.com/mlfoundations/open_clip @ 602d4af — src/open_clip/loss.py:78-89"
+            },
+            {
+              "filePath": "src/open_clip_train/data.py",
+              "symbolName": "get_data",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 1218,
+              "endLine": 1262,
+              "codeContent": "def get_data(args, preprocess_fns, epoch=0, tokenizer=None, naflex_data_config=None):\n    preprocess_train, preprocess_val = preprocess_fns\n    data = {}\n\n    if getattr(args, 'use_naflex', False) and naflex_data_config is None:\n        raise ValueError(\"NaFlex data loaders require a NaFlex data config.\")\n    if not getattr(args, 'use_naflex', False) and getattr(args, 'naflex_num_train_image_tokens', None) is not None:\n        warnings.warn(\"`--naflex-num-train-image-tokens` is ignored unless `--use-naflex` is set.\")\n\n    if args.train_data or args.dataset_type in (\"synthetic\", \"synthetic-audio\"):\n        data[\"train\"] = get_dataset_fn(args.train_data, args.dataset_type)(\n            args,\n            preprocess_train,\n            is_train=True,\n            epoch=epoch,\n            tokenizer=tokenizer,\n            naflex_data_config=naflex_data_config,\n        )\n\n    if args.val_data:\n        data[\"val\"] = get_dataset_fn(args.val_data, args.dataset_type)(\n            args,\n            preprocess_val,\n            is_train=False,\n            tokenizer=tokenizer,\n            naflex_data_config=naflex_data_config,\n        )\n\n    if args.imagenet_val is not None:\n        data[\"imagenet-val\"] = get_imagenet(\n            args,\n            preprocess_fns,\n            \"val\",\n            naflex_data_config=naflex_data_config,\n        )\n\n    if args.imagenet_v2 is not None:\n        data[\"imagenet-v2\"] = get_imagenet(\n            args,\n            preprocess_fns,\n            \"v2\",\n            naflex_data_config=naflex_data_config,\n        )\n\n    return data",
+              "_comment": "Verbatim from https://github.com/mlfoundations/open_clip @ 602d4af — src/open_clip_train/data.py:1218-1262"
+            },
+            {
+              "filePath": "src/open_clip_train/train.py",
+              "symbolName": "train_one_epoch",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 343,
+              "endLine": 525,
+              "codeContent": "def train_one_epoch(state: TrainState, data, args, tb_writer=None):\n    task = state.task\n    optimizer = state.optimizer\n    scaler = state.scaler\n    scheduler = state.scheduler\n    epoch = state.epoch\n    assert optimizer is not None, \"train_one_epoch requires state.optimizer.\"\n    if not args.skip_scheduler:\n        assert scheduler is not None, \"train_one_epoch requires state.scheduler unless --skip-scheduler is set.\"\n\n    device = torch.device(args.device)\n    autocast = get_autocast(\n        args.precision,\n        device_type=device.type,\n        fsdp=getattr(args, 'fsdp', False),\n    )\n    input_dtype = get_input_dtype(args.precision)\n    compile_step = (\n        getattr(args, \"torchcompile\", False)\n        and getattr(args, \"torchcompile_strategy\", \"task\") == \"step\"\n    )\n    eager_step = args.accum_freq > 1 or scaler is not None\n    if compile_step and eager_step:\n        raise ValueError(\n            \"--torchcompile-strategy step requires --accum-freq 1 and a precision without GradScaler.\"\n        )\n    if eager_step:\n        train_step = None\n    elif compile_step:\n        train_step = _get_compiled_train_step(state, autocast, args)\n    else:\n        train_step = _make_train_step_no_accum_no_scaler(task, optimizer, autocast, args)\n\n    task.train()\n\n    data['train'].set_epoch(epoch)  # set epoch in process safe manner via sampler or shared_epoch\n    dataloader = data['train'].dataloader\n    num_batches_per_epoch = dataloader.num_batches // args.accum_freq\n    sample_digits = math.ceil(math.log(dataloader.num_samples + 1, 10))\n\n    accum_state = ([], {}) if args.accum_freq > 1 else None\n\n    losses_m = {}\n    batch_time_m = AverageMeter()\n    data_time_m = AverageMeter()\n    end = time.time()\n    num_samples = 0\n    # Log the global-batch loss: under --local-loss each rank's loss is a 1/world_size slice (generative LM losses\n    # are likewise per-rank), so all-reduce-mean at log time. Mean is a no-op when ranks already agree.\n    reduce_loss = args.distributed and args.world_size > 1\n    ema_samples = getattr(args, \"train_loss_ema_samples\", 0)\n    metric_every = max(1, getattr(args, \"log_metric_every_n_steps\", args.log_every_n_steps))\n    wb = get_wandb_backend(args)  # wandb or trackio (same API), or None\n    # Global samples observed at the previous EMA update (seeded from the persistent counter so the EMA horizon\n    # stays continuous across epochs); the EMA decays by the sample delta between metric logs.\n    prev_metric_samples = state.samples_seen\n    for i, batch in enumerate(dataloader):\n        i_accum = i // args.accum_freq\n        step = num_batches_per_epoch * epoch + i_accum\n\n        if not args.skip_scheduler:\n            scheduler(step)\n\n        batch = task.prepare_batch(batch, device=device, input_dtype=input_dtype)\n\n        data_time_m.update(time.time() - end)\n        if train_step is not None:\n            optimizer.zero_grad()\n            losses, report = train_step(batch)\n            task.clamp_logit_scale()\n            step_batch_size = task.batch_size(batch)\n        else:\n            result = _train_step_eager(\n                task,\n                batch,\n                accum_state,\n                optimizer,\n                scaler,\n                autocast,\n                args,\n            )\n            if result is None:\n                continue\n            losses, report, step_batch_size, accum_state = result\n\n        batch_time_m.update(time.time() - end)\n        end = time.time()\n        batch_count = i_accum + 1\n        num_samples += step_batch_size * args.world_size\n        state.global_step = step + 1\n        state.samples_seen += step_batch_size * args.world_size\n        last_batch = batch_count == num_batches_per_epoch\n        is_console_step = (i_accum % args.log_every_n_steps == 0) or last_batch\n        is_metric_step = (i_accum % metric_every == 0) or is_console_step\n\n        if is_metric_step:\n            # Reduce the loss across ranks so the logged value is the true global-batch loss. Collective -> ALL\n            # ranks call it (the rank-synced schedule keeps them in lockstep); detach()+clone() since backward\n            # already ran and all_reduce mutates in place. Mean is a no-op when ranks already agree.\n            reduced = {key: val.detach().float().clone() for key, val in losses.items()}\n            if reduce_loss:\n                for v in reduced.values():\n                    dist.all_reduce(v)\n                    v /= args.world_size\n\n            if is_master(args):\n                n_ema = state.samples_seen - prev_metric_samples  # global samples since the previous EMA update\n                prev_metric_samples = state.samples_seen\n                for key, v in reduced.items():\n                    vi = v.item()\n                    losses_m.setdefault(key, AverageMeter()).update(vi, step_batch_size)\n                    if ema_samples and n_ema > 0:\n                        state.losses_ema.setdefault(key, SampleWeightedEMA(ema_samples)).update(vi, n_ema)\n\n                # logit_scale / logit_bias are per-step report scalars (not loss terms), logged once from `report`.\n                logit_scale = report.get(\"logit_scale\", None)\n                logit_scale_scalar = logit_scale.item() if logit_scale is not None else 0.0\n                logit_bias = report.get(\"logit_bias\", None)\n                logit_bias_scalar = logit_bias.item() if logit_bias is not None else None\n                samples_per_second = step_batch_size * args.world_size / batch_time_m.val\n                samples_per_second_per_gpu = step_batch_size / batch_time_m.val\n                learning_rate = get_learning_rate(optimizer)\n\n                # Raw scalars to tensorboard/wandb at the (dense) metric cadence (see the per-loss block below).\n                log_data = {\n                    \"data_time\": data_time_m.val,\n                    \"batch_time\": batch_time_m.val,\n                    \"samples_per_second\": samples_per_second,\n                    \"samples_per_second_per_gpu\": samples_per_second_per_gpu,\n                    \"logit_scale\": logit_scale_scalar,\n                    \"lr\": learning_rate,\n                }\n                if logit_bias_scalar is not None:\n                    log_data[\"logit_bias\"] = logit_bias_scalar\n                # Raw current value only -- dashboards do their own smoothing, so the EMA stays console-only (add\n                # train/<loss>_ema behind an explicit flag if a deterministic logged series is ever wanted). The\n                # epoch running average is NOT logged per-step (half-formed mid-epoch); it goes out once per epoch.\n                for name, m in losses_m.items():\n                    log_data[name] = m.val\n                log_data = {\"train/\" + name: val for name, val in log_data.items()}\n\n                if tb_writer is not None:\n                    for name, val in log_data.items():\n                        tb_writer.add_scalar(name, val, step)\n\n                if wb is not None:\n                    log_data['step'] = step  # for backwards compatibility\n                    wb.log(log_data, step=step)\n\n                # Console at the (sparse) cadence. Parentheses show the cross-epoch EMA trend (the epoch average\n                # moves to the End-epoch summary line); falls back to the epoch avg when the EMA is disabled.\n                if is_console_step:\n                    samples_per_epoch = dataloader.num_samples\n                    percent_complete = 100.0 * batch_count / num_batches_per_epoch\n                    loss_log = \" \".join(\n                        f\"{name.capitalize()}: {m.val:#.5g} \"\n                        f\"({(state.losses_ema[name].value if ema_samples else m.avg):#.5g})\"\n                        for name, m in losses_m.items()\n                    )\n                    _logger.info(\n                        f\"Train Epoch: {epoch} [{num_samples:>{sample_digits}}/{samples_per_epoch} ({percent_complete:.0f}%)] \"\n                        f\"Data (t): {data_time_m.avg:.3f} \"\n                        f\"Batch (t): {batch_time_m.avg:.3f}, {samples_per_second:#g}/s, {samples_per_second_per_gpu:#g}/s/gpu \"\n                        f\"LR: {learning_rate:5f} \"\n                        f\"Logit Scale: {logit_scale_scalar:.3f} \" + loss_log\n                    )\n\n                # reset batch / data time meters per metric window\n                batch_time_m.reset()\n                data_time_m.reset()\n    # end for\n    if is_master(args) and losses_m:\n        summary = \"  \".join(f\"Avg {name.capitalize()}: {m.avg:#.5g}\" for name, m in losses_m.items())\n        _logger.info(f\"End epoch {epoch} | {summary}\")\n        # One epoch-average point per epoch (distinct, sparse series from the dense per-step curve). Logged at the\n        # epoch's final step so it merges with that step's record rather than starting a new one.\n        last_step = num_batches_per_epoch * (epoch + 1) - 1\n        epoch_log = {f\"train/{name}_epoch_avg\": m.avg for name, m in losses_m.items()}\n        if tb_writer is not None:\n            for name, val in epoch_log.items():\n                tb_writer.add_scalar(name, val, last_step)\n        if wb is not None:\n            wb.log({**epoch_log, \"epoch\": epoch}, step=last_step)",
+              "_comment": "Verbatim from https://github.com/mlfoundations/open_clip @ 602d4af — src/open_clip_train/train.py:343-525"
             }
           ]
         }

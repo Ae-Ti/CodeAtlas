@@ -221,6 +221,11 @@
       "chunk": "-",
       "title": "content 보강",
       "issue": "22개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 9건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -406,7 +411,16 @@
           "content": "두 계층 residual function",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-12 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p3-12 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "forward",
+              "startLine": 89,
+              "reason": "conv→bn→relu 두 계층을 지난 출력에 identity 를 더하는 residual function"
+            }
+          ]
         },
         {
           "chunkIndex": 12,
@@ -487,7 +501,16 @@
           "content": "Plain network 설계 규칙",
           "pageStart": 3,
           "pageEnd": 3,
-          "_comment": "노트 p3-17 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p3-17 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "_make_layer",
+              "startLine": 225,
+              "reason": "stride 로 feature map 을 줄이면서 채널을 2배로 늘리는 plain network 설계 규칙"
+            }
+          ]
         },
         {
           "chunkIndex": 17,
@@ -568,7 +591,16 @@
           "content": "“The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions.”\n\nResidual Network.\nBased on the above plain network, we insert shortcut connections (Fig. 3, right) which turn the network into its counterpart residual version.\nThe identity shortcuts (Eqn.(1)) can be directly used when the input and output are of the same dimensions (solid line shortcuts in Fig. 3).\nWhen the dimensions increase (dotted line shortcuts in Fig. 3), we consider two options:\n(A) The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions. This option introduces no extra parameter;\n(B) The projection shortcut in Eqn.(2) is used to match dimensions (done by 1 \\times 1 convolutions).\nFor both options, when the shortcuts go across feature maps of two sizes, they are performed with a stride of 2.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-22 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p4-22 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "__init__",
+              "startLine": 62,
+              "reason": "차원이 다를 때 downsample 로 shortcut 을 맞추는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 22,
@@ -631,7 +663,16 @@
           "content": "“We initialize the weights as in [13].”\n\nOur implementation for ImageNet follows the practice in Krizhevsky2012; Simonyan2015. The image is resized with its shorter side randomly sampled in [256,480] for scale augmentation Simonyan2015. A 224 \\times 224 crop is randomly sampled from an image or its horizontal flip, with the per-pixel mean subtracted Krizhevsky2012. The standard color augmentation in Krizhevsky2012 is used.\nWe adopt batch normalization (BN) Ioffe2015 right after each convolution and before activation, following Ioffe2015.\nWe initialize the weights as in He2015 and train all plain/residual nets from scratch.\nWe use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60\\times 10^{4} iterations. We use a weight decay of 0.0001 and a momentum of 0.9. We do not use dropout Hinton2012, following the practice in Ioffe2015.",
           "pageStart": 4,
           "pageEnd": 4,
-          "_comment": "노트 p4-27 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p4-27 / 판정 `MISSING-BUT-PROVIDED`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "__init__",
+              "startLine": 167,
+              "reason": "kaiming_normal_ 로 전체 conv 가중치를 초기화"
+            }
+          ]
         },
         {
           "chunkIndex": 27,
@@ -703,7 +744,16 @@
           "content": "공식 ResNet-101 prototxt의 conv4 block 이름은 다음 범위를 포함합니다.\n\n\n\n총 23개입니다.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-34 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p5-34 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "resnet101",
+              "startLine": 768,
+              "reason": "Bottleneck 을 [3,4,23,3] 으로 쌓는 ResNet-101 구성"
+            }
+          ]
         },
         {
           "chunkIndex": 34,
@@ -712,7 +762,16 @@
           "content": "공식 ResNet-152 prototxt에는 다음 stage들이 구현됩니다.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-35 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p5-35 / 판정 `DIRECT`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "resnet152",
+              "startLine": 800,
+              "reason": "Bottleneck 을 [3,8,36,3] 으로 쌓는 ResNet-152 구성"
+            }
+          ]
         },
         {
           "chunkIndex": 35,
@@ -721,7 +780,16 @@
           "content": "ResNet-18·34 basic block",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 p5-36 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p5-36 / 판정 `MISSING-BUT-PROVIDED`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "resnet18",
+              "startLine": 684,
+              "reason": "BasicBlock 을 [2,2,2,2] 로 쌓는 ResNet-18 구성"
+            }
+          ]
         },
         {
           "chunkIndex": 36,
@@ -730,7 +798,16 @@
           "content": "Option A·B·C",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-37 / 판정 `PARTIAL + 예상코드`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)"
+          "_comment": "노트 p6-37 / 판정 `PARTIAL + 예상코드`\n\n--- / content=구현 설명 (노트에 논문 인용 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "_make_layer",
+              "startLine": 225,
+              "reason": "shortcut 차원이 다를 때만 1x1 conv 를 두는 Option B 방식"
+            }
+          ]
         },
         {
           "chunkIndex": 37,
@@ -757,7 +834,16 @@
           "content": "“The 1×1 layers are responsible for reducing and then increasing dimensions.”\n\nDeeper Bottleneck Architectures. Next we describe our deeper nets for ImageNet. Because of concerns on the training time that we can afford, we modify the building block as a bottleneck design44\n 4\n \n \n \n Deeper non-bottleneck ResNets (e.g., Fig. 5 left) also gain accuracy from increased depth (as shown on CIFAR-10), but are not as economical as the bottleneck ResNets. So the usage of bottleneck designs is mainly due to practical considerations. We further note that the degradation problem of plain nets is also witnessed for the bottleneck designs..\nFor each residual function \\mathcal{F} , we use a stack of 3 layers instead of 2 (Fig. 5). The three layers are 1 \\times 1, 3 \\times 3, and 1 \\times 1 convolutions, where the 1 \\times 1 layers are responsible for reducing and then increasing (restoring) dimensions, leaving the 3 \\times 3 layer a bottleneck with smaller input/output dimensions.\nFig. 5 shows an example, where both designs have similar time complexity.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 p6-39 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)"
+          "_comment": "노트 p6-39 / 판정 `DIRECT`\n\n--- | 논문 원문 문단 보강 (ar5iv 1512.03385)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/pytorch/vision",
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "__init__",
+              "startLine": 117,
+              "reason": "1x1 로 차원을 줄이고 3x3 을 거친 뒤 1x1 로 다시 확장하는 구조"
+            }
+          ]
         },
         {
           "chunkIndex": 39,
@@ -1169,6 +1255,108 @@
               "endLine": 30,
               "codeContent": "layer {\n\tbottom: \"conv1\"\n\ttop: \"conv1\"\n\tname: \"bn_conv1\"\n\ttype: \"BatchNorm\"\n\tbatch_norm_param {\n\t\tuse_global_stats: true\n\t}\n}",
               "_comment": "Verbatim from https://github.com/KaimingHe/deep-residual-networks @ a7026cb — prototxt/ResNet-101-deploy.prototxt:22-30"
+            }
+          ]
+        },
+        {
+          "githubUrl": "https://github.com/pytorch/vision",
+          "ownerName": "pytorch",
+          "repositoryName": "vision",
+          "defaultBranch": "main",
+          "commitHash": "0fba2e84fe255a2fcd81bd0b10c74d7fca99a89f",
+          "licenseName": "BSD-3-Clause",
+          "primaryLanguage": "Python",
+          "starCount": 17857,
+          "relationType": "COMMUNITY",
+          "isPrimary": false,
+          "codeBlocks": [
+            {
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "BasicBlock",
+              "programmingLanguage": "Python",
+              "startLine": 89,
+              "endLine": 105,
+              "codeContent": "    def forward(self, x: Tensor) -> Tensor:\n        identity = x\n\n        out = self.conv1(x)\n        out = self.bn1(out)\n        out = self.relu(out)\n\n        out = self.conv2(out)\n        out = self.bn2(out)\n\n        if self.downsample is not None:\n            identity = self.downsample(x)\n\n        out += identity\n        out = self.relu(out)\n\n        return out",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:89-105"
+            },
+            {
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "_make_layer",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ResNet",
+              "programmingLanguage": "Python",
+              "startLine": 225,
+              "endLine": 264,
+              "codeContent": "    def _make_layer(\n        self,\n        block: type[Union[BasicBlock, Bottleneck]],\n        planes: int,\n        blocks: int,\n        stride: int = 1,\n        dilate: bool = False,\n    ) -> nn.Sequential:\n        norm_layer = self._norm_layer\n        downsample = None\n        previous_dilation = self.dilation\n        if dilate:\n            self.dilation *= stride\n            stride = 1\n        if stride != 1 or self.inplanes != planes * block.expansion:\n            downsample = nn.Sequential(\n                conv1x1(self.inplanes, planes * block.expansion, stride),\n                norm_layer(planes * block.expansion),\n            )\n\n        layers = []\n        layers.append(\n            block(\n                self.inplanes, planes, stride, downsample, self.groups, self.base_width, previous_dilation, norm_layer\n            )\n        )\n        self.inplanes = planes * block.expansion\n        for _ in range(1, blocks):\n            layers.append(\n                block(\n                    self.inplanes,\n                    planes,\n                    groups=self.groups,\n                    base_width=self.base_width,\n                    dilation=self.dilation,\n                    norm_layer=norm_layer,\n                )\n            )\n\n        return nn.Sequential(*layers)",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:225-264"
+            },
+            {
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "BasicBlock",
+              "programmingLanguage": "Python",
+              "startLine": 62,
+              "endLine": 87,
+              "codeContent": "    def __init__(\n        self,\n        inplanes: int,\n        planes: int,\n        stride: int = 1,\n        downsample: Optional[nn.Module] = None,\n        groups: int = 1,\n        base_width: int = 64,\n        dilation: int = 1,\n        norm_layer: Optional[Callable[..., nn.Module]] = None,\n    ) -> None:\n        super().__init__()\n        if norm_layer is None:\n            norm_layer = nn.BatchNorm2d\n        if groups != 1 or base_width != 64:\n            raise ValueError(\"BasicBlock only supports groups=1 and base_width=64\")\n        if dilation > 1:\n            raise NotImplementedError(\"Dilation > 1 not supported in BasicBlock\")\n        # Both self.conv1 and self.downsample layers downsample the input when stride != 1\n        self.conv1 = conv3x3(inplanes, planes, stride)\n        self.bn1 = norm_layer(planes)\n        self.relu = nn.ReLU(inplace=True)\n        self.conv2 = conv3x3(planes, planes)\n        self.bn2 = norm_layer(planes)\n        self.downsample = downsample\n        self.stride = stride",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:62-87"
+            },
+            {
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ResNet",
+              "programmingLanguage": "Python",
+              "startLine": 167,
+              "endLine": 223,
+              "codeContent": "    def __init__(\n        self,\n        block: type[Union[BasicBlock, Bottleneck]],\n        layers: list[int],\n        num_classes: int = 1000,\n        zero_init_residual: bool = False,\n        groups: int = 1,\n        width_per_group: int = 64,\n        replace_stride_with_dilation: Optional[list[bool]] = None,\n        norm_layer: Optional[Callable[..., nn.Module]] = None,\n    ) -> None:\n        super().__init__()\n        _log_api_usage_once(self)\n        if norm_layer is None:\n            norm_layer = nn.BatchNorm2d\n        self._norm_layer = norm_layer\n\n        self.inplanes = 64\n        self.dilation = 1\n        if replace_stride_with_dilation is None:\n            # each element in the tuple indicates if we should replace\n            # the 2x2 stride with a dilated convolution instead\n            replace_stride_with_dilation = [False, False, False]\n        if len(replace_stride_with_dilation) != 3:\n            raise ValueError(\n                \"replace_stride_with_dilation should be None \"\n                f\"or a 3-element tuple, got {replace_stride_with_dilation}\"\n            )\n        self.groups = groups\n        self.base_width = width_per_group\n        self.conv1 = nn.Conv2d(3, self.inplanes, kernel_size=7, stride=2, padding=3, bias=False)\n        self.bn1 = norm_layer(self.inplanes)\n        self.relu = nn.ReLU(inplace=True)\n        self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)\n        self.layer1 = self._make_layer(block, 64, layers[0])\n        self.layer2 = self._make_layer(block, 128, layers[1], stride=2, dilate=replace_stride_with_dilation[0])\n        self.layer3 = self._make_layer(block, 256, layers[2], stride=2, dilate=replace_stride_with_dilation[1])\n        self.layer4 = self._make_layer(block, 512, layers[3], stride=2, dilate=replace_stride_with_dilation[2])\n        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))\n        self.fc = nn.Linear(512 * block.expansion, num_classes)\n\n        for m in self.modules():\n            if isinstance(m, nn.Conv2d):\n                nn.init.kaiming_normal_(m.weight, mode=\"fan_out\", nonlinearity=\"relu\")\n            elif isinstance(m, (nn.BatchNorm2d, nn.GroupNorm)):\n                nn.init.constant_(m.weight, 1)\n                nn.init.constant_(m.bias, 0)\n\n        # Zero-initialize the last BN in each residual branch,\n        # so that the residual branch starts with zeros, and each residual block behaves like an identity.\n        # This improves the model by 0.2~0.3% according to https://arxiv.org/abs/1706.02677\n        if zero_init_residual:\n            for m in self.modules():\n                if isinstance(m, Bottleneck) and m.bn3.weight is not None:\n                    nn.init.constant_(m.bn3.weight, 0)  # type: ignore[arg-type]\n                elif isinstance(m, BasicBlock) and m.bn2.weight is not None:\n                    nn.init.constant_(m.bn2.weight, 0)  # type: ignore[arg-type]",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:167-223"
+            },
+            {
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "resnet101",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 768,
+              "endLine": 795,
+              "codeContent": "def resnet101(*, weights: Optional[ResNet101_Weights] = None, progress: bool = True, **kwargs: Any) -> ResNet:\n    \"\"\"ResNet-101 from `Deep Residual Learning for Image Recognition <https://arxiv.org/abs/1512.03385>`__.\n\n    .. note::\n       The bottleneck of TorchVision places the stride for downsampling to the second 3x3\n       convolution while the original paper places it to the first 1x1 convolution.\n       This variant improves the accuracy and is known as `ResNet V1.5\n       <https://ngc.nvidia.com/catalog/model-scripts/nvidia:resnet_50_v1_5_for_pytorch>`_.\n\n    Args:\n        weights (:class:`~torchvision.models.ResNet101_Weights`, optional): The\n            pretrained weights to use. See\n            :class:`~torchvision.models.ResNet101_Weights` below for\n            more details, and possible values. By default, no pre-trained\n            weights are used.\n        progress (bool, optional): If True, displays a progress bar of the\n            download to stderr. Default is True.\n        **kwargs: parameters passed to the ``torchvision.models.resnet.ResNet``\n            base class. Please refer to the `source code\n            <https://github.com/pytorch/vision/blob/main/torchvision/models/resnet.py>`_\n            for more details about this class.\n\n    .. autoclass:: torchvision.models.ResNet101_Weights\n        :members:\n    \"\"\"\n    weights = ResNet101_Weights.verify(weights)\n\n    return _resnet(Bottleneck, [3, 4, 23, 3], weights, progress, **kwargs)",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:768-795"
+            },
+            {
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "resnet152",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 800,
+              "endLine": 827,
+              "codeContent": "def resnet152(*, weights: Optional[ResNet152_Weights] = None, progress: bool = True, **kwargs: Any) -> ResNet:\n    \"\"\"ResNet-152 from `Deep Residual Learning for Image Recognition <https://arxiv.org/abs/1512.03385>`__.\n\n    .. note::\n       The bottleneck of TorchVision places the stride for downsampling to the second 3x3\n       convolution while the original paper places it to the first 1x1 convolution.\n       This variant improves the accuracy and is known as `ResNet V1.5\n       <https://ngc.nvidia.com/catalog/model-scripts/nvidia:resnet_50_v1_5_for_pytorch>`_.\n\n    Args:\n        weights (:class:`~torchvision.models.ResNet152_Weights`, optional): The\n            pretrained weights to use. See\n            :class:`~torchvision.models.ResNet152_Weights` below for\n            more details, and possible values. By default, no pre-trained\n            weights are used.\n        progress (bool, optional): If True, displays a progress bar of the\n            download to stderr. Default is True.\n        **kwargs: parameters passed to the ``torchvision.models.resnet.ResNet``\n            base class. Please refer to the `source code\n            <https://github.com/pytorch/vision/blob/main/torchvision/models/resnet.py>`_\n            for more details about this class.\n\n    .. autoclass:: torchvision.models.ResNet152_Weights\n        :members:\n    \"\"\"\n    weights = ResNet152_Weights.verify(weights)\n\n    return _resnet(Bottleneck, [3, 8, 36, 3], weights, progress, **kwargs)",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:800-827"
+            },
+            {
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "resnet18",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 684,
+              "endLine": 705,
+              "codeContent": "def resnet18(*, weights: Optional[ResNet18_Weights] = None, progress: bool = True, **kwargs: Any) -> ResNet:\n    \"\"\"ResNet-18 from `Deep Residual Learning for Image Recognition <https://arxiv.org/abs/1512.03385>`__.\n\n    Args:\n        weights (:class:`~torchvision.models.ResNet18_Weights`, optional): The\n            pretrained weights to use. See\n            :class:`~torchvision.models.ResNet18_Weights` below for\n            more details, and possible values. By default, no pre-trained\n            weights are used.\n        progress (bool, optional): If True, displays a progress bar of the\n            download to stderr. Default is True.\n        **kwargs: parameters passed to the ``torchvision.models.resnet.ResNet``\n            base class. Please refer to the `source code\n            <https://github.com/pytorch/vision/blob/main/torchvision/models/resnet.py>`_\n            for more details about this class.\n\n    .. autoclass:: torchvision.models.ResNet18_Weights\n        :members:\n    \"\"\"\n    weights = ResNet18_Weights.verify(weights)\n\n    return _resnet(BasicBlock, [2, 2, 2, 2], weights, progress, **kwargs)",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:684-705"
+            },
+            {
+              "filePath": "torchvision/models/resnet.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Bottleneck",
+              "programmingLanguage": "Python",
+              "startLine": 117,
+              "endLine": 141,
+              "codeContent": "    def __init__(\n        self,\n        inplanes: int,\n        planes: int,\n        stride: int = 1,\n        downsample: Optional[nn.Module] = None,\n        groups: int = 1,\n        base_width: int = 64,\n        dilation: int = 1,\n        norm_layer: Optional[Callable[..., nn.Module]] = None,\n    ) -> None:\n        super().__init__()\n        if norm_layer is None:\n            norm_layer = nn.BatchNorm2d\n        width = int(planes * (base_width / 64.0)) * groups\n        # Both self.conv2 and self.downsample layers downsample the input when stride != 1\n        self.conv1 = conv1x1(inplanes, width)\n        self.bn1 = norm_layer(width)\n        self.conv2 = conv3x3(width, width, stride, groups, dilation)\n        self.bn2 = norm_layer(width)\n        self.conv3 = conv1x1(width, planes * self.expansion)\n        self.bn3 = norm_layer(planes * self.expansion)\n        self.relu = nn.ReLU(inplace=True)\n        self.downsample = downsample\n        self.stride = stride",
+              "_comment": "Verbatim from https://github.com/pytorch/vision @ 0fba2e8 — torchvision/models/resnet.py:117-141"
             }
           ]
         }

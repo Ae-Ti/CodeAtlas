@@ -41,6 +41,11 @@
       "chunk": "-",
       "title": "content 보강",
       "issue": "8개 chunk 는 노트 인용문·절 번호 어느 쪽으로도 논문 원문을 특정하지 못해 노트 설명을 그대로 둠"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 7건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -316,7 +321,16 @@
           "content": "We use the GELU activation function.",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 15"
+          "_comment": "노트 15",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "gelu",
+              "startLine": 264,
+              "reason": "tanh 근사식으로 GELU 를 구현한 함수"
+            }
+          ]
         },
         {
           "chunkIndex": 15,
@@ -415,7 +429,16 @@
           "content": "The objective is to predict the original vocabulary ID of the masked token.\n\nIn this paper, we improve the fine-tuning based approaches by proposing BERT: Bidirectional Encoder Representations from Transformers. BERT alleviates the previously mentioned unidirectionality constraint by using a “masked language model” (MLM) pre-training objective, inspired by the Cloze task Taylor 1953. The masked language model randomly masks some of the tokens from the input, and the objective is to predict the original vocabulary id of the masked word based only on its context. Unlike left-to-right language model pre-training, the MLM objective enables the representation to fuse the left and the right context, which allows us to pre-train a deep bidirectional Transformer. In addition to the masked language model, we also use a “next sentence prediction” task that jointly pre-trains text-pair representations. The contributions of our paper are as follows:",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "노트 21 | 논문 원문 문단 보강 (ar5iv 1810.04805)"
+          "_comment": "노트 21 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "create_pretraining_data.py",
+              "symbolName": "create_masked_lm_predictions",
+              "startLine": 342,
+              "reason": "토큰을 15% 확률로 골라 [MASK]·랜덤·원본으로 바꾸고 정답 라벨을 남기는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 21,
@@ -478,7 +501,16 @@
           "content": "The objective is to maximize the log likelihood of the correct token.",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 25"
+          "_comment": "노트 25",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_pretraining.py",
+              "symbolName": "get_masked_lm_output",
+              "startLine": 240,
+              "reason": "마스킹된 위치의 출력으로 log softmax 를 취해 MLM 손실을 계산"
+            }
+          ]
         },
         {
           "chunkIndex": 25,
@@ -523,7 +555,16 @@
           "content": "We use two model sizes: BERT_BASE and BERT_LARGE.\n\nBERT_BASE: L=12, H=768, A=12\n\nBERT_LARGE: L=24, H=1024, A=16\n\nIn this work, we denote the number of layers (i.e., Transformer blocks) as L , the hidden size as H , and the number of self-attention heads as A .33\n 3\n \n \n \n In all cases we set the feed-forward/filter size to be 4H , i.e., 3072 for the H=768 and 4096 for the H=1024 . We primarily report results on two model sizes: BERT {}_{\\textsc{BASE}} (L=12, H=768, A=12, Total Parameters=110M) and BERT {}_{\\textsc{LARGE}} (L=24, H=1024, A=16, Total Parameters=340M).",
           "pageStart": 6,
           "pageEnd": 6,
-          "_comment": "노트 28 | 논문 원문 문단 보강 (ar5iv 1810.04805)"
+          "_comment": "노트 28 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "modeling.py",
+              "symbolName": "BertConfig",
+              "startLine": 31,
+              "reason": "hidden_size·num_hidden_layers·num_attention_heads 로 Base/Large 를 구분하는 설정 클래스"
+            }
+          ]
         },
         {
           "chunkIndex": 28,
@@ -622,7 +663,16 @@
           "content": "The fine-tuning procedure introduces only minimal changes compared to pre-training.\n\nIn this section, we present BERT fine-tuning results on 11 NLP tasks.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "노트 34 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)"
+          "_comment": "노트 34 | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_classifier.py",
+              "symbolName": "create_model",
+              "startLine": 574,
+              "reason": "[CLS] pooled output 에 분류층을 얹고 cross entropy 손실을 계산"
+            }
+          ]
         },
         {
           "chunkIndex": 34,
@@ -631,7 +681,16 @@
           "content": "The task is to predict the start and end token positions of the answer span.\n\nThe Stanford Question Answering Dataset (SQuAD v1.1) is a collection of 100k crowdsourced question/answer pairs Rajpurkar et al. 2016. Given a question and a passage from Wikipedia containing the answer, the task is to predict the answer text span in the passage.",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "노트 35 | 논문 원문 문단 보강 (ar5iv 1810.04805)"
+          "_comment": "노트 35 | 논문 원문 문단 보강 (ar5iv 1810.04805)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_squad.py",
+              "symbolName": "create_model",
+              "startLine": 550,
+              "reason": "sequence output 에서 start/end logit 을 뽑는 SQuAD 파인튜닝 헤드"
+            }
+          ]
         },
         {
           "chunkIndex": 35,
@@ -658,7 +717,16 @@
           "content": "```\nRaw Text\n\n↓\n\ncreate_pretraining_data.py\n\n↓\n\nTFRecord Dataset\n\n↓\n\nrun_pretraining.py\n\n↓\n\nBERT Model\n\n↓\n\nMLM + NSP Loss\n\n↓\n\nAdam Optimizer\n\n↓\n\nCheckpoint\n```\n\n---\n\nWe introduce BERT and its detailed implementation in this section. There are two steps in our framework: pre-training and fine-tuning.\nDuring pre-training, the model is trained on unlabeled data over different pre-training tasks.\nFor fine-tuning, the BERT model is first initialized with the pre-trained parameters, and all of the parameters are fine-tuned using labeled data from the downstream tasks.\nEach downstream task has separate fine-tuned models, even though they\nare initialized with the same pre-trained parameters. The question-answering example in Figure 1 will serve as a running example for this section.",
           "pageStart": 5,
           "pageEnd": 6,
-          "_comment": "노트 37 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)"
+          "_comment": "노트 37 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 1810.04805, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/bert",
+              "filePath": "run_pretraining.py",
+              "symbolName": "main",
+              "startLine": 406,
+              "reason": "MLM 과 NSP 를 함께 도는 사전학습 전체 실행 경로"
+            }
+          ]
         }
       ],
       "repositories": [
@@ -838,6 +906,39 @@
               "endLine": 587,
               "codeContent": "def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,\n                 use_one_hot_embeddings):\n  \"\"\"Creates a classification model.\"\"\"\n  model = modeling.BertModel(\n      config=bert_config,\n      is_training=is_training,\n      input_ids=input_ids,\n      input_mask=input_mask,\n      token_type_ids=segment_ids,\n      use_one_hot_embeddings=use_one_hot_embeddings)\n\n  final_hidden = model.get_sequence_output()\n\n  final_hidden_shape = modeling.get_shape_list(final_hidden, expected_rank=3)\n  batch_size = final_hidden_shape[0]\n  seq_length = final_hidden_shape[1]\n  hidden_size = final_hidden_shape[2]\n\n  output_weights = tf.get_variable(\n      \"cls/squad/output_weights\", [2, hidden_size],\n      initializer=tf.truncated_normal_initializer(stddev=0.02))\n\n  output_bias = tf.get_variable(\n      \"cls/squad/output_bias\", [2], initializer=tf.zeros_initializer())\n\n  final_hidden_matrix = tf.reshape(final_hidden,\n                                   [batch_size * seq_length, hidden_size])\n  logits = tf.matmul(final_hidden_matrix, output_weights, transpose_b=True)\n  logits = tf.nn.bias_add(logits, output_bias)\n\n  logits = tf.reshape(logits, [batch_size, seq_length, 2])\n  logits = tf.transpose(logits, [2, 0, 1])\n\n  unstacked_logits = tf.unstack(logits, axis=0)\n\n  (start_logits, end_logits) = (unstacked_logits[0], unstacked_logits[1])\n\n  return (start_logits, end_logits)",
               "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — run_squad.py:550-587"
+            },
+            {
+              "filePath": "modeling.py",
+              "symbolName": "gelu",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 264,
+              "endLine": 277,
+              "codeContent": "def gelu(x):\n  \"\"\"Gaussian Error Linear Unit.\n\n  This is a smoother version of the RELU.\n  Original paper: https://arxiv.org/abs/1606.08415\n  Args:\n    x: float Tensor to perform activation.\n\n  Returns:\n    `x` with the GELU activation applied.\n  \"\"\"\n  cdf = 0.5 * (1.0 + tf.tanh(\n      (np.sqrt(2 / np.pi) * (x + 0.044715 * tf.pow(x, 3)))))\n  return x * cdf",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:264-277"
+            },
+            {
+              "filePath": "modeling.py",
+              "symbolName": "BertConfig",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 31,
+              "endLine": 104,
+              "codeContent": "class BertConfig(object):\n  \"\"\"Configuration for `BertModel`.\"\"\"\n\n  def __init__(self,\n               vocab_size,\n               hidden_size=768,\n               num_hidden_layers=12,\n               num_attention_heads=12,\n               intermediate_size=3072,\n               hidden_act=\"gelu\",\n               hidden_dropout_prob=0.1,\n               attention_probs_dropout_prob=0.1,\n               max_position_embeddings=512,\n               type_vocab_size=16,\n               initializer_range=0.02):\n    \"\"\"Constructs BertConfig.\n\n    Args:\n      vocab_size: Vocabulary size of `inputs_ids` in `BertModel`.\n      hidden_size: Size of the encoder layers and the pooler layer.\n      num_hidden_layers: Number of hidden layers in the Transformer encoder.\n      num_attention_heads: Number of attention heads for each attention layer in\n        the Transformer encoder.\n      intermediate_size: The size of the \"intermediate\" (i.e., feed-forward)\n        layer in the Transformer encoder.\n      hidden_act: The non-linear activation function (function or string) in the\n        encoder and pooler.\n      hidden_dropout_prob: The dropout probability for all fully connected\n        layers in the embeddings, encoder, and pooler.\n      attention_probs_dropout_prob: The dropout ratio for the attention\n        probabilities.\n      max_position_embeddings: The maximum sequence length that this model might\n        ever be used with. Typically set this to something large just in case\n        (e.g., 512 or 1024 or 2048).\n      type_vocab_size: The vocabulary size of the `token_type_ids` passed into\n        `BertModel`.\n      initializer_range: The stdev of the truncated_normal_initializer for\n        initializing all weight matrices.\n    \"\"\"\n    self.vocab_size = vocab_size\n    self.hidden_size = hidden_size\n    self.num_hidden_layers = num_hidden_layers\n    self.num_attention_heads = num_attention_heads\n    self.hidden_act = hidden_act\n    self.intermediate_size = intermediate_size\n    self.hidden_dropout_prob = hidden_dropout_prob\n    self.attention_probs_dropout_prob = attention_probs_dropout_prob\n    self.max_position_embeddings = max_position_embeddings\n    self.type_vocab_size = type_vocab_size\n    self.initializer_range = initializer_range\n\n  @classmethod\n  def from_dict(cls, json_object):\n    \"\"\"Constructs a `BertConfig` from a Python dictionary of parameters.\"\"\"\n    config = BertConfig(vocab_size=None)\n    for (key, value) in six.iteritems(json_object):\n      config.__dict__[key] = value\n    return config\n\n  @classmethod\n  def from_json_file(cls, json_file):\n    \"\"\"Constructs a `BertConfig` from a json file of parameters.\"\"\"\n    with tf.gfile.GFile(json_file, \"r\") as reader:\n      text = reader.read()\n    return cls.from_dict(json.loads(text))\n\n  def to_dict(self):\n    \"\"\"Serializes this instance to a Python dictionary.\"\"\"\n    output = copy.deepcopy(self.__dict__)\n    return output\n\n  def to_json_string(self):\n    \"\"\"Serializes this instance to a JSON string.\"\"\"\n    return json.dumps(self.to_dict(), indent=2, sort_keys=True) + \"\\n\"",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — modeling.py:31-104"
+            },
+            {
+              "filePath": "run_pretraining.py",
+              "symbolName": "main",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 406,
+              "endLine": 486,
+              "codeContent": "def main(_):\n  tf.logging.set_verbosity(tf.logging.INFO)\n\n  if not FLAGS.do_train and not FLAGS.do_eval:\n    raise ValueError(\"At least one of `do_train` or `do_eval` must be True.\")\n\n  bert_config = modeling.BertConfig.from_json_file(FLAGS.bert_config_file)\n\n  tf.gfile.MakeDirs(FLAGS.output_dir)\n\n  input_files = []\n  for input_pattern in FLAGS.input_file.split(\",\"):\n    input_files.extend(tf.gfile.Glob(input_pattern))\n\n  tf.logging.info(\"*** Input Files ***\")\n  for input_file in input_files:\n    tf.logging.info(\"  %s\" % input_file)\n\n  tpu_cluster_resolver = None\n  if FLAGS.use_tpu and FLAGS.tpu_name:\n    tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(\n        FLAGS.tpu_name, zone=FLAGS.tpu_zone, project=FLAGS.gcp_project)\n\n  is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2\n  run_config = tf.contrib.tpu.RunConfig(\n      cluster=tpu_cluster_resolver,\n      master=FLAGS.master,\n      model_dir=FLAGS.output_dir,\n      save_checkpoints_steps=FLAGS.save_checkpoints_steps,\n      tpu_config=tf.contrib.tpu.TPUConfig(\n          iterations_per_loop=FLAGS.iterations_per_loop,\n          num_shards=FLAGS.num_tpu_cores,\n          per_host_input_for_training=is_per_host))\n\n  model_fn = model_fn_builder(\n      bert_config=bert_config,\n      init_checkpoint=FLAGS.init_checkpoint,\n      learning_rate=FLAGS.learning_rate,\n      num_train_steps=FLAGS.num_train_steps,\n      num_warmup_steps=FLAGS.num_warmup_steps,\n      use_tpu=FLAGS.use_tpu,\n      use_one_hot_embeddings=FLAGS.use_tpu)\n\n  # If TPU is not available, this will fall back to normal Estimator on CPU\n  # or GPU.\n  estimator = tf.contrib.tpu.TPUEstimator(\n      use_tpu=FLAGS.use_tpu,\n      model_fn=model_fn,\n      config=run_config,\n      train_batch_size=FLAGS.train_batch_size,\n      eval_batch_size=FLAGS.eval_batch_size)\n\n  if FLAGS.do_train:\n    tf.logging.info(\"***** Running training *****\")\n    tf.logging.info(\"  Batch size = %d\", FLAGS.train_batch_size)\n    train_input_fn = input_fn_builder(\n        input_files=input_files,\n        max_seq_length=FLAGS.max_seq_length,\n        max_predictions_per_seq=FLAGS.max_predictions_per_seq,\n        is_training=True)\n    estimator.train(input_fn=train_input_fn, max_steps=FLAGS.num_train_steps)\n\n  if FLAGS.do_eval:\n    tf.logging.info(\"***** Running evaluation *****\")\n    tf.logging.info(\"  Batch size = %d\", FLAGS.eval_batch_size)\n\n    eval_input_fn = input_fn_builder(\n        input_files=input_files,\n        max_seq_length=FLAGS.max_seq_length,\n        max_predictions_per_seq=FLAGS.max_predictions_per_seq,\n        is_training=False)\n\n    result = estimator.evaluate(\n        input_fn=eval_input_fn, steps=FLAGS.max_eval_steps)\n\n    output_eval_file = os.path.join(FLAGS.output_dir, \"eval_results.txt\")\n    with tf.gfile.GFile(output_eval_file, \"w\") as writer:\n      tf.logging.info(\"***** Eval results *****\")\n      for key in sorted(result.keys()):\n        tf.logging.info(\"  %s = %s\", key, str(result[key]))\n        writer.write(\"%s = %s\\n\" % (key, str(result[key])))",
+              "_comment": "Verbatim from https://github.com/google-research/bert @ eedf571 — run_pretraining.py:406-486"
             }
           ]
         }
