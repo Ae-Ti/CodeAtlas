@@ -6,7 +6,8 @@ DB surrogate ID 는 적재 순서·이력에 따라 달라져서 깨끗한 DB �
 평가 직전 이 스크립트로 eval_retrieval.py 가 받는 (chunk_id, code_block_id) CSV 를 만듭니다.
 
     # 커밋용 안정 키 정답셋 생성 (ingest JSON 만 있으면 됨, DB 불필요)
-    python3 scripts/note2ingest/eval_set_tool.py export
+    python3 scripts/note2ingest/eval_set_tool.py export              # 대안 정답 포함 (multi-gold)
+    python3 scripts/note2ingest/eval_set_tool.py export --top1-only  # chunk 당 1개만
 
     # 평가 직전 현재 DB 기준 ID CSV 로 변환
     python3 scripts/note2ingest/eval_set_tool.py resolve database/eval_set_bert.csv /tmp/bert_ids.csv
@@ -25,13 +26,16 @@ DB = os.path.join(ROOT, 'database')
 COLS = ['arxiv_id', 'chunk_index', 'github_url', 'file_path', 'symbol_name', 'start_line']
 
 
-def export():
+def export(top1_only=False):
     for path in sorted(glob.glob(os.path.join(ING, '*_ingest.json'))):
         doc = json.load(open(path, encoding='utf-8'))
         p = doc['papers'][0]
         rows = []
         for c in p['chunks']:
-            for m in (c.get('mappedCode') or [])[:1]:      # Top-1 만 (eval_retrieval 기본값과 동일)
+            # mappedCode 전체를 내보냅니다. 맨 앞이 Top-1 이고 나머지는 대안 정답인데,
+            # 한 단락이 두 코드에 대응하는 건 실제 사실이라 하나만 남기면 제품을
+            # 실제보다 나쁘게 재게 됩니다. 단일 정답으로 재려면 --top1-only 를 쓰세요.
+            for m in (c.get('mappedCode') or [])[:1 if top1_only else None]:
                 rows.append([p['arxivId'], c['chunkIndex'], m['githubUrl'], m['filePath'],
                              m['symbolName'] or '', m['startLine'] if m['startLine'] is not None else ''])
         name = os.path.basename(path).replace('_ingest.json', '')
@@ -83,7 +87,7 @@ def resolve(src, dst):
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'export':
-        export()
+        export(top1_only='--top1-only' in sys.argv)
     elif len(sys.argv) == 4 and sys.argv[1] == 'resolve':
         resolve(sys.argv[2], sys.argv[3])
     else:

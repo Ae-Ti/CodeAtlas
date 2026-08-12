@@ -17,6 +17,7 @@ arxiv_id,chunk_index,github_url,file_path,symbol_name,start_line
 1506.02640,18,https://github.com/pjreddie/darknet,src/detection_layer.c,make_detection_layer,14
 1506.02640,19,https://github.com/pjreddie/darknet,src/detection_layer.c,get_detection_detections,225
 1506.02640,20,https://github.com/pjreddie/darknet,src/detection_layer.c,make_detection_layer,14
+1506.02640,20,https://github.com/pjreddie/darknet,cfg/yolov1.cfg,detection[32],247
 1506.02640,21,https://github.com/pjreddie/darknet,cfg/yolov1.cfg,local[29],233
 1506.02640,22,https://github.com/pjreddie/darknet,cfg/tiny.cfg,convolutional[1],26
 1506.02640,23,https://github.com/pjreddie/darknet,cfg/yolov1.cfg,net[0],1

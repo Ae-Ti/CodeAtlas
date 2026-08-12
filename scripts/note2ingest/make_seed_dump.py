@@ -20,6 +20,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'database', 'seed_dump.sql')
+MANIFEST = os.path.join(ROOT, 'database', 'seed_manifest.csv')
 
 TABLES = [
     ('papers', 'id, title, abstract, arxiv_id, doi, pdf_url, source_url, published_date, '
@@ -70,6 +71,47 @@ def dump_table(table, cols, with_emb):
             f'INSERT INTO {table} ({cols}) OVERRIDING SYSTEM VALUE VALUES\n{body};\n')
 
 
+def dump_manifest():
+    """seed_manifest.csv 도 같은 DB 에서 뜹니다.
+
+    이전에는 ingest JSON 을 읽어 따로 만들었는데, 정답 재지정으로 블록이 늘었을 때
+    매니페스트만 옛 숫자로 남는 표류가 생겼습니다(pytorch/vision 17 vs 실제 18).
+    덤프와 같은 원본에서 같은 시점에 뜨면 어긋날 수가 없습니다.
+    """
+    rows = psql("""
+        SELECT concat_ws(E'\t', p.arxiv_id, p.title, p.published_date, p.pdf_url,
+                 replace(r.github_url, 'https://github.com/', ''),
+                 coalesce(r.license_name, ''), coalesce(r.commit_hash, ''),
+                 pr.relation_type, CASE WHEN pr.is_primary THEN 'Y' ELSE 'N' END,
+                 (SELECT count(*) FROM code_blocks cb WHERE cb.repository_id = r.id))
+        FROM papers p
+        JOIN paper_repositories pr ON pr.paper_id = p.id
+        JOIN repositories r ON r.id = pr.repository_id
+        ORDER BY p.arxiv_id, r.github_url""")
+    import csv
+    import glob
+    import json
+    # 노트 파일명만은 DB 에 없으므로 ingest JSON 에서 가져옵니다. 이 값은 DB 상태와
+    # 무관하게 고정이라 표류 대상이 아닙니다.
+    note = {}
+    ing = os.environ.get('CODEATLAS_INGEST_DIR') or os.path.join(ROOT, 'database', 'ingest')
+    for f in glob.glob(os.path.join(ing, '*_ingest.json')):
+        d = json.load(open(f, encoding='utf-8'))
+        note[d['papers'][0]['arxivId']] = d.get('_sourceMarkdown', '')
+    with open(MANIFEST, 'w', newline='', encoding='utf-8') as f:
+        w = csv.writer(f)
+        w.writerow(['arxiv_id', 'title', 'published_date', 'pdf_url', 'github_repo',
+                    'license', 'commit_hash', 'relation_type', 'is_primary', 'code_blocks',
+                    'source_note'])
+        n = 0
+        for line in rows.splitlines():
+            if line.strip():
+                cells = line.split('\t')
+                w.writerow(cells + [note.get(cells[0], '')])
+                n += 1
+    print(f'{MANIFEST} — {n}행 (DB 실측)')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--with-embeddings', action='store_true',
@@ -110,6 +152,7 @@ def main():
         f.write('\n'.join(head) + ''.join(body) + '\n'.join(tail))
     size = os.path.getsize(OUT)
     print(f'{OUT} — {size/1024:.0f} KB')
+    dump_manifest()
     for t, _ in TABLES:
         print(f'   {t:24} {counts[t]:5}행')
 
