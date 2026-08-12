@@ -194,7 +194,7 @@ qwen3는 reasoning 모델이라 응답에 `<think>...</think>` 블록이 섞여 
 ## 테스트
 
 ```bash
-./mvnw test        # DB/Ollama 없이 전부 통과 (30개)
+./mvnw test        # DB/Ollama 없이 전부 통과 (32개)
 ```
 
 인프라가 필요한 통합 확인은 `../scripts/smoke.sh`로 합니다.
