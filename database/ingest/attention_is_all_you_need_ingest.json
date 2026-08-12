@@ -1,6 +1,6 @@
 {
   "_comment": "Generated from uploaded markdown. Content and included codeContent are copied verbatim from the uploaded document. Expected-code blocks, blocks without document-backed filePath, non-code fenced text, and duplicate natural keys without startLine were excluded from ingest codeBlocks/mappedCode and recorded in _unresolved. [2026-08-08 갱신] abstract·authors를 arXiv 원본으로 채움. codeBlocks는 저장소 원문(@132907d)으로 교체하고 실제 startLine/endLine을 부여함 — 업로드 마크다운의 코드는 재포맷된 상태였음. MultiHeadAttention.forward를 가리키던 블록 2건은 자연키가 같아 1건으로 병합(14→13). [2026-08-08 갱신2] chunk content에 논문 원문 문단을 덧붙이고(ar5iv 1706.03762), sectionTitle을 논문 실제 섹션명으로 교체, 기존 한국어 제목은 subsectionTitle로 이동. [§4] 리프 심볼 기준으로 codeBlocks 재구성(33개) — 같은 파일에서 부모·자식을 동시에 인덱싱하지 않음. Transformer/MultiHeadAttention/ScheduledOptim 클래스 블록은 자식 메서드로 대체하고 정답을 재지정. 매핑 대상 chunk를 9개 → 43개로 확대.",
-  "_sourceMarkdown": "/Users/ungsik/Downloads/Attention is All You Need 3b30f4e8fef78046bd59ef71457d418f.md",
+  "_sourceMarkdown": "Attention is All You Need 3b30f4e8fef78046bd59ef71457d418f.md",
   "_unresolved": [
     {
       "section": 2,
@@ -481,6 +481,21 @@
       "title": "Xavier parameter initialization",
       "docLine": 3059,
       "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+    },
+    {
+      "chunk": "-",
+      "title": "잔여 누락",
+      "issue": "쪽 미확정 0건 / 논문 원문 미보강 1건 (논문에 대응 서술이 없는 항목)"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 7건을 참조 구현/추가 심볼로 매핑"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 2건을 참조 구현/추가 심볼로 매핑"
     }
   ],
   "papers": [
@@ -977,7 +992,16 @@
           "content": "> “A learned linear transformation and softmax … to predicted next-token probabilities.”\n>\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "Source markdown section 26 at line 1369; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
+          "_comment": "Source markdown section 26 at line 1369; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax.",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 131,
+              "reason": "trg_word_prj 로 decoder 출력을 vocabulary 로 사영"
+            }
+          ]
         },
         {
           "chunkIndex": 26,
@@ -1004,7 +1028,16 @@
           "content": "논문은 source·target embedding과 pre-softmax matrix 모두 같은 vocabulary에서 공유합니다.\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 5,
           "pageEnd": 5,
-          "_comment": "Source markdown section 28 at line 1436; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
+          "_comment": "Source markdown section 28 at line 1436; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax.",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "__init__",
+              "startLine": 131,
+              "reason": "emb_src_trg_weight_sharing 으로 source·target embedding 을 공유"
+            }
+          ]
         },
         {
           "chunkIndex": 28,
@@ -1137,7 +1170,16 @@
           "content": "> “Each training batch contained approximately 25000 source tokens and 25000 target tokens.”\n>\n\nWe trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million sentence pairs. Sentences were encoded using byte-pair encoding [3], which has a shared source-target vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT 2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece vocabulary [38]. Sentence pairs were batched together by approximate sequence length. Each training batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000 target tokens.",
           "pageStart": 7,
           "pageEnd": 7,
-          "_comment": "Source markdown section 36 at line 1807; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.1 Training Data and Batching."
+          "_comment": "Source markdown section 36 at line 1807; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §5.1 Training Data and Batching.",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "train.py",
+              "symbolName": "prepare_dataloaders_from_bpe_files",
+              "startLine": 305,
+              "reason": "batch size 로 토큰 수를 맞춰 배치를 만드는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 36,
@@ -1338,7 +1380,16 @@
           "content": "> “Length penalty α=0.6.”\n>\n\nFor the base models, we used a single model obtained by averaging the last 5 checkpoints, which were written at 10-minute intervals. For the big models, we averaged the last 20 checkpoints. We used beam search with a beam size of 4 and length penalty \\alpha=0.6 [38]. These hyperparameters were chosen after experimentation on the development set. We set the maximum output length during inference to input length + 50 , but terminate early when possible [38].",
           "pageStart": 8,
           "pageEnd": 8,
-          "_comment": "Source markdown section 48 at line 2409; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.1 Machine Translation."
+          "_comment": "Source markdown section 48 at line 2409; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §6.1 Machine Translation.",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Translator.py",
+              "symbolName": "_get_the_best_score_and_idx",
+              "startLine": 60,
+              "reason": "누적 점수로 상위 후보를 고르는 beam search 채점부"
+            }
+          ]
         },
         {
           "chunkIndex": 48,
@@ -1410,43 +1461,88 @@
           "content": "페이지 3 Figure 1 최상단:\n\n```\nLinear → Softmax → Output Probabilities\n```\n\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d_{\\text{model}} . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by \\sqrt{d_{\\text{model}}} .",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "Source markdown section 55 at line 2723; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax."
+          "_comment": "Source markdown section 55 at line 2723; 판정: DIRECT. Content copied from uploaded markdown ### 논문 텍스트 block without rewriting. | 논문 원문 문단 보강: ar5iv 1706.03762 §3.4 Embeddings and Softmax.",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Models.py",
+              "symbolName": "forward",
+              "startLine": 187,
+              "reason": "trg_word_prj 를 거쳐 최종 출력 확률을 만드는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 55,
           "sectionTitle": "References",
           "subsectionTitle": "Layer Normalization",
-          "content": "Jimmy Lei Ba 외, Layer Normalization.",
+          "content": "Jimmy Lei Ba 외, Layer Normalization.\n\nWe plan to extend the Transformer to problems involving input and output modalities other than text and to investigate local, restricted attention mechanisms to efficiently handle large inputs and outputs such as images, audio and video. Making generation less sequential is another research goals of ours. The code we used to train and evaluate our models is available at https://github.com/ tensorflow/tensor2tensor. Acknowledgements We are grateful to Nal Kalchbrenner and Stephan Gouws for their fruitful comments, corrections and inspiration. References [1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization. arXiv preprint arXiv:1607.06450, 2016. [2] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "Source markdown section 56 at line 2774; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
+          "_comment": "Source markdown section 56 at line 2774; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지. | 논문 원문 보강 (PDF p.10)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/SubLayers.py",
+              "symbolName": "forward",
+              "startLine": 30,
+              "reason": "residual 합에 layer_norm 을 적용"
+            }
+          ]
         },
         {
           "chunkIndex": 56,
           "sectionTitle": "References",
           "subsectionTitle": "Adam",
-          "content": "Kingma와 Ba의 Adam optimizer.",
+          "content": "Kingma와 Ba의 Adam optimizer.\n\nSentence pairs were batched together by approximate sequence length. Each training batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000 target tokens. 5.2 Hardware and Schedule We trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using the hyperparameters described throughout the paper, each training step took about 0.4 seconds. We trained the base models for a total of 100,000 steps or 12 hours. For our big models,(described on the bottom line of table 3), step time was 1.0 seconds. The big models were trained for 300,000 steps (3.5 days). 5.3 Optimizer We used the Adam optimizer [20] with β1 = 0.9, β2 = 0.98 and ϵ = 10−9.",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "Source markdown section 57 at line 2797; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
+          "_comment": "Source markdown section 57 at line 2797; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지. | 논문 원문 보강 (PDF p.7, 제목 키워드 대조)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "transformer/Optim.py",
+              "symbolName": "__init__",
+              "startLine": 7,
+              "reason": "Adam optimizer 를 감싸 학습률을 조절"
+            }
+          ]
         },
         {
           "chunkIndex": 57,
           "sectionTitle": "References",
           "subsectionTitle": "Label smoothing",
-          "content": "Szegedy 외의 label smoothing.",
+          "content": "Szegedy 외의 label smoothing.\n\nIn addition, we apply dropout to the sums of the embeddings and the positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of Pdrop = 0.1. Label Smoothing During training, we employed label smoothing of value ϵls = 0.1 [36]. This hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score. 6 Results 6.1 Machine Translation On the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big) in Table 2) outperforms the best previously reported models (including ensembles) by more than 2.0 BLEU, establishing a new state-of-the-art BLEU score of 28.4.",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "Source markdown section 58 at line 2821; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
+          "_comment": "Source markdown section 58 at line 2821; 판정: DIRECT. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지. | 논문 원문 보강 (PDF p.8, 제목 키워드 대조)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "train.py",
+              "symbolName": "cal_loss",
+              "startLine": 40,
+              "reason": "label smoothing 을 적용한 손실 계산"
+            }
+          ]
         },
         {
           "chunkIndex": 58,
           "sectionTitle": "References",
           "subsectionTitle": "BPE",
-          "content": "Sennrich 외의 subword unit 방식.",
+          "content": "Sennrich 외의 subword unit 방식.\n\n[28] Romain Paulus, Caiming Xiong, and Richard Socher. A deep reinforced model for abstractive summarization. arXiv preprint arXiv:1705.04304, 2017. [29] Slav Petrov, Leon Barrett, Romain Thibaux, and Dan Klein. Learning accurate, compact, and interpretable tree annotation. In Proceedings of the 21st International Conference on Computational Linguistics and 44th Annual Meeting of the ACL , pages 433–440. ACL, July 2006. [30] Ofir Press and Lior Wolf. Using the output embedding to improve language models. arXiv preprint arXiv:1608.05859, 2016. [31] Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units.",
           "pageStart": 10,
           "pageEnd": 10,
-          "_comment": "Source markdown section 59 at line 2844; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
+          "_comment": "Source markdown section 59 at line 2844; 판정: PARTIAL. Content copied from uploaded markdown ### 논문 참고문헌 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지. | 논문 원문 보강 (PDF p.12, 제목 키워드 대조)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/jadore801120/attention-is-all-you-need-pytorch",
+              "filePath": "train.py",
+              "symbolName": "prepare_dataloaders_from_bpe_files",
+              "startLine": 305,
+              "reason": "BPE 로 만든 vocabulary 를 읽어 오는 부분"
+            }
+          ]
         },
         {
           "chunkIndex": 59,
@@ -1479,7 +1575,7 @@
           "chunkIndex": 61,
           "sectionTitle": "Implementation detail (not described in the paper)",
           "subsectionTitle": "Beam search translator",
-          "content": "논문은 beam size와 length penalty를 설명하지만 전체 beam search algorithm을 코드 수준으로 제시하지 않습니다.",
+          "content": "논문은 beam size와 length penalty를 설명하지만 전체 beam search algorithm을 코드 수준으로 제시하지 않습니다.\n\n(2014) [37] WSJ only, discriminative 88.3 Petrov et al. (2006) [29] WSJ only, discriminative 90.4 Zhu et al. (2013) [40] WSJ only, discriminative 90.4 Dyer et al. (2016) [8] WSJ only, discriminative 91.7 Transformer (4 layers) WSJ only, discriminative 91.3 Zhu et al. (2013) [40] semi-supervised 91.3 Huang & Harper (2009) [14] semi-supervised 91.3 McClosky et al. (2006) [26] semi-supervised 92.1 Vinyals & Kaiser el al. (2014) [37] semi-supervised 92.1 Transformer (4 layers) semi-supervised 92.7 Luong et al. (2015) [23] multi-task 93.0 Dyer et al. (2016) [8] generative 93.3 increased the maximum output length to input length + 300. We used a beam size of 21 and α = 0.3 for both WSJ only and the semi-supervised setting.",
           "pageStart": 10,
           "pageEnd": 10,
           "mappedCode": [
@@ -1498,13 +1594,13 @@
               "reason": "beam 초기 상태를 만드는 부분"
             }
           ],
-          "_comment": "Source markdown section 62 at line 3008; 판정: EXTRA / DIRECTLY SUPPORTS PAPER INFERENCE. Content copied from uploaded markdown ### 논문 대응 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
+          "_comment": "Source markdown section 62 at line 3008; 판정: EXTRA / DIRECTLY SUPPORTS PAPER INFERENCE. Content copied from uploaded markdown ### 논문 대응 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지. | 논문 원문 보강 (PDF p.10)"
         },
         {
           "chunkIndex": 62,
           "sectionTitle": "Implementation detail (not described in the paper)",
           "subsectionTitle": "Xavier parameter initialization",
-          "content": "논문은 Transformer parameter 전체에 대한 Xavier initialization을 명시적으로 설명하지 않습니다.",
+          "content": "논문은 Transformer parameter 전체에 대한 Xavier initialization을 명시적으로 설명하지 않습니다.\n\nWe show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data. ∗Equal contribution. Listing order is random. Jakob proposed replacing RNNs with self-attention and started the effort to evaluate this idea. Ashish, with Illia, designed and implemented the first Transformer models and has been crucially involved in every aspect of this work. Noam proposed scaled dot-product attention, multi-head attention and the parameter-free position representation and became the other person involved in nearly every detail. Niki designed, implemented, tuned and evaluated countless model variants in our original codebase and tensor2tensor.",
           "pageStart": 10,
           "pageEnd": 10,
           "mappedCode": [
@@ -1516,7 +1612,7 @@
               "reason": "xavier_uniform_으로 전체 파라미터를 초기화"
             }
           ],
-          "_comment": "Source markdown section 63 at line 3048; 판정: EXTRA. Content copied from uploaded markdown ### 논문 대응 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지."
+          "_comment": "Source markdown section 63 at line 3048; 판정: EXTRA. Content copied from uploaded markdown ### 논문 대응 block without rewriting. | 논문 원문에 대응 문단이 없어 content는 노트 원본 유지. | 논문 원문 보강 (PDF p.1, 제목 키워드 대조)"
         }
       ],
       "repositories": [
@@ -1525,9 +1621,9 @@
           "repositoryName": "attention-is-all-you-need-pytorch",
           "ownerName": "jadore801120",
           "defaultBranch": "master",
-          "licenseName": null,
+          "licenseName": "MIT",
           "primaryLanguage": "Python",
-          "starCount": 0,
+          "starCount": 9779,
           "relationType": "COMMUNITY",
           "isPrimary": true,
           "codeBlocks": [

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 import Dashboard from './pages/Dashboard';
 import Papers from './pages/Papers';
 import PaperDetail from './pages/PaperDetail';
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/agent" element={<Agent />} />
         <Route path="/graph" element={<Graph />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

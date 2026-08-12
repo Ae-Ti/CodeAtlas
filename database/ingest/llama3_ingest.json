@@ -1,0 +1,497 @@
+{
+  "_comment": "노트 마크다운에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것(줄 번호는 AST·블록 파서 실측). 노트에 경로·심볼이 없는 경우 코드 본문을 저장소에 역매칭해 특정했습니다.",
+  "_sourceMarkdown": "Llama 3b40f4e8fef780118c14daf691878da5.md",
+  "_unresolved": [
+    {
+      "chunk": "LL-16",
+      "title": "Instruction Tuning",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "LL-17",
+      "title": "Supervised Fine Tuning (SFT)",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "LL-18",
+      "title": "RLHF / Preference Optimization",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "LL-19",
+      "title": "Reward Model",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    },
+    {
+      "chunk": "LL-20",
+      "title": "Evaluation Benchmark",
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "2407.21783",
+      "title": "The Llama 3 Herd of Models",
+      "abstract": "Modern artificial intelligence (AI) systems are powered by foundation models. This paper presents a new set of foundation models, called Llama 3. It is a herd of language models that natively support multilinguality, coding, reasoning, and tool usage. Our largest model is a dense Transformer with 405B parameters and a context window of up to 128K tokens. This paper presents an extensive empirical evaluation of Llama 3. We find that Llama 3 delivers comparable quality to leading language models such as GPT-4 on a plethora of tasks. We publicly release Llama 3, including pre-trained and post-trained versions of the 405B parameter language model and our Llama Guard 3 model for input and output safety. The paper also presents the results of experiments in which we integrate image, video, and speech capabilities into Llama 3 via a compositional approach. We observe this approach performs competitively with the state-of-the-art on image, video, and speech recognition tasks. The resulting models are not yet being broadly released as they are still under development.",
+      "pdfUrl": "https://arxiv.org/pdf/2407.21783",
+      "publishedDate": "2024-07-31",
+      "authors": [
+        "Aaron Grattafiori",
+        "Abhimanyu Dubey",
+        "Abhinav Jauhri",
+        "Abhinav Pandey",
+        "Abhishek Kadian",
+        "Ahmad Al-Dahle",
+        "Aiesha Letman",
+        "Akhil Mathur",
+        "Alan Schelten",
+        "Alex Vaughan",
+        "Amy Yang",
+        "Angela Fan"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "3.2 Model Architecture",
+          "subsectionTitle": "Transformer Decoder Architecture",
+          "content": "Llama 3 uses a standard decoder-only transformer architecture similar to Llama and Llama 2.\n\nWe use a tokenizer with a vocabulary of 128K tokens, and our models use grouped-query attention (GQA).\n\nLlama 3 uses a standard, dense Transformer architecture (vaswani2017attention).\nIt does not deviate significantly from Llama and Llama 2 (touvron2023llama; touvron2023llama2) in terms of model architecture; our performance gains are primarily driven by improvements in data quality and diversity as well as by increased training scale.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-01 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 문단 보강 (ar5iv 2407.21783)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "Transformer",
+              "startLine": 251,
+              "reason": "논문: ``` decoder-only transformer architecture ``` ↓ 코드: ``` class Transformer(nn.Module) ``` --- 논문: ``` Transformer layers ``` ↓ 코드: ``` self.layers ``` --- 논문: ``` Vocabulary prediction ``` ↓ 코드: ``` self.output ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "3 Pre-Training",
+          "subsectionTitle": "Token Embedding",
+          "content": "The input tokens are mapped into continuous representations before being processed by transformer layers.\n\nLanguage model pre-training involves: (1) the curation and filtering of a large-scale training corpus, (2) the development of a model architecture and corresponding scaling laws for determining model size, (3) the development of techniques for efficient pre-training at large scale, and (4) the development of a pre-training recipe. We present each of these components separately below.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-02 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "Transformer",
+              "startLine": 251,
+              "reason": "논문: ``` input tokens are mapped into continuous representations ``` ↓ 코드: ``` self.tok_embeddings(tokens) ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "3.1 Pre-Training Data",
+          "subsectionTitle": "RMSNorm",
+          "content": "We use pre-normalization with RMSNorm.\n\nWe create our dataset for language model pre-training from a variety of data sources containing knowledge until the end of 2023.\nWe apply several de-duplication methods and data cleaning mechanisms on each data source to obtain high-quality tokens. We remove domains that contain large amounts of personally identifiable information (PII), and domains with known adult content.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-03 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "RMSNorm",
+              "startLine": 35,
+              "reason": "논문: ``` RMSNorm ``` ↓ 코드: ``` class RMSNorm ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "3.1.1 Web Data Curation",
+          "subsectionTitle": "Rotary Position Embedding (RoPE)",
+          "content": "We use rotary positional embeddings (RoPE) to encode positional information.\n\nMuch of the data we utilize is obtained from the web and we describe our cleaning process below.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-04 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "apply_rotary_emb",
+              "startLine": 65,
+              "reason": "논문: ``` rotary positional embeddings ``` ↓ 코드: ``` apply_rotary_emb() ``` 논문: ``` encode positional information ``` ↓ 코드: ``` xq_ * freqs_cis xk_ * freqs_cis ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "3.2 Model Architecture",
+          "subsectionTitle": "Grouped Query Attention (GQA)",
+          "content": "We use grouped-query attention (GQA) for the 8B and 70B models.\n\nWe use grouped query attention (GQA; ainslie2023gqa) with 8 key-value heads to improve inference speed and to reduce the size of key-value caches during decoding.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 LL-05 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 문단 보강 (ar5iv 2407.21783) | 쪽 번호 PDF 대조로 채움(p.6)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "Attention",
+              "startLine": 90,
+              "reason": "논문: ``` grouped-query attention ``` ↓ 코드: ``` self.n_kv_heads ``` 논문: ``` Query head sharing KV ``` ↓ 코드: ``` self.n_rep ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "3.1.1 Web Data Curation",
+          "subsectionTitle": "SwiGLU Feed Forward Network",
+          "content": "The feed-forward network uses the SwiGLU activation function.\n\nPII and safety filtering.\nAmong other mitigations, we implement filters designed to remove data from websites are likely to contain unsafe content or high volumes of PII, domains that have been ranked as harmful according to a variety of Meta safety standards, and domains that are known to contain adult content.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-06 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "FeedForward",
+              "startLine": 193,
+              "reason": "논문: ``` SwiGLU activation ``` ↓ 코드: ``` F.silu() ``` 논문: ``` gate mechanism ``` ↓ 코드: ``` self.w1(x) * self.w3(x) ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "3 Pre-Training",
+          "subsectionTitle": "Transformer Block Forward",
+          "content": "Each transformer block consists of attention layers and feed-forward layers with residual connections.\n\nLanguage model pre-training involves: (1) the curation and filtering of a large-scale training corpus, (2) the development of a model architecture and corresponding scaling laws for determining model size, (3) the development of techniques for efficient pre-training at large scale, and (4) the development of a pre-training recipe. We present each of these components separately below.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-07 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.4)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "TransformerBlock",
+              "startLine": 222,
+              "reason": "논문: ``` attention layers ``` ↓ 코드: ``` self.attention() ``` 논문: ``` feed-forward layers ``` ↓ 코드: ``` self.feed_forward() ``` 논문: ``` residual connections ``` ↓ 코드: ``` x + ... h + ... ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "3.1 Pre-Training Data",
+          "subsectionTitle": "Attention Forward",
+          "content": "The attention mechanism computes representations by attending to previous tokens.\n\nWe create our dataset for language model pre-training from a variety of data sources containing knowledge until the end of 2023.\nWe apply several de-duplication methods and data cleaning mechanisms on each data source to obtain high-quality tokens. We remove domains that contain large amounts of personally identifiable information (PII), and domains with known adult content.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-08 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.4)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "Attention",
+              "startLine": 90,
+              "reason": "논문: ``` attention mechanism ``` ↓ 코드: ``` Attention.forward() ``` 논문: ``` attending to previous tokens ``` ↓ 코드: ``` mask ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "3.1.1 Web Data Curation",
+          "subsectionTitle": "KV Cache (Key-Value Cache)",
+          "content": "Autoregressive 생성에서는 이전 token의 Attention Key, Value가 계속 필요하다.\n\n일반 방식:\n\n```\nStep 1\nK,V 계산\n\nStep 2\nK,V 다시 계산\n\nStep 3\nK,V 다시 계산\n```\n\n비효율 발생.\n\nKV Cache:\n\n```\n처음 계산한 K,V 저장\n\n↓\n\n다음 token에서는 새로운 Query만 계산\n```\n\n구조:\n\n```\nPrevious Tokens\n\n        |\n        v\n\nCached K,V\n\nNew Token\n\n        |\n        v\n\nNew Query\n\n        |\n        v\n\nAttention\n```\n\n---\n\nText extraction and cleaning.\nWe process the raw HTML content for non-truncated web documents to extract high-quality diverse text.\nTo do so, we build a custom parser that extracts the HTML content and optimizes for precision in boilerplate removal and content recall.\nWe evaluate our parser’s quality in human evaluations, comparing it with popular third-party HTML parsers that optimize for article-like content, and found it to perform favorably.\nWe carefully process HTML pages with mathematics and code content to preserve the structure of that content.\nWe maintain the image alt attribute text since mathematical content is often represented as pre-rendered images where the math is also provided in the alt attribute.\nWe experimentally evaluate different cleaning configurations.\nWe find markdown is harmful to the performance of a model that is primarily trained on web data compared to plain text, so we remove all markdown markers.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-09 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.4)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/model.py",
+              "symbolName": "Attention",
+              "startLine": 90,
+              "reason": "논문: ``` reduces the size of the KV cache ``` ↓ 코드: ``` self.cache_k self.cache_v ``` 논문: ``` during inference ``` ↓ 코드: ``` start_pos ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "2 General Overview",
+          "subsectionTitle": "Tokenizer (BPE / SentencePiece)",
+          "content": "Llama 3 uses a tokenizer with a vocabulary of 128K tokens.\n\nThe model architecture of Llama 3 is illustrated in Figure 1.\nThe development of our Llama 3 language models comprises two main stages:",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 LL-10 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/tokenizer.py",
+              "symbolName": "Tokenizer",
+              "startLine": 38,
+              "reason": "논문: ``` tokenizer with vocabulary of 128K tokens ``` ↓ 코드: ``` self.n_words ``` 논문: ``` tokenizer ``` ↓ 코드: ``` Tokenizer ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "3 Pre-Training",
+          "subsectionTitle": "Autoregressive Text Generation",
+          "content": "The models generate text autoregressively by predicting the next token.\n\nLanguage model pre-training involves: (1) the curation and filtering of a large-scale training corpus, (2) the development of a model architecture and corresponding scaling laws for determining model size, (3) the development of techniques for efficient pre-training at large scale, and (4) the development of a pre-training recipe. We present each of these components separately below.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 LL-11 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.4)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/generation.py",
+              "symbolName": "Llama",
+              "startLine": 35,
+              "reason": "논문: ``` predicting the next token ``` ↓ 코드: ``` next_token ``` 논문: ``` autoregressively ``` ↓ 코드: ``` for cur_pos ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "Temperature Sampling",
+          "subsectionTitle": "Temperature Sampling",
+          "content": "Temperature Sampling\n\nOverall, we observed that the vision DPO model consistently performs better than its SFT starting point in human evaluations for every finetuning iteration. 7.5.6 Rejection Sampling Most available question-answer pairs only contain the final answer and lack the chain-of-thought explanation that is required to train a model that generalizes well for reasoning tasks. We use rejection sampling to generate the missing explanations for such examples and boost the model’s reasoning capabilities. Given a question-answer pair, we generate multiple answers by sampling the finetuned model with different system prompts or temperature. Next, we compare the generated answers to the ground-truth via heuristics or an LLM judge.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 LL-12 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.60) | 쪽 번호 인접 chunk 로 보간(p.2)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/generation.py",
+              "symbolName": "sample_top_p",
+              "startLine": 343,
+              "reason": "llama/generation.py:343 의 sample_top_p 이 이 단락의 구현"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "Top-p (Nucleus Sampling)",
+          "subsectionTitle": "Top-p (Nucleus Sampling)",
+          "content": "Top-p (Nucleus Sampling)\n\nFor example, we opt for a standard dense Transformer model architecture (Vaswani et al., 2017) with minor adaptations, rather than for a mixture-of-experts model (Shazeer et al., 2017) to maximize training stability. Similarly, we adopt a relatively simple post-training procedure based on supervised finetuning (SFT), rejection sampling (RS), and direct preference optimization (DPO; Rafailov et al. (2023)) as opposed to more complex reinforcement learning algorithms (Ouyang et al., 2022; Schulman et al., 2017) that tend to be less stable and harder to scale. The result of our work is Llama 3: a herd of three multilingual1 language models with 8B, 70B, and 405B parameters. We evaluate the performance of Llama 3 on a plethora of benchmark datasets that span a wide range of language understanding tasks.",
+          "pageStart": 2,
+          "pageEnd": 2,
+          "_comment": "노트 LL-13 / 판정 ```\nDIRECT\n```\n\n--- / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 보강 (PDF p.2, 지정 구절 \"sampling\")",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/generation.py",
+              "symbolName": "sample_top_p",
+              "startLine": 343,
+              "reason": "논문: ``` text generation sampling ``` ↓ 코드: ``` sample_top_p() ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "4 Post-Training",
+          "subsectionTitle": "Chat Completion Pipeline",
+          "content": "We develop instruction-tuned models that are optimized for dialogue applications.\n\nOur instruction-tuned models are designed to follow user instructions and produce helpful responses.\n\nWe produce the aligned Llama 3 models by applying several rounds of post-training,666We use the term “post-training” to refer to any model training that happens outside of pre-training. or aligning the model with human feedback (ouyang2022instructgpt; rafailov2024direct) on top of a pre-trained checkpoint. Each round of post-training involves supervised finetuning (SFT) followed by Direct Preference Optimization (DPO; rafailov2024direct) on examples collected either via human annotations or generated synthetically. Our post-training modeling and data approaches are described in Sections 4.1 and  4.2 respectively.\nWe further detail custom data curation strategies to improve the reasoning, coding, factuality, multilingual, tool use, long context, and precise instruction following in Section 4.3.",
+          "pageStart": 15,
+          "pageEnd": 15,
+          "_comment": "노트 LL-14 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.15)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/generation.py",
+              "symbolName": "Llama",
+              "startLine": 35,
+              "reason": "논문: ``` instruction-tuned models ``` ↓ 코드: ``` chat_completion() ``` 논문: ``` dialogue applications ``` ↓ 코드: ``` dialogs ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "4.1 Modeling",
+          "subsectionTitle": "Prompt Template",
+          "content": "We use a structured format for conversations consisting of system, user, and assistant messages.\n\nThe backbone of our post-training strategy is a reward model and a language model. We first train a reward model on top of the pre-trained checkpoint using human-annotated preference data (see Section 4.1.2). We then finetune pre-trained checkpoints with supervised finetuning (SFT; see Section 4.1.3), and further align the checkpoints with Direct Preference Optimization (DPO; see Section 4.1.4).\nThis process is illustrated in Figure 7.\nUnless otherwise noted, our modeling procedure applies to Llama 3 405B, and we refer to Llama 3 405B as Llama 3 for simplicity.",
+          "pageStart": 15,
+          "pageEnd": 15,
+          "_comment": "노트 LL-15 / 판정 ```\nDIRECT\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.15)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/meta-llama/llama3",
+              "filePath": "llama/tokenizer.py",
+              "symbolName": "encode_dialog_prompt",
+              "startLine": 222,
+              "reason": "논문: ``` system, user, assistant messages ``` ↓ 코드: ``` message[\"role\"] ``` 논문: ``` structured format ``` ↓ 코드: ``` encode_dialog_prompt() ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "4.1.1 Chat Dialog Format",
+          "subsectionTitle": "Instruction Tuning",
+          "content": "We perform supervised fine-tuning on publicly available instruction datasets.\n\nWe fine-tune the pretrained model to follow instructions.\n\nTo tune LLMs for human-AI interaction, we need to define a chat dialog protocol for the model to understand human instructions and perform conversational tasks. Compared to its predecessor, Llama 3 has new capabilities such as tool use (Section 4.3.5) which may require generating multiple messages and sending them to different locations (e.g., user, ipython) within a single dialog turn. To support this, we design a new multi-message chat protocol which uses various special header and termination tokens. The header tokens are used to indicate the source and destination of each message in a conversation. Similarly, the termination tokens indicate when it is the time to alternate between human and AI to speak.",
+          "pageStart": 15,
+          "pageEnd": 15,
+          "_comment": "노트 LL-16 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.15)"
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "4.1.2 Reward Modeling",
+          "subsectionTitle": "Supervised Fine Tuning (SFT)",
+          "content": "We train the models using supervised fine-tuning (SFT).\n\nWe train a reward model (RM) covering different capabilities on top of the pre-trained checkpoint. The training objective is the same as Llama 2 except that we remove the margin term in the loss, as we observe diminishing improvements after data scaling. Following Llama 2, we use all of our preference data for reward modeling after filtering out samples with similar responses. In addition to standard preference pair of (chosen, rejected) response, annotations also create a third “edited response” for some prompts, where the chosen response from the pair is further edited for improvement (see Section 4.2.1). Hence, each preference ranking sample has two or three responses with clear ranking (edited > chosen > rejected). We concatenate the prompt and multiple responses into a single row during training with responses randomly shuffled. This is an approximation to the standard scenario of putting the responses in separate rows and computing the scores, but in our ablations, this approach improves training efficiency without a loss in accuracy.",
+          "pageStart": 16,
+          "pageEnd": 16,
+          "_comment": "노트 LL-17 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.16)"
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "4.1.3 Supervised Finetuning",
+          "subsectionTitle": "RLHF / Preference Optimization",
+          "content": "We use human preference data to improve model helpfulness and safety.\n\nThe reward model is then used to perform rejection sampling on our human annotation prompts, the details of which are described in Section 4.2. Together with this rejection-sampled data and other data sources (including synthetic data), we finetune the pre-trained language model using a standard cross entropy loss on the target tokens (while masking loss on prompt tokens).\nMore details about the data mix can be found in Section 4.2.\nWe refer to this stage as supervised finetuning (SFT; weifinetuned; sanh2022multitask; wang2022super), even though many of the training targets are model-generated.\nOur largest models are finetuned with a learning rate of 10^{-5} over the course of 8.5K to 9K steps. We found these hyperparameter settings to work well across different rounds and data mixes.",
+          "pageStart": 16,
+          "pageEnd": 16,
+          "_comment": "노트 LL-18 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.16)"
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "4.1.4 Direct Preference Optimization",
+          "subsectionTitle": "Reward Model",
+          "content": "We collect preference comparisons and train reward models.\n\nWe further train our SFT models with Direct Preference Optimization (DPO; rafailov2024direct) for human preference alignment. For training, we primarily use the most recent batches of preference data collected using the best performing models from the previous alignment rounds. As a result, our training data conforms better to the distribution of the policy model that is being optimized in each round. We also explored on-policy algorithms such as PPO (schulman2017proximal), but found that DPO required less compute for large-scale models and performed better, especially on instruction following benchmarks like IFEval (zhou2023instruction).\nFor Llama 3, we use a learning rate of 10^{-5} and set the \\beta hyper-parameter to be 0.1. In addition, we apply the following algorithmic modifications to DPO:",
+          "pageStart": 16,
+          "pageEnd": 16,
+          "_comment": "노트 LL-19 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 절 문단으로 보강 (ar5iv 2407.21783, 인용문 없음) | 쪽 번호 절 제목 위치로 채움(p.16)"
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "5.1.1 Standard Benchmarks",
+          "subsectionTitle": "Evaluation Benchmark",
+          "content": "We evaluate Llama 3 on a wide range of benchmarks including MMLU, GSM8K, HumanEval, and other tasks.\n\nTo compare our models with the current state-of-the-art, we evaluate Llama 3 on a large number of standard benchmark evaluations shown in Table 8.\nThese evaluations cover eight top-level categories: (1) commonsense reasoning; (2) knowledge; (3) reading comprehension; (4) math, reasoning, and problem solving; (5) long context; (6) code; (7) adversarial evaluations; and (8) aggregate evaluations.",
+          "pageStart": 28,
+          "pageEnd": 28,
+          "_comment": "노트 LL-20 / 판정 ```\n(예상코드)\n```\n\n--- | 논문 원문 문단 보강 (ar5iv 2407.21783) | 쪽 번호 절 제목 위치로 채움(p.28)"
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/meta-llama/llama3",
+          "ownerName": "meta-llama",
+          "repositoryName": "llama3",
+          "defaultBranch": "main",
+          "commitHash": "a0940f9cf7065d45bb6675660f80d305c041a754",
+          "licenseName": "Meta Llama 3 Community License",
+          "primaryLanguage": "Python",
+          "starCount": 29262,
+          "relationType": "OFFICIAL",
+          "isPrimary": true,
+          "codeBlocks": [
+            {
+              "filePath": "llama/model.py",
+              "symbolName": "Transformer",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 251,
+              "endLine": 302,
+              "codeContent": "class Transformer(nn.Module):\n    def __init__(self, params: ModelArgs):\n        super().__init__()\n        self.params = params\n        self.vocab_size = params.vocab_size\n        self.n_layers = params.n_layers\n\n        self.tok_embeddings = VocabParallelEmbedding(\n            params.vocab_size, params.dim, init_method=lambda x: x\n        )\n\n        self.layers = torch.nn.ModuleList()\n        for layer_id in range(params.n_layers):\n            self.layers.append(TransformerBlock(layer_id, params))\n\n        self.norm = RMSNorm(params.dim, eps=params.norm_eps)\n        self.output = ColumnParallelLinear(\n            params.dim, params.vocab_size, bias=False, init_method=lambda x: x\n        )\n\n        self.freqs_cis = precompute_freqs_cis(\n            params.dim // params.n_heads,\n            params.max_seq_len * 2,\n            params.rope_theta,\n        )\n\n    @torch.inference_mode()\n    def forward(self, tokens: torch.Tensor, start_pos: int):\n        _bsz, seqlen = tokens.shape\n        h = self.tok_embeddings(tokens)\n        self.freqs_cis = self.freqs_cis.to(h.device)\n        freqs_cis = self.freqs_cis[start_pos : start_pos + seqlen]\n\n        mask = None\n        if seqlen > 1:\n            mask = torch.full((seqlen, seqlen), float(\"-inf\"), device=tokens.device)\n\n            mask = torch.triu(mask, diagonal=1)\n\n            # When performing key-value caching, we compute the attention scores\n            # only for the new sequence. Thus, the matrix of scores is of size\n            # (seqlen, cache_len + seqlen), and the only masked entries are (i, j) for\n            # j > cache_len + i, since row i corresponds to token cache_len + i.\n            mask = torch.hstack(\n                [torch.zeros((seqlen, start_pos), device=tokens.device), mask]\n            ).type_as(h)\n\n        for layer in self.layers:\n            h = layer(h, start_pos, freqs_cis, mask)\n        h = self.norm(h)\n        output = self.output(h).float()\n        return output",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/model.py:251-302"
+            },
+            {
+              "filePath": "llama/model.py",
+              "symbolName": "RMSNorm",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 35,
+              "endLine": 46,
+              "codeContent": "class RMSNorm(torch.nn.Module):\n    def __init__(self, dim: int, eps: float = 1e-6):\n        super().__init__()\n        self.eps = eps\n        self.weight = nn.Parameter(torch.ones(dim))\n\n    def _norm(self, x):\n        return x * torch.rsqrt(x.pow(2).mean(-1, keepdim=True) + self.eps)\n\n    def forward(self, x):\n        output = self._norm(x.float()).type_as(x)\n        return output * self.weight",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/model.py:35-46"
+            },
+            {
+              "filePath": "llama/model.py",
+              "symbolName": "apply_rotary_emb",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 65,
+              "endLine": 75,
+              "codeContent": "def apply_rotary_emb(\n    xq: torch.Tensor,\n    xk: torch.Tensor,\n    freqs_cis: torch.Tensor,\n) -> Tuple[torch.Tensor, torch.Tensor]:\n    xq_ = torch.view_as_complex(xq.float().reshape(*xq.shape[:-1], -1, 2))\n    xk_ = torch.view_as_complex(xk.float().reshape(*xk.shape[:-1], -1, 2))\n    freqs_cis = reshape_for_broadcast(freqs_cis, xq_)\n    xq_out = torch.view_as_real(xq_ * freqs_cis).flatten(3)\n    xk_out = torch.view_as_real(xk_ * freqs_cis).flatten(3)\n    return xq_out.type_as(xq), xk_out.type_as(xk)",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/model.py:65-75"
+            },
+            {
+              "filePath": "llama/model.py",
+              "symbolName": "Attention",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 90,
+              "endLine": 190,
+              "codeContent": "class Attention(nn.Module):\n    def __init__(self, args: ModelArgs):\n        super().__init__()\n        self.n_kv_heads = args.n_heads if args.n_kv_heads is None else args.n_kv_heads\n        model_parallel_size = fs_init.get_model_parallel_world_size()\n        self.n_local_heads = args.n_heads // model_parallel_size\n        self.n_local_kv_heads = self.n_kv_heads // model_parallel_size\n        self.n_rep = self.n_local_heads // self.n_local_kv_heads\n        self.head_dim = args.dim // args.n_heads\n\n        self.wq = ColumnParallelLinear(\n            args.dim,\n            args.n_heads * self.head_dim,\n            bias=False,\n            gather_output=False,\n            init_method=lambda x: x,\n        )\n        self.wk = ColumnParallelLinear(\n            args.dim,\n            self.n_kv_heads * self.head_dim,\n            bias=False,\n            gather_output=False,\n            init_method=lambda x: x,\n        )\n        self.wv = ColumnParallelLinear(\n            args.dim,\n            self.n_kv_heads * self.head_dim,\n            bias=False,\n            gather_output=False,\n            init_method=lambda x: x,\n        )\n        self.wo = RowParallelLinear(\n            args.n_heads * self.head_dim,\n            args.dim,\n            bias=False,\n            input_is_parallel=True,\n            init_method=lambda x: x,\n        )\n\n        self.cache_k = torch.zeros(\n            (\n                args.max_batch_size,\n                args.max_seq_len,\n                self.n_local_kv_heads,\n                self.head_dim,\n            )\n        ).cuda()\n        self.cache_v = torch.zeros(\n            (\n                args.max_batch_size,\n                args.max_seq_len,\n                self.n_local_kv_heads,\n                self.head_dim,\n            )\n        ).cuda()\n\n    def forward(\n        self,\n        x: torch.Tensor,\n        start_pos: int,\n        freqs_cis: torch.Tensor,\n        mask: Optional[torch.Tensor],\n    ):\n        bsz, seqlen, _ = x.shape\n        xq, xk, xv = self.wq(x), self.wk(x), self.wv(x)\n\n        xq = xq.view(bsz, seqlen, self.n_local_heads, self.head_dim)\n        xk = xk.view(bsz, seqlen, self.n_local_kv_heads, self.head_dim)\n        xv = xv.view(bsz, seqlen, self.n_local_kv_heads, self.head_dim)\n\n        xq, xk = apply_rotary_emb(xq, xk, freqs_cis=freqs_cis)\n\n        self.cache_k = self.cache_k.to(xq)\n        self.cache_v = self.cache_v.to(xq)\n\n        self.cache_k[:bsz, start_pos : start_pos + seqlen] = xk\n        self.cache_v[:bsz, start_pos : start_pos + seqlen] = xv\n\n        keys = self.cache_k[:bsz, : start_pos + seqlen]\n        values = self.cache_v[:bsz, : start_pos + seqlen]\n\n        # repeat k/v heads if n_kv_heads < n_heads\n        keys = repeat_kv(\n            keys, self.n_rep\n        )  # (bs, cache_len + seqlen, n_local_heads, head_dim)\n        values = repeat_kv(\n            values, self.n_rep\n        )  # (bs, cache_len + seqlen, n_local_heads, head_dim)\n\n        xq = xq.transpose(1, 2)  # (bs, n_local_heads, seqlen, head_dim)\n        keys = keys.transpose(1, 2)  # (bs, n_local_heads, cache_len + seqlen, head_dim)\n        values = values.transpose(\n            1, 2\n        )  # (bs, n_local_heads, cache_len + seqlen, head_dim)\n        scores = torch.matmul(xq, keys.transpose(2, 3)) / math.sqrt(self.head_dim)\n        if mask is not None:\n            scores = scores + mask  # (bs, n_local_heads, seqlen, cache_len + seqlen)\n        scores = F.softmax(scores.float(), dim=-1).type_as(xq)\n        output = torch.matmul(scores, values)  # (bs, n_local_heads, seqlen, head_dim)\n        output = output.transpose(1, 2).contiguous().view(bsz, seqlen, -1)\n        return self.wo(output)",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/model.py:90-190"
+            },
+            {
+              "filePath": "llama/model.py",
+              "symbolName": "FeedForward",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 193,
+              "endLine": 219,
+              "codeContent": "class FeedForward(nn.Module):\n    def __init__(\n        self,\n        dim: int,\n        hidden_dim: int,\n        multiple_of: int,\n        ffn_dim_multiplier: Optional[float],\n    ):\n        super().__init__()\n        hidden_dim = int(2 * hidden_dim / 3)\n        # custom dim factor multiplier\n        if ffn_dim_multiplier is not None:\n            hidden_dim = int(ffn_dim_multiplier * hidden_dim)\n        hidden_dim = multiple_of * ((hidden_dim + multiple_of - 1) // multiple_of)\n\n        self.w1 = ColumnParallelLinear(\n            dim, hidden_dim, bias=False, gather_output=False, init_method=lambda x: x\n        )\n        self.w2 = RowParallelLinear(\n            hidden_dim, dim, bias=False, input_is_parallel=True, init_method=lambda x: x\n        )\n        self.w3 = ColumnParallelLinear(\n            dim, hidden_dim, bias=False, gather_output=False, init_method=lambda x: x\n        )\n\n    def forward(self, x):\n        return self.w2(F.silu(self.w1(x)) * self.w3(x))",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/model.py:193-219"
+            },
+            {
+              "filePath": "llama/model.py",
+              "symbolName": "TransformerBlock",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 222,
+              "endLine": 248,
+              "codeContent": "class TransformerBlock(nn.Module):\n    def __init__(self, layer_id: int, args: ModelArgs):\n        super().__init__()\n        self.n_heads = args.n_heads\n        self.dim = args.dim\n        self.head_dim = args.dim // args.n_heads\n        self.attention = Attention(args)\n        self.feed_forward = FeedForward(\n            dim=args.dim,\n            hidden_dim=4 * args.dim,\n            multiple_of=args.multiple_of,\n            ffn_dim_multiplier=args.ffn_dim_multiplier,\n        )\n        self.layer_id = layer_id\n        self.attention_norm = RMSNorm(args.dim, eps=args.norm_eps)\n        self.ffn_norm = RMSNorm(args.dim, eps=args.norm_eps)\n\n    def forward(\n        self,\n        x: torch.Tensor,\n        start_pos: int,\n        freqs_cis: torch.Tensor,\n        mask: Optional[torch.Tensor],\n    ):\n        h = x + self.attention(self.attention_norm(x), start_pos, freqs_cis, mask)\n        out = h + self.feed_forward(self.ffn_norm(h))\n        return out",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/model.py:222-248"
+            },
+            {
+              "filePath": "llama/tokenizer.py",
+              "symbolName": "Tokenizer",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 38,
+              "endLine": 199,
+              "codeContent": "class Tokenizer:\n    \"\"\"\n    Tokenizing and encoding/decoding text using the Tiktoken tokenizer.\n    \"\"\"\n\n    special_tokens: Dict[str, int]\n\n    num_reserved_special_tokens = 256\n\n    pat_str = r\"(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\\r\\n\\p{L}\\p{N}]?\\p{L}+|\\p{N}{1,3}| ?[^\\s\\p{L}\\p{N}]+[\\r\\n]*|\\s*[\\r\\n]+|\\s+(?!\\S)|\\s+\"  # noqa: E501\n\n    def __init__(self, model_path: str):\n        \"\"\"\n        Initializes the Tokenizer with a Tiktoken model.\n\n        Args:\n            model_path (str): The path to the Tiktoken model file.\n        \"\"\"\n        assert os.path.isfile(model_path), model_path\n\n        mergeable_ranks = load_tiktoken_bpe(model_path)\n        num_base_tokens = len(mergeable_ranks)\n        special_tokens = [\n            \"<|begin_of_text|>\",\n            \"<|end_of_text|>\",\n            \"<|reserved_special_token_0|>\",\n            \"<|reserved_special_token_1|>\",\n            \"<|reserved_special_token_2|>\",\n            \"<|reserved_special_token_3|>\",\n            \"<|start_header_id|>\",\n            \"<|end_header_id|>\",\n            \"<|reserved_special_token_4|>\",\n            \"<|eot_id|>\",  # end of turn\n        ] + [\n            f\"<|reserved_special_token_{i}|>\"\n            for i in range(5, self.num_reserved_special_tokens - 5)\n        ]\n        self.special_tokens = {\n            token: num_base_tokens + i for i, token in enumerate(special_tokens)\n        }\n        self.model = tiktoken.Encoding(\n            name=Path(model_path).name,\n            pat_str=self.pat_str,\n            mergeable_ranks=mergeable_ranks,\n            special_tokens=self.special_tokens,\n        )\n        logger.info(f\"Reloaded tiktoken model from {model_path}\")\n\n        self.n_words: int = self.model.n_vocab\n        # BOS / EOS token IDs\n        self.bos_id: int = self.special_tokens[\"<|begin_of_text|>\"]\n        self.eos_id: int = self.special_tokens[\"<|end_of_text|>\"]\n        self.pad_id: int = -1\n        self.stop_tokens = {\n            self.special_tokens[\"<|end_of_text|>\"],\n            self.special_tokens[\"<|eot_id|>\"],\n        }\n        logger.info(\n            f\"#words: {self.n_words} - BOS ID: {self.bos_id} - EOS ID: {self.eos_id}\"\n        )\n\n    def encode(\n        self,\n        s: str,\n        *,\n        bos: bool,\n        eos: bool,\n        allowed_special: Union[Literal[\"all\"], AbstractSet[str]] = set(),\n        disallowed_special: Union[Literal[\"all\"], Collection[str]] = (),\n    ) -> List[int]:\n        \"\"\"\n        Encodes a string into a list of token IDs.\n\n        Args:\n            s (str): The input string to be encoded.\n            bos (bool): Whether to prepend the beginning-of-sequence token.\n            eos (bool): Whether to append the end-of-sequence token.\n            allowed_tokens (\"all\"|set[str]): allowed special tokens in string\n            disallowed_tokens (\"all\"|set[str]): special tokens that raise an error when in string\n\n        Returns:\n            list[int]: A list of token IDs.\n\n        By default, setting disallowed_special=() encodes a string by ignoring\n        special tokens. Specifically:\n        - Setting `disallowed_special` to () will cause all text corresponding\n          to special tokens to be encoded as natural text (insteading of raising\n          an error).\n        - Setting `allowed_special` to \"all\" will treat all text corresponding\n          to special tokens to be encoded as special tokens.\n        \"\"\"\n        assert type(s) is str\n\n        # The tiktoken tokenizer can handle <=400k chars without\n        # pyo3_runtime.PanicException.\n        TIKTOKEN_MAX_ENCODE_CHARS = 400_000\n\n        # https://github.com/openai/tiktoken/issues/195\n        # Here we iterate over subsequences and split if we exceed the limit\n        # of max consecutive non-whitespace or whitespace characters.\n        MAX_NO_WHITESPACES_CHARS = 25_000\n\n        substrs = (\n            substr\n            for i in range(0, len(s), TIKTOKEN_MAX_ENCODE_CHARS)\n            for substr in self._split_whitespaces_or_nonwhitespaces(\n                s[i : i + TIKTOKEN_MAX_ENCODE_CHARS], MAX_NO_WHITESPACES_CHARS\n            )\n        )\n        t: List[int] = []\n        for substr in substrs:\n            t.extend(\n                self.model.encode(\n                    substr,\n                    allowed_special=allowed_special,\n                    disallowed_special=disallowed_special,\n                )\n            )\n        if bos:\n            t.insert(0, self.bos_id)\n        if eos:\n            t.append(self.eos_id)\n        return t\n\n    def decode(self, t: Sequence[int]) -> str:\n        \"\"\"\n        Decodes a list of token IDs into a string.\n\n        Args:\n            t (List[int]): The list of token IDs to be decoded.\n\n        Returns:\n            str: The decoded string.\n        \"\"\"\n        # Typecast is safe here. Tiktoken doesn't do anything list-related with the sequence.\n        return self.model.decode(cast(List[int], t))\n\n    @staticmethod\n    def _split_whitespaces_or_nonwhitespaces(\n        s: str, max_consecutive_slice_len: int\n    ) -> Iterator[str]:\n        \"\"\"\n        Splits the string `s` so that each substring contains no more than `max_consecutive_slice_len`\n        consecutive whitespaces or consecutive non-whitespaces.\n        \"\"\"\n        current_slice_len = 0\n        current_slice_is_space = s[0].isspace() if len(s) > 0 else False\n        slice_start = 0\n\n        for i in range(len(s)):\n            is_now_space = s[i].isspace()\n\n            if current_slice_is_space ^ is_now_space:\n                current_slice_len = 1\n                current_slice_is_space = is_now_space\n            else:\n                current_slice_len += 1\n                if current_slice_len > max_consecutive_slice_len:\n                    yield s[slice_start:i]\n                    slice_start = i\n                    current_slice_len = 1\n        yield s[slice_start:]",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/tokenizer.py:38-199"
+            },
+            {
+              "filePath": "llama/generation.py",
+              "symbolName": "Llama",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 35,
+              "endLine": 340,
+              "codeContent": "class Llama:\n    @staticmethod\n    def build(\n        ckpt_dir: str,\n        tokenizer_path: str,\n        max_seq_len: int,\n        max_batch_size: int,\n        model_parallel_size: Optional[int] = None,\n        seed: int = 1,\n    ) -> \"Llama\":\n        \"\"\"\n        Build a Llama instance by initializing and loading a model checkpoint.\n\n        Args:\n            ckpt_dir (str): Path to the directory containing checkpoint files.\n            tokenizer_path (str): Path to the tokenizer file.\n            max_seq_len (int): Maximum sequence length for input text.\n            max_batch_size (int): Maximum batch size for inference.\n            model_parallel_size (Optional[int], optional): Number of model parallel processes.\n                If not provided, it's determined from the environment. Defaults to None.\n\n        Returns:\n            Llama: An instance of the Llama class with the loaded model and tokenizer.\n\n        Raises:\n            AssertionError: If there are no checkpoint files in the specified directory,\n                or if the model parallel size does not match the number of checkpoint files.\n\n        Note:\n            This method initializes the distributed process group, sets the device to CUDA,\n            and loads the pre-trained model and tokenizer.\n        \"\"\"\n        assert 1 <= max_seq_len <= 8192, f\"max_seq_len must be between 1 and 8192, got {max_seq_len}.\"\n        assert os.path.isdir(ckpt_dir), f\"Checkpoint directory '{ckpt_dir}' does not exist.\"\n        assert os.path.isfile(tokenizer_path), f\"Tokenizer file '{tokenizer_path}' does not exist.\"\n        \n        if not torch.distributed.is_initialized():\n            torch.distributed.init_process_group(\"nccl\")\n        if not model_parallel_is_initialized():\n            if model_parallel_size is None:\n                model_parallel_size = int(os.environ.get(\"WORLD_SIZE\", 1))\n            initialize_model_parallel(model_parallel_size)\n\n        local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\n        torch.cuda.set_device(local_rank)\n\n        # seed must be the same in all processes\n        torch.manual_seed(seed)\n\n        if local_rank > 0:\n            sys.stdout = open(os.devnull, \"w\")\n\n        start_time = time.time()\n        checkpoints = sorted(Path(ckpt_dir).glob(\"*.pth\"))\n        assert len(checkpoints) > 0, f\"no checkpoint files found in {ckpt_dir}\"\n        assert model_parallel_size == len(\n            checkpoints\n        ), f\"Loading a checkpoint for MP={len(checkpoints)} but world size is {model_parallel_size}\"\n        ckpt_path = checkpoints[get_model_parallel_rank()]\n        checkpoint = torch.load(ckpt_path, map_location=\"cpu\")\n        with open(Path(ckpt_dir) / \"params.json\", \"r\") as f:\n            params = json.loads(f.read())\n\n        model_args: ModelArgs = ModelArgs(\n            max_seq_len=max_seq_len,\n            max_batch_size=max_batch_size,\n            **params,\n        )\n        tokenizer = Tokenizer(model_path=tokenizer_path)\n        assert model_args.vocab_size == tokenizer.n_words\n        if torch.cuda.is_bf16_supported():\n            torch.set_default_tensor_type(torch.cuda.BFloat16Tensor)\n        else:\n            torch.set_default_tensor_type(torch.cuda.HalfTensor)\n        model = Transformer(model_args)\n        model.load_state_dict(checkpoint, strict=False)\n        print(f\"Loaded in {time.time() - start_time:.2f} seconds\")\n\n        return Llama(model, tokenizer)\n\n    def __init__(self, model: Transformer, tokenizer: Tokenizer):\n        self.model = model\n        self.tokenizer = tokenizer\n        self.formatter = ChatFormat(tokenizer)\n\n    @torch.inference_mode()\n    def generate(\n        self,\n        prompt_tokens: List[List[int]],\n        max_gen_len: int,\n        temperature: float = 0.6,\n        top_p: float = 0.9,\n        logprobs: bool = False,\n        echo: bool = False,\n    ) -> Tuple[List[List[int]], Optional[List[List[float]]]]:\n        \"\"\"\n        Generate text sequences based on provided prompts using the language generation model.\n\n        Args:\n            prompt_tokens (List[List[int]]): List of tokenized prompts, where each prompt is represented as a list of integers.\n            max_gen_len (int): Maximum length of the generated text sequence.\n            temperature (float, optional): Temperature value for controlling randomness in sampling. Defaults to 0.6.\n            top_p (float, optional): Top-p probability threshold for nucleus sampling. Defaults to 0.9.\n            logprobs (bool, optional): Flag indicating whether to compute token log probabilities. Defaults to False.\n            echo (bool, optional): Flag indicating whether to include prompt tokens in the generated output. Defaults to False.\n\n        Returns:\n            Tuple[List[List[int]], Optional[List[List[float]]]]: A tuple containing generated token sequences and, if logprobs is True, corresponding token log probabilities.\n\n        Note:\n            This method uses the provided prompts as a basis for generating text. It employs nucleus sampling to produce text with controlled randomness.\n            If logprobs is True, token log probabilities are computed for each generated token.\n\n        \"\"\"\n        params = self.model.params\n        bsz = len(prompt_tokens)\n        assert bsz <= params.max_batch_size, (bsz, params.max_batch_size)\n\n        min_prompt_len = min(len(t) for t in prompt_tokens)\n        max_prompt_len = max(len(t) for t in prompt_tokens)\n        assert max_prompt_len <= params.max_seq_len\n        total_len = min(params.max_seq_len, max_gen_len + max_prompt_len)\n\n        pad_id = self.tokenizer.pad_id\n        tokens = torch.full((bsz, total_len), pad_id, dtype=torch.long, device=\"cuda\")\n        for k, t in enumerate(prompt_tokens):\n            tokens[k, : len(t)] = torch.tensor(t, dtype=torch.long, device=\"cuda\")\n        if logprobs:\n            token_logprobs = torch.zeros_like(tokens, dtype=torch.float)\n\n        prev_pos = 0\n        eos_reached = torch.tensor([False] * bsz, device=\"cuda\")\n        input_text_mask = tokens != pad_id\n        if min_prompt_len == total_len:\n            logits = self.model.forward(tokens, prev_pos)\n            token_logprobs = -F.cross_entropy(\n                input=logits.transpose(1, 2),\n                target=tokens,\n                reduction=\"none\",\n                ignore_index=pad_id,\n            )\n\n        stop_tokens = torch.tensor(list(self.tokenizer.stop_tokens))\n\n        for cur_pos in range(min_prompt_len, total_len):\n            logits = self.model.forward(tokens[:, prev_pos:cur_pos], prev_pos)\n            if temperature > 0:\n                probs = torch.softmax(logits[:, -1] / temperature, dim=-1)\n                next_token = sample_top_p(probs, top_p)\n            else:\n                next_token = torch.argmax(logits[:, -1], dim=-1)\n\n            next_token = next_token.reshape(-1)\n            # only replace token if prompt has already been generated\n            next_token = torch.where(\n                input_text_mask[:, cur_pos], tokens[:, cur_pos], next_token\n            )\n            tokens[:, cur_pos] = next_token\n            if logprobs:\n                token_logprobs[:, prev_pos + 1 : cur_pos + 1] = -F.cross_entropy(\n                    input=logits.transpose(1, 2),\n                    target=tokens[:, prev_pos + 1 : cur_pos + 1],\n                    reduction=\"none\",\n                    ignore_index=pad_id,\n                )\n            eos_reached |= (~input_text_mask[:, cur_pos]) & (\n                torch.isin(next_token, stop_tokens)\n            )\n            prev_pos = cur_pos\n            if all(eos_reached):\n                break\n\n        if logprobs:\n            token_logprobs = token_logprobs.tolist()\n        out_tokens, out_logprobs = [], []\n        for i, toks in enumerate(tokens.tolist()):\n            # cut to max gen len\n            start = 0 if echo else len(prompt_tokens[i])\n            toks = toks[start : len(prompt_tokens[i]) + max_gen_len]\n            probs = None\n            if logprobs:\n                probs = token_logprobs[i][start : len(prompt_tokens[i]) + max_gen_len]\n            # cut to after eos tok if any\n            for stop_token in self.tokenizer.stop_tokens:\n                try:\n                    eos_idx = toks.index(stop_token)\n                    toks = toks[:eos_idx]\n                    probs = probs[:eos_idx] if logprobs else None\n                except ValueError:\n                    pass\n            out_tokens.append(toks)\n            out_logprobs.append(probs)\n        return (out_tokens, out_logprobs if logprobs else None)\n\n    def text_completion(\n        self,\n        prompts: List[str],\n        temperature: float = 0.6,\n        top_p: float = 0.9,\n        max_gen_len: Optional[int] = None,\n        logprobs: bool = False,\n        echo: bool = False,\n    ) -> List[CompletionPrediction]:\n        \"\"\"\n        Perform text completion for a list of prompts using the language generation model.\n\n        Args:\n            prompts (List[str]): List of text prompts for completion.\n            temperature (float, optional): Temperature value for controlling randomness in sampling. Defaults to 0.6.\n            top_p (float, optional): Top-p probability threshold for nucleus sampling. Defaults to 0.9.\n            max_gen_len (Optional[int], optional): Maximum length of the generated completion sequence.\n                If not provided, it's set to the model's maximum sequence length minus 1.\n            logprobs (bool, optional): Flag indicating whether to compute token log probabilities. Defaults to False.\n            echo (bool, optional): Flag indicating whether to include prompt tokens in the generated output. Defaults to False.\n\n        Returns:\n            List[CompletionPrediction]: List of completion predictions, each containing the generated text completion.\n\n        Note:\n            This method generates text completions for the provided prompts, employing nucleus sampling to introduce controlled randomness.\n            If logprobs is True, token log probabilities are computed for each generated token.\n\n        \"\"\"\n        if max_gen_len is None:\n            max_gen_len = self.model.params.max_seq_len - 1\n        prompt_tokens = [self.tokenizer.encode(x, bos=True, eos=False) for x in prompts]\n        generation_tokens, generation_logprobs = self.generate(\n            prompt_tokens=prompt_tokens,\n            max_gen_len=max_gen_len,\n            temperature=temperature,\n            top_p=top_p,\n            logprobs=logprobs,\n            echo=echo,\n        )\n        if logprobs:\n            return [\n                {\n                    \"generation\": self.tokenizer.decode(t),\n                    \"tokens\": [self.tokenizer.decode([x]) for x in t],\n                    \"logprobs\": logprobs_i,\n                }\n                for t, logprobs_i in zip(generation_tokens, generation_logprobs)\n            ]\n        return [{\"generation\": self.tokenizer.decode(t)} for t in generation_tokens]\n\n    def chat_completion(\n        self,\n        dialogs: List[Dialog],\n        temperature: float = 0.6,\n        top_p: float = 0.9,\n        max_gen_len: Optional[int] = None,\n        logprobs: bool = False,\n    ) -> List[ChatPrediction]:\n        \"\"\"\n        Generate assistant responses for a list of conversational dialogs using the language generation model.\n\n        Args:\n            dialogs (List[Dialog]): List of conversational dialogs, where each dialog is a list of messages.\n            temperature (float, optional): Temperature value for controlling randomness in sampling. Defaults to 0.6.\n            top_p (float, optional): Top-p probability threshold for nucleus sampling. Defaults to 0.9.\n            max_gen_len (Optional[int], optional): Maximum length of the generated response sequence.\n                If not provided, it's set to the model's maximum sequence length minus 1.\n            logprobs (bool, optional): Flag indicating whether to compute token log probabilities. Defaults to False.\n\n        Returns:\n            List[ChatPrediction]: List of chat predictions, each containing the assistant's generated response.\n\n        Note:\n            This method generates assistant responses for the provided conversational dialogs.\n            It employs nucleus sampling to introduce controlled randomness in text generation.\n            If logprobs is True, token log probabilities are computed for each generated token.\n        \"\"\"\n        if max_gen_len is None:\n            max_gen_len = self.model.params.max_seq_len - 1\n\n        prompt_tokens = [\n            self.formatter.encode_dialog_prompt(dialog) for dialog in dialogs\n        ]\n        generation_tokens, generation_logprobs = self.generate(\n            prompt_tokens=prompt_tokens,\n            max_gen_len=max_gen_len,\n            temperature=temperature,\n            top_p=top_p,\n            logprobs=logprobs,\n        )\n        if logprobs:\n            return [\n                {\n                    \"generation\": {\n                        \"role\": \"assistant\",\n                        \"content\": self.tokenizer.decode(t),\n                    },\n                    \"tokens\": [self.tokenizer.decode([x]) for x in t],\n                    \"logprobs\": logprobs_i,\n                }\n                for t, logprobs_i in zip(generation_tokens, generation_logprobs)\n            ]\n        return [\n            {\n                \"generation\": {\n                    \"role\": \"assistant\",\n                    \"content\": self.tokenizer.decode(t),\n                },\n            }\n            for t in generation_tokens\n        ]",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/generation.py:35-340"
+            },
+            {
+              "filePath": "llama/generation.py",
+              "symbolName": "sample_top_p",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 343,
+              "endLine": 365,
+              "codeContent": "def sample_top_p(probs, p):\n    \"\"\"\n    Perform top-p (nucleus) sampling on a probability distribution.\n\n    Args:\n        probs (torch.Tensor): Probability distribution tensor.\n        p (float): Probability threshold for top-p sampling.\n\n    Returns:\n        torch.Tensor: Sampled token indices.\n\n    Note:\n        Top-p sampling selects the smallest set of tokens whose cumulative probability mass\n        exceeds the threshold p. The distribution is renormalized based on the selected tokens.\n    \"\"\"\n    probs_sort, probs_idx = torch.sort(probs, dim=-1, descending=True)\n    probs_sum = torch.cumsum(probs_sort, dim=-1)\n    mask = probs_sum - probs_sort > p\n    probs_sort[mask] = 0.0\n    probs_sort.div_(probs_sort.sum(dim=-1, keepdim=True))\n    next_token = torch.multinomial(probs_sort, num_samples=1)\n    next_token = torch.gather(probs_idx, -1, next_token)\n    return next_token",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/generation.py:343-365"
+            },
+            {
+              "filePath": "llama/tokenizer.py",
+              "symbolName": "encode_dialog_prompt",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ChatFormat",
+              "programmingLanguage": "Python",
+              "startLine": 222,
+              "endLine": 229,
+              "codeContent": "    def encode_dialog_prompt(self, dialog: Dialog) -> List[int]:\n        tokens = []\n        tokens.append(self.tokenizer.special_tokens[\"<|begin_of_text|>\"])\n        for message in dialog:\n            tokens.extend(self.encode_message(message))\n        # Add the start of an assistant message for the model to complete.\n        tokens.extend(self.encode_header({\"role\": \"assistant\", \"content\": \"\"}))\n        return tokens",
+              "_comment": "Verbatim from https://github.com/meta-llama/llama3 @ a0940f9 — llama/tokenizer.py:222-229"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,973 @@
+{
+  "_comment": "노트 마크다운에서 생성. content 는 노트가 인용한 논문 원문, codeContent 는 저장소 원문에서 잘라온 것(줄 번호는 AST·블록 파서 실측). 노트에 경로·심볼이 없는 경우 코드 본문을 저장소에 역매칭해 특정했습니다.",
+  "_sourceMarkdown": "Vision Transform 3b30f4e8fef780aeb94ada615f1ce800.md",
+  "_unresolved": [
+    {
+      "chunk": "03",
+      "title": "Patch Flattening",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "06",
+      "title": "Position Embedding",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "07",
+      "title": "Transformer Encoder Input",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "10",
+      "title": "Query / Key / Value 생성",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "11",
+      "title": "Scaled Dot Product Attention",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "12",
+      "title": "Softmax Attention Probability",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "13",
+      "title": "Attention Output Projection",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "15",
+      "title": "Layer Normalization",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "17",
+      "title": "GELU Activation",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "21",
+      "title": "Fine-tuning Strategy",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "22",
+      "title": "ViT Model Size Configuration",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "24",
+      "title": "Hybrid Architecture (CNN + Transformer)",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "25",
+      "title": "Training Dataset Pipeline",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "26",
+      "title": "Data Augmentation",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "27",
+      "title": "Optimizer (Adam / AdamW)",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "28",
+      "title": "Learning Rate Schedule",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "29",
+      "title": "Weight Decay Regularization",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "31",
+      "title": "Checkpoint Loading",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "32",
+      "title": "Inference Pipeline",
+      "issue": "코드 본문을 google-research/vision_transformer@64801f1 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
+    },
+    {
+      "chunk": "33",
+      "title": "전체 ViT 구현 Pipeline 정리",
+      "issue": "노트에 대응 코드가 없음"
+    },
+    {
+      "chunk": "-",
+      "title": "입도 정리 (§4 규칙 3)",
+      "issue": "부모 블록 2개를 자식 심볼로 대체: ['MlpBlock', 'VisionTransformer']"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 15건을 참조 구현/추가 심볼로 매핑"
+    },
+    {
+      "chunk": "-",
+      "title": "잔여 누락",
+      "issue": "쪽 미확정 0건 / 논문 원문 미보강 1건 (논문에 대응 서술이 없는 항목)"
+    },
+    {
+      "chunk": "-",
+      "title": "참조 구현 보강",
+      "issue": "공식 저장소로 대응이 안 되는 chunk 5건을 참조 구현/추가 심볼로 매핑"
+    }
+  ],
+  "papers": [
+    {
+      "arxivId": "2010.11929",
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "abstract": "While the Transformer architecture has become the de-facto standard for natural language processing tasks, its applications to computer vision remain limited. In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure in place. We show that this reliance on CNNs is not necessary and a pure transformer applied directly to sequences of image patches can perform very well on image classification tasks. When pre-trained on large amounts of data and transferred to multiple mid-sized or small image recognition benchmarks (ImageNet, CIFAR-100, VTAB, etc.), Vision Transformer (ViT) attains excellent results compared to state-of-the-art convolutional networks while requiring substantially fewer computational resources to train.",
+      "pdfUrl": "https://arxiv.org/pdf/2010.11929",
+      "publishedDate": "2020-10-22",
+      "authors": [
+        "Alexey Dosovitskiy",
+        "Lucas Beyer",
+        "Alexander Kolesnikov",
+        "Dirk Weissenborn",
+        "Xiaohua Zhai",
+        "Thomas Unterthiner",
+        "Mostafa Dehghani",
+        "Matthias Minderer",
+        "Georg Heigold",
+        "Sylvain Gelly",
+        "Jakob Uszkoreit",
+        "Neil Houlsby"
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "sectionTitle": "1 Introduction",
+          "subsectionTitle": "Vision Transformer 전체 Architecture",
+          "content": "We split an image into patches and provide the sequence of linear embeddings of these patches as an input to a Transformer.\n\nInspired by the Transformer scaling successes in NLP, we experiment with applying a standard Transformer directly to images, with the fewest possible modifications.\nTo do so, we split an image into patches and provide the sequence of linear embeddings of these patches as an input to a Transformer.\nImage patches are treated the same way as tokens (words) in an NLP application.\nWe train the model on image classification in supervised fashion.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 01 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 226,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 1,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Image Patch Extraction",
+          "content": "We reshape the image x ∈ R^(H×W×C) into a sequence of flattened 2D patches.\n\nAn overview of the model is depicted in Figure 1.\nThe standard Transformer receives as input a 1D sequence of token embeddings.\nTo handle 2D images, we reshape the image \\mathbf{x}\\in\\mathbb{R}^{H\\times W\\times C} into a sequence of flattened 2D patches \\mathbf{x}_{p}\\in\\mathbb{R}^{N\\times(P^{2}\\cdot C)} , where (H,W) is the resolution of the original image, C is the number of channels, (P,P) is the resolution of each image patch, and N=HW/P^{2} is the resulting number of patches, which also serves as the effective input sequence length for the Transformer.\nThe Transformer uses constant latent vector size D through all of its layers, so we flatten the patches and map to D dimensions with a trainable linear projection (Eq. 1).\nWe refer to the output of this projection as the patch embeddings.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 02 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 226,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 2,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Patch Flattening",
+          "content": "The resulting sequence of patch embeddings is fed to the Transformer encoder.\n\nAn overview of the model is depicted in Figure 1.\nThe standard Transformer receives as input a 1D sequence of token embeddings.\nTo handle 2D images, we reshape the image \\mathbf{x}\\in\\mathbb{R}^{H\\times W\\times C} into a sequence of flattened 2D patches \\mathbf{x}_{p}\\in\\mathbb{R}^{N\\times(P^{2}\\cdot C)} , where (H,W) is the resolution of the original image, C is the number of channels, (P,P) is the resolution of each image patch, and N=HW/P^{2} is the resulting number of patches, which also serves as the effective input sequence length for the Transformer.\nThe Transformer uses constant latent vector size D through all of its layers, so we flatten the patches and map to D dimensions with a trainable linear projection (Eq. 1).\nWe refer to the output of this projection as the patch embeddings.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 03 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "startLine": 86,
+              "reason": "Rearrange 로 이미지를 patch 단위로 잘라 1차원으로 펼치는 부분"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 3,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Patch Embedding (Linear Projection)",
+          "content": "The patch embeddings are projected to a D-dimensional vector space.\n\nSimilar to BERT’s [class] token, we prepend a learnable embedding to the sequence of embedded patches ( \\mathbf{z}_{0}^{0}=\\mathbf{x}_{\\text{class}} ), whose state at the output of the Transformer encoder ( \\mathbf{z}^{0}_{L} ) serves as the image representation \\mathbf{y} (Eq. 4).\nBoth during pre-training and fine-tuning, a classification head is attached to \\mathbf{z}^{0}_{L} .\nThe classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 04 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 226,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 4,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Class Token ([CLS])",
+          "content": "We prepend a learnable embedding to the sequence of patch embeddings.\n\nSimilar to BERT’s [class] token, we prepend a learnable embedding to the sequence of embedded patches ( \\mathbf{z}_{0}^{0}=\\mathbf{x}_{\\text{class}} ), whose state at the output of the Transformer encoder ( \\mathbf{z}^{0}_{L} ) serves as the image representation \\mathbf{y} (Eq. 4).\nBoth during pre-training and fine-tuning, a classification head is attached to \\mathbf{z}^{0}_{L} .\nThe classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 05 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 226,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 5,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Position Embedding",
+          "content": "Position embeddings are added to the patch embeddings to retain positional information.\n\nPosition embeddings are added to the patch embeddings to retain positional information.\nWe use standard learnable 1D position embeddings, since we have not observed significant performance gains from using more advanced 2D-aware position embeddings (Appendix D.4).\nThe resulting sequence of embedding vectors serves as input to the encoder.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 06 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 48,
+              "reason": "학습 가능한 위치 임베딩을 patch 임베딩에 더하는 전용 모듈"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 6,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Transformer Encoder Input",
+          "content": "The resulting sequence is fed to a standard Transformer encoder.\n\nPosition embeddings are added to the patch embeddings to retain positional information.\nWe use standard learnable 1D position embeddings, since we have not observed significant performance gains from using more advanced 2D-aware position embeddings (Appendix D.4).\nThe resulting sequence of embedding vectors serves as input to the encoder.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 07 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "forward",
+              "startLine": 118,
+              "reason": "patch 임베딩 + cls token + 위치 임베딩을 만들어 Transformer 에 넣는 입력 구성"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 7,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Transformer Encoder Block",
+          "content": "The Transformer encoder consists of alternating layers of multiheaded self-attention and MLP blocks.\n\nThe Transformer encoder (Vaswani et al. 2017) consists of alternating layers of multiheaded self-attention (MSA, see Appendix A) and MLP blocks (Eq. 2, 3).\nLayernorm (LN) is applied before every block, and residual connections after every block (Wang et al. 2019; Baevski & Auli 2019).\nThe MLP contains two layers with a GELU non-linearity.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 08 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 178,
+              "reason": "``` DIRECT ```"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 8,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Multi-Head Self Attention",
+          "content": "The Transformer encoder consists of alternating layers of multiheaded self-attention and MLP blocks.\n\nThe Transformer encoder (Vaswani et al. 2017) consists of alternating layers of multiheaded self-attention (MSA, see Appendix A) and MLP blocks (Eq. 2, 3).\nLayernorm (LN) is applied before every block, and residual connections after every block (Wang et al. 2019; Baevski & Auli 2019).\nThe MLP contains two layers with a GELU non-linearity.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 09 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "Encoder1DBlock",
+              "startLine": 105,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 9,
+          "sectionTitle": "5 Conclusion",
+          "subsectionTitle": "Query / Key / Value 생성",
+          "content": "We use a standard Transformer encoder as described in Vaswani et al.\n\nWe have explored the direct application of Transformers to image recognition.\nUnlike prior works using self-attention in computer vision, we do not introduce image-specific inductive biases into the architecture apart from the initial patch extraction step.\nInstead, we interpret an image as a sequence of patches and process it by a standard Transformer encoder as used in NLP.\nThis simple, yet scalable, strategy works surprisingly well when coupled with pre-training on large datasets.\nThus, Vision Transformer matches or exceeds the state of the art on many image classification datasets, whilst being relatively cheap to pre-train.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 10 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "startLine": 31,
+              "reason": "to_qkv 하나로 Q·K·V 를 한 번에 projection 하도록 정의"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 10,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Scaled Dot Product Attention",
+          "content": "Self-attention allows the model to attend to all positions of the input sequence.\n\nThe Transformer encoder (Vaswani et al. 2017) consists of alternating layers of multiheaded self-attention (MSA, see Appendix A) and MLP blocks (Eq. 2, 3).\nLayernorm (LN) is applied before every block, and residual connections after every block (Wang et al. 2019; Baevski & Auli 2019).\nThe MLP contains two layers with a GELU non-linearity.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 11 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "forward",
+              "startLine": 51,
+              "reason": "QK^T 를 scale 로 나누고 softmax 후 V 와 곱하는 scaled dot-product attention"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 11,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Softmax Attention Probability",
+          "content": "The attention weights are normalized using softmax.\n\nAn overview of the model is depicted in Figure 1.\nThe standard Transformer receives as input a 1D sequence of token embeddings.\nTo handle 2D images, we reshape the image \\mathbf{x}\\in\\mathbb{R}^{H\\times W\\times C} into a sequence of flattened 2D patches \\mathbf{x}_{p}\\in\\mathbb{R}^{N\\times(P^{2}\\cdot C)} , where (H,W) is the resolution of the original image, C is the number of channels, (P,P) is the resolution of each image patch, and N=HW/P^{2} is the resulting number of patches, which also serves as the effective input sequence length for the Transformer.\nThe Transformer uses constant latent vector size D through all of its layers, so we flatten the patches and map to D dimensions with a trainable linear projection (Eq. 1).\nWe refer to the output of this projection as the patch embeddings.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 12 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "forward",
+              "startLine": 51,
+              "reason": "attend(=Softmax) 로 attention 확률을 만드는 지점"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 12,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Attention Output Projection",
+          "content": "The outputs of all attention heads are concatenated and projected.\n\nSimilar to BERT’s [class] token, we prepend a learnable embedding to the sequence of embedded patches ( \\mathbf{z}_{0}^{0}=\\mathbf{x}_{\\text{class}} ), whose state at the output of the Transformer encoder ( \\mathbf{z}^{0}_{L} ) serves as the image representation \\mathbf{y} (Eq. 4).\nBoth during pre-training and fine-tuning, a classification head is attached to \\mathbf{z}^{0}_{L} .\nThe classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 13 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "startLine": 31,
+              "reason": "to_out 으로 head 를 합친 뒤 최종 projection 을 정의"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 13,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Residual Connection",
+          "content": "Layer normalization is applied before every block, and residual connections are applied after every block.\n\nThe Transformer encoder (Vaswani et al. 2017) consists of alternating layers of multiheaded self-attention (MSA, see Appendix A) and MLP blocks (Eq. 2, 3).\nLayernorm (LN) is applied before every block, and residual connections after every block (Wang et al. 2019; Baevski & Auli 2019).\nThe MLP contains two layers with a GELU non-linearity.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 14 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 80,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 14,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Layer Normalization",
+          "content": "Layer normalization is applied before every block.\n\nThe Transformer encoder (Vaswani et al. 2017) consists of alternating layers of multiheaded self-attention (MSA, see Appendix A) and MLP blocks (Eq. 2, 3).\nLayernorm (LN) is applied before every block, and residual connections after every block (Wang et al. 2019; Baevski & Auli 2019).\nThe MLP contains two layers with a GELU non-linearity.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 15 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "startLine": 67,
+              "reason": "block 마다 LayerNorm 을 두는 pre-norm 구조"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 15,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "MLP Block",
+          "content": "Each Transformer layer contains an MLP with two layers.\n\nPosition embeddings are added to the patch embeddings to retain positional information.\nWe use standard learnable 1D position embeddings, since we have not observed significant performance gains from using more advanced 2D-aware position embeddings (Appendix D.4).\nThe resulting sequence of embedding vectors serves as input to the encoder.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 16 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 80,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 16,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "GELU Activation",
+          "content": "We use GELU nonlinearities.\n\nThe Transformer encoder (Vaswani et al. 2017) consists of alternating layers of multiheaded self-attention (MSA, see Appendix A) and MLP blocks (Eq. 2, 3).\nLayernorm (LN) is applied before every block, and residual connections after every block (Wang et al. 2019; Baevski & Auli 2019).\nThe MLP contains two layers with a GELU non-linearity.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 17 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "startLine": 16,
+              "reason": "MLP 안에서 GELU 를 활성함수로 사용"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 17,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Transformer Layer 반복",
+          "content": "We apply the Transformer encoder blocks L times.\n\nAn overview of the model is depicted in Figure 1.\nThe standard Transformer receives as input a 1D sequence of token embeddings.\nTo handle 2D images, we reshape the image \\mathbf{x}\\in\\mathbb{R}^{H\\times W\\times C} into a sequence of flattened 2D patches \\mathbf{x}_{p}\\in\\mathbb{R}^{N\\times(P^{2}\\cdot C)} , where (H,W) is the resolution of the original image, C is the number of channels, (P,P) is the resolution of each image patch, and N=HW/P^{2} is the resulting number of patches, which also serves as the effective input sequence length for the Transformer.\nThe Transformer uses constant latent vector size D through all of its layers, so we flatten the patches and map to D dimensions with a trainable linear projection (Eq. 1).\nWe refer to the output of this projection as the patch embeddings.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 18 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 178,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 18,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "Classification Head (Image Classification Output)",
+          "content": "The classification head is attached to the Transformer encoder output.\n\nSimilar to BERT’s [class] token, we prepend a learnable embedding to the sequence of embedded patches ( \\mathbf{z}_{0}^{0}=\\mathbf{x}_{\\text{class}} ), whose state at the output of the Transformer encoder ( \\mathbf{z}^{0}_{L} ) serves as the image representation \\mathbf{y} (Eq. 4).\nBoth during pre-training and fine-tuning, a classification head is attached to \\mathbf{z}^{0}_{L} .\nThe classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 19 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 226,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 19,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "MLP Head (Pre-training / Representation Learning)",
+          "content": "The MLP head consists of a single hidden layer at pre-training time and a single linear layer at fine-tuning time.\n\nSimilar to BERT’s [class] token, we prepend a learnable embedding to the sequence of embedded patches ( \\mathbf{z}_{0}^{0}=\\mathbf{x}_{\\text{class}} ), whose state at the output of the Transformer encoder ( \\mathbf{z}^{0}_{L} ) serves as the image representation \\mathbf{y} (Eq. 4).\nBoth during pre-training and fine-tuning, a classification head is attached to \\mathbf{z}^{0}_{L} .\nThe classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 20 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 226,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 20,
+          "sectionTitle": "3.2 Fine-tuning and Higher Resolution",
+          "subsectionTitle": "Fine-tuning Strategy",
+          "content": "We fine-tune the model on downstream tasks by replacing the classification head.\n\nTypically, we pre-train ViT on large datasets, and fine-tune to (smaller) downstream tasks.\nFor this, we remove the pre-trained prediction head and attach a zero-initialized D\\times K feedforward layer, where K is the number of downstream classes.\nIt is often beneficial to fine-tune at higher resolution than pre-training (Touvron et al. 2019; Kolesnikov et al. 2020).\nWhen feeding images of higher resolution, we keep the patch size the same, which results in a larger effective sequence length.\nThe Vision Transformer can handle arbitrary sequence lengths (up to memory constraints), however, the pre-trained position embeddings may no longer be meaningful.\nWe therefore perform 2D interpolation of the pre-trained position embeddings, according to their location in the original image.\nNote that this resolution adjustment and patch extraction are the only points at which an inductive bias about the 2D structure of the images is manually injected into the Vision Transformer.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 21 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models.py",
+              "symbolName": "get_model",
+              "startLine": 33,
+              "reason": "사전학습 모델을 이름으로 불러와 파인튜닝에 쓰는 진입점"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 21,
+          "sectionTitle": "3.1 Vision Transformer (ViT)",
+          "subsectionTitle": "ViT Model Size Configuration",
+          "content": "We experiment with three model sizes: ViT-Base, ViT-Large, and ViT-Huge.\n\nSimilar to BERT’s [class] token, we prepend a learnable embedding to the sequence of embedded patches ( \\mathbf{z}_{0}^{0}=\\mathbf{x}_{\\text{class}} ), whose state at the output of the Transformer encoder ( \\mathbf{z}^{0}_{L} ) serves as the image representation \\mathbf{y} (Eq. 4).\nBoth during pre-training and fine-tuning, a classification head is attached to \\mathbf{z}^{0}_{L} .\nThe classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 22 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "startLine": 86,
+              "reason": "dim·depth·heads·mlp_dim 을 인자로 받아 Base/Large/Huge 구성을 만드는 지점"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 22,
+          "sectionTitle": "4.2 Comparison to State of the Art",
+          "subsectionTitle": "Patch Size Experiment",
+          "content": "We evaluate different patch sizes and find that smaller patches improve performance.\n\nWe first compare our largest models – ViT-H/14 and ViT-L/16  – to state-of-the-art CNNs from the literature.\nThe first comparison point is Big Transfer (BiT) (Kolesnikov et al. 2020), which performs supervised transfer learning with large ResNets.\nThe second is Noisy Student (Xie et al. 2020),\nwhich is a large EfficientNet trained using semi-supervised learning on ImageNet and JFT-300M with the labels removed.\nCurrently, Noisy Student is the state of the art on ImageNet and BiT-L on the other datasets reported here.\nAll models were trained on TPUv3 hardware, and we report the number of TPUv3-core-days taken to pre-train each of them, that is, the number of TPU v3 cores (2 per chip) used for training multiplied by the training time in days.",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "_comment": "노트 23 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 226,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 23,
+          "sectionTitle": "Hybrid Architecture.",
+          "subsectionTitle": "Hybrid Architecture (CNN + Transformer)",
+          "content": "The patch embeddings can also be extracted from a CNN feature map.\n\nAs an alternative to raw image patches, the input sequence can be formed from feature maps of a CNN (LeCun et al. 1989).\nIn this hybrid model, the patch embedding projection \\mathbf{E} (Eq. 1) is applied to patches extracted from a CNN feature map.\nAs a special case, the patches can have spatial size 1x1, which means that the input sequence is obtained by simply flattening the spatial dimensions of the feature map and projecting to the Transformer dimension.\nThe classification input embedding and position embeddings are added as described above.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 24 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_resnet.py",
+              "symbolName": "__call__",
+              "startLine": 102,
+              "reason": "CNN stage 를 앞단에 두는 hybrid 구성"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 24,
+          "sectionTitle": "4 Experiments",
+          "subsectionTitle": "Training Dataset Pipeline",
+          "content": "We pre-train on ImageNet-21k and fine-tune on ImageNet-1k.\n\nWe evaluate the representation learning capabilities of ResNet, Vision Transformer (ViT), and the hybrid.\nTo understand the data requirements of each model, we pre-train on datasets of varying size and evaluate many benchmark tasks.\nWhen considering the computational cost of pre-training the model, ViT performs very favourably, attaining state of the art on most recognition benchmarks at a lower pre-training cost.\nLastly, we perform a small experiment using self-supervision, and show that self-supervised ViT holds promise for the future.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 25 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/input_pipeline.py",
+              "symbolName": "get_datasets",
+              "startLine": 82,
+              "reason": "학습·평가 데이터셋을 구성하는 입력 파이프라인"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 25,
+          "sectionTitle": "4.1 Setup",
+          "subsectionTitle": "Data Augmentation",
+          "content": "We use standard data augmentation methods including random crop and horizontal flip.\n\nDatasets.\nTo explore model scalability, we use the ILSVRC-2012 ImageNet dataset with 1k classes and 1.3M images (we refer to it as ImageNet in what follows),\nits superset ImageNet-21k with 21k classes and 14M images (Deng et al. 2009),\nand JFT (Sun et al. 2017) with 18k classes and 303M high-resolution images.\nWe de-duplicate the pre-training datasets w.r.t. the test sets of the downstream tasks following Kolesnikov et al. 2020.\nWe transfer the models trained on these dataset to several benchmark tasks:\nImageNet on the original validation labels and the cleaned-up ReaL labels (Beyer et al. 2020),\nCIFAR-10/100 (Krizhevsky 2009),\nOxford-IIIT Pets (Parkhi et al. 2012),\nand Oxford Flowers-102 (Nilsback & Zisserman 2008).\nFor these datasets, pre-processing follows Kolesnikov et al. 2020.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 26 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/input_pipeline.py",
+              "symbolName": "get_data",
+              "startLine": 165,
+              "reason": "crop·flip 등 전처리와 배치 구성을 담당"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 26,
+          "sectionTitle": "4.1 Setup",
+          "subsectionTitle": "Optimizer (Adam / AdamW)",
+          "content": "We train all models using Adam with weight decay.\n\nWe also evaluate on the 19-task VTAB classification suite (Zhai et al. 2019b).\nVTAB evaluates low-data transfer to diverse tasks, using 1 000 training examples per task.\nThe tasks are divided into three groups:\nNatural – tasks like the above, Pets, CIFAR, etc.\nSpecialized – medical and satellite imagery, and\nStructured – tasks that require geometric understanding like localization.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 27 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/train.py",
+              "symbolName": "make_update_fn",
+              "startLine": 37,
+              "reason": "optimizer 로 파라미터를 갱신하는 학습 스텝 정의"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 27,
+          "sectionTitle": "4.1 Setup",
+          "subsectionTitle": "Learning Rate Schedule",
+          "content": "We use a linear learning rate warmup and decay schedule.\n\nTraining & Fine-tuning.\nWe train all models, including ResNets, using Adam (Kingma & Ba 2015) with \\beta_{1}=0.9 , \\beta_{2}=0.999 , a batch size of 4096 and apply a high weight decay of 0.1 , which we found to be useful for transfer of all models (Appendix D.1 shows that, in contrast to common practices, Adam works slightly better than SGD for ResNets in our setting).\nWe use a linear learning rate warmup and decay, see Appendix B.1 for details.\nFor fine-tuning we use SGD with momentum, batch size 512, for all models, see Appendix B.1.1.\nFor ImageNet results in Table 2, we fine-tuned at higher resolution: 512 for ViT-L/16 and 518 for ViT-H/14, and also used Polyak & Juditsky 1992 averaging with a factor of 0.9999  (Ramachandran et al. 2019; Wang et al. 2020b).",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 28 | 논문 원문 문단 보강 (ar5iv 2010.11929)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/train.py",
+              "symbolName": "train_and_evaluate",
+              "startLine": 73,
+              "reason": "warmup·decay 를 포함한 learning rate schedule 이 설정되는 학습 루프"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 28,
+          "sectionTitle": "4.1 Setup",
+          "subsectionTitle": "Weight Decay Regularization",
+          "content": "We use weight decay for regularization.\n\nDatasets.\nTo explore model scalability, we use the ILSVRC-2012 ImageNet dataset with 1k classes and 1.3M images (we refer to it as ImageNet in what follows),\nits superset ImageNet-21k with 21k classes and 14M images (Deng et al. 2009),\nand JFT (Sun et al. 2017) with 18k classes and 303M high-resolution images.\nWe de-duplicate the pre-training datasets w.r.t. the test sets of the downstream tasks following Kolesnikov et al. 2020.\nWe transfer the models trained on these dataset to several benchmark tasks:\nImageNet on the original validation labels and the cleaned-up ReaL labels (Beyer et al. 2020),\nCIFAR-10/100 (Krizhevsky 2009),\nOxford-IIIT Pets (Parkhi et al. 2012),\nand Oxford Flowers-102 (Nilsback & Zisserman 2008).\nFor these datasets, pre-processing follows Kolesnikov et al. 2020.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 29 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/train.py",
+              "symbolName": "make_update_fn",
+              "startLine": 37,
+              "reason": "weight decay 를 포함한 파라미터 갱신 정의"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 29,
+          "sectionTitle": "4.1 Setup",
+          "subsectionTitle": "Dropout",
+          "content": "We use dropout in Transformer layers.\n\nWe also evaluate on the 19-task VTAB classification suite (Zhai et al. 2019b).\nVTAB evaluates low-data transfer to diverse tasks, using 1 000 training examples per task.\nThe tasks are divided into three groups:\nNatural – tasks like the above, Pets, CIFAR, etc.\nSpecialized – medical and satellite imagery, and\nStructured – tasks that require geometric understanding like localization.",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "_comment": "노트 30 | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "startLine": 80,
+              "reason": "``` DIRECT ``` ---"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 30,
+          "sectionTitle": "3.2 Fine-tuning and Higher Resolution",
+          "subsectionTitle": "Checkpoint Loading",
+          "content": "Checkpoint Loading\n\nTypically, we pre-train ViT on large datasets, and fine-tune to (smaller) downstream tasks.\nFor this, we remove the pre-trained prediction head and attach a zero-initialized D\\times K feedforward layer, where K is the number of downstream classes.\nIt is often beneficial to fine-tune at higher resolution than pre-training (Touvron et al. 2019; Kolesnikov et al. 2020).\nWhen feeding images of higher resolution, we keep the patch size the same, which results in a larger effective sequence length.\nThe Vision Transformer can handle arbitrary sequence lengths (up to memory constraints), however, the pre-trained position embeddings may no longer be meaningful.\nWe therefore perform 2D interpolation of the pre-trained position embeddings, according to their location in the original image.\nNote that this resolution adjustment and patch extraction are the only points at which an inductive bias about the 2D structure of the images is manually injected into the Vision Transformer.",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "_comment": "노트 31 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/checkpoint.py",
+              "symbolName": "load_pretrained",
+              "startLine": 159,
+              "reason": "사전학습 체크포인트를 불러오고 위치 임베딩을 보간해 맞추는 부분"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 31,
+          "sectionTitle": "3 Method",
+          "subsectionTitle": "Inference Pipeline",
+          "content": "학습된 ViT를 이용한 이미지 분류.\n\n---\n\nIn model design we follow the original Transformer (Vaswani et al. 2017) as closely as possible.\nAn advantage of this intentionally simple setup is that scalable NLP Transformer architectures – and their efficient implementations – can be used almost out of the box.",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 32 / content=구현 설명 (노트에 논문 인용 없음) | 논문 원문 절 문단으로 보강 (ar5iv 2010.11929, 인용문 없음)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/google-research/vision_transformer",
+              "filePath": "vit_jax/models.py",
+              "symbolName": "get_model",
+              "startLine": 33,
+              "reason": "추론 시 모델을 구성하는 경로"
+            }
+          ]
+        },
+        {
+          "chunkIndex": 32,
+          "sectionTitle": "전체 ViT 구현 Pipeline 정리",
+          "subsectionTitle": "전체 ViT 구현 Pipeline 정리",
+          "content": "전체 ViT 구현 Pipeline 정리",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "_comment": "노트 33 / content=구현 설명 (노트에 논문 인용 없음) | 쪽 번호 인접 chunk 로 보간(p.3)",
+          "mappedCode": [
+            {
+              "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "forward",
+              "startLine": 118,
+              "reason": "patch→embedding→Transformer→head 전체 흐름"
+            }
+          ]
+        }
+      ],
+      "repositories": [
+        {
+          "githubUrl": "https://github.com/google-research/vision_transformer",
+          "ownerName": "google-research",
+          "repositoryName": "vision_transformer",
+          "defaultBranch": "main",
+          "commitHash": "64801f1b3b367b3611cc27a3d45cc22870a36fb3",
+          "licenseName": "Apache-2.0",
+          "primaryLanguage": "Python",
+          "starCount": 12666,
+          "relationType": "OFFICIAL",
+          "isPrimary": true,
+          "codeBlocks": [
+            {
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "VisionTransformer",
+              "programmingLanguage": "Python",
+              "startLine": 226,
+              "endLine": 308,
+              "codeContent": "  def __call__(self, inputs, *, train):\n\n    x = inputs\n    # (Possibly partial) ResNet root.\n    if self.resnet is not None:\n      width = int(64 * self.resnet.width_factor)\n\n      # Root block.\n      x = models_resnet.StdConv(\n          features=width,\n          kernel_size=(7, 7),\n          strides=(2, 2),\n          use_bias=False,\n          name='conv_root')(\n              x)\n      x = nn.GroupNorm(name='gn_root')(x)\n      x = nn.relu(x)\n      x = nn.max_pool(x, window_shape=(3, 3), strides=(2, 2), padding='SAME')\n\n      # ResNet stages.\n      if self.resnet.num_layers:\n        x = models_resnet.ResNetStage(\n            block_size=self.resnet.num_layers[0],\n            nout=width,\n            first_stride=(1, 1),\n            name='block1')(\n                x)\n        for i, block_size in enumerate(self.resnet.num_layers[1:], 1):\n          x = models_resnet.ResNetStage(\n              block_size=block_size,\n              nout=width * 2**i,\n              first_stride=(2, 2),\n              name=f'block{i + 1}')(\n                  x)\n\n    n, h, w, c = x.shape\n\n    # We can merge s2d+emb into a single conv; it's the same.\n    x = nn.Conv(\n        features=self.hidden_size,\n        kernel_size=self.patches.size,\n        strides=self.patches.size,\n        padding='VALID',\n        name='embedding')(\n            x)\n\n    # Here, x is a grid of embeddings.\n\n    # (Possibly partial) Transformer.\n    if self.transformer is not None:\n      n, h, w, c = x.shape\n      x = jnp.reshape(x, [n, h * w, c])\n\n      # If we want to add a class token, add it here.\n      if self.classifier in ['token', 'token_unpooled']:\n        cls = self.param('cls', nn.initializers.zeros, (1, 1, c))\n        cls = jnp.tile(cls, [n, 1, 1])\n        x = jnp.concatenate([cls, x], axis=1)\n\n      x = self.encoder(name='Transformer', **self.transformer)(x, train=train)\n\n    if self.classifier == 'token':\n      x = x[:, 0]\n    elif self.classifier == 'gap':\n      x = jnp.mean(x, axis=list(range(1, x.ndim - 1)))  # (1,) or (1,2)\n    elif self.classifier in ['unpooled', 'token_unpooled']:\n      pass\n    else:\n      raise ValueError(f'Invalid classifier={self.classifier}')\n\n    if self.representation_size is not None:\n      x = nn.Dense(features=self.representation_size, name='pre_logits')(x)\n      x = nn.tanh(x)\n    else:\n      x = IdentityLayer(name='pre_logits')(x)\n\n    if self.num_classes:\n      x = nn.Dense(\n          features=self.num_classes,\n          name='head',\n          kernel_init=nn.initializers.zeros,\n          bias_init=nn.initializers.constant(self.head_bias_init))(x)\n    return x",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_vit.py:226-308"
+            },
+            {
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Encoder",
+              "programmingLanguage": "Python",
+              "startLine": 178,
+              "endLine": 208,
+              "codeContent": "  def __call__(self, x, *, train):\n    \"\"\"Applies Transformer model on the inputs.\n\n    Args:\n      x: Inputs to the layer.\n      train: Set to `True` when training.\n\n    Returns:\n      output of a transformer encoder.\n    \"\"\"\n    assert x.ndim == 3  # (batch, len, emb)\n\n    if self.add_position_embedding:\n      x = AddPositionEmbs(\n          posemb_init=nn.initializers.normal(stddev=0.02),  # from BERT.\n          name='posembed_input')(\n              x)\n      x = nn.Dropout(rate=self.dropout_rate)(x, deterministic=not train)\n\n    # Input Encoder\n    for lyr in range(self.num_layers):\n      x = Encoder1DBlock(\n          mlp_dim=self.mlp_dim,\n          dropout_rate=self.dropout_rate,\n          attention_dropout_rate=self.attention_dropout_rate,\n          name=f'encoderblock_{lyr}',\n          num_heads=self.num_heads)(\n              x, deterministic=not train)\n    encoded = nn.LayerNorm(name='encoder_norm')(x)\n\n    return encoded",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_vit.py:178-208"
+            },
+            {
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "Encoder1DBlock",
+              "symbolType": "CLASS",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 105,
+              "endLine": 156,
+              "codeContent": "class Encoder1DBlock(nn.Module):\n  \"\"\"Transformer encoder layer.\n\n  Attributes:\n    inputs: input data.\n    mlp_dim: dimension of the mlp on top of attention block.\n    dtype: the dtype of the computation (default: float32).\n    dropout_rate: dropout rate.\n    attention_dropout_rate: dropout for attention heads.\n    deterministic: bool, deterministic or not (to apply dropout).\n    num_heads: Number of heads in nn.MultiHeadDotProductAttention\n  \"\"\"\n\n  mlp_dim: int\n  num_heads: int\n  dtype: Dtype = jnp.float32\n  dropout_rate: float = 0.1\n  attention_dropout_rate: float = 0.1\n\n  @nn.compact\n  def __call__(self, inputs, *, deterministic):\n    \"\"\"Applies Encoder1DBlock module.\n\n    Args:\n      inputs: Inputs to the layer.\n      deterministic: Dropout will not be applied when set to true.\n\n    Returns:\n      output after transformer encoder block.\n    \"\"\"\n\n    # Attention block.\n    assert inputs.ndim == 3, f'Expected (batch, seq, hidden) got {inputs.shape}'\n    x = nn.LayerNorm(dtype=self.dtype)(inputs)\n    x = nn.MultiHeadDotProductAttention(\n        dtype=self.dtype,\n        kernel_init=nn.initializers.xavier_uniform(),\n        broadcast_dropout=False,\n        deterministic=deterministic,\n        dropout_rate=self.attention_dropout_rate,\n        num_heads=self.num_heads)(\n            x, x)\n    x = nn.Dropout(rate=self.dropout_rate)(x, deterministic=deterministic)\n    x = x + inputs\n\n    # MLP block.\n    y = nn.LayerNorm(dtype=self.dtype)(x)\n    y = MlpBlock(\n        mlp_dim=self.mlp_dim, dtype=self.dtype, dropout_rate=self.dropout_rate)(\n            y, deterministic=deterministic)\n\n    return x + y",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_vit.py:105-156"
+            },
+            {
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "MlpBlock",
+              "programmingLanguage": "Python",
+              "startLine": 80,
+              "endLine": 102,
+              "codeContent": "  def __call__(self, inputs, *, deterministic):\n    \"\"\"Applies Transformer MlpBlock module.\"\"\"\n    actual_out_dim = inputs.shape[-1] if self.out_dim is None else self.out_dim\n    x = nn.Dense(\n        features=self.mlp_dim,\n        dtype=self.dtype,\n        param_dtype=self.param_dtype,\n        kernel_init=self.kernel_init,\n        bias_init=self.bias_init)(  # pytype: disable=wrong-arg-types\n            inputs)\n    x = nn.gelu(x)\n    x = nn.Dropout(rate=self.dropout_rate)(x, deterministic=deterministic)\n    output = nn.Dense(\n        features=actual_out_dim,\n        dtype=self.dtype,\n        param_dtype=self.param_dtype,\n        kernel_init=self.kernel_init,\n        bias_init=self.bias_init)(  # pytype: disable=wrong-arg-types\n            x)\n    output = nn.Dropout(\n        rate=self.dropout_rate)(\n            output, deterministic=deterministic)\n    return output",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_vit.py:80-102"
+            },
+            {
+              "filePath": "vit_jax/models_vit.py",
+              "symbolName": "__call__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "AddPositionEmbs",
+              "programmingLanguage": "Python",
+              "startLine": 48,
+              "endLine": 63,
+              "codeContent": "  def __call__(self, inputs):\n    \"\"\"Applies the AddPositionEmbs module.\n\n    Args:\n      inputs: Inputs to the layer.\n\n    Returns:\n      Output tensor with shape `(bs, timesteps, in_dim)`.\n    \"\"\"\n    # inputs.shape is (batch_size, seq_len, emb_dim).\n    assert inputs.ndim == 3, ('Number of dimensions should be 3,'\n                              ' but it is: %d' % inputs.ndim)\n    pos_emb_shape = (1, inputs.shape[1], inputs.shape[2])\n    pe = self.param(\n        'pos_embedding', self.posemb_init, pos_emb_shape, self.param_dtype)\n    return inputs + pe",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_vit.py:48-63"
+            },
+            {
+              "filePath": "vit_jax/input_pipeline.py",
+              "symbolName": "get_datasets",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 82,
+              "endLine": 104,
+              "codeContent": "def get_datasets(config):\n  \"\"\"Returns `ds_train, ds_test` for specified `config`.\"\"\"\n\n  if os.path.isdir(config.dataset):\n    train_dir = os.path.join(config.dataset, 'train')\n    test_dir = os.path.join(config.dataset, 'test')\n    if not os.path.isdir(train_dir):\n      raise ValueError('Expected to find directories\"{}\" and \"{}\"'.format(\n          train_dir,\n          test_dir,\n      ))\n    logging.info('Reading dataset from directories \"%s\" and \"%s\"', train_dir,\n                 test_dir)\n    ds_train = get_data_from_directory(\n        config=config, directory=train_dir, mode='train')\n    ds_test = get_data_from_directory(\n        config=config, directory=test_dir, mode='test')\n  else:\n    logging.info('Reading dataset from tfds \"%s\"', config.dataset)\n    ds_train = get_data_from_tfds(config=config, mode='train')\n    ds_test = get_data_from_tfds(config=config, mode='test')\n\n  return ds_train, ds_test",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/input_pipeline.py:82-104"
+            },
+            {
+              "filePath": "vit_jax/input_pipeline.py",
+              "symbolName": "get_data",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 165,
+              "endLine": 240,
+              "codeContent": "def get_data(*,\n             data,\n             mode,\n             num_classes,\n             image_decoder,\n             repeats,\n             batch_size,\n             image_size,\n             shuffle_buffer,\n             preprocess=None):\n  \"\"\"Returns dataset for training/eval.\n\n  Args:\n    data: tf.data.Dataset to read data from.\n    mode: Must be \"train\" or \"test\".\n    num_classes: Number of classes (used for one-hot encoding).\n    image_decoder: Applied to `features['image']` after shuffling. Decoding the\n      image after shuffling allows for a larger shuffle buffer.\n    repeats: How many times the dataset should be repeated. For indefinite\n      repeats specify None.\n    batch_size: Global batch size. Note that the returned dataset will have\n      dimensions [local_devices, batch_size / local_devices, ...].\n    image_size: Image size after cropping (for training) / resizing (for\n      evaluation).\n    shuffle_buffer: Number of elements to preload the shuffle buffer with.\n    preprocess: Optional preprocess function. This function will be applied to\n      the dataset just after repeat/shuffling, and before the data augmentation\n      preprocess step is applied.\n  \"\"\"\n\n  def _pp(data):\n    im = image_decoder(data['image'])\n    if mode == 'train':\n      channels = im.shape[-1]\n      begin, size, _ = tf.image.sample_distorted_bounding_box(\n          tf.shape(im),\n          tf.zeros([0, 0, 4], tf.float32),\n          area_range=(0.05, 1.0),\n          min_object_covered=0,  # Don't enforce a minimum area.\n          use_image_if_no_bounding_boxes=True)\n      im = tf.slice(im, begin, size)\n      # Unfortunately, the above operation loses the depth-dimension. So we\n      # need to restore it the manual way.\n      im.set_shape([None, None, channels])\n      im = tf.image.resize(im, [image_size, image_size])\n      if tf.random.uniform(shape=[]) > 0.5:\n        im = tf.image.flip_left_right(im)\n    else:\n      im = tf.image.resize(im, [image_size, image_size])\n    im = (im - 127.5) / 127.5\n    label = tf.one_hot(data['label'], num_classes)  # pylint: disable=no-value-for-parameter\n    return {'image': im, 'label': label}\n\n  data = data.repeat(repeats)\n  if mode == 'train':\n    data = data.shuffle(shuffle_buffer)\n  if preprocess is not None:\n    data = data.map(preprocess, tf.data.experimental.AUTOTUNE)\n  data = data.map(_pp, tf.data.experimental.AUTOTUNE)\n  data = data.batch(batch_size, drop_remainder=True)\n\n  # Shard data such that it can be distributed accross devices\n  num_devices = jax.local_device_count()\n\n  def _shard(data):\n    data['image'] = tf.reshape(data['image'],\n                               [num_devices, -1, image_size, image_size,\n                                data['image'].shape[-1]])\n    data['label'] = tf.reshape(data['label'],\n                               [num_devices, -1, num_classes])\n    return data\n\n  if num_devices is not None:\n    data = data.map(_shard, tf.data.experimental.AUTOTUNE)\n\n  return data.prefetch(1)",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/input_pipeline.py:165-240"
+            },
+            {
+              "filePath": "vit_jax/train.py",
+              "symbolName": "make_update_fn",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 37,
+              "endLine": 70,
+              "codeContent": "def make_update_fn(*, apply_fn, accum_steps, tx):\n  \"\"\"Returns update step for data parallel training.\"\"\"\n\n  def update_fn(params, opt_state, batch, rng):\n\n    _, new_rng = jax.random.split(rng)\n    # Bind the rng key to the device id (which is unique across hosts)\n    # Note: This is only used for multi-host training (i.e. multiple computers\n    # each with multiple accelerators).\n    dropout_rng = jax.random.fold_in(rng, jax.lax.axis_index('batch'))\n\n    def cross_entropy_loss(*, logits, labels):\n      logp = jax.nn.log_softmax(logits)\n      return -jnp.mean(jnp.sum(logp * labels, axis=1))\n\n    def loss_fn(params, images, labels):\n      logits = apply_fn(\n          dict(params=params),\n          rngs=dict(dropout=dropout_rng),\n          inputs=images,\n          train=True)\n      return cross_entropy_loss(logits=logits, labels=labels)\n\n    l, g = utils.accumulate_gradient(\n        jax.value_and_grad(loss_fn), params, batch['image'], batch['label'],\n        accum_steps)\n    g = jax.tree.map(lambda x: jax.lax.pmean(x, axis_name='batch'), g)\n    updates, opt_state = tx.update(g, opt_state)\n    params = optax.apply_updates(params, updates)\n    l = jax.lax.pmean(l, axis_name='batch')\n\n    return params, opt_state, l, new_rng\n\n  return jax.pmap(update_fn, axis_name='batch', donate_argnums=(0,))",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/train.py:37-70"
+            },
+            {
+              "filePath": "vit_jax/train.py",
+              "symbolName": "train_and_evaluate",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 73,
+              "endLine": 250,
+              "codeContent": "def train_and_evaluate(config: ml_collections.ConfigDict, workdir: str):\n  \"\"\"Runs training interleaved with evaluation.\"\"\"\n\n  # Setup input pipeline\n  dataset_info = input_pipeline.get_dataset_info(config.dataset, 'train')\n\n  ds_train, ds_test = input_pipeline.get_datasets(config)\n  batch = next(iter(ds_train))\n  logging.info(ds_train)\n  logging.info(ds_test)\n\n  # Build VisionTransformer architecture\n  model_cls = {'ViT': models.VisionTransformer,\n               'Mixer': models.MlpMixer}[config.get('model_type', 'ViT')]\n  model = model_cls(num_classes=dataset_info['num_classes'], **config.model)\n\n  def init_model():\n    return model.init(\n        jax.random.PRNGKey(0),\n        # Discard the \"num_local_devices\" dimension for initialization.\n        jnp.ones(batch['image'].shape[1:], batch['image'].dtype.name),\n        train=False)\n\n  # Use JIT to make sure params reside in CPU memory.\n  variables = jax.jit(init_model, backend='cpu')()\n\n  model_or_filename = config.get('model_or_filename')\n  if model_or_filename:\n    # Loading model from repo published with  \"How to train your ViT? Data,\n    # Augmentation, and Regularization in Vision Transformers\" paper.\n    # https://arxiv.org/abs/2106.10270\n    if '-' in model_or_filename:\n      filename = model_or_filename\n    else:\n      # Select best checkpoint from i21k pretraining by final upstream\n      # validation accuracy.\n      df = checkpoint.get_augreg_df(directory=config.pretrained_dir)\n      sel = df.filename.apply(\n          lambda filename: filename.split('-')[0] == model_or_filename)\n      best = df.loc[sel].query('ds==\"i21k\"').sort_values('final_val').iloc[-1]\n      filename = best.filename\n      logging.info('Selected fillename=\"%s\" for \"%s\" with final_val=%.3f',\n                   filename, model_or_filename, best.final_val)\n    pretrained_path = os.path.join(config.pretrained_dir,\n                                   f'{config.model.model_name}.npz')\n  else:\n    # ViT / Mixer papers\n    filename = config.model.model_name\n\n  pretrained_path = os.path.join(config.pretrained_dir, f'{filename}.npz')\n  if not tf.io.gfile.exists(pretrained_path):\n    raise ValueError(\n        f'Could not find \"{pretrained_path}\" - you can download models from '\n        '\"gs://vit_models/imagenet21k\" or directly set '\n        '--config.pretrained_dir=\"gs://vit_models/imagenet21k\".')\n  params = checkpoint.load_pretrained(\n      pretrained_path=pretrained_path,\n      init_params=variables['params'],\n      model_config=config.model)\n\n  total_steps = config.total_steps\n\n  lr_fn = utils.create_learning_rate_schedule(total_steps, config.base_lr,\n                                              config.decay_type,\n                                              config.warmup_steps)\n  tx = optax.chain(\n      optax.clip_by_global_norm(config.grad_norm_clip),\n      optax.sgd(\n          learning_rate=lr_fn,\n          momentum=0.9,\n          accumulator_dtype='bfloat16',\n      ),\n  )\n\n  update_fn_repl = make_update_fn(\n      apply_fn=model.apply, accum_steps=config.accum_steps, tx=tx)\n  infer_fn_repl = jax.pmap(functools.partial(model.apply, train=False))\n\n  initial_step = 1\n  opt_state = tx.init(params)\n  params, opt_state, initial_step = flax_checkpoints.restore_checkpoint(\n      workdir, (params, opt_state, initial_step))\n  logging.info('Will start/continue training at initial_step=%d', initial_step)\n\n  params_repl, opt_state_repl = flax.jax_utils.replicate((params, opt_state))\n\n  # Delete references to the objects that are not needed anymore\n  del opt_state\n  del params\n\n  # Prepare the learning-rate and pre-fetch it to device to avoid delays.\n  update_rng_repl = flax.jax_utils.replicate(jax.random.PRNGKey(0))\n\n  # Setup metric writer & hooks.\n  writer = metric_writers.create_default_writer(workdir, asynchronous=False)\n  writer.write_hparams(config.to_dict())\n  hooks = [\n      periodic_actions.Profile(logdir=workdir),\n      periodic_actions.ReportProgress(\n          num_train_steps=total_steps, writer=writer),\n  ]\n\n  # Run training loop\n  logging.info('Starting training loop; initial compile can take a while...')\n  t0 = lt0 = time.time()\n  lstep = initial_step\n  for step, batch in zip(\n      range(initial_step, total_steps + 1),\n      input_pipeline.prefetch(ds_train, config.prefetch)):\n\n    with jax.profiler.StepTraceAnnotation('train', step_num=step):\n      params_repl, opt_state_repl, loss_repl, update_rng_repl = update_fn_repl(\n          params_repl, opt_state_repl, batch, update_rng_repl)\n\n    for hook in hooks:\n      hook(step)\n\n    if step == initial_step:\n      logging.info('First step took %.1f seconds.', time.time() - t0)\n      t0 = time.time()\n      lt0, lstep = time.time(), step\n\n    # Report training metrics\n    if config.progress_every and step % config.progress_every == 0:\n      img_sec_core_train = (config.batch * (step - lstep) /\n                            (time.time() - lt0)) / jax.device_count()\n      lt0, lstep = time.time(), step\n      writer.write_scalars(\n          step,\n          dict(\n              train_loss=float(flax.jax_utils.unreplicate(loss_repl)),\n              img_sec_core_train=img_sec_core_train))\n      done = step / total_steps\n      logging.info(f'Step: {step}/{total_steps} {100*done:.1f}%, '  # pylint: disable=logging-fstring-interpolation\n                   f'img/sec/core: {img_sec_core_train:.1f}, '\n                   f'ETA: {(time.time()-t0)/done*(1-done)/3600:.2f}h')\n\n    # Run evaluation\n    if ((config.eval_every and step % config.eval_every == 0) or\n        (step == total_steps)):\n\n      accuracies = []\n      lt0 = time.time()\n      for test_batch in input_pipeline.prefetch(ds_test, config.prefetch):\n        logits = infer_fn_repl(\n            dict(params=params_repl), test_batch['image'])\n        accuracies.append(\n            (np.argmax(logits,\n                       axis=-1) == np.argmax(test_batch['label'],\n                                             axis=-1)).mean())\n      accuracy_test = np.mean(accuracies)\n      img_sec_core_test = (\n          config.batch_eval * ds_test.cardinality().numpy() /\n          (time.time() - lt0) / jax.device_count())\n      lt0 = time.time()\n\n      lr = float(lr_fn(step))\n      logging.info(f'Step: {step} '  # pylint: disable=logging-fstring-interpolation\n                   f'Learning rate: {lr:.7f}, '\n                   f'Test accuracy: {accuracy_test:0.5f}, '\n                   f'img/sec/core: {img_sec_core_test:.1f}')\n      writer.write_scalars(\n          step,\n          dict(\n              accuracy_test=accuracy_test,\n              lr=lr,\n              img_sec_core_test=img_sec_core_test))\n\n    # Store checkpoint.\n    if ((config.checkpoint_every and step % config.eval_every == 0) or\n        step == total_steps):\n      checkpoint_path = flax_checkpoints.save_checkpoint(\n          workdir, (flax.jax_utils.unreplicate(params_repl),\n                    flax.jax_utils.unreplicate(opt_state_repl), step), step)\n      logging.info('Stored checkpoint at step %d to \"%s\"', step,\n                   checkpoint_path)\n\n  return flax.jax_utils.unreplicate(params_repl)",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/train.py:73-250"
+            },
+            {
+              "filePath": "vit_jax/checkpoint.py",
+              "symbolName": "load_pretrained",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 159,
+              "endLine": 206,
+              "codeContent": "def load_pretrained(*, pretrained_path, init_params, model_config):\n  \"\"\"Loads/converts a pretrained checkpoint for fine tuning.\n\n  Args:\n    pretrained_path: File pointing to pretrained checkpoint.\n    init_params: Parameters from model. Will be used for the head of the model\n      and to verify that the model is compatible with the stored checkpoint.\n    model_config: Configuration of the model. Will be used to configure the head\n      and rescale the position embeddings.\n\n  Returns:\n    Parameters like `init_params`, but loaded with pretrained weights from\n    `pretrained_path` and adapted accordingly.\n  \"\"\"\n\n  restored_params = inspect_params(\n      params=load(pretrained_path),\n      expected=init_params,\n      fail_if_extra=False,\n      fail_if_missing=False)\n\n  # The following allows implementing fine-tuning head variants depending on the\n  # value of `representation_size` in the fine-tuning job:\n  # - `None` : drop the whole head and attach a nn.Linear.\n  # - same number as in pre-training means : keep the head but reset the last\n  #    layer (logits) for the new task.\n  if model_config.get('representation_size') is None:\n    if 'pre_logits' in restored_params:\n      logging.info('load_pretrained: drop-head variant')\n      restored_params['pre_logits'] = {}\n  restored_params['head']['kernel'] = init_params['head']['kernel']\n  restored_params['head']['bias'] = init_params['head']['bias']\n\n  if 'posembed_input' in restored_params.get('Transformer', {}):\n    # Rescale the grid of position embeddings. Param shape is (1,N,1024)\n    posemb = restored_params['Transformer']['posembed_input']['pos_embedding']\n    posemb_new = init_params['Transformer']['posembed_input']['pos_embedding']\n    if posemb.shape != posemb_new.shape:\n      logging.info('load_pretrained: resized variant: %s to %s', posemb.shape,\n                   posemb_new.shape)\n      posemb = interpolate_posembed(\n          posemb, posemb_new.shape[1], model_config.classifier == 'token')\n      restored_params['Transformer']['posembed_input']['pos_embedding'] = posemb\n\n  if version.parse(flax.__version__) >= version.parse('0.3.6'):\n    restored_params = _fix_groupnorm(restored_params)\n\n  return flax.core.freeze(restored_params)",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/checkpoint.py:159-206"
+            },
+            {
+              "filePath": "vit_jax/models.py",
+              "symbolName": "get_model",
+              "symbolType": "FUNCTION",
+              "parentSymbolName": null,
+              "programmingLanguage": "Python",
+              "startLine": 33,
+              "endLine": 40,
+              "codeContent": "def get_model(name, **kw):\n  \"\"\"Returns a model as specified in `model_configs.MODEL_CONFIGS`.\"\"\"\n  if name.startswith('Mixer-'):\n    return MlpMixer(**model_configs.MODEL_CONFIGS[name], **kw)\n  elif name.startswith('LiT-'):\n    return LitModel(**model_configs.MODEL_CONFIGS[name], **kw)\n  else:\n    return VisionTransformer(**model_configs.MODEL_CONFIGS[name], **kw)",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models.py:33-40"
+            },
+            {
+              "filePath": "vit_jax/models_resnet.py",
+              "symbolName": "__call__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ResNetStage",
+              "programmingLanguage": "Python",
+              "startLine": 102,
+              "endLine": 106,
+              "codeContent": "  def __call__(self, x):\n    x = ResidualUnit(self.nout, strides=self.first_stride, name='unit1')(x)\n    for i in range(1, self.block_size):  # pyrefly: ignore[bad-argument-type]\n      x = ResidualUnit(self.nout, strides=(1, 1), name=f'unit{i + 1}')(x)\n    return x",
+              "_comment": "Verbatim from https://github.com/google-research/vision_transformer @ 64801f1 — vit_jax/models_resnet.py:102-106"
+            }
+          ]
+        },
+        {
+          "githubUrl": "https://github.com/lucidrains/vit-pytorch",
+          "ownerName": "lucidrains",
+          "repositoryName": "vit-pytorch",
+          "defaultBranch": "main",
+          "commitHash": "bb13e27ee5b30ddd3e09c2e23c30ec2c17683d35",
+          "licenseName": "MIT",
+          "primaryLanguage": "Python",
+          "starCount": 25477,
+          "relationType": "COMMUNITY",
+          "isPrimary": false,
+          "codeBlocks": [
+            {
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ViT",
+              "programmingLanguage": "Python",
+              "startLine": 86,
+              "endLine": 116,
+              "codeContent": "    def __init__(self, *, image_size, patch_size, num_classes, dim, depth, heads, mlp_dim, pool = 'cls', channels = 3, dim_head = 64, dropout = 0., emb_dropout = 0.):\n        super().__init__()\n        image_height, image_width = pair(image_size)\n        self.patch_size = patch_height, patch_width = pair(patch_size)\n\n        assert image_height % patch_height == 0 and image_width % patch_width == 0, 'Image dimensions must be divisible by the patch size.'\n\n        num_patches = (image_height // patch_height) * (image_width // patch_width)\n        patch_dim = channels * patch_height * patch_width\n\n        assert pool in {'cls', 'mean'}, 'pool type must be either cls (cls token) or mean (mean pooling)'\n        num_cls_tokens = 1 if pool == 'cls' else 0\n\n        self.to_patch_embedding = nn.Sequential(\n            Rearrange('b c (h p1) (w p2) -> b (h w) (p1 p2 c)', p1 = patch_height, p2 = patch_width),\n            nn.LayerNorm(patch_dim),\n            nn.Linear(patch_dim, dim),\n            nn.LayerNorm(dim),\n        )\n\n        self.cls_token = nn.Parameter(torch.randn(num_cls_tokens, dim))\n        self.pos_embedding = nn.Parameter(torch.randn(num_patches + num_cls_tokens, dim))\n\n        self.dropout = nn.Dropout(emb_dropout)\n\n        self.transformer = Transformer(dim, depth, heads, dim_head, mlp_dim, dropout)\n\n        self.pool = pool\n        self.to_latent = nn.Identity()\n\n        self.mlp_head = nn.Linear(dim, num_classes) if num_classes > 0 else None",
+              "_comment": "Verbatim from https://github.com/lucidrains/vit-pytorch @ bb13e27 — vit_pytorch/vit.py:86-116"
+            },
+            {
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "ViT",
+              "programmingLanguage": "Python",
+              "startLine": 118,
+              "endLine": 138,
+              "codeContent": "    def forward(self, img):\n        batch = img.shape[0]\n        x = self.to_patch_embedding(img)\n\n        cls_tokens = repeat(self.cls_token, '... d -> b ... d', b = batch)\n        x = torch.cat((cls_tokens, x), dim = 1)\n\n        seq = x.shape[1]\n\n        x = x + self.pos_embedding[:seq]\n        x = self.dropout(x)\n\n        x = self.transformer(x)\n\n        if self.mlp_head is None:\n            return x\n\n        x = x.mean(dim = 1) if self.pool == 'mean' else x[:, 0]\n\n        x = self.to_latent(x)\n        return self.mlp_head(x)",
+              "_comment": "Verbatim from https://github.com/lucidrains/vit-pytorch @ bb13e27 — vit_pytorch/vit.py:118-138"
+            },
+            {
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Attention",
+              "programmingLanguage": "Python",
+              "startLine": 31,
+              "endLine": 49,
+              "codeContent": "    def __init__(self, dim, heads = 8, dim_head = 64, dropout = 0.):\n        super().__init__()\n        inner_dim = dim_head *  heads\n        project_out = not (heads == 1 and dim_head == dim)\n\n        self.heads = heads\n        self.scale = dim_head ** -0.5\n\n        self.norm = nn.LayerNorm(dim)\n\n        self.attend = nn.Softmax(dim = -1)\n        self.dropout = nn.Dropout(dropout)\n\n        self.to_qkv = nn.Linear(dim, inner_dim * 3, bias = False)\n\n        self.to_out = nn.Sequential(\n            nn.Linear(inner_dim, dim),\n            nn.Dropout(dropout)\n        ) if project_out else nn.Identity()",
+              "_comment": "Verbatim from https://github.com/lucidrains/vit-pytorch @ bb13e27 — vit_pytorch/vit.py:31-49"
+            },
+            {
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "forward",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Attention",
+              "programmingLanguage": "Python",
+              "startLine": 51,
+              "endLine": 64,
+              "codeContent": "    def forward(self, x):\n        x = self.norm(x)\n\n        qkv = self.to_qkv(x).chunk(3, dim = -1)\n        q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> b h n d', h = self.heads), qkv)\n\n        dots = torch.matmul(q, k.transpose(-1, -2)) * self.scale\n\n        attn = self.attend(dots)\n        attn = self.dropout(attn)\n\n        out = torch.matmul(attn, v)\n        out = rearrange(out, 'b h n d -> b n (h d)')\n        return self.to_out(out)",
+              "_comment": "Verbatim from https://github.com/lucidrains/vit-pytorch @ bb13e27 — vit_pytorch/vit.py:51-64"
+            },
+            {
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "Transformer",
+              "programmingLanguage": "Python",
+              "startLine": 67,
+              "endLine": 76,
+              "codeContent": "    def __init__(self, dim, depth, heads, dim_head, mlp_dim, dropout = 0.):\n        super().__init__()\n        self.norm = nn.LayerNorm(dim)\n        self.layers = ModuleList([])\n\n        for _ in range(depth):\n            self.layers.append(ModuleList([\n                Attention(dim, heads = heads, dim_head = dim_head, dropout = dropout),\n                FeedForward(dim, mlp_dim, dropout = dropout)\n            ]))",
+              "_comment": "Verbatim from https://github.com/lucidrains/vit-pytorch @ bb13e27 — vit_pytorch/vit.py:67-76"
+            },
+            {
+              "filePath": "vit_pytorch/vit.py",
+              "symbolName": "__init__",
+              "symbolType": "METHOD",
+              "parentSymbolName": "FeedForward",
+              "programmingLanguage": "Python",
+              "startLine": 16,
+              "endLine": 25,
+              "codeContent": "    def __init__(self, dim, hidden_dim, dropout = 0.):\n        super().__init__()\n        self.net = nn.Sequential(\n            nn.LayerNorm(dim),\n            nn.Linear(dim, hidden_dim),\n            nn.GELU(),\n            nn.Dropout(dropout),\n            nn.Linear(hidden_dim, dim),\n            nn.Dropout(dropout)\n        )",
+              "_comment": "Verbatim from https://github.com/lucidrains/vit-pytorch @ bb13e27 — vit_pytorch/vit.py:16-25"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
