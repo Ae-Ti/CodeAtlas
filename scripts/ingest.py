@@ -216,6 +216,16 @@ def warnings_for(doc):
             warns.append(f'{where}: authors 가 비어 있습니다 — 이미 적재된 논문이라면 '
                          f'기존 저자 목록을 []로 덮어씁니다 (arxivId={arxiv})')
 
+        # 코드 검색은 그 논문에 연결된 저장소 안에서만 후보를 찾습니다(CodeSearchService).
+        # 저장소가 하나도 없으면 스코프가 비어 전체 코퍼스로 폴백하는데, 그 결과는 정의상
+        # 전부 '다른 논문의 구현'입니다. 적재 자체는 막지 않되 여기서 반드시 알립니다.
+        if not (p.get('repositories') or []):
+            warns.append(f'{where}: repositories 가 비어 있습니다 — 이 논문의 단락을 검색하면 '
+                         f'연결된 저장소가 없어 다른 논문의 코드가 반환됩니다 (arxivId={arxiv})')
+        elif not any((r.get('codeBlocks') or []) for r in p['repositories']):
+            warns.append(f'{where}: 저장소는 있으나 codeBlocks 가 하나도 없습니다 — '
+                         f'검색 후보가 비어 다른 논문의 코드가 반환됩니다 (arxivId={arxiv})')
+
         for ri, r in enumerate(p.get('repositories') or []):
             rw = f'{where}.repositories[{ri}]'
             blocks = r.get('codeBlocks') or []
@@ -255,6 +265,7 @@ def fmt_idx(idxs, limit=8):
 def build_sql(doc):
     out = ['BEGIN;']
 
+    # 본문이 바뀐 chunk/코드블록의 AI 매핑은 여기서 지웁니다 — 아래 STALE_AI_CLEANUP 참고.
     for p in doc['papers']:
         arxiv = lit(p['arxivId'])
         out.append(f"""
@@ -319,8 +330,39 @@ ON CONFLICT (repository_id, file_path, symbol_name, start_line) DO UPDATE SET
     embedding = CASE WHEN code_blocks.code_content IS DISTINCT FROM EXCLUDED.code_content
                      THEN NULL ELSE code_blocks.embedding END;""")
 
+    out.append(STALE_AI_CLEANUP)
     out.append('\nCOMMIT;')
     return '\n'.join(out)
+
+
+# ── 낡은 AI 매핑 정리 ─────────────────────────────────────────
+#
+# 위 UPSERT는 본문이 바뀐 chunk/코드블록의 embedding을 NULL로 되돌립니다.
+# 그런데 paper_code_mappings의 'AI' 매핑(설명·근거)은 그대로 남습니다. 그러면:
+#
+#   본문 수정 → embedding=NULL → backfill로 다시 채움
+#            → 큐레이션 pending 조건이 NOT EXISTS('AI' 매핑)이라 이 chunk를 건너뜀
+#            → 옛 본문 기준으로 생성된 AI 설명이 화면에 계속 남음
+#
+# embedding IS NULL 이 곧 "본문이 방금 바뀌었다(또는 아직 임베딩 전이다)"는 표시이므로,
+# 그 상태의 행에 붙어 있는 AI 매핑만 지우면 다음 큐레이션이 자동으로 다시 만듭니다.
+#
+# MANUAL 매핑은 건드리지 않습니다 — A가 손으로 검수한 정답이라 재생성 대상이 아닙니다.
+# 새로 들어온 chunk/블록도 embedding이 NULL이지만 AI 매핑이 없으므로 아무 일도 일어나지 않습니다.
+STALE_AI_CLEANUP = """
+-- 본문이 바뀐 chunk의 AI 매핑 제거 (MANUAL은 유지)
+DELETE FROM paper_code_mappings m
+USING paper_chunks c
+WHERE m.paper_chunk_id = c.id
+  AND c.embedding IS NULL
+  AND m.mapping_method = 'AI';
+
+-- 코드가 바뀐 블록을 가리키는 AI 매핑 제거 — 설명이 옛 코드를 서술하고 있으므로 무효
+DELETE FROM paper_code_mappings m
+USING code_blocks cb
+WHERE m.code_block_id = cb.id
+  AND cb.embedding IS NULL
+  AND m.mapping_method = 'AI';"""
 
 
 def chunk_ref(arxiv_id, chunk_index):
@@ -419,7 +461,10 @@ def main():
     parser.add_argument('--insert-mappings', action='store_true',
                         help="chunks[].mappedCode 를 paper_code_mappings에 MANUAL/검증완료로 저장")
     parser.add_argument('--eval-csv', metavar='PATH',
-                        help='chunks[].mappedCode 로 정답셋 CSV 생성 (eval_retrieval.py 입력)')
+                        help='chunks[].mappedCode 로 정답셋 CSV 생성 (eval_retrieval.py 입력). '
+                             '⚠️ 출력이 DB surrogate ID(chunk_id,code_block_id)라 적재 이력이 다른 '
+                             'DB에서는 어긋납니다. 커밋할 정답셋은 안정 키를 쓰는 '
+                             'scripts/note2ingest/eval_set_tool.py 로 만드세요. 이건 로컬 즉석 측정용입니다.')
     parser.add_argument('--eval-all', action='store_true',
                         help='--eval-csv 에 mappedCode 전체를 기록 (chunk 당 여러 행, 첫 행이 Top-1). '
                              'eval_retrieval.py --multi-gold 로 완화 기준을 잴 수 있습니다')

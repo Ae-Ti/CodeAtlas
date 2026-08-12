@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, Code2, ExternalLink, X, FileCode, Sparkles, Zap } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, ArrowRight, BookOpen, Code2, ExternalLink, X, FileCode, Sparkles, Zap } from 'lucide-react';
 import Editor, { type OnMount } from '@monaco-editor/react';
 import { api, symbolLabel, type CodeMatch, type AgentQueryResponse } from '../api/client';
 import { useApi } from '../hooks/useApi';
@@ -116,10 +116,13 @@ export default function PaperDetail() {
   const mappingState = useApi(
     () => activeChunkId
       ? api.mappingSearch(paperId, activeChunkId, 5)
-      : Promise.resolve({ queryChunk: null as never, results: [] as CodeMatch[] }),
+      : Promise.resolve({ queryChunk: null as never, results: [] as CodeMatch[], paperScoped: true }),
     [paperId, activeChunkId]
   );
   const codeResults = mappingState.data?.results ?? [];
+  // 이 논문에 연결된 저장소가 없어 전체 코퍼스로 폴백한 경우 — 결과가 전부 다른 논문 코드다.
+  // 아무 표시 없이 내보내면 틀린 답을 맞는 답처럼 보여주게 되므로 반드시 알린다.
+  const crossPaper = mappingState.data ? mappingState.data.paperScoped === false : false;
 
   const handleCloseModal = useCallback(() => setViewingCode(null), []);
   const handleEditorMount: OnMount = useCallback((editor) => {
@@ -219,6 +222,16 @@ export default function PaperDetail() {
 
             {mappingState.loading && <Loading message="코드 검색 중..." padding={32} />}
             {mappingState.error && <ErrorBox error={mappingState.error} onRetry={mappingState.reload} />}
+
+            {crossPaper && codeResults.length > 0 && (
+              <div className="cross-paper-notice">
+                <AlertTriangle size={14} />
+                <span>
+                  이 논문에 연결된 저장소가 없어 <strong>다른 논문의 구현</strong>을 보여줍니다.
+                  같은 논문의 코드가 아니므로 참고용으로만 보세요.
+                </span>
+              </div>
+            )}
 
             {!mappingState.loading && !mappingState.error && codeResults.length === 0 && (
               <EmptyState

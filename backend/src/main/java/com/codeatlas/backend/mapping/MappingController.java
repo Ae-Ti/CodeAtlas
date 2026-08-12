@@ -28,7 +28,12 @@ public class MappingController {
 
     public record MappingSearchRequest(Long paperId, Long chunkId, Integer topK) {}
 
-    public record MappingSearchResponse(ChunkResult queryChunk, List<CodeMatch> results) {}
+    /**
+     * @param paperScoped 이 논문에 연결된 저장소 안에서 찾은 결과면 true.
+     *                    false면 연결된 저장소가 없어 전체 코퍼스로 폴백한 것이라
+     *                    결과가 전부 <b>다른 논문의 구현</b>입니다 — 화면에서 그렇게 밝혀야 합니다.
+     */
+    public record MappingSearchResponse(ChunkResult queryChunk, List<CodeMatch> results, boolean paperScoped) {}
 
     @PostMapping("/api/mapping/search")
     public MappingSearchResponse search(@RequestBody MappingSearchRequest request) {
@@ -38,6 +43,7 @@ public class MappingController {
                 .getChunkById(request.paperId(), request.chunkId())
                 .orElseThrow(() -> new NotFoundException("chunk를 찾을 수 없습니다: " + request.chunkId()));
 
-        return new MappingSearchResponse(queryChunk, codeSearchService.findMatches(request.chunkId(), topK));
+        CodeSearchService.ScopedMatches found = codeSearchService.findMatchesScoped(request.chunkId(), topK);
+        return new MappingSearchResponse(queryChunk, found.matches(), found.paperScoped());
     }
 }

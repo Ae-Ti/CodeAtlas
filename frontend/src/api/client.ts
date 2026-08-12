@@ -176,8 +176,13 @@ export const api = {
     post<ChunkResult[]>('/api/papers/chunks/search', { queryText, topK, paperId }),
 
   /** 순수 벡터 검색 — AI 설명 없음, 항상 빠름 */
+  /**
+   * `paperScoped`가 false면 이 논문에 연결된 저장소가 없어 전체 코퍼스로 폴백한 결과입니다.
+   * 그 경우 결과는 전부 **다른 논문의 구현**이므로 화면에서 반드시 그렇게 밝혀야 합니다.
+   */
   mappingSearch: (paperId: number, chunkId: number, topK = 5) =>
-    post<{ queryChunk: ChunkResult; results: CodeMatch[] }>('/api/mapping/search', { paperId, chunkId, topK }),
+    post<{ queryChunk: ChunkResult; results: CodeMatch[]; paperScoped: boolean }>(
+      '/api/mapping/search', { paperId, chunkId, topK }),
 
   /** 사전계산 결과가 있으면 즉시, 없으면 Qwen3를 그 자리에서 호출 (수십 초 소요 가능) */
   agentQuery: (query: string, paperId: number, chunkId: number) =>
