@@ -1,0 +1,7 @@
+# git shortlog·blame 이 갈라진 author 신원을 하나로 합치도록 하는 매핑입니다.
+# 배경: 손상된 --global user.email(같은 주소 4개가 이어붙음)과 이름 대소문자 차이로
+# UngsikJo 의 커밋이 3덩이로 갈라져 있습니다. 머지된 히스토리는 재작성하지 않기로
+# 했으므로(CONTRIBUTING.md §5) 이 파일로 갈음합니다. (#4)
+
+UngsikJo <ungsikjo0601@gmail.com> <ungsikjo0601@gmail.comungsikjo0601@gmail.comungsikjo0601@gmail.comungsikjo0601@gmail.com>
+UngsikJo <ungsikjo0601@gmail.com> ungsikJo <ungsikjo0601@gmail.com>
