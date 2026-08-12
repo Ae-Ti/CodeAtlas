@@ -9,8 +9,13 @@
 
 ⚠️ 랭킹 기준에 대하여
 
-  기본(--scorer 미지정)은 CodeSearchService.SEARCH_SQL 과 **동일한 순수 pgvector
-  코사인 정렬**입니다. 이 도구의 수치가 실제 서비스 순위와 같다는 보장은 여기서 나옵니다.
+  기본(--scorer 미지정)은 CodeSearchService.SEARCH_SQL_SCOPED 와 **동일한 후보 범위 +
+  순수 pgvector 코사인 정렬**입니다. 후보를 그 chunk 가 속한 논문의 저장소로 한정하는
+  paper_repositories 조인까지 같습니다. 이 도구의 수치가 실제 서비스 순위와 같다는 보장은
+  여기서 나오므로, 서비스 SQL 을 고치면 이 파일도 같이 고쳐야 합니다.
+
+  --no-paper-scope 는 그 범위 제한을 빼고 전체 코퍼스로 재는 **진단 전용** 모드입니다.
+  서비스 동작이 아니라 "범위 제한이 수치에 얼마나 기여하는가"를 보기 위한 값입니다.
 
   --scorer lexical|hybrid 는 **진단 전용**입니다. 어휘 점수 공식은 자리표시자이며
   CodeSearchService 에 구현된 것이 아닙니다. 즉 이 모드의 수치는 서비스 동작이
@@ -22,11 +27,18 @@
     python3 scripts/eval_retrieval.py database/eval_set_demo.csv
     python3 scripts/eval_retrieval.py my_eval.csv --k 5 --container codeatlas-postgres
 
-    # 한 chunk 에 대안 정답이 여러 개인 경우 (ingest.py --eval-csv --eval-all 로 생성)
-    python3 scripts/eval_retrieval.py database/eval_set_attention.csv --multi-gold
+    # 한 chunk 에 대안 정답이 여러 개인 경우
+    python3 scripts/eval_retrieval.py my_eval.csv --multi-gold
 
-    # 임시 demo seed 를 코퍼스에서 빼고 대상 저장소만으로 측정
-    python3 scripts/eval_retrieval.py database/eval_set_attention.csv \
+    # 커밋된 정답셋은 안정 키(arxiv_id,chunk_index,...) 형식이라 먼저 ID 로 변환해야 합니다
+    python3 scripts/note2ingest/eval_set_tool.py resolve database/eval_set_bert.csv /tmp/bert.csv
+    python3 scripts/eval_retrieval.py /tmp/bert.csv
+
+    # 논문 범위 제한 없이(전체 코퍼스) 재기 — 진단용
+    python3 scripts/eval_retrieval.py my_eval.csv --no-paper-scope
+
+    # 특정 저장소만 남기고 재기 (demo seed 제외 등)
+    python3 scripts/eval_retrieval.py my_eval.csv \
         --only-repo https://github.com/jadore801120/attention-is-all-you-need-pytorch
 
 정답셋 CSV 형식 (헤더 필수, # 로 시작하는 줄은 주석):
@@ -43,16 +55,28 @@ import re
 import subprocess
 import sys
 
-# CodeSearchService.SEARCH_SQL 과 동일한 정렬 기준 (pgvector cosine distance)
+# CodeSearchService.SEARCH_SQL_SCOPED 와 동일한 후보 범위 + 정렬 기준.
+#
+# 후보를 그 chunk 가 속한 논문에 연결된 저장소로 한정합니다(paper_repositories 조인).
+# 서비스가 이렇게 동작하므로 평가도 같아야 합니다 — 이 일치가 "평가 수치 = 실제 서비스 순위"의
+# 유일한 근거입니다. 서비스 SQL 을 고치면 여기도 같이 고쳐야 합니다.
+#
+# --no-paper-scope 를 주면 이 조인을 빼고 전체 코퍼스로 잽니다. 서비스 동작이 아니라
+# "범위 제한이 수치에 얼마나 기여하는가"를 보는 진단용입니다.
 RANK_SQL = """
 SELECT cb.id
 FROM code_blocks cb
-CROSS JOIN (SELECT embedding FROM paper_chunks WHERE id = {chunk_id}) pc
+{scope_join}
+CROSS JOIN (SELECT paper_id, embedding FROM paper_chunks WHERE id = {chunk_id}) pc
 WHERE cb.embedding IS NOT NULL AND pc.embedding IS NOT NULL
+  {scope_where}
   {repo_filter}
 ORDER BY cb.embedding <=> pc.embedding
 LIMIT {k}
 """
+
+SCOPE_JOIN = "JOIN paper_repositories pr ON pr.repository_id = cb.repository_id"
+SCOPE_WHERE = "AND pr.paper_id = pc.paper_id"
 
 
 def repo_filter_sql(only, exclude):
@@ -198,6 +222,9 @@ def main():
     parser.add_argument("--multi-gold", action="store_true",
                         help="한 chunk 에 여러 정답이 있으면 그중 가장 높은 순위를 인정 "
                              "(기본: 첫 행만 정답)")
+    parser.add_argument("--no-paper-scope", action="store_true",
+                        help="논문 범위 제한을 빼고 전체 코퍼스로 측정 (진단용). "
+                             "서비스는 항상 범위를 제한하므로 이 수치는 서비스 동작이 아닙니다.")
     parser.add_argument("--only-repo", action="append", metavar="URL", default=[],
                         help="이 저장소의 코드 블록만 후보로 삼음 (반복 지정 가능)")
     parser.add_argument("--exclude-repo", action="append", metavar="URL", default=[],
@@ -216,6 +243,8 @@ def main():
 
     golds = load_eval_set(args.eval_set)
     repo_filter = repo_filter_sql(args.only_repo, args.exclude_repo)
+    scope_join = "" if args.no_paper_scope else SCOPE_JOIN
+    scope_where = "" if args.no_paper_scope else SCOPE_WHERE
 
     code_tokens = chunk_tokens = {}
     if args.scorer != "vector":
@@ -230,7 +259,9 @@ def main():
             # CodeSearchService.SEARCH_SQL 과 동일 경로 — 정렬을 DB에 맡깁니다.
             return [int(x) for x in psql(args.container, args.db, args.user,
                                          RANK_SQL.format(chunk_id=chunk_id, k=args.k,
-                                                         repo_filter=repo_filter))]
+                                                         repo_filter=repo_filter,
+                                                         scope_join=scope_join,
+                                                         scope_where=scope_where))]
         # 재정렬이 필요하므로 후보 전체와 거리를 받아 파이썬에서 점수를 매깁니다.
         scored = []
         q = chunk_tokens.get(chunk_id, set())
@@ -289,22 +320,49 @@ def main():
         scope.append(f"exclude={len(args.exclude_repo)}개 저장소")
     total_golds = sum(len(v) for v in golds.values())
 
-    # 후보 풀 크기로 랜덤 하한을 계산합니다. 정답셋이 넓어지면 절대 수치는 떨어지는데
-    # (후보가 늘어 문제가 어려워지므로) 하한 대비 배수를 같이 봐야 성능 변화가 드러납니다.
-    pool = int(psql(args.container, args.db, args.user,
-                    f"SELECT count(*) FROM code_blocks cb "
-                    f"WHERE cb.embedding IS NOT NULL {repo_filter}")[0])
+    # 랜덤 하한은 **각 chunk 가 실제로 마주한 후보 수**로 계산해야 합니다.
+    #
+    # 논문 범위 제한이 켜져 있으면 chunk 마다 후보 풀이 다릅니다(그 논문 저장소의 블록 수).
+    # 전체 코퍼스 크기로 나누면 하한이 실제보다 낮게 잡혀 배수가 부풀려집니다 —
+    # 범위를 좁히면 문제가 쉬워지므로 배수는 오히려 **내려가는** 게 맞습니다.
+    if args.no_paper_scope:
+        pool_sql = (f"SELECT count(*) FROM code_blocks cb "
+                    f"WHERE cb.embedding IS NOT NULL {repo_filter}")
+        pools = {cid: int(psql(args.container, args.db, args.user, pool_sql)[0]) for cid in golds}
+    else:
+        rows = psql(args.container, args.db, args.user, f"""
+            SELECT c.id || '|' || count(DISTINCT cb.id)
+            FROM paper_chunks c
+            JOIN paper_repositories pr ON pr.paper_id = c.paper_id
+            JOIN code_blocks cb ON cb.repository_id = pr.repository_id
+            WHERE c.id IN ({','.join(str(i) for i in golds)})
+              AND cb.embedding IS NOT NULL {repo_filter}
+            GROUP BY c.id""")
+        pools = {int(r.split('|')[0]): int(r.split('|')[1]) for r in rows}
+        for cid in golds:
+            pools.setdefault(cid, 0)
+
     avg_golds = sum(len(v if args.multi_gold else v[:1]) for v in golds.values()) / n
-    base1 = avg_golds / pool if pool else 0.0
+    pool = sum(pools.values()) / n if n else 0.0   # 표시용 평균
+
+    def random_floor(at):
+        """chunk 별 hit 확률 min(1, gold*at/pool_i) 의 평균 — 후보 수가 다르므로 chunk 단위로 잰다."""
+        acc = 0.0
+        for cid, gold in golds.items():
+            g = len(gold if args.multi_gold else gold[:1])
+            p = pools.get(cid, 0)
+            acc += min(1.0, g * at / p) if p else 0.0
+        return acc / n if n else 0.0
 
     def ratio(acc, at):
-        floor = min(1.0, base1 * at)
+        floor = random_floor(at)
         return f"랜덤 {floor:.1%} 대비 {acc / floor:.1f}배" if floor else "—"
 
     print(f"정답셋 chunk {n}개 / 매핑 {total_golds}건 (top-{args.k}까지 확인)")
     print(f"  랭킹 기준 : {rank_desc}")
     print(f"  채점 기준 : {mode}" + (f" | 후보 범위: {', '.join(scope)}" if scope else ""))
-    print(f"  후보 풀   : 코드 블록 {pool}개 / chunk 당 정답 평균 {avg_golds:.2f}개")
+    scope_note = "전체 코퍼스" if args.no_paper_scope else "논문 범위 제한 — chunk 당 평균"
+    print(f"  후보 풀   : {scope_note} {pool:.0f}개 / chunk 당 정답 평균 {avg_golds:.2f}개")
     print(f"  Top-1 Accuracy : {top1}/{n}  ({top1 / n:.1%})   {ratio(top1 / n, 1)}")
     print(f"  Top-3 Accuracy : {top3}/{n}  ({top3 / n:.1%})   {ratio(top3 / n, 3)}")
     print(f"  Top-5 Accuracy : {top5}/{n}  ({top5 / n:.1%})   {ratio(top5 / n, 5)}")
