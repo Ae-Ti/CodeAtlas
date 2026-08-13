@@ -12,7 +12,13 @@ import java.util.List;
 /**
  * 큐레이션 결과(paper_code_mappings) 저장을 한 곳으로 모은 서비스.
  * CurationBatchService(배치)와 AgentQueryController(라이브 폴백 캐싱)가 같이 씁니다 —
- * 저장 규칙(MANUAL 보호, 1위에만 explanation, 점수 clamp)이 갈라지면 안 되기 때문입니다.
+ * 저장 규칙(MANUAL 의 mapping_reason 보호, 1위에만 explanation, 점수 clamp)이
+ * 갈라지면 안 되기 때문입니다.
+ *
+ * MANUAL 행에서 보호되는 것은 mapping_reason 뿐입니다. explanation 은 MANUAL 행에도
+ * 덮어씁니다 — A 가 수동 매핑한 chunk 에도 AI 근거는 이 경로로 생성해 붙이는 것이
+ * 의도된 동작이고, ingest 는 explanation 을 채우지 않으므로 사람이 쓴 값을 잃을
+ * 경로가 현재는 없습니다. ingest 가 explanation 을 채우게 되면 이 전제가 깨집니다.
  *
  * ⚠️ 호출자 책임: 폴백(paperScoped=false) 결과를 여기로 넘기면 안 됩니다.
  * 다른 논문의 코드가 mapping_method='AI'로 영구히 남고, paper_code_mappings에는
@@ -64,8 +70,9 @@ public class MappingPersistService {
                     ON CONFLICT (paper_chunk_id, code_block_id) DO UPDATE
                         SET similarity_score = EXCLUDED.similarity_score,
                             explanation      = EXCLUDED.explanation,
-                            -- A가 손으로 적어둔 매핑 근거(MANUAL)는 절대 덮어쓰지 않습니다.
-                            -- mapping_method / is_verified 도 SET에 없으므로 그대로 유지됩니다.
+                            -- A가 손으로 적어둔 매핑 근거(MANUAL 의 mapping_reason)는 덮어쓰지 않습니다.
+                            -- explanation 은 MANUAL 행에도 덮어씁니다(클래스 javadoc 참고).
+                            -- mapping_method / is_verified 는 SET에 없으므로 그대로 유지됩니다.
                             mapping_reason   = CASE
                                 WHEN paper_code_mappings.mapping_method = 'MANUAL'
                                 THEN paper_code_mappings.mapping_reason

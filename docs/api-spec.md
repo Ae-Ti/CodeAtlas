@@ -86,6 +86,7 @@
   ],
   "explanation": "...",
   "source": "precomputed",
+  "paperScoped": true,
   "mappingReason": "TACC: 후보 7개 중 중복·저점수 2개 제외 후 5개 선택",
   "tacc": { "initialContexts": null, "removedContexts": null, "selectedContexts": 5 },
   "mcpTools": [
@@ -95,9 +96,15 @@
 }
 ```
 
-`source: "live"`이면 미큐레이션 chunk라 그 자리에서 `FindCodeImplementation → CurateContext`를 돌린 것.
+`source: "live"`이면 미큐레이션 chunk라 그 자리에서 검색 → `CurateContext`를 돌린 것.
 이 경우 `mappingReason`은 null이고 `tacc`에 정확한 수치가 채워집니다.
 실측(demo seed, M4 macOS, qwen3:8b): **live 27.3초 vs precomputed 0.049초**.
+라이브 결과는 저장되므로 같은 chunk 의 두 번째 조회부터 `precomputed`로 응답합니다.
+
+`paperScoped: false`는 이 논문에 연결된 저장소가 없어 전체 코퍼스로 폴백한 것 —
+`results`가 전부 **다른 논문의 구현**이므로 화면이 반드시 그렇게 밝혀야 하고,
+이 결과는 저장되지 않습니다(다음 조회도 다시 live). `POST /api/mapping/search`의
+같은 이름 필드와 의미가 동일하며, 사전계산 경로는 항상 `true`입니다.
 
 > `tacc`는 v2 명세에 없던 필드를 **되살린 것**입니다. 프론트의 TACC 퍼널 UI
 > (`frontend/src/data/agentResponses.ts`의 `TaccResult`)와 로드맵 "TACC 전후 수치 표시"
