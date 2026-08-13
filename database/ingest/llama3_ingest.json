@@ -64,7 +64,7 @@
               "filePath": "llama/model.py",
               "symbolName": "Transformer",
               "startLine": 251,
-              "reason": "논문: ``` decoder-only transformer architecture ``` ↓ 코드: ``` class Transformer(nn.Module) ``` --- 논문: ``` Transformer layers ``` ↓ 코드: ``` self.layers ``` --- 논문: ``` Vocabulary prediction ``` ↓ 코드: ``` self.output ``` ---"
+              "reason": "논문 “decoder-only transformer architecture” ↔ 코드 “class Transformer(nn.Module)”"
             }
           ]
         },
@@ -82,7 +82,7 @@
               "filePath": "llama/model.py",
               "symbolName": "Transformer",
               "startLine": 251,
-              "reason": "논문: ``` input tokens are mapped into continuous representations ``` ↓ 코드: ``` self.tok_embeddings(tokens) ``` ---"
+              "reason": "논문 “input tokens are mapped into continuous representations” ↔ 코드 “self.tok_embeddings(tokens)”"
             }
           ]
         },
@@ -100,7 +100,7 @@
               "filePath": "llama/model.py",
               "symbolName": "RMSNorm",
               "startLine": 35,
-              "reason": "논문: ``` RMSNorm ``` ↓ 코드: ``` class RMSNorm ``` ---"
+              "reason": "논문 “RMSNorm” ↔ 코드 “class RMSNorm”"
             }
           ]
         },
@@ -118,7 +118,7 @@
               "filePath": "llama/model.py",
               "symbolName": "apply_rotary_emb",
               "startLine": 65,
-              "reason": "논문: ``` rotary positional embeddings ``` ↓ 코드: ``` apply_rotary_emb() ``` 논문: ``` encode positional information ``` ↓ 코드: ``` xq_ * freqs_cis xk_ * freqs_cis ``` ---"
+              "reason": "논문 “rotary positional embeddings” ↔ 코드 “apply_rotary_emb()”"
             }
           ]
         },
@@ -136,7 +136,7 @@
               "filePath": "llama/model.py",
               "symbolName": "Attention",
               "startLine": 90,
-              "reason": "논문: ``` grouped-query attention ``` ↓ 코드: ``` self.n_kv_heads ``` 논문: ``` Query head sharing KV ``` ↓ 코드: ``` self.n_rep ``` ---"
+              "reason": "논문 “grouped-query attention” ↔ 코드 “self.n_kv_heads”"
             }
           ]
         },
@@ -154,7 +154,7 @@
               "filePath": "llama/model.py",
               "symbolName": "FeedForward",
               "startLine": 193,
-              "reason": "논문: ``` SwiGLU activation ``` ↓ 코드: ``` F.silu() ``` 논문: ``` gate mechanism ``` ↓ 코드: ``` self.w1(x) * self.w3(x) ``` ---"
+              "reason": "논문 “SwiGLU activation” ↔ 코드 “F.silu()”"
             }
           ]
         },
@@ -172,7 +172,7 @@
               "filePath": "llama/model.py",
               "symbolName": "TransformerBlock",
               "startLine": 222,
-              "reason": "논문: ``` attention layers ``` ↓ 코드: ``` self.attention() ``` 논문: ``` feed-forward layers ``` ↓ 코드: ``` self.feed_forward() ``` 논문: ``` residual connections ``` ↓ 코드: ``` x + ... h + ... ``` ---"
+              "reason": "논문 “attention layers” ↔ 코드 “self.attention()”"
             }
           ]
         },
@@ -190,7 +190,7 @@
               "filePath": "llama/model.py",
               "symbolName": "Attention",
               "startLine": 90,
-              "reason": "논문: ``` attention mechanism ``` ↓ 코드: ``` Attention.forward() ``` 논문: ``` attending to previous tokens ``` ↓ 코드: ``` mask ``` ---"
+              "reason": "논문 “attention mechanism” ↔ 코드 “Attention.forward()”"
             }
           ]
         },
@@ -208,7 +208,7 @@
               "filePath": "llama/model.py",
               "symbolName": "Attention",
               "startLine": 90,
-              "reason": "논문: ``` reduces the size of the KV cache ``` ↓ 코드: ``` self.cache_k self.cache_v ``` 논문: ``` during inference ``` ↓ 코드: ``` start_pos ``` ---"
+              "reason": "논문 “reduces the size of the KV cache” ↔ 코드 “self.cache_k self.cache_v”"
             }
           ]
         },
@@ -226,7 +226,7 @@
               "filePath": "llama/tokenizer.py",
               "symbolName": "Tokenizer",
               "startLine": 38,
-              "reason": "논문: ``` tokenizer with vocabulary of 128K tokens ``` ↓ 코드: ``` self.n_words ``` 논문: ``` tokenizer ``` ↓ 코드: ``` Tokenizer ``` ---"
+              "reason": "논문 “tokenizer with vocabulary of 128K tokens” ↔ 코드 “self.n_words”"
             }
           ]
         },
@@ -244,7 +244,7 @@
               "filePath": "llama/generation.py",
               "symbolName": "Llama",
               "startLine": 35,
-              "reason": "논문: ``` predicting the next token ``` ↓ 코드: ``` next_token ``` 논문: ``` autoregressively ``` ↓ 코드: ``` for cur_pos ``` ---"
+              "reason": "논문 “predicting the next token” ↔ 코드 “next_token”"
             }
           ]
         },
@@ -280,7 +280,7 @@
               "filePath": "llama/generation.py",
               "symbolName": "sample_top_p",
               "startLine": 343,
-              "reason": "논문: ``` text generation sampling ``` ↓ 코드: ``` sample_top_p() ``` ---"
+              "reason": "논문 “text generation sampling” ↔ 코드 “sample_top_p()”"
             }
           ]
         },
@@ -298,7 +298,7 @@
               "filePath": "llama/generation.py",
               "symbolName": "Llama",
               "startLine": 35,
-              "reason": "논문: ``` instruction-tuned models ``` ↓ 코드: ``` chat_completion() ``` 논문: ``` dialogue applications ``` ↓ 코드: ``` dialogs ``` ---"
+              "reason": "논문 “instruction-tuned models” ↔ 코드 “chat_completion()”"
             }
           ]
         },
@@ -316,7 +316,7 @@
               "filePath": "llama/tokenizer.py",
               "symbolName": "encode_dialog_prompt",
               "startLine": 222,
-              "reason": "논문: ``` system, user, assistant messages ``` ↓ 코드: ``` message[\"role\"] ``` 논문: ``` structured format ``` ↓ 코드: ``` encode_dialog_prompt() ``` ---"
+              "reason": "논문 “system, user, assistant messages” ↔ 코드 “message[\"role\"]”"
             }
           ]
         },

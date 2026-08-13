@@ -159,7 +159,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 226,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:226 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -177,7 +177,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 226,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:226 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -213,7 +213,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 226,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:226 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -231,7 +231,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 226,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:226 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -285,7 +285,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 178,
-              "reason": "``` DIRECT ```"
+              "reason": "vit_jax/models_vit.py:178 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -303,7 +303,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "Encoder1DBlock",
               "startLine": 105,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:105 의 Encoder1DBlock 이 이 단락의 구현"
             }
           ]
         },
@@ -393,7 +393,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 80,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:80 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -429,7 +429,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 80,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:80 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -465,7 +465,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 178,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:178 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -483,7 +483,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 226,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:226 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -501,7 +501,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 226,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:226 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -555,7 +555,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 226,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:226 의 __call__ 이 이 단락의 구현"
             }
           ]
         },
@@ -681,7 +681,7 @@
               "filePath": "vit_jax/models_vit.py",
               "symbolName": "__call__",
               "startLine": 80,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "vit_jax/models_vit.py:80 의 __call__ 이 이 단락의 구현"
             }
           ]
         },

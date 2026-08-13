@@ -56,6 +56,57 @@ def quotes(text):
     return out
 
 
+#: '⑦ 논문 ↔ 코드' 절이 쓰는 소제목들. 값은 화면에 보일 우리말 표현.
+MATCH_KEYS = {'논문 개념': '논문', '논문': '논문', '코드': '코드', '실행': '실행', '결과': '결과'}
+#: 산문이 아니라 판정 라벨인 값들 — 근거 문장으로 쓸 정보가 없습니다.
+MATCH_LABELS = {'DIRECT', 'INDIRECT', 'PARTIAL', 'EXPECTED', 'CONCEPT', 'NONE'}
+#: 노트에 습관적으로 들어간 진행 문구 — 이것도 근거가 아닙니다.
+MATCH_FILLER = re.compile(r'^(계속\s*진행합니다|이어서\s*진행합니다|위와\s*같음|같음|동일)$')
+_MATCH_SPLIT = re.compile(r'(논문\s*개념|논문|코드|실행|결과)\s*[:：]')
+_LABEL_TOKEN = re.compile(r'\b(%s)\b' % '|'.join(MATCH_LABELS), re.I)
+
+
+def _strip_markup(s):
+    """``` 펜스·> 인용·--- 수평선·↓ 화살표를 걷어내고 한 줄로 폅니다."""
+    s = re.sub(r'```[a-zA-Z]*', ' ', s)
+    s = s.replace('↓', ' ').replace('---', ' ').replace('`', ' ')
+    s = re.sub(r'(?m)^\s*-\s', ' ', s)                    # 목록 기호
+    s = re.sub(r'(?:(?<=\s)|^)>(?=\s|$)', ' ', s)         # 인용 부호 — 독립 토큰일 때만
+    return re.sub(r'\s+', ' ', s).strip(' .·/')
+
+
+def clean_match(raw):
+    """'⑦ 논문 ↔ 코드' 절 본문 → 사람이 읽을 근거 한 문장. 정보가 없으면 None.
+
+    이 절은 산문이 아니라 ``` 펜스로 감싼 대응표입니다
+    (`논문: ```X``` ↓ 코드: ```Y```` 꼴). 펜스 기호를 그대로 두면 화면의
+    '매칭 근거' 자리에 ``` DIRECT ``` --- 같은 문자열이 그대로 뜹니다.
+    판정 라벨(DIRECT 등)만 있는 칸은 근거로 쓸 내용이 없으므로 None 을 돌려주고,
+    호출 측이 경로·심볼로 문장을 만들게 합니다.
+
+    이미 만들어진 ingest JSON 의 (공백이 접힌) reason 문자열에도 그대로 씁니다 —
+    줄바꿈이 아니라 '논문:' 같은 표지로 잘라내기 때문입니다.
+    """
+    if not raw:
+        return None
+    parts = _MATCH_SPLIT.split(raw)
+    lead = _strip_markup(parts[0])
+    pairs = []
+    for key, seg in zip(parts[1::2], parts[2::2]):
+        val = _strip_markup(seg)
+        if val and val.upper() not in MATCH_LABELS:
+            pairs.append((MATCH_KEYS.get(re.sub(r'\s+', ' ', key.strip()), key), val[:160]))
+
+    if pairs:
+        # 같은 짝이 여러 번 나오는 노트가 있어 앞의 두 칸(보통 논문·코드)만 씁니다.
+        return ' ↔ '.join(f'{k} “{v}”' for k, v in pairs[:2])[:400]
+    # 표지 없이 라벨만 적힌 칸 — 라벨을 떼고 남는 게 있어야 근거로 씁니다.
+    lead = re.sub(r'\s+', ' ', _LABEL_TOKEN.sub(' ', lead)).strip(' .·/')
+    if len(lead) >= 6 and not MATCH_FILLER.match(lead):
+        return lead[:400]
+    return None
+
+
 def parse_loc(block):
     """'Section 2 BERT / Page 3' → (section, page_start, page_end)"""
     sec, p1, p2 = None, None, None
@@ -153,7 +204,8 @@ def parse_format_a(text):
         out.append({'tag': tag, 'title': title, 'section': sec, 'page': (p1, p2),
                     'paper': quotes(s.get('paper', '')), 'meaning': s.get('meaning', '').strip(),
                     'filePath': path, 'symbol': sym, 'code': code,
-                    'match': s.get('match', '').strip(), 'kind': s.get('kind', '').strip()})
+                    'match': clean_match(s.get('match', '')) or '',
+                    'kind': s.get('kind', '').strip()})
     return out
 
 
