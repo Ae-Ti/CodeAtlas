@@ -9,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 import java.util.Map;
@@ -39,18 +37,18 @@ public class CurationBatchService {
     private final JdbcTemplate jdbcTemplate;
     private final CodeSearchPort codeSearchPort;
     private final CurateContextTool curateContextTool;
-    private final TransactionTemplate transactionTemplate;
+    private final MappingPersistService mappingPersistService;
 
     public CurationBatchService(
             JdbcTemplate jdbcTemplate,
             CodeSearchPort codeSearchPort,
             CurateContextTool curateContextTool,
-            PlatformTransactionManager transactionManager
+            MappingPersistService mappingPersistService
     ) {
         this.jdbcTemplate = jdbcTemplate;
         this.codeSearchPort = codeSearchPort;
         this.curateContextTool = curateContextTool;
-        this.transactionTemplate = new TransactionTemplate(transactionManager);
+        this.mappingPersistService = mappingPersistService;
     }
 
     public record BatchResult(int chunksPending, int chunksCurated, int chunksSkipped, int mappingsCreated) {}
@@ -148,10 +146,10 @@ public class CurationBatchService {
             }
 
             CuratedContext curatedContext = curateContextTool.curateContext(candidates, content, selectedPerChunk);
-            Integer created = transactionTemplate.execute(status -> persist(chunkId, curatedContext));
+            int created = mappingPersistService.persistCurated(chunkId, curatedContext);
 
             curated++;
-            mappingsCreated += (created != null) ? created : 0;
+            mappingsCreated += created;
             progressDone.incrementAndGet();
             log.info("chunk {} 큐레이션 완료 ({}/{}) — 매핑 {}건",
                     chunkId, curated + skipped, pending.size(), created);
@@ -161,51 +159,4 @@ public class CurationBatchService {
         return new BatchResult(pending.size(), curated, skipped, mappingsCreated);
     }
 
-    /** 반환값은 저장(또는 갱신)한 매핑 행 수 */
-    private int persist(Long chunkId, CuratedContext curated) {
-        // 배치 시점의 TACC 수치를 사람이 읽을 수 있는 형태로 남깁니다.
-        // 사전계산 경로 응답에는 정확한 수치를 실을 수 없어(컬럼 없음) 이 문장이 근거 역할을 합니다.
-        String mappingReason = "TACC: 후보 %d개 중 중복·저점수 %d개 제외 후 %d개 선택"
-                .formatted(curated.initialContexts(), curated.removedContexts(),
-                        curated.selectedContexts().size());
-
-        List<CodeCandidate> selected = curated.selectedContexts();
-        for (int i = 0; i < selected.size(); i++) {
-            CodeCandidate c = selected.get(i);
-
-            // CurateContextTool은 "1위 코드가 왜 이 섹션의 구현인지"만 설명합니다.
-            // explanation은 행(chunk↔code_block) 단위 컬럼이라, 그 문장을 2~5위 행에도
-            // 복사하면 해당 코드에 대한 사실과 다른 설명이 DB에 남습니다.
-            // 따라서 1위 행에만 저장하고 나머지는 NULL로 둡니다.
-            String explanation = (i == 0) ? curated.explanation() : null;
-
-            jdbcTemplate.update("""
-                    INSERT INTO paper_code_mappings
-                        (paper_chunk_id, code_block_id, similarity_score, mapping_method,
-                         mapping_reason, explanation, is_verified)
-                    VALUES (?, ?, ?, 'AI', ?, ?, FALSE)
-                    ON CONFLICT (paper_chunk_id, code_block_id) DO UPDATE
-                        SET similarity_score = EXCLUDED.similarity_score,
-                            explanation      = EXCLUDED.explanation,
-                            -- A가 손으로 적어둔 매핑 근거(MANUAL)는 절대 덮어쓰지 않습니다.
-                            -- mapping_method / is_verified 도 SET에 없으므로 그대로 유지됩니다.
-                            mapping_reason   = CASE
-                                WHEN paper_code_mappings.mapping_method = 'MANUAL'
-                                THEN paper_code_mappings.mapping_reason
-                                ELSE EXCLUDED.mapping_reason END,
-                            updated_at       = CURRENT_TIMESTAMP
-                    """,
-                    chunkId, c.codeBlockId(), clampScore(c.similarityScore()),
-                    mappingReason, explanation);
-        }
-        return selected.size();
-    }
-
-    /**
-     * Script-2.sql의 ck_mapping_similarity는 0~1 범위만 허용합니다.
-     * cosine distance 기반 계산은 부동소수 오차로 1을 아주 살짝 넘거나 음수가 될 수 있어 잘라냅니다.
-     */
-    private static double clampScore(double score) {
-        return Math.min(1.0, Math.max(0.0, score));
-    }
 }
