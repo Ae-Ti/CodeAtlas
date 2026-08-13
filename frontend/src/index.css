@@ -259,7 +259,10 @@ code, pre {
 .page {
   padding-top: calc(var(--header-height) + 32px);
   padding-bottom: 64px;
-  min-height: 100vh;
+  /* min-height: 100vh 를 쓰면 짧은 페이지에서도 Footer(Llama 라이선스 고지)가
+     항상 접힘 아래로 밀려 스크롤해야 보입니다. #root 가 flex column 이므로
+     flex: 1 로 남는 높이만 채우면 Footer 가 뷰포트 하단에 걸립니다. */
+  flex: 1;
 }
 
 .page-header {
