@@ -71,7 +71,7 @@
               "filePath": "modeling.py",
               "symbolName": "BertModel",
               "startLine": 107,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:107 의 BertModel 이 이 단락의 구현"
             }
           ]
         },
@@ -89,7 +89,7 @@
               "filePath": "modeling.py",
               "symbolName": "embedding_postprocessor",
               "startLine": 428,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:428 의 embedding_postprocessor 이 이 단락의 구현"
             }
           ]
         },
@@ -107,7 +107,7 @@
               "filePath": "modeling.py",
               "symbolName": "embedding_lookup",
               "startLine": 380,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:380 의 embedding_lookup 이 이 단락의 구현"
             }
           ]
         },
@@ -125,7 +125,7 @@
               "filePath": "modeling.py",
               "symbolName": "embedding_postprocessor",
               "startLine": 428,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:428 의 embedding_postprocessor 이 이 단락의 구현"
             }
           ]
         },
@@ -143,7 +143,7 @@
               "filePath": "modeling.py",
               "symbolName": "embedding_postprocessor",
               "startLine": 428,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:428 의 embedding_postprocessor 이 이 단락의 구현"
             }
           ]
         },
@@ -161,7 +161,7 @@
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_instances_from_document",
               "startLine": 223,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "create_pretraining_data.py:223 의 create_instances_from_document 이 이 단락의 구현"
             }
           ]
         },
@@ -179,7 +179,7 @@
               "filePath": "modeling.py",
               "symbolName": "transformer_model",
               "startLine": 754,
-              "reason": "``` DIRECT ```"
+              "reason": "modeling.py:754 의 transformer_model 이 이 단락의 구현"
             }
           ]
         },
@@ -197,7 +197,7 @@
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:558 의 attention_layer 이 이 단락의 구현"
             }
           ]
         },
@@ -215,7 +215,7 @@
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:558 의 attention_layer 이 이 단락의 구현"
             }
           ]
         },
@@ -233,7 +233,7 @@
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:558 의 attention_layer 이 이 단락의 구현"
             }
           ]
         },
@@ -251,7 +251,7 @@
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:558 의 attention_layer 이 이 단락의 구현"
             }
           ]
         },
@@ -269,7 +269,7 @@
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:558 의 attention_layer 이 이 단락의 구현"
             }
           ]
         },
@@ -287,7 +287,7 @@
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:558 의 attention_layer 이 이 단락의 구현"
             }
           ]
         },
@@ -305,7 +305,7 @@
               "filePath": "modeling.py",
               "symbolName": "transformer_model",
               "startLine": 754,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:754 의 transformer_model 이 이 단락의 구현"
             }
           ]
         },
@@ -341,7 +341,7 @@
               "filePath": "modeling.py",
               "symbolName": "layer_norm",
               "startLine": 362,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:362 의 layer_norm 이 이 단락의 구현"
             }
           ]
         },
@@ -359,7 +359,7 @@
               "filePath": "modeling.py",
               "symbolName": "attention_layer",
               "startLine": 558,
-              "reason": "``` DIRECT ``` 계속 진행합니다. ---"
+              "reason": "modeling.py:558 의 attention_layer 이 이 단락의 구현"
             }
           ]
         },
@@ -377,7 +377,7 @@
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_masked_lm_predictions",
               "startLine": 342,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "create_pretraining_data.py:342 의 create_masked_lm_predictions 이 이 단락의 구현"
             }
           ]
         },
@@ -395,7 +395,7 @@
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_masked_lm_predictions",
               "startLine": 342,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "create_pretraining_data.py:342 의 create_masked_lm_predictions 이 이 단락의 구현"
             }
           ]
         },
@@ -413,7 +413,7 @@
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_masked_lm_predictions",
               "startLine": 342,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "create_pretraining_data.py:342 의 create_masked_lm_predictions 이 이 단락의 구현"
             }
           ]
         },
@@ -449,7 +449,7 @@
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_instances_from_document",
               "startLine": 223,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "create_pretraining_data.py:223 의 create_instances_from_document 이 이 단락의 구현"
             }
           ]
         },
@@ -467,7 +467,7 @@
               "filePath": "create_pretraining_data.py",
               "symbolName": "create_instances_from_document",
               "startLine": 223,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "create_pretraining_data.py:223 의 create_instances_from_document 이 이 단락의 구현"
             }
           ]
         },
@@ -485,7 +485,7 @@
               "filePath": "run_pretraining.py",
               "symbolName": "get_masked_lm_output",
               "startLine": 240,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "run_pretraining.py:240 의 get_masked_lm_output 이 이 단락의 구현"
             }
           ]
         },
@@ -521,7 +521,7 @@
               "filePath": "run_pretraining.py",
               "symbolName": "get_next_sentence_output",
               "startLine": 285,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "run_pretraining.py:285 의 get_next_sentence_output 이 이 단락의 구현"
             }
           ]
         },
@@ -539,7 +539,7 @@
               "filePath": "run_pretraining.py",
               "symbolName": "model_fn",
               "startLine": 114,
-              "reason": "``` DIRECT ``` 계속 진행합니다. ---"
+              "reason": "run_pretraining.py:114 의 model_fn 이 이 단락의 구현"
             }
           ]
         },
@@ -575,7 +575,7 @@
               "filePath": "optimization.py",
               "symbolName": "create_optimizer",
               "startLine": 25,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "optimization.py:25 의 create_optimizer 이 이 단락의 구현"
             }
           ]
         },
@@ -593,7 +593,7 @@
               "filePath": "optimization.py",
               "symbolName": "create_optimizer",
               "startLine": 25,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "optimization.py:25 의 create_optimizer 이 이 단락의 구현"
             }
           ]
         },
@@ -611,7 +611,7 @@
               "filePath": "optimization.py",
               "symbolName": "create_optimizer",
               "startLine": 25,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "optimization.py:25 의 create_optimizer 이 이 단락의 구현"
             }
           ]
         },
@@ -629,7 +629,7 @@
               "filePath": "modeling.py",
               "symbolName": "dropout",
               "startLine": 344,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "modeling.py:344 의 dropout 이 이 단락의 구현"
             }
           ]
         },
@@ -647,7 +647,7 @@
               "filePath": "run_classifier.py",
               "symbolName": "create_model",
               "startLine": 574,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "run_classifier.py:574 의 create_model 이 이 단락의 구현"
             }
           ]
         },
@@ -701,7 +701,7 @@
               "filePath": "run_squad.py",
               "symbolName": "create_model",
               "startLine": 550,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "run_squad.py:550 의 create_model 이 이 단락의 구현"
             }
           ]
         },

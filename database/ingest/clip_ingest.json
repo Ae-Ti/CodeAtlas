@@ -164,7 +164,7 @@
               "filePath": "clip/model.py",
               "symbolName": "encode_image",
               "startLine": 340,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:340 의 encode_image 이 이 단락의 구현"
             }
           ]
         },
@@ -200,7 +200,7 @@
               "filePath": "clip/model.py",
               "symbolName": "__init__",
               "startLine": 207,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:207 의 __init__ 이 이 단락의 구현"
             }
           ]
         },
@@ -272,7 +272,7 @@
               "filePath": "clip/model.py",
               "symbolName": "Transformer",
               "startLine": 195,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:195 의 Transformer 이 이 단락의 구현"
             }
           ]
         },
@@ -290,7 +290,7 @@
               "filePath": "clip/simple_tokenizer.py",
               "symbolName": "SimpleTokenizer",
               "startLine": 62,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/simple_tokenizer.py:62 의 SimpleTokenizer 이 이 단락의 구현"
             }
           ]
         },
@@ -308,7 +308,7 @@
               "filePath": "clip/model.py",
               "symbolName": "__init__",
               "startLine": 244,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:244 의 __init__ 이 이 단락의 구현"
             }
           ]
         },
@@ -326,7 +326,7 @@
               "filePath": "clip/model.py",
               "symbolName": "__init__",
               "startLine": 244,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:244 의 __init__ 이 이 단락의 구현"
             }
           ]
         },
@@ -344,7 +344,7 @@
               "filePath": "clip/model.py",
               "symbolName": "forward",
               "startLine": 189,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:189 의 forward 이 이 단락의 구현"
             }
           ]
         },
@@ -362,7 +362,7 @@
               "filePath": "clip/model.py",
               "symbolName": "encode_text",
               "startLine": 343,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:343 의 encode_text 이 이 단락의 구현"
             }
           ]
         },
@@ -380,7 +380,7 @@
               "filePath": "clip/model.py",
               "symbolName": "__init__",
               "startLine": 244,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:244 의 __init__ 이 이 단락의 구현"
             }
           ]
         },
@@ -416,7 +416,7 @@
               "filePath": "clip/model.py",
               "symbolName": "encode_image",
               "startLine": 340,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/model.py:340 의 encode_image 이 이 단락의 구현"
             }
           ]
         },
@@ -668,7 +668,7 @@
               "filePath": "clip/clip.py",
               "symbolName": "load",
               "startLine": 94,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "clip/clip.py:94 의 load 이 이 단락의 구현"
             }
           ]
         },
