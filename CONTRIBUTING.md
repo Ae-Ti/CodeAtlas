@@ -52,11 +52,17 @@
 | `backend/src/main/java/**/agent/**`, `**/mcp/**`, `**/nl2sql/**`, `**/embedding/**` | **B** |
 | `frontend/**` | **B** |
 | `database/Script-*.sql`, `database/seed_demo.sql` | **B** |
+| `docs/api-spec.md`, `docs/backend-setup.md`, `docs/demo-scenario.md`, `docs/AI_모델_활용_명세.md` | **B** |
+| `docs/A_논문DB구축_가이드.md`, `docs/data-pipeline-guide.md` | **B** — A 가 실제 사용자라 바꿀 일이 생기면 PR |
 | `docs/CodeAtlas_기획서.md`, `docs/CodeAtlas_팀_역할분담.md`, `README.md` | **공동** — 상대에게 알리고 수정 |
-| 각자 작성한 날짜별 정리 문서 | 작성자 |
+| 위에 없는 `docs/**`, 날짜별 정리 문서 | **작성자** — `git log --diff-filter=A -- <파일>` 로 확인 |
 
 **eval CSV 는 A 만 커밋합니다.** DB 를 실제로 돌려야 나오는 산출물이라 양쪽이 각자
 생성하면 매번 충돌합니다.
+
+**`docs/api-spec.md` 는 응답 스키마가 바뀌는 PR 과 같이 갑니다.** 소유자가 B 라서
+A 가 백엔드 응답 변화를 발견해도 직접 못 고칩니다 — 필드를 추가·삭제하는 쪽이
+같은 PR 안에서 문서를 맞춰 주세요.
 
 포트 인터페이스(`mcp/port/CodeAtlasPorts.java`)는 A↔B 계약이라 어느 쪽이든 바꾸면
 상대에게 알립니다.
