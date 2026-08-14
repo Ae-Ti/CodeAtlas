@@ -47,7 +47,7 @@ function AiExplanation({ paperId, chunkId }: { paperId: number; chunkId: number 
   }
   if (state.error || !state.data) return null;
 
-  const { explanation, source, mappingReason, tacc, results } = state.data;
+  const { explanation, source, paperScoped, mappingReason, tacc, results } = state.data;
   const isPrecomputed = source === 'precomputed';
   const topCode = results[0];
 
@@ -69,6 +69,16 @@ function AiExplanation({ paperId, chunkId }: { paperId: number; chunkId: number 
           {isPrecomputed ? <><Zap size={10} style={{ marginRight: 4 }} />precomputed</> : 'live'}
         </span>
       </div>
+      {/* 라이브 폴백이 전체 코퍼스로 넓혀진 경우 — 설명의 대상이 다른 논문의 코드다 */}
+      {paperScoped === false && results.length > 0 && (
+        <div className="cross-paper-notice">
+          <AlertTriangle size={14} />
+          <span>
+            이 논문에 연결된 저장소가 없어 <strong>다른 논문의 구현</strong>에 대한 설명입니다.
+            참고용으로만 보세요.
+          </span>
+        </div>
+      )}
       {/* 이 설명이 어느 코드에 대한 것인지 명시 — 아래 목록 전체에 대한 평가가 아닙니다 */}
       {topCode && (
         <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: 8, fontFamily: 'var(--font-mono)' }}>

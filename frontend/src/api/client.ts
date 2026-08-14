@@ -124,6 +124,12 @@ export interface AgentQueryResponse {
   results: CodeCandidate[];
   explanation: string;
   source: 'precomputed' | 'live';
+  /**
+   * false면 이 논문에 연결된 저장소가 없어 전체 코퍼스로 폴백한 결과 —
+   * results가 전부 **다른 논문의 구현**이므로 화면에서 반드시 그렇게 밝혀야 합니다.
+   * (사전계산 경로는 항상 true — 폴백 결과는 저장되지 않습니다)
+   */
+  paperScoped: boolean;
   mappingReason: string | null;
   tacc: TaccSummary;
   mcpTools: ToolTiming[];

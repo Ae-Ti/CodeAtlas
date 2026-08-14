@@ -5,10 +5,11 @@ import com.codeatlas.backend.mcp.dto.McpDtos.ChunkResult;
 import com.codeatlas.backend.mcp.dto.McpDtos.CodeCandidate;
 import com.codeatlas.backend.mcp.dto.McpDtos.CuratedContext;
 import com.codeatlas.backend.mcp.dto.McpDtos.PrecomputedMapping;
+import com.codeatlas.backend.mcp.dto.McpDtos.ScopedCandidates;
+import com.codeatlas.backend.mcp.port.CodeAtlasPorts.CodeSearchPort;
 import com.codeatlas.backend.mcp.port.CodeAtlasPorts.MappingReadPort;
 import com.codeatlas.backend.mcp.port.CodeAtlasPorts.PaperChunkSearchPort;
 import com.codeatlas.backend.mcp.tools.CurateContextTool;
-import com.codeatlas.backend.mcp.tools.FindCodeImplementationTool;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +20,9 @@ import java.util.Objects;
 /**
  * 조회 우선순위:
  *   1) paper_code_mappings에 사전계산된 결과가 있으면 즉시 반환 (빠름, Ollama 호출 없음)
- *   2) 없으면(신규/미큐레이션 chunk) 라이브 경로로 폴백 — FindCodeImplementation → CurateContext
- *      (ad-hoc 검색 스트레치 기능과 같은 경로를 씀)
+ *   2) 없으면(신규/미큐레이션 chunk) 라이브 경로로 폴백 — 검색 → CurateContext.
+ *      라이브 결과는 저장해서 같은 chunk 의 다음 조회부터 1)로 응답합니다 —
+ *      업로드 직후 사용자가 큐레이션 배치를 기다리지 않아도 두 번째부터는 빠릅니다.
  */
 @RestController
 public class AgentQueryController {
@@ -31,19 +33,22 @@ public class AgentQueryController {
 
     private final PaperChunkSearchPort paperChunkSearchPort;
     private final MappingReadPort mappingReadPort;
-    private final FindCodeImplementationTool findCodeImplementationTool;
+    private final CodeSearchPort codeSearchPort;
     private final CurateContextTool curateContextTool;
+    private final MappingPersistService mappingPersistService;
 
     public AgentQueryController(
             PaperChunkSearchPort paperChunkSearchPort,
             MappingReadPort mappingReadPort,
-            FindCodeImplementationTool findCodeImplementationTool,
-            CurateContextTool curateContextTool
+            CodeSearchPort codeSearchPort,
+            CurateContextTool curateContextTool,
+            MappingPersistService mappingPersistService
     ) {
         this.paperChunkSearchPort = paperChunkSearchPort;
         this.mappingReadPort = mappingReadPort;
-        this.findCodeImplementationTool = findCodeImplementationTool;
+        this.codeSearchPort = codeSearchPort;
         this.curateContextTool = curateContextTool;
+        this.mappingPersistService = mappingPersistService;
     }
 
     public record AgentQueryRequest(String query, Long paperId, Long chunkId) {}
@@ -68,6 +73,12 @@ public class AgentQueryController {
              */
             String explanation,
             String source,          // "precomputed" | "live"
+            /**
+             * false면 이 논문에 연결된 저장소가 없어 전체 코퍼스로 폴백한 결과 —
+             * results가 전부 <b>다른 논문의 구현</b>이므로 화면이 그렇게 밝혀야 합니다.
+             * 사전계산 경로는 항상 true입니다(배치·라이브 캐싱 모두 폴백 결과를 저장하지 않음).
+             */
+            boolean paperScoped,
             String mappingReason,   // 사전계산 경로의 배치 시점 TACC 요약 (live면 null)
             TaccSummary tacc,
             List<ToolTiming> mcpTools
@@ -103,6 +114,7 @@ public class AgentQueryController {
                     results,
                     explanation,
                     "precomputed",
+                    true,
                     top.mappingReason(),
                     new TaccSummary(null, null, results.size()),
                     List.of(
@@ -112,20 +124,31 @@ public class AgentQueryController {
             );
         }
 
-        // 2) 없으면 라이브 경로로 폴백 (ad-hoc 검색과 동일 흐름)
-        List<CodeCandidate> candidates = findCodeImplementationTool
-                .findCodeImplementation(request.chunkId(), CANDIDATE_COUNT);
+        // 2) 없으면 라이브 경로로 폴백 (ad-hoc 검색과 동일 흐름).
+        //    결과를 저장하므로 Scoped 검색을 씁니다 (CodeAtlasPorts javadoc).
+        ScopedCandidates found = codeSearchPort.findImplementationsScoped(request.chunkId(), CANDIDATE_COUNT);
         long t3 = System.currentTimeMillis();
 
         CuratedContext curated = curateContextTool
-                .curateContext(candidates, queryChunk.chunkText(), SELECTED_COUNT);
+                .curateContext(found.candidates(), queryChunk.chunkText(), SELECTED_COUNT);
         long t4 = System.currentTimeMillis();
+
+        // 3) 라이브 결과를 저장해 같은 chunk 의 다음 조회부터 precomputed 로 응답.
+        //    폴백(paperScoped=false) 결과는 저장하지 않습니다 — 다른 논문의 코드가
+        //    mapping_method='AI'로 영구히 남기 때문입니다. 배치(CurationBatchService)와 같은 판단.
+        String persistStatus = "skipped";
+        if (found.paperScoped() && !curated.selectedContexts().isEmpty()) {
+            mappingPersistService.persistCurated(request.chunkId(), curated);
+            persistStatus = "done";
+        }
+        long t5 = System.currentTimeMillis();
 
         return new AgentQueryResponse(
                 queryChunk,
                 curated.selectedContexts(),
                 curated.explanation(),
                 "live",
+                found.paperScoped(),
                 null,
                 new TaccSummary(curated.initialContexts(), curated.removedContexts(),
                         curated.selectedContexts().size()),
@@ -133,7 +156,8 @@ public class AgentQueryController {
                         new ToolTiming("getChunkById", "done", t1 - t0),
                         new ToolTiming("MappingReadPort", "empty", t2 - t1),
                         new ToolTiming("FindCodeImplementation", "done", t3 - t2),
-                        new ToolTiming("CurateContext", "done", t4 - t3)
+                        new ToolTiming("CurateContext", "done", t4 - t3),
+                        new ToolTiming("PersistMappings", persistStatus, t5 - t4)
                 )
         );
     }

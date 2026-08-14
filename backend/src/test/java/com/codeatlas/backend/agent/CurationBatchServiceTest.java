@@ -8,8 +8,6 @@ import com.codeatlas.backend.mcp.tools.CurateContextTool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.List;
 import java.util.Map;
@@ -59,8 +57,8 @@ class CurationBatchServiceTest {
         when(curateContextTool.curateContext(any(), anyString(), anyInt()))
                 .thenReturn(new CuratedContext(List.of(), 0, 0, ""));
 
-        PlatformTransactionManager tx = mock(DataSourceTransactionManager.class);
-        return new CurationBatchService(jdbcTemplate, codeSearchPort, curateContextTool, tx);
+        MappingPersistService persistService = mock(MappingPersistService.class);
+        return new CurationBatchService(jdbcTemplate, codeSearchPort, curateContextTool, persistService);
     }
 
     @Test
@@ -122,9 +120,9 @@ class CurationBatchServiceTest {
                         false));
 
         CurateContextTool curateContextTool = mock(CurateContextTool.class);
-        PlatformTransactionManager tx = mock(DataSourceTransactionManager.class);
+        MappingPersistService persistService = mock(MappingPersistService.class);
         CurationBatchService service =
-                new CurationBatchService(jdbcTemplate, codeSearchPort, curateContextTool, tx);
+                new CurationBatchService(jdbcTemplate, codeSearchPort, curateContextTool, persistService);
 
         CurationBatchService.BatchResult result = service.curateAllPendingChunks(20, 5);
 
@@ -133,6 +131,7 @@ class CurationBatchServiceTest {
         assertThat(result.mappingsCreated()).as("잘못된 매핑이 저장되면 안 됩니다").isZero();
         // Qwen3 호출까지 가면 안 된다 — 후보가 애초에 쓸 수 없는 것이기 때문.
         verify(curateContextTool, never()).curateContext(any(), anyString(), anyInt());
+        verify(persistService, never()).persistCurated(anyLong(), any());
     }
 
     private static Throwable catchThrowableOf(Runnable runnable) {

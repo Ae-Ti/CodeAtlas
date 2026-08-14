@@ -89,7 +89,7 @@
               "filePath": "segment_anything/modeling/sam.py",
               "symbolName": "Sam",
               "startLine": 18,
-              "reason": "``` DIRECT ``` --- 논문: ``` SAM consists of: - image encoder - prompt encoder - mask decoder ``` ↓ 코드: ``` self.image_encoder self.prompt_encoder self.mask_decoder ``` ↓ 실행: ``` image_embeddings = self.image_encoder() sparse_embeddings, dense_embeddings = self.prompt_encoder() masks = self.mask_decoder() ``` ---"
+              "reason": "논문 “SAM consists of: - image encoder - prompt encoder - mask decoder” ↔ 코드 “self.image_encoder self.prompt_encoder self.mask_decoder”"
             }
           ]
         },
@@ -107,7 +107,7 @@
               "filePath": "segment_anything/modeling/image_encoder.py",
               "symbolName": "ImageEncoderViT",
               "startLine": 17,
-              "reason": "``` DIRECT ``` --- 논문: ``` ViT computes image embedding ``` ↓ 코드: ``` self.patch_embed() for blk in self.blocks: self.neck() ``` ↓ 결과: ``` Image Embedding ``` ---"
+              "reason": "논문 “ViT computes image embedding” ↔ 코드 “self.patch_embed() for blk in self.blocks: self.neck()”"
             }
           ]
         },
@@ -125,7 +125,7 @@
               "filePath": "segment_anything/modeling/image_encoder.py",
               "symbolName": "PatchEmbed",
               "startLine": 364,
-              "reason": "``` DIRECT ``` --- 논문: ``` Image encoder receives image input and produces image embedding. ``` ↓ 코드: ``` self.proj = nn.Conv2d(...) ``` ↓ 이미지를 patch 단위 feature map으로 변환 논문 개념: ``` Image Patch Tokenization ``` 코드: ``` Conv2d with kernel=stride=patch size ``` ---"
+              "reason": "논문 “Image encoder receives image input and produces image embedding” ↔ 코드 “self.proj = nn.Conv2d(...) 이미지를 patch 단위 feature map으로 변환”"
             }
           ]
         },
@@ -143,7 +143,7 @@
               "filePath": "segment_anything/modeling/image_encoder.py",
               "symbolName": "Block",
               "startLine": 119,
-              "reason": "``` DIRECT ``` --- 논문: ``` ViT encoder computes image representation ``` ↓ 코드: ``` for blk in self.blocks: x = blk(x) ``` ↓ 각 Transformer Block 수행 ---"
+              "reason": "논문 “ViT encoder computes image representation” ↔ 코드 “for blk in self.blocks: x = blk(x) 각 Transformer Block 수행”"
             }
           ]
         },
@@ -161,7 +161,7 @@
               "filePath": "segment_anything/modeling/image_encoder.py",
               "symbolName": "Attention",
               "startLine": 185,
-              "reason": "``` DIRECT ``` --- 논문: ``` ViT image encoder ``` ↓ 코드: ``` Attention.forward() ``` ↓ 구현: ``` Q,K,V 생성 ↓ Attention score 계산 ↓ Feature aggregation ``` ---"
+              "reason": "논문 “ViT image encoder” ↔ 코드 “Attention.forward() 구현: Q,K,V 생성 Attention score 계산 Feature aggregation”"
             }
           ]
         },
@@ -179,7 +179,7 @@
               "filePath": "segment_anything/modeling/prompt_encoder.py",
               "symbolName": "PromptEncoder",
               "startLine": 16,
-              "reason": "``` DIRECT ``` --- 논문: ``` Sparse prompts and dense prompts ``` ↓ 코드: ``` _embed_points() _embed_boxes() _embed_masks() ``` ---"
+              "reason": "논문 “Sparse prompts and dense prompts” ↔ 코드 “_embed_points() _embed_boxes() _embed_masks()”"
             }
           ]
         },
@@ -197,7 +197,7 @@
               "filePath": "segment_anything/modeling/prompt_encoder.py",
               "symbolName": "PromptEncoder",
               "startLine": 16,
-              "reason": "``` DIRECT ``` --- 논문: ``` point prompts are represented as positional encodings with learned embeddings ``` ↓ 코드: ``` self.pe_layer.forward_with_coords() ``` ↓ 좌표 embedding 생성 그리고: ``` self.point_embeddings ``` ↓ positive / negative point label embedding 추가 ---"
+              "reason": "논문 “point prompts are represented as positional encodings with learned embeddings” ↔ 코드 “self.pe_layer.forward_with_coords() 좌표 embedding 생성 그리고: self.point_embeddings positive / negative point label embedding 추가”"
             }
           ]
         },
@@ -215,7 +215,7 @@
               "filePath": "segment_anything/modeling/prompt_encoder.py",
               "symbolName": "PromptEncoder",
               "startLine": 16,
-              "reason": "``` DIRECT ``` --- 논문: ``` box prompt ``` ↓ 코드: ``` boxes.reshape( -1, 2, 2 ) ``` ↓ 두 개 corner point 생성 ↓ ``` point_embeddings[2] point_embeddings[3] ``` ↓ box corner embedding ---"
+              "reason": "논문 “box prompt” ↔ 코드 “boxes.reshape( -1, 2, 2 ) 두 개 corner point 생성 point_embeddings[2] point_embeddings[3] box corner embedding”"
             }
           ]
         },
@@ -233,7 +233,7 @@
               "filePath": "segment_anything/modeling/prompt_encoder.py",
               "symbolName": "PromptEncoder",
               "startLine": 16,
-              "reason": "``` DIRECT ``` --- 논문: ``` Dense prompts are embedded with CNN ``` ↓ 코드: ``` self.mask_downscaling() ``` ↓ Mask feature embedding 생성 ---"
+              "reason": "논문 “Dense prompts are embedded with CNN” ↔ 코드 “self.mask_downscaling() Mask feature embedding 생성”"
             }
           ]
         },
@@ -251,7 +251,7 @@
               "filePath": "segment_anything/modeling/prompt_encoder.py",
               "symbolName": "PositionEmbeddingRandom",
               "startLine": 171,
-              "reason": "``` DIRECT ``` --- 논문: ``` positional encoding ``` ↓ 코드: ``` _pe_encoding() ``` ↓ Fourier Feature 생성 ---"
+              "reason": "논문 “positional encoding” ↔ 코드 “_pe_encoding() Fourier Feature 생성”"
             }
           ]
         },
@@ -269,7 +269,7 @@
               "filePath": "segment_anything/modeling/mask_decoder.py",
               "symbolName": "predict_masks",
               "startLine": 112,
-              "reason": "``` DIRECT ``` --- 논문: ``` Mask decoder maps: image embedding prompt embedding output token to mask ``` ↓ 코드: ``` self.predict_masks() ``` ↓ 실제 구현: ``` image_embeddings + sparse_prompt_embeddings + dense_prompt_embeddings + mask_tokens ``` ---"
+              "reason": "논문 “Mask decoder maps: image embedding prompt embedding output token to mask” ↔ 코드 “self.predict_masks() 실제 구현: image_embeddings + sparse_prompt_embeddings + dense_prompt_embeddings + mask_tokens”"
             }
           ]
         },
@@ -287,7 +287,7 @@
               "filePath": "segment_anything/modeling/mask_decoder.py",
               "symbolName": "predict_masks",
               "startLine": 112,
-              "reason": "``` DIRECT ``` --- 논문: ``` output token ``` ↓ 코드: ``` self.mask_tokens self.iou_token ``` --- 논문: ``` multiple masks ``` ↓ 코드: ``` num_mask_tokens ``` ---"
+              "reason": "논문 “output token” ↔ 코드 “self.mask_tokens self.iou_token”"
             }
           ]
         },
@@ -305,7 +305,7 @@
               "filePath": "segment_anything/modeling/transformer.py",
               "symbolName": "TwoWayTransformer",
               "startLine": 16,
-              "reason": "``` DIRECT ``` --- 논문: ``` updates image embedding and prompt tokens ``` ↓ 코드: ``` queries, keys = layer(...) ``` ---"
+              "reason": "논문 “updates image embedding and prompt tokens” ↔ 코드 “queries, keys = layer(...)”"
             }
           ]
         },
@@ -323,7 +323,7 @@
               "filePath": "segment_anything/modeling/transformer.py",
               "symbolName": "TwoWayAttentionBlock",
               "startLine": 109,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "segment_anything/modeling/transformer.py:109 의 TwoWayAttentionBlock 이 이 단락의 구현"
             }
           ]
         },
@@ -341,7 +341,7 @@
               "filePath": "segment_anything/modeling/mask_decoder.py",
               "symbolName": "predict_masks",
               "startLine": 112,
-              "reason": "``` DIRECT ``` --- 논문: ``` mask tokens are passed through MLP and generate masks ``` ↓ 코드: ``` self.output_hypernetworks_mlps ``` ↓ Mask Token을 MLP 변환 논문: ``` generate final masks ``` ↓ 코드: ``` hyper_in @ upscaled_embedding ``` ↓ Mask Logit 생성 ---"
+              "reason": "논문 “mask tokens are passed through MLP and generate masks” ↔ 코드 “self.output_hypernetworks_mlps Mask Token을 MLP 변환”"
             }
           ]
         },
@@ -359,7 +359,7 @@
               "filePath": "segment_anything/modeling/mask_decoder.py",
               "symbolName": "predict_masks",
               "startLine": 112,
-              "reason": "``` DIRECT ``` --- 논문: ``` predicts confidence score for each mask ``` ↓ 코드: ``` iou_prediction_head() ``` ↓ 출력: ``` iou_pred ``` ---"
+              "reason": "논문 “predicts confidence score for each mask” ↔ 코드 “iou_prediction_head() 출력: iou_pred”"
             }
           ]
         },
@@ -377,7 +377,7 @@
               "filePath": "segment_anything/modeling/sam.py",
               "symbolName": "Sam",
               "startLine": 18,
-              "reason": "``` DIRECT ``` --- 논문: ``` three components combined ``` ↓ 코드: ``` self.image_encoder self.prompt_encoder self.mask_decoder ``` ---"
+              "reason": "논문 “three components combined” ↔ 코드 “self.image_encoder self.prompt_encoder self.mask_decoder”"
             }
           ]
         },
@@ -395,7 +395,7 @@
               "filePath": "segment_anything/predictor.py",
               "symbolName": "predict",
               "startLine": 92,
-              "reason": "``` DIRECT ``` --- 논문: ``` image embedding reused ``` ↓ 코드: ``` self.features ``` 저장 후 재사용. 논문: ``` multiple prompts ``` ↓ 코드: ``` predict() ``` ---"
+              "reason": "논문 “image embedding reused” ↔ 코드 “self.features 저장 후 재사용”"
             }
           ]
         },
@@ -413,7 +413,7 @@
               "filePath": "segment_anything/automatic_mask_generator.py",
               "symbolName": "_generate_masks",
               "startLine": 197,
-              "reason": "``` DIRECT ``` --- 논문: ``` automatic annotation pipeline ``` ↓ 코드: ``` SamAutomaticMaskGenerator.generate() ``` ↓ 자동 Mask 생성 전체 Pipeline ---"
+              "reason": "논문 “automatic annotation pipeline” ↔ 코드 “SamAutomaticMaskGenerator.generate() 자동 Mask 생성 전체 Pipeline”"
             }
           ]
         },
@@ -431,7 +431,7 @@
               "filePath": "segment_anything/utils/amg.py",
               "symbolName": "build_all_layer_point_grids",
               "startLine": 189,
-              "reason": "``` DIRECT ``` --- 논문: ``` sampling points over image ``` ↓ 코드: ``` build_point_grid() ``` ↓ Prompt 후보 생성 ---"
+              "reason": "논문 “sampling points over image” ↔ 코드 “build_point_grid() Prompt 후보 생성”"
             }
           ]
         },
@@ -449,7 +449,7 @@
               "filePath": "segment_anything/automatic_mask_generator.py",
               "symbolName": "_generate_masks",
               "startLine": 197,
-              "reason": "``` DIRECT ``` --- 논문: ``` crop-based strategy ``` ↓ 코드: ``` generate_crop_boxes() ``` ↓ Crop 영역 생성 ---"
+              "reason": "논문 “crop-based strategy” ↔ 코드 “generate_crop_boxes() Crop 영역 생성”"
             }
           ]
         },
@@ -467,7 +467,7 @@
               "filePath": "segment_anything/utils/amg.py",
               "symbolName": "calculate_stability_score",
               "startLine": 156,
-              "reason": "``` DIRECT ``` --- 논문: ``` predicted IoU stability score ``` ↓ 코드: ``` pred_iou_thresh calculate_stability_score() ``` ---"
+              "reason": "논문 “predicted IoU stability score” ↔ 코드 “pred_iou_thresh calculate_stability_score()”"
             }
           ]
         },

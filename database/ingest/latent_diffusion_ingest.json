@@ -92,7 +92,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "configure_optimizers",
               "startLine": 415,
-              "reason": "``` DIRECT ``` --- 논문: > diffusion process in compressed latent space > ↓ 코드: ``` x_start ``` 이 입력 latent. 실제 Stable Diffusion에서는: ``` Image ↓ VAE encode ↓ z latent ↓ DDPM ``` 순서. ---"
+              "reason": "논문 “diffusion process in compressed latent space” ↔ 코드 “x_start 이 입력 latent. 실제 Stable Diffusion에서는: Image VAE encode z latent DDPM 순서”"
             }
           ]
         },
@@ -110,7 +110,7 @@
               "filePath": "ldm/models/autoencoder.py",
               "symbolName": "AutoencoderKL",
               "startLine": 285,
-              "reason": "``` DIRECT ``` --- 논문: > lower-dimensional latent representation > ↓ 코드: ``` self.encoder() ``` ↓ latent 생성 논문: > reconstruct image > ↓ 코드: ``` self.decoder() ``` ---"
+              "reason": "논문 “lower-dimensional latent representation” ↔ 코드 “self.encoder() latent 생성”"
             }
           ]
         },
@@ -128,7 +128,7 @@
               "filePath": "ldm/models/autoencoder.py",
               "symbolName": "AutoencoderKL",
               "startLine": 285,
-              "reason": "``` DIRECT ``` --- 논문: ``` encoder E decoder D ``` ↓ 코드: ``` self.encoder self.decoder ``` ---"
+              "reason": "논문 “encoder E decoder D” ↔ 코드 “self.encoder self.decoder”"
             }
           ]
         },
@@ -146,7 +146,7 @@
               "filePath": "ldm/modules/losses/vqperceptual.py",
               "symbolName": "VQLPIPSWithDiscriminator",
               "startLine": 43,
-              "reason": "``` DIRECT ``` --- 논문: > perceptual loss > ↓ 코드: ``` self.perceptual_loss() ``` ---"
+              "reason": "논문 “perceptual loss” ↔ 코드 “self.perceptual_loss()”"
             }
           ]
         },
@@ -164,7 +164,7 @@
               "filePath": "ldm/modules/distributions/distributions.py",
               "symbolName": "DiagonalGaussianDistribution",
               "startLine": 24,
-              "reason": "``` DIRECT ``` --- 논문: > KL-regulated autoencoder > ↓ 코드: ``` kl() ``` ---"
+              "reason": "논문 “KL-regulated autoencoder” ↔ 코드 “kl()”"
             }
           ]
         },
@@ -182,7 +182,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "configure_optimizers",
               "startLine": 415,
-              "reason": "``` DIRECT ``` --- 논문: > gradual noising process > ↓ 코드: ``` q_sample() ``` ↓ Noise 추가 논문 수식: \\[ z_t = \\sqrt{\\bar{\\alpha_t}}z_0 + \\sqrt{1-\\bar{\\alpha_t}}\\epsilon \\] ↓ 코드: ``` sqrt_alphas_cumprod_t * x_start + sqrt_one_minus_alphas_cumprod_t * noise ``` ---"
+              "reason": "논문 “gradual noising process” ↔ 코드 “q_sample() Noise 추가 논문 수식: \\[ z_t = \\sqrt{\\bar{\\alpha_t}}z_0 + \\sqrt{1-\\bar{\\alpha_t}}\\epsilon \\]”"
             }
           ]
         },
@@ -200,7 +200,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "configure_optimizers",
               "startLine": 415,
-              "reason": "``` DIRECT ``` --- 논문: > reverse diffusion process > ↓ 코드: ``` p_sample() ``` 논문: > predicting noise > ↓ 코드: ``` self.model() ``` (UNet 호출) ---"
+              "reason": "논문 “reverse diffusion process” ↔ 코드 “p_sample()”"
             }
           ]
         },
@@ -218,7 +218,7 @@
               "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
               "symbolName": "UNetModel",
               "startLine": 413,
-              "reason": "``` DIRECT ``` --- 논문: > UNet architecture > ↓ 코드: ``` UNetModel ``` 논문: > downsampling and upsampling blocks > ↓ 코드: ``` input_blocks output_blocks ``` 논문: > attention layers > ↓ 코드: ``` SpatialTransformer ``` ---"
+              "reason": "논문 “UNet architecture” ↔ 코드 “UNetModel”"
             }
           ]
         },
@@ -236,7 +236,7 @@
               "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
               "symbolName": "ResBlock",
               "startLine": 163,
-              "reason": "``` DIRECT ``` --- 논문: > residual blocks > ↓ 코드: ``` class ResBlock ``` Residual 연결: 논문: ``` input + residual ``` ↓ 코드: ``` return self.skip_connection(x)+h ``` ---"
+              "reason": "논문 “residual blocks” ↔ 코드 “class ResBlock Residual 연결:”"
             }
           ]
         },
@@ -254,7 +254,7 @@
               "filePath": "ldm/modules/diffusionmodules/openaimodel.py",
               "symbolName": "__init__",
               "startLine": 37,
-              "reason": "``` DIRECT ``` --- 논문: > attention layers > ↓ 코드: ``` AttentionBlock ``` Residual: ``` x+h ``` ---"
+              "reason": "논문 “attention layers” ↔ 코드 “AttentionBlock Residual: x+h”"
             }
           ]
         },
@@ -272,7 +272,7 @@
               "filePath": "ldm/modules/attention.py",
               "symbolName": "CrossAttention",
               "startLine": 152,
-              "reason": "``` DIRECT ``` --- 논문: > cross-attention layers > ↓ 코드: ``` CrossAttention ``` Query: ``` self.to_q() ``` Text: ``` self.to_k() self.to_v() ``` ---"
+              "reason": "논문 “cross-attention layers” ↔ 코드 “CrossAttention Query: self.to_q() Text: self.to_k() self.to_v()”"
             }
           ]
         },
@@ -326,7 +326,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "configure_optimizers",
               "startLine": 415,
-              "reason": "``` DIRECT ``` --- 논문: > variance schedule controls noise > ↓ 코드: ``` betas ``` ↓ Noise 크기 결정 논문: \\[ \\alpha_t=1-\\beta_t \\] ↓ 코드: ``` alphas = 1.0-betas ``` ---"
+              "reason": "논문 “variance schedule controls noise” ↔ 코드 “betas Noise 크기 결정”"
             }
           ]
         },
@@ -344,7 +344,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "p_losses",
               "startLine": 1012,
-              "reason": "``` DIRECT ``` --- 논문: > predict the noise > ↓ 코드: ``` model_output ``` 실제 noise: ``` noise ``` Loss: ``` get_loss() ``` ---"
+              "reason": "논문 “predict the noise” ↔ 코드 “model_output 실제 noise: noise Loss: get_loss()”"
             }
           ]
         },
@@ -362,7 +362,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "get_loss",
               "startLine": 279,
-              "reason": "``` DIRECT ``` --- 논문: > predicting noise objective > ↓ 코드: ``` (target-pred)**2 ``` ↓ Noise prediction MSE ---"
+              "reason": "논문 “predicting noise objective” ↔ 코드 “(target-pred)**2 Noise prediction MSE”"
             }
           ]
         },
@@ -398,7 +398,7 @@
               "filePath": "ldm/models/diffusion/ddim.py",
               "symbolName": "sample",
               "startLine": 56,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "ldm/models/diffusion/ddim.py:56 의 sample 이 이 단락의 구현"
             }
           ]
         },
@@ -416,7 +416,7 @@
               "filePath": "ldm/models/diffusion/ddim.py",
               "symbolName": "sample",
               "startLine": 56,
-              "reason": "``` DIRECT ``` --- 논문: > classifier-free guidance > ↓ 코드: ``` e_t_uncond ``` ↓ 조건 없는 noise ``` e_t_cond ``` ↓ Text 조건 noise ``` unconditional_guidance_scale ``` ↓ guidance strength ---"
+              "reason": "논문 “classifier-free guidance” ↔ 코드 “e_t_uncond 조건 없는 noise e_t_cond Text 조건 noise unconditional_guidance_scale guidance strength”"
             }
           ]
         },
@@ -434,7 +434,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "p_losses",
               "startLine": 1012,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "ldm/models/diffusion/ddpm.py:1012 의 p_losses 이 이 단락의 구현"
             }
           ]
         },
@@ -452,7 +452,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "encode_first_stage",
               "startLine": 826,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "ldm/models/diffusion/ddpm.py:826 의 encode_first_stage 이 이 단락의 구현"
             }
           ]
         },
@@ -470,7 +470,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "apply_model",
               "startLine": 891,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "ldm/models/diffusion/ddpm.py:891 의 apply_model 이 이 단락의 구현"
             }
           ]
         },
@@ -488,7 +488,7 @@
               "filePath": "ldm/modules/attention.py",
               "symbolName": "SpatialTransformer",
               "startLine": 218,
-              "reason": "``` DIRECT ``` ---"
+              "reason": "ldm/modules/attention.py:218 의 SpatialTransformer 이 이 단락의 구현"
             }
           ]
         },
@@ -578,7 +578,7 @@
               "filePath": "ldm/models/diffusion/ddpm.py",
               "symbolName": "configure_optimizers",
               "startLine": 415,
-              "reason": "``` DIRECT ``` --- 논문: > Adam optimizer > ↓ 코드: ``` torch.optim.AdamW() ``` 논문: > learning rate > ↓ 코드: ``` lr ``` ---"
+              "reason": "논문 “Adam optimizer” ↔ 코드 “torch.optim.AdamW()”"
             }
           ]
         },
@@ -605,7 +605,7 @@
               "filePath": "ldm/models/autoencoder.py",
               "symbolName": "ema_scope",
               "startLine": 64,
-              "reason": "논문: > conditioning mechanisms > ↓ 코드: ``` cross_attention() ``` 논문: > latent compression > ↓ 코드: ``` AutoencoderKL ``` ---"
+              "reason": "논문 “conditioning mechanisms” ↔ 코드 “cross_attention()”"
             }
           ]
         }
