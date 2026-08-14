@@ -3,41 +3,6 @@
   "_sourceMarkdown": "BERT 3b30f4e8fef7809a99f9c6a0187acada.md",
   "_unresolved": [
     {
-      "chunk": "15",
-      "title": "GELU Activation",
-      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "21",
-      "title": "Masked LM Label 저장",
-      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "25",
-      "title": "MLM Loss",
-      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "28",
-      "title": "BERT Configuration (Base / Large)",
-      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "34",
-      "title": "Classification Loss",
-      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "35",
-      "title": "SQuAD Question Answering Fine-tuning",
-      "issue": "코드 본문을 google-research/bert@eedf571 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "37",
-      "title": "BERT 전체 Training Pipeline",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
       "chunk": "-",
       "title": "참조 구현 보강",
       "issue": "공식 저장소로 대응이 안 되는 chunk 7건을 참조 구현/추가 심볼로 매핑"

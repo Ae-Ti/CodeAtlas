@@ -3,11 +3,6 @@
   "_sourceMarkdown": "ResNet 3b30f4e8fef780cfb26ddc25fa667753.md",
   "_unresolved": [
     {
-      "chunk": "p1-3",
-      "title": "ImageNet에서 최대 152층",
-      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
       "chunk": "p1-4",
       "title": "ILSVRC·COCO 결과",
       "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
@@ -15,51 +10,6 @@
     {
       "chunk": "p1-5",
       "title": "Figure 1 — 20층·56층 plain network 비교",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p2-9",
-      "title": "SGD와 backpropagation으로 end-to-end 학습",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p3-12",
-      "title": "두 계층 residual function",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p3-17",
-      "title": "Plain network 설계 규칙",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p4-22",
-      "title": "Option A — zero-padding shortcut",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p4-25",
-      "title": "ImageNet scale augmentation `[256,480]`",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p4-26",
-      "title": "224×224 random crop·horizontal flip·mean subtraction",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p4-27",
-      "title": "He initialization",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p4-28",
-      "title": "SGD mini-batch 256",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p4-29",
-      "title": "Learning rate, weight decay, momentum",
       "issue": "노트에 대응 코드가 없음"
     },
     {
@@ -76,31 +26,6 @@
       "chunk": "p4-32",
       "title": "Multi-scale testing",
       "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p5-34",
-      "title": "ResNet-101 반복 수",
-      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "p5-35",
-      "title": "ResNet-152 반복 수",
-      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "p5-36",
-      "title": "ResNet-18·34 basic block",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p6-37",
-      "title": "Option A·B·C",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p6-39",
-      "title": "1×1 계층의 차원 축소와 복원",
-      "issue": "코드 본문을 KaimingHe/deep-residual-networks@a7026cb 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "p7-40",
@@ -148,21 +73,6 @@
       "issue": "노트에 대응 코드가 없음"
     },
     {
-      "chunk": "p10-50",
-      "title": "conv1~conv4_x를 shared feature로 사용",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p10-51",
-      "title": "RPN 300 proposals",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p10-52",
-      "title": "RoI pooling 후 conv5_x 실행",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
       "chunk": "p10-54",
       "title": "COCO detection 학습 설정",
       "issue": "노트에 대응 코드가 없음"
@@ -170,11 +80,6 @@
     {
       "chunk": "p10-55",
       "title": "Box refinement",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p10-56",
-      "title": "NMS IoU 0.3와 box voting",
       "issue": "노트에 대응 코드가 없음"
     },
     {
@@ -195,16 +100,6 @@
     {
       "chunk": "p11-60",
       "title": "ImageNet detection 200 classes",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p12-61",
-      "title": "Per-class classification·box regression",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "p12-62",
-      "title": "Anchor sampling — 이미지당 8개, positive:negative=1:1",
       "issue": "노트에 대응 코드가 없음"
     },
     {

@@ -3,16 +3,6 @@
   "_sourceMarkdown": "Segment anything 3b40f4e8fef7802c8537e471401bc0ff.md",
   "_unresolved": [
     {
-      "chunk": "SAM-23",
-      "title": "Non-Maximum Suppression(NMS)",
-      "issue": "코드 본문을 facebookresearch/segment-anything@dca509f 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "SAM-24",
-      "title": "Training Strategy (학습 전략)",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
       "chunk": "SAM-25",
       "title": "Loss Function",
       "issue": "노트에 대응 코드가 없음"
@@ -31,11 +21,6 @@
       "chunk": "SAM-28",
       "title": "Experiments",
       "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "SAM-29",
-      "title": "Zero-shot Transfer",
-      "issue": "코드 본문을 facebookresearch/segment-anything@dca509f 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
     },
     {
       "chunk": "-",
