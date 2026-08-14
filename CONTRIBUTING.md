@@ -47,6 +47,7 @@
 | `database/ingest/**`, `database/eval_set_*.csv` | **A** |
 | `database/seed_dump.sql`, `database/seed_manifest.csv`, `database/THIRD_PARTY_LICENSES.md`, `database/licenses/**` | **A** |
 | `scripts/note2ingest/**` (노트 → ingest JSON 변환) | **A** |
+| `scripts/suggest_repos.py`, `scripts/build_pwc_index.py`, `database/pwc/**` (저장소 후보 추천) | **A** |
 | `backend/src/main/java/**/mapping/**` (검색·매핑) | **A** |
 | `scripts/ingest.py`, `scripts/eval_retrieval.py`, `scripts/doctor.sh`, `scripts/reset_db.sh`, `scripts/smoke.sh` | **B** |
 | `backend/src/main/java/**/agent/**`, `**/mcp/**`, `**/nl2sql/**`, `**/embedding/**` | **B** |

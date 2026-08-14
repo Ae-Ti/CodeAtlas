@@ -28,6 +28,26 @@ CodeAtlas는 논문 단락과 실제 구현 코드를 연결해 보여주는 카
 | [`KaimingHe/deep-residual-networks`](https://github.com/KaimingHe/deep-residual-networks) | `a7026cb` | MIT | 14 | 148 |
 | [`lucidrains/vit-pytorch`](https://github.com/lucidrains/vit-pytorch) | `bb13e27` | MIT | 6 | 105 |
 
+## 코드가 아닌 데이터 — Papers with Code 아카이브
+
+`database/pwc/links.tsv.gz` 는 **코드가 아니라 논문↔저장소 링크 데이터**입니다.
+저장소 후보 추천(`scripts/suggest_repos.py`, 확장기능 §1.2)이 소싱에 씁니다.
+
+| 항목 | 값 |
+|---|---|
+| 원본 | [pwc-archive/links-between-paper-and-code](https://huggingface.co/datasets/pwc-archive/links-between-paper-and-code) |
+| 제공 | Papers with Code (2025-07 서비스 종료, 아카이브만 남음) |
+| 라이선스 | **CC-BY-SA-4.0** |
+| 수록 | 링크 283,772건 / 논문 204,750편 |
+| 생성 | `scripts/build_pwc_index.py` — arXiv ID·저장소 slug·플래그 3열만 남긴 부분집합 |
+
+CC-BY-SA-4.0 은 **동일조건변경허락(ShareAlike)** 이므로, 이 파일은 원본의 파생물로서
+**같은 CC-BY-SA-4.0 으로 배포**됩니다. 저장소 전체의 MIT 라이선스와는 별개이며,
+이 데이터 파일에만 적용됩니다. 파일 첫 줄 주석에도 같은 내용을 적어 두었습니다.
+
+내용은 변형하지 않았습니다 — 열을 골라내고 저장소 URL 을 `owner/name` 으로 줄인 것이
+전부이며, 링크 자체는 원본 그대로입니다.
+
 ## 별도 조건이 붙는 저장소
 
 
