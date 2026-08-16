@@ -3,484 +3,106 @@
   "_sourceMarkdown": "Attention is All You Need 3b30f4e8fef78046bd59ef71457d418f.md",
   "_unresolved": [
     {
-      "section": 2,
-      "title": "Encoder-decoder 구조",
-      "docLine": 100,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
       "section": 3,
       "title": "Machine translation BLEU 결과",
       "docLine": 154,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
-    },
-    {
-      "section": 4,
-      "title": "입력 sequence 전체를 병렬 처리",
-      "docLine": 195,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 6,
-      "title": "Figure 1 전체 Transformer 구조",
-      "docLine": 313,
-      "issue": "Excluded duplicate natural key ('transformer/Models.py', 'Transformer', None); uploaded document did not provide startLine to distinguish snippets."
-    },
-    {
-      "section": 7,
-      "title": "Encoder는 N=6개의 동일한 layer로 구성",
-      "docLine": 380,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 7,
-      "title": "Encoder는 N=6개의 동일한 layer로 구성",
-      "docLine": 396,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 8,
-      "title": "Encoder layer의 두 sub-layer",
-      "docLine": 419,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 9,
-      "title": "Residual connection 후 Layer Normalization",
-      "docLine": 524,
-      "issue": "Excluded duplicate natural key ('transformer/SubLayers.py', 'residual', None); uploaded document did not provide startLine to distinguish snippets."
-    },
-    {
-      "section": 10,
-      "title": "모든 sub-layer의 출력 차원 `d_model=512`",
-      "docLine": 568,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 10,
-      "title": "모든 sub-layer의 출력 차원 `d_model=512`",
-      "docLine": 574,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 10,
-      "title": "모든 sub-layer의 출력 차원 `d_model=512`",
-      "docLine": 582,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 11,
-      "title": "Decoder도 N=6개 layer",
-      "docLine": 613,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 11,
-      "title": "Decoder도 N=6개 layer",
-      "docLine": 629,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 12,
-      "title": "Decoder의 세 sub-layer",
-      "docLine": 651,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 14,
-      "title": "Output embedding을 한 위치 오른쪽으로 이동",
-      "docLine": 793,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 16,
-      "title": "Query·Key·Value matrix를 동시에 처리",
-      "docLine": 919,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 17,
-      "title": "Mask 대상에 `∞` 적용",
-      "docLine": 961,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 19,
-      "title": "8개 head, `dk=dv=64`",
-      "docLine": 1117,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 20,
-      "title": "Encoder self-attention",
-      "docLine": 1141,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 21,
-      "title": "Decoder self-attention",
-      "docLine": 1169,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 21,
-      "title": "Decoder self-attention",
-      "docLine": 1180,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 22,
-      "title": "Encoder-decoder attention",
-      "docLine": 1207,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 23,
-      "title": "Position-wise Feed-Forward Network",
-      "docLine": 1240,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 24,
-      "title": "FFN 차원 `512 → 2048 → 512`",
-      "docLine": 1310,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 24,
-      "title": "FFN 차원 `512 → 2048 → 512`",
-      "docLine": 1315,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 25,
-      "title": "Learned token embedding",
-      "docLine": 1346,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 25,
-      "title": "Learned token embedding",
-      "docLine": 1356,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 26,
-      "title": "Pre-softmax linear transformation",
-      "docLine": 1381,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 26,
-      "title": "Pre-softmax linear transformation",
-      "docLine": 1389,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 26,
-      "title": "Pre-softmax linear transformation",
-      "docLine": 1397,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 27,
-      "title": "Target embedding과 pre-softmax weight sharing",
-      "docLine": 1422,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 28,
-      "title": "Source·target embedding weight sharing",
-      "docLine": 1447,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 29,
-      "title": "Embedding에 \\(\\sqrt{d_{\\text{model}}}\\) 곱하기",
-      "docLine": 1475,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 29,
-      "title": "Embedding에 \\(\\sqrt{d_{\\text{model}}}\\) 곱하기",
-      "docLine": 1488,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 30,
-      "title": "Sinusoidal Positional Encoding",
-      "docLine": 1577,
-      "issue": "Excluded fenced block because it is explanatory text, not repository code."
-    },
-    {
-      "section": 31,
-      "title": "Token embedding과 positional encoding 합산",
-      "docLine": 1613,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 31,
-      "title": "Token embedding과 positional encoding 합산",
-      "docLine": 1624,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 32,
-      "title": "Learned positional embedding 실험",
-      "docLine": 1652,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 32,
-      "title": "Learned positional embedding 실험",
-      "docLine": 1663,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
     },
     {
       "section": 33,
       "title": "Self-attention·RNN·convolution complexity 비교",
       "docLine": 1731,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
-    },
-    {
-      "section": 35,
-      "title": "비슷한 sequence 길이끼리 batching",
-      "docLine": 1790,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 36,
-      "title": "약 25,000 source token + 25,000 target token batch",
-      "docLine": 1821,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 36,
-      "title": "약 25,000 source token + 25,000 target token batch",
-      "docLine": 1833,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
     },
     {
       "section": 37,
       "title": "8개 P100 GPU 학습",
       "docLine": 1888,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
     },
     {
       "section": 38,
       "title": "Base 100,000 steps·Big 300,000 steps",
       "docLine": 1938,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 38,
       "title": "Base 100,000 steps·Big 300,000 steps",
       "docLine": 1950,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
-    },
-    {
-      "section": 39,
-      "title": "Adam optimizer 설정",
-      "docLine": 1997,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 41,
-      "title": "Warm-up 4000 steps",
-      "docLine": 2112,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 42,
-      "title": "Residual dropout",
-      "docLine": 2142,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 42,
-      "title": "Residual dropout",
-      "docLine": 2154,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 43,
-      "title": "Embedding + positional encoding dropout",
-      "docLine": 2181,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 43,
-      "title": "Embedding + positional encoding dropout",
-      "docLine": 2188,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 44,
-      "title": "Base dropout 0.1",
-      "docLine": 2213,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 45,
-      "title": "Label smoothing 0.1",
-      "docLine": 2235,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
     },
     {
       "section": 46,
       "title": "마지막 checkpoint 평균",
       "docLine": 2319,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
-    },
-    {
-      "section": 48,
-      "title": "Length penalty \\(\\alpha=0.6\\)",
-      "docLine": 2421,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 48,
-      "title": "Length penalty \\(\\alpha=0.6\\)",
-      "docLine": 2431,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 49,
-      "title": "최대 출력 길이 = 입력 길이 + 50",
-      "docLine": 2467,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 49,
-      "title": "최대 출력 길이 = 입력 길이 + 50",
-      "docLine": 2479,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
     },
     {
       "section": 50,
       "title": "Base model 설정",
       "docLine": 2521,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 50,
       "title": "Base model 설정",
       "docLine": 2536,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 50,
       "title": "Base model 설정",
       "docLine": 2542,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 51,
       "title": "Big Transformer 설정",
       "docLine": 2573,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 53,
       "title": "English constituency parsing",
       "docLine": 2639,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
     },
     {
       "section": 53,
       "title": "English constituency parsing",
       "docLine": 2658,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
     },
     {
       "section": 54,
       "title": "Parsing beam size 21, α=0.3",
       "docLine": 2701,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 55,
-      "title": "Transformer의 최종 output probability",
-      "docLine": 2740,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 55,
-      "title": "Transformer의 최종 output probability",
-      "docLine": 2748,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 55,
-      "title": "Transformer의 최종 output probability",
-      "docLine": 2757,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 56,
-      "title": "Layer Normalization",
-      "docLine": 2785,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 57,
-      "title": "Adam",
-      "docLine": 2808,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 58,
-      "title": "Label smoothing",
-      "docLine": 2832,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 60,
       "title": "Attention weight 시각화",
       "docLine": 2883,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 60,
       "title": "Attention weight 시각화",
       "docLine": 2889,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 60,
       "title": "Attention weight 시각화",
       "docLine": 2895,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트에 GitHub 파일 경로가 없어 코드 블록으로 만들지 않음"
     },
     {
       "section": 60,
       "title": "Attention weight 시각화",
       "docLine": 2910,
-      "issue": "Excluded expected code block; not treated as repository codeBlock."
-    },
-    {
-      "section": 61,
-      "title": "Padding mask",
-      "docLine": 2993,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
-    },
-    {
-      "section": 62,
-      "title": "Beam search translator",
-      "docLine": 3019,
-      "issue": "Excluded fenced block because it is explanatory text, not repository code."
-    },
-    {
-      "section": 62,
-      "title": "Beam search translator",
-      "docLine": 3029,
-      "issue": "Excluded duplicate natural key ('transformer/Translator.py', None, None); uploaded document did not provide startLine to distinguish snippets."
-    },
-    {
-      "section": 63,
-      "title": "Xavier parameter initialization",
-      "docLine": 3059,
-      "issue": "Excluded actual code from codeBlocks because the section did not provide a GitHub file path."
+      "issue": "노트가 (예상코드)로 표시한 블록 — 저장소에 실제로 없는 코드"
     },
     {
       "chunk": "-",

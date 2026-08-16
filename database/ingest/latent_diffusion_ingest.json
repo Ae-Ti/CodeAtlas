@@ -3,41 +3,6 @@
   "_sourceMarkdown": "Stable Diffusion 3b40f4e8fef7808ea45afff64bd0d5b1.md",
   "_unresolved": [
     {
-      "chunk": "LD-12",
-      "title": "CLIP Text Conditioning",
-      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "LD-13",
-      "title": "Time Embedding",
-      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "LD-17",
-      "title": "Sampling Algorithm",
-      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "LD-24",
-      "title": "Text-to-Image Generation",
-      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "LD-25",
-      "title": "Image-to-Image Generation",
-      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
-      "chunk": "LD-26",
-      "title": "Inpainting",
-      "issue": "노트에 대응 코드가 없음"
-    },
-    {
-      "chunk": "LD-27",
-      "title": "Dataset",
-      "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
-    },
-    {
       "chunk": "LD-29",
       "title": "Experiments",
       "issue": "코드 본문을 CompVis/latent-diffusion@a506df5 에서 찾지 못함 (노트 코드가 축약·재작성된 것으로 보임)"
