@@ -122,11 +122,20 @@ def split_sections(doc):
 
 
 def latex_to_text(s):
-    """비교·표시용 평문화. 슬라이스된 원문 자체는 변형하지 않는다."""
+    """비교·표시용 평문화. 슬라이스된 원문 자체는 변형하지 않는다.
+
+    수식은 자리표시자로 뭉개지 않고 \\command 만 걷어 식별자·숫자를 남긴다 —
+    §3.2.2 처럼 수식(W^Q·h=8·d_k=64)이 곧 매핑 근거인 단락에서 자리표시자는
+    판단 재료를 지워 거짓 억제를 만들었다(FN 17·18, A 의 A/B 재현 — #42 리뷰).
+    """
+    def keep(m):
+        inner = re.sub(r'\\[a-zA-Z]+', ' ', m.group(1))
+        return ' ' + re.sub(r'[{}\\]', ' ', inner) + ' '
     s = re.sub(r'\\(sub)*section\*?\{[^}]*\}', ' ', s)
     s = re.sub(r'\\(cite[pt]?|ref|label|eqref)\{[^}]*\}', ' ', s)
     s = re.sub(r'\\begin\{\w+\*?\}|\\end\{\w+\*?\}', ' ', s)
-    s = re.sub(r'\$\$?.*?\$\$?', ' _수식_ ', s, flags=re.S)
+    s = re.sub(r'\$\$(.*?)\$\$', keep, s, flags=re.S)
+    s = re.sub(r'\$(.*?)\$', keep, s, flags=re.S)
     s = re.sub(r'\\[a-zA-Z]+(\[[^\]]*\])?', ' ', s)
     s = re.sub(r'[{}~]', ' ', s)
     return re.sub(r'\s+', ' ', s).strip()
