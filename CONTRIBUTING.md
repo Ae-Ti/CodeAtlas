@@ -50,6 +50,7 @@
 | `scripts/suggest_repos.py`, `scripts/build_pwc_index.py`, `database/pwc/**` (저장소 후보 추천) | **A** |
 | `backend/src/main/java/**/mapping/**` (검색·매핑) | **A** |
 | `scripts/ingest.py`, `scripts/eval_retrieval.py`, `scripts/doctor.sh`, `scripts/reset_db.sh`, `scripts/smoke.sh` | **B** |
+| `scripts/latex2chunks.py` (LaTeX→단락 분리 실험) | **B** |
 | `backend/src/main/java/**/agent/**`, `**/mcp/**`, `**/nl2sql/**`, `**/embedding/**` | **B** |
 | `frontend/**` | **B** |
 | `database/Script-*.sql`, `database/seed_demo.sql` | **B** |

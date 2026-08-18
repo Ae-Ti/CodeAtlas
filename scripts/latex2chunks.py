@@ -284,8 +284,10 @@ def cmd_split(args):
             content = '\n\n'.join(paras[i - 1] for i in c['paragraphs'])
             # 원문 보존 검증 — 슬라이스한 문단이 병합 문서에 그대로 있어야 한다.
             # 공백 표현(빈 줄의 후행 공백 등)만 정규화해 비교한다.
+            # 검수 기준 그 자체이므로 assert 가 아니라 raise — python -O 로 꺼지면 안 된다.
             for i in c['paragraphs']:
-                assert ws_norm(paras[i - 1]) in doc_norm, f'원문 불일치: 문단 {i} ({title})'
+                if ws_norm(paras[i - 1]) not in doc_norm:
+                    raise RuntimeError(f'원문 불일치: 문단 {i} ({title})')
             out.append({'chunkIndex': idx, 'sectionTitle': title,
                         'subsectionTitle': c.get('label'), 'content': content,
                         'mappable': c.get('mappable'), 'symbols': c.get('symbols', []),
@@ -310,24 +312,37 @@ def cmd_eval(args):
     if not manual:
         sys.exit(f'paper {args.paper_id} 의 수동 chunk 가 DB 에 없습니다')
 
-    # 경계: 수동 chunk 마다 토큰 포함률이 가장 높은 자동 chunk 를 찾는다
+    # 경계: 수동 chunk 마다 가장 잘 겹치는 자동 chunk 를 찾는다.
+    # 포함률(|∩|/|수동|)은 자동 chunk 가 클수록 유리해 거친 분할에 벌점이 없다 —
+    # 섹션=chunk 무LLM 분할이 95.2% 를 받는 지표다(A 실측, #42 리뷰). 그래서
+    # 정렬 판정과 헤드라인은 IoU(|∩|/|∪|) 기준으로 하고, 포함률은 참고로만 남긴다.
     auto_toks = [tokens(latex_to_text(c['content'])) for c in auto]
-    aligned, cover_hits = [], 0
+    aligned, cover_hits, iou_hits, iou_sum = [], 0, 0, 0.0
     for mch in manual:
         mt = tokens(mch['content'])
-        best_i, best_cov = -1, 0.0
+        cov_i, best_cov, best_iou = -1, 0.0, 0.0
         for i, at in enumerate(auto_toks):
-            cov = len(mt & at) / len(mt) if mt else 0
+            inter = len(mt & at)
+            cov = inter / len(mt) if mt else 0
+            iou = inter / len(mt | at) if (mt | at) else 0
+            best_iou = max(best_iou, iou)
             if cov > best_cov:
-                best_i, best_cov = i, cov
-        aligned.append((mch, best_i, best_cov))
+                cov_i, best_cov = i, cov
+        # 분류 판정 짝은 포함률 기준을 유지한다 — "이 수동 chunk 의 내용을 담은
+        # 자동 chunk" 의 판단을 물려받는 것이라 IoU 로 조이면 판정 표본만 준다.
+        aligned.append((mch, cov_i, best_cov))
+        iou_sum += best_iou
+        if best_iou >= args.iou:
+            iou_hits += 1
         if best_cov >= args.cover:
             cover_hits += 1
 
     print(f'수동 {len(manual)} / 자동 {len(auto)} chunk')
-    print(f'경계 정렬: 수동 chunk 의 {cover_hits}/{len(manual)} '
-          f'({100 * cover_hits / len(manual):.1f}%) 가 자동 chunk 하나에 '
-          f'포함률 ≥ {args.cover:.0%} 로 대응')
+    print(f'경계 정렬 (IoU 기준): IoU ≥ {args.iou:.0%} 인 수동 chunk '
+          f'{iou_hits}/{len(manual)} ({100 * iou_hits / len(manual):.1f}%) · '
+          f'평균 IoU {iou_sum / len(manual):.3f}')
+    print(f'  (참고 — 포함률 ≥ {args.cover:.0%}: {cover_hits}/{len(manual)}. '
+          f'거친 분할에 유리한 지표라 판정에는 쓰지 않음)')
 
     # 매핑 가능 여부: 정렬된 쌍에서 혼동행렬 (gold = MANUAL 매핑 존재 여부)
     tp = fp = fn = tn = skipped = 0
@@ -353,8 +368,15 @@ def cmd_eval(args):
     print(f'  gold 매핑 → 예측 비매핑   FN {fn}   ← 거짓 억제 (치명)')
     print(f'  gold 비매핑 → 예측 매핑   FP {fp}   (무해 — 기존 동작과 동일)')
     print(f'  gold 비매핑 → 예측 비매핑 TN {tn}   ← 자동화가 새로 잡은 것')
+    if tn + fp:
+        print(f'  특이도(gold 비매핑 중 TN): {tn}/{tn + fp} ({100 * tn / (tn + fp):.0f}%)')
+    # "항상 true" 는 FN 0 / TN 0 인 공짜 기준선이다. 분류기의 실질 기여는
+    # (TN 이득) 대 (FN 손실) 비교로 읽어야 한다 — FN 지표만 보면 항상-true 가 최강.
+    print(f'  기준선(항상 true): FN 0 / TN 0 — 이 분류기의 순변화: FN +{fn} / TN +{tn}')
     if fn_list:
         print(f'  거짓 억제 chunk_index: {fn_list}')
+    # gold 의 의미: '구현 불가'가 아니라 '큐레이터가 정답셋에 넣지 않기로 한 것'.
+    # 프롬프트의 매핑 정의(설정 값도 구현)와 다를 수 있어 FP 에는 정의 불일치가 섞인다.
 
 
 def main():
@@ -367,7 +389,8 @@ def main():
     ev = sub.add_parser('eval', help='자동 chunk 를 수동 큐레이션과 대조')
     ev.add_argument('auto_json')
     ev.add_argument('--paper-id', type=int, required=True)
-    ev.add_argument('--cover', type=float, default=0.5, help='경계 대응 판정 포함률 (기본 0.5)')
+    ev.add_argument('--cover', type=float, default=0.5, help='분류 판정 짝짓기 포함률 (기본 0.5)')
+    ev.add_argument('--iou', type=float, default=0.5, help='경계 정렬 판정 IoU (기본 0.5)')
     args = ap.parse_args()
     cmd_split(args) if args.cmd == 'split' else cmd_eval(args)
 
