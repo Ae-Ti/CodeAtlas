@@ -81,19 +81,35 @@ docker exec codeatlas-postgres psql -U codeatlas -d codeatlas -tAc \
 
 ### 2.4 매핑하지 않은 61건 — 억지로 채우지 않았습니다
 
-코드를 붙이지 않은 단락 61건은 성격이 둘로 갈립니다.
+코드를 붙이지 않은 단락 61건을 **하나씩 판정**했습니다. 판정과 근거는
+`scripts/note2ingest/tally_unmapped.py` 에 단락 단위로 적혀 있어 재현·검증할 수 있습니다.
 
-| 성격 | 대략 | 예 |
+| 사유 | 건수 | 뜻 |
 |---|---:|---|
-| 어떤 코드로도 구현되지 않는 서술 | ~54 | 실험 결과·벤치마크 수치, Figure/Table 비교, Reference 항목, 학습 하드웨어·일정 |
-| **저장소에 그 코드가 없음** | ~7 | Llama 3 의 RLHF·DPO·Reward Modeling, SAM 의 Loss Function·SA-1B·Data Engine |
+| **A. 저장소가 그 구현을 배포하지 않음** | **24 (39.3%)** | 논문은 구현 요소로 서술했으나 인용 저장소에 그 코드가 없음 |
+| **B. 코드로 표현되는 대상이 아님** | **32 (52.5%)** | 실험 결과·수치, Figure/Table, Reference, 타 시스템 설명, 하드웨어·일정, 결론 |
+| C. 저장소엔 있으나 인덱싱 범위 밖 | 2 (3.3%) | 코드는 존재하지만 이번 큐레이션에서 블록으로 뽑지 않음 |
+| D. 대응이 느슨해 정답셋에 넣지 않음 | 3 (4.9%) | 후보 심볼은 있으나 "이 단락의 구현"이라 단정하기 어려워 비워 둠 |
 
-두 번째가 중요합니다. 이 저장소들은 **추론 코드만 배포**합니다 — `meta-llama/llama3`
-는 `generation.py`·`model.py`·`tokenizer.py` 3개 파일뿐이고, `segment-anything` 도
-인코더·디코더·predictor 뿐입니다. 논문은 학습 절차를 절씩 배정해 서술하지만
-구현이 공개되지 않았습니다. **논문만 읽어서는 알 수 없고 저장소를 봐야 아는 판단**입니다.
+**A 가 39.3% 로 예상보다 큽니다.** 원인은 공개된 구현이 논문의 일부만 담기 때문입니다.
 
-판단 근거는 `database/ingest/*_ingest.json` 의 `_unresolved` 94건에 사유별로 남겼습니다.
+| 저장소 | 배포 범위 | 그래서 못 붙은 것 |
+|---|---|---|
+| `meta-llama/llama3` | 추론 코드 3파일 (`generation`·`model`·`tokenizer`) | RLHF·DPO·Reward Modeling·SFT |
+| `facebookresearch/segment-anything` | 인코더·디코더·predictor | Loss Function·SA-1B Dataset·Data Engine |
+| `KaimingHe/deep-residual-networks` | **ResNet-101 `deploy` prototxt 한 개** | CIFAR 구조·학습 설정·detection 확장 전부 (15건) |
+
+**이 판단은 논문만 읽어서는 나오지 않습니다.** 논문은 학습 절차와 detection 확장에 절을
+배정해 상세히 서술하지만, 저자가 공개한 것은 추론 정의뿐입니다. 저장소 인벤토리를 봐야
+알 수 있는 구분이고, 자동 분류 실험(확장기능 §5.1)이 이 지점에서 실패한 이유이기도 합니다.
+
+C·D 5건은 데이터의 한계가 아니라 **우리 쪽에서 더 할 수 있었던 부분**입니다.
+darknet 의 `examples/demo.c`(webcam)처럼 저장소에 있는데 뽑지 않은 것이 2건,
+하이퍼파라미터 표처럼 대응이 느슨해 비워 둔 것이 3건입니다.
+
+```bash
+python3 scripts/note2ingest/tally_unmapped.py --list    # 61건 전체를 판정과 함께
+```
 
 ### 2.5 검증 방법
 
@@ -259,7 +275,7 @@ LICENSE 파일이 없는 저장소는 **모든 권리 유보** 상태라 재배�
 ## 남겨둔 것 (B 파트 또는 확인 대기)
 
 - 아키텍처·기술스택 근거, "개선이 아니라 교정" 해석 문단, Limitations & Future Work — **B**
-- 정부 지원사업 중복수혜([#15](https://github.com/Ae-Ti/CodeAtlas/issues/15)) — **A 본인 확인 대기**
+- 정부 지원사업 중복수혜([#15](https://github.com/Ae-Ti/CodeAtlas/issues/15)) — **팀 전원 해당 없음 확인·종결(2026-08-18)**. 보고서에 "해당 없음" 명시
 - 개인별 기여도: `.mailmap` 적용 `git shortlog` 를 첨부하되 **"로컬 shortlog"임을 명시**해야
   합니다. GitHub 기여 그래프는 `.mailmap` 을 읽지 않아 손상된 이메일로 올라간 커밋
   8건이 여전히 미귀속입니다
