@@ -29,6 +29,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 import urllib.request
 
 OLLAMA = os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
@@ -219,9 +220,11 @@ def ollama_generate(prompt):
     req = urllib.request.Request(
         f'{OLLAMA}/api/generate',
         data=json.dumps({'model': MODEL, 'prompt': prompt, 'stream': False,
-                         'options': {'temperature': 0}}).encode(),
+                         # seed 고정 — 환경 간 불일치는 못 막지만 세션 내 변수를
+                         # 줄이고 "동일 세션 안에서는 결정적"을 코드로 뒷받침한다.
+                         'options': {'temperature': 0, 'seed': 0}}).encode(),
         headers={'Content-Type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=300) as resp:
+    with urllib.request.urlopen(req, timeout=480) as resp:
         text = json.loads(resp.read())['response']
     text = re.sub(r'<think>.*?</think>', '', text, flags=re.S)
     # 모델이 JSON 뒤에 설명을 덧붙이는 경우가 있어 탐욕 매칭 대신
@@ -259,11 +262,14 @@ def propose_chunks(title, paras, symbols):
     para_block = '\n'.join(f'[{i + 1}] {latex_to_text(p)[:600]}' for i, p in enumerate(paras))
     sym_block = '\n'.join(f"- {s['name']} ({s['file']})" for s in symbols)
     prompt = PROMPT.format(title=title, paras=para_block, symbols=sym_block)
-    for attempt in (1, 2):
+    for attempt in (1, 2, 3):
         try:
             return plan_to_chunks(ollama_generate(prompt), len(paras), title)
         except Exception as e:
             print(f'   ⚠️ LLM 응답 파싱 실패 (시도 {attempt}): {e}', file=sys.stderr)
+            # 타임아웃이 폴백의 주원인으로 특정됨 — 즉시 재시도하면 같은 부하에서
+            # 또 죽는다. 짧게 물러났다 다시 간다.
+            time.sleep(10 * attempt)
     # 폴백: 문단 하나 = chunk 하나. 조용히 삼키지 않고 표시를 남긴다.
     return {'chunks': [{'paragraphs': [i + 1], 'label': title, 'mappable': None,
                         'symbols': [], 'fallback': True}
