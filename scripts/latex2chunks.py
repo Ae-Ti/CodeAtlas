@@ -288,7 +288,12 @@ def cmd_split(args):
     doc = strip_comments(inline_inputs(find_main_tex(args.src_dir)))
     doc_norm = ws_norm(doc)
     sections = split_sections(doc)
-    symbols = load_symbols(args.paper_id)
+    # 심볼 인벤토리: 업로드 파이프라인(upload_pipeline.py)은 적재 전이라 DB 에 논문이
+    # 없으므로 파일로 넘긴다. 실험 경로(--paper-id)는 그대로 DB 에서 읽는다.
+    if args.symbols_json:
+        symbols = json.load(open(args.symbols_json))
+    else:
+        symbols = load_symbols(args.paper_id)
     print(f'섹션 {len(sections)}개 · 심볼 {len(symbols)}개 ({MODEL})')
 
     out, idx = [], 0
@@ -297,7 +302,13 @@ def cmd_split(args):
         paras = [p for p in paras if latex_to_text(p).strip()]
         if not paras:
             continue
-        plan = propose_chunks(title, paras, symbols)
+        if args.single_para_no_llm and len(paras) == 1:
+            # 문단이 하나면 자를 곳이 없다 — 업로드 경로는 label·mappable 을 쓰지 않으므로
+            # LLM 호출을 통째로 건너뛴다 (Acknowledgements 같은 짧은 섹션이 480초 타임아웃에
+            # 걸려 업로드 전체를 20분 넘게 붙잡은 실측). 실험 경로(--paper-id)는 그대로 LLM 에 묻는다.
+            plan = {'chunks': [{'paragraphs': [1], 'label': title, 'mappable': None, 'symbols': []}]}
+        else:
+            plan = propose_chunks(title, paras, symbols)
         for c in plan['chunks']:
             content = '\n\n'.join(paras[i - 1] for i in c['paragraphs'])
             # 원문 보존 검증 — 슬라이스한 문단이 병합 문서에 그대로 있어야 한다.
@@ -402,7 +413,10 @@ def main():
     sub = ap.add_subparsers(dest='cmd', required=True)
     sp = sub.add_parser('split', help='LaTeX 디렉터리 → chunks JSON')
     sp.add_argument('src_dir')
-    sp.add_argument('--paper-id', type=int, required=True, help='심볼 인벤토리를 가져올 논문')
+    sp.add_argument('--paper-id', type=int, help='심볼 인벤토리를 가져올 논문 (DB)')
+    sp.add_argument('--symbols-json', help='심볼 인벤토리 파일 [{name, file}] — 적재 전 업로드 경로용')
+    sp.add_argument('--single-para-no-llm', action='store_true',
+                    help='문단이 하나뿐인 섹션은 LLM 없이 chunk 하나로 (업로드 경로용)')
     sp.add_argument('--out', required=True)
     ev = sub.add_parser('eval', help='자동 chunk 를 수동 큐레이션과 대조')
     ev.add_argument('auto_json')
@@ -410,6 +424,8 @@ def main():
     ev.add_argument('--cover', type=float, default=0.5, help='분류 판정 짝짓기 포함률 (기본 0.5)')
     ev.add_argument('--iou', type=float, default=0.5, help='경계 정렬 판정 IoU (기본 0.5)')
     args = ap.parse_args()
+    if args.cmd == 'split' and args.paper_id is None and not args.symbols_json:
+        ap.error('split 에는 --paper-id 또는 --symbols-json 이 필요합니다')
     cmd_split(args) if args.cmd == 'split' else cmd_eval(args)
 
 

@@ -195,7 +195,39 @@ export const api = {
     post<AgentQueryResponse>('/api/agent/query', { query, paperId, chunkId }),
 
   nl2sql: (query: string) => post<NlSqlResult>('/api/nl2sql', { query }),
+
+  /** 업로드 작업 — arXiv ID + GitHub URL 로 자동 적재 (분리·적재·임베딩·큐레이션, 수십 분) */
+  uploadArxiv: (arxivId: string, githubUrl: string, relationType?: string) =>
+    post<UploadJob>('/api/admin/upload', { arxivId, githubUrl, relationType }),
+
+  /** 업로드 작업 — ingest JSON 직접 업로드 (검증 → 적재 → 임베딩 → 큐레이션) */
+  uploadIngestJson: (fileName: string, json: string) =>
+    request<UploadJob>(`/api/admin/upload/ingest-json?fileName=${encodeURIComponent(fileName)}`,
+      { method: 'POST', body: json }),
+
+  uploadJob: (id: string) => request<UploadJob>(`/api/admin/upload/${id}`),
+
+  uploadJobs: () => request<UploadJob[]>('/api/admin/upload'),
 };
+
+export interface UploadJob {
+  id: string;
+  type: 'arxiv' | 'json';
+  label: string;
+  status: 'QUEUED' | 'RUNNING' | 'DONE' | 'FAILED';
+  stage: string | null;
+  stageMessage: string | null;
+  stages: string[];
+  createdAt: string;
+  startedAt: string | null;
+  finishedAt: string | null;
+  paperId: number | null;
+  chunks: number | null;
+  codeBlocks: number | null;
+  mappings: number | null;
+  error: string | null;
+  log: string[];
+}
 
 /** METHOD면 `MultiHeadedAttention.forward` 형태로 표시 */
 export function symbolLabel(c: { symbolName: string | null; parentSymbolName: string | null }): string {
