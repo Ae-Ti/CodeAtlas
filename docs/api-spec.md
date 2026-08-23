@@ -113,6 +113,33 @@
 > 사전계산 경로에서도 정확한 수치가 필요하면 `paper_code_mappings`에
 > `initial_contexts` / `removed_contexts` 컬럼 추가가 필요합니다 — **A 승인 대상**.
 
+### `POST /api/agent/answer`
+
+```jsonc
+// Request — query는 /api/agent/query에 넣었던 질문 그대로, chunk는 그 응답의 queryChunk
+{ "query": "In multi-head attention with h=8 heads, what dropout rate was applied?", "paperId": 1, "chunkId": 19 }
+
+// Response
+{ "answer": "이 섹션에는 드롭아웃률에 대한 정보가 나와 있지 않다. …", "latencyMs": 18412 }
+```
+
+**질문 텍스트에 실제로 답하는 유일한 경로.** `/api/agent/query`는 질문을 chunk 선택에만
+쓰고 `explanation`은 chunk↔코드 매핑 근거라(라이브 경로도 `CurateContext`에 chunk 텍스트만
+넘김) 같은 chunk에 걸리는 두 질문이 같은 설명을 받는다. 이 엔드포인트는 질문 + 매칭 chunk +
+1위 코드(사전계산 우선, 없으면 라이브 검색 1위)를 qwen3:8b에 넘겨 **질문에 대한 답**을
+생성하되, 사전계산 경로와 완전히 분리돼 있다 (#51 리뷰 합의):
+
+- **DB에 쓰지 않는다.** 응답 전용 — `paper_code_mappings.explanation`은 측정이 끝난 산출물이라
+  라이브 생성물로 오염시키지 않는다.
+- **매 호출이 라이브 생성**이라 수십 초 걸린다. 실측(M4 macOS, qwen3:8b): 정상 15.6~19.1초(5회),
+  모델 콜드 스타트 직후 36.1초, A 환경 31.2/32.9초. 프론트는 opt-in 버튼으로만 호출하고
+  결과를 사전계산 설명 아래 `live 생성` 배지로 따로 표시한다.
+- **60초 하드 타임아웃** → `504 { "error": "LLM_TIMEOUT" }`. 프론트는 실패 카드("위의 사전계산
+  결과는 그대로 유효합니다") + 다시 시도로 떨어진다. Ollama 미기동은 Spring AI 자체 재시도
+  때문에 즉시 503이 아니라 이 타임아웃으로 드러난다.
+- 프롬프트가 "자료에 없으면 지어내지 말라"로 묶여 있어 근거 밖 질문은
+  "이 섹션에는 나와 있지 않다"로 답한다 (실측).
+
 ### `POST /api/nl2sql`
 
 ```jsonc
