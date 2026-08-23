@@ -195,7 +195,19 @@ export const api = {
     post<AgentQueryResponse>('/api/agent/query', { query, paperId, chunkId }),
 
   nl2sql: (query: string) => post<NlSqlResult>('/api/nl2sql', { query }),
+
+  /**
+   * 질문 텍스트에 실제로 답하는 유일한 경로 — 매 호출이 Qwen3 라이브 생성(수십 초).
+   * DB에 아무것도 저장하지 않으며, 60초 하드 타임아웃을 넘기면 504(LLM_TIMEOUT)로 떨어진다.
+   */
+  agentAnswer: (query: string, paperId: number, chunkId: number) =>
+    post<AgentAnswerResult>('/api/agent/answer', { query, paperId, chunkId }),
 };
+
+export interface AgentAnswerResult {
+  answer: string;
+  latencyMs: number;
+}
 
 /** METHOD면 `MultiHeadedAttention.forward` 형태로 표시 */
 export function symbolLabel(c: { symbolName: string | null; parentSymbolName: string | null }): string {
