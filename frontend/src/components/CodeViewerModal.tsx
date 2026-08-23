@@ -16,6 +16,22 @@ export interface ViewableCode {
   startLine?: number | null;
 }
 
+/**
+ * 코퍼스에 실재하는 확장자만 매핑한다 (py 151 / prototxt 14 / c 9 / cfg 9).
+ * 파이썬으로 고정하면 .c 원문에서 #include 가 주석으로 회색 처리되는 식으로
+ * 하이라이팅이 조용히 거짓말을 하므로, 모르는 확장자는 plaintext 로 둔다.
+ */
+function languageOf(filePath: string): string {
+  const ext = filePath.slice(filePath.lastIndexOf('.') + 1).toLowerCase();
+  switch (ext) {
+    case 'py': return 'python';
+    case 'c':
+    case 'h': return 'c';
+    case 'cfg': return 'ini';
+    default: return 'plaintext';
+  }
+}
+
 export default function CodeViewerModal({ code, onClose }: { code: ViewableCode; onClose: () => void }) {
   const handleEditorMount: OnMount = useCallback((editor) => {
     // Monaco can mount before its flex/grid parent has resolved a real
@@ -42,7 +58,7 @@ export default function CodeViewerModal({ code, onClose }: { code: ViewableCode;
         <div className="modal-body" style={{ height: 500 }}>
           <Editor
             height={500}
-            language="python"
+            language={languageOf(code.filePath)}
             theme="vs-dark"
             value={code.codeContent}
             onMount={handleEditorMount}

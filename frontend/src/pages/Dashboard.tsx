@@ -128,7 +128,7 @@ export default function Dashboard() {
 
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-            <h2 style={{ fontSize: '1.3rem', fontWeight: 700 }}>유사도 상위 매핑</h2>
+            <h2 style={{ fontSize: '1.3rem', fontWeight: 700 }}>논문별 대표 매핑</h2>
             <Link to="/papers" style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
               전체 보기 <ArrowRight size={14} />
             </Link>

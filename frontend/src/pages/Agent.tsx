@@ -13,7 +13,7 @@ const exampleQueries = [
 
 const exampleSqlQueries = [
   'star 수 상위 3개 repository 알려줘',
-  'NLP 논문 제목 목록',
+  '2020년 이후 발표된 논문 목록',
   '논문별로 연결된 repository 개수',
 ];
 
@@ -122,7 +122,7 @@ function Nl2SqlPanel() {
       {loading && (
         <p style={{ color: 'var(--text-tertiary)', fontSize: '0.78rem', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
           <Loader2 size={12} className="spinning" />
-          Qwen3가 SQL을 생성해 실행하는 중입니다 — 30초~1분 걸릴 수 있습니다.
+          Qwen3가 SQL을 생성해 실행하는 중입니다 — 보통 10~30초, 길면 1분 걸립니다.
         </p>
       )}
       <div className="query-examples" style={{ marginBottom: 12 }}>
