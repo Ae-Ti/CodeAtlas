@@ -138,6 +138,10 @@ cd backend && ./mvnw test    # DB·Ollama 없이 전부 통과 (32개)
 > 두었습니다. 바꾸려면 `docker-compose.yml` 과 `backend/src/main/resources/application.yml` 을
 > 함께 수정하세요.
 
+> **다른 포트로 한 벌 더 띄우려면** (예: PR 검증용) 백엔드는 `--server.port=8081`, 프론트는
+> `VITE_API_TARGET=http://localhost:8081 npm run dev -- --port 5174`. 백엔드 CORS 는 기본값이
+> `localhost` 전 포트 허용이라 추가 설정이 없고, 좁히려면 `CODEATLAS_CORS_ALLOWED_ORIGINS` 로 덮어씁니다.
+
 > **5번을 건너뛰어도 화면은 동작합니다.** 사전계산이 없는 단락은 라이브 경로로 폴백하며,
 > 대신 응답에 수십 초가 걸리고 `live` 배지가 붙습니다.
 > 배치는 동시 실행이 차단되어 있습니다 — 다시 부르기 전에 `GET /api/admin/curate-status`
