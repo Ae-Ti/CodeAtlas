@@ -268,8 +268,10 @@ def propose_chunks(title, paras, symbols):
         except Exception as e:
             print(f'   ⚠️ LLM 응답 파싱 실패 (시도 {attempt}): {e}', file=sys.stderr)
             # 타임아웃이 폴백의 주원인으로 특정됨 — 즉시 재시도하면 같은 부하에서
-            # 또 죽는다. 짧게 물러났다 다시 간다.
-            time.sleep(10 * attempt)
+            # 또 죽는다. 짧게 물러났다 다시 간다. 마지막 시도 뒤에는 재시도가
+            # 없으므로 바로 폴백으로 내려간다.
+            if attempt < 3:
+                time.sleep(10 * attempt)
     # 폴백: 문단 하나 = chunk 하나. 조용히 삼키지 않고 표시를 남긴다.
     return {'chunks': [{'paragraphs': [i + 1], 'label': title, 'mappable': None,
                         'symbols': [], 'fallback': True}
