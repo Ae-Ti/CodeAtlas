@@ -13,7 +13,7 @@ const exampleQueries = [
 
 const exampleSqlQueries = [
   'star 수 상위 3개 repository 알려줘',
-  '2020년 이후 발표된 논문 목록',
+  '2020년 이후 발표된 논문의 제목과 발표일',
   '논문별로 연결된 repository 개수',
 ];
 
