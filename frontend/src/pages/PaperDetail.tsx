@@ -1,10 +1,10 @@
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
-import { AlertTriangle, ArrowLeft, ArrowRight, BookOpen, Code2, ExternalLink, X, FileCode, Sparkles, Zap } from 'lucide-react';
-import Editor, { type OnMount } from '@monaco-editor/react';
+import { AlertTriangle, ArrowLeft, ArrowRight, BookOpen, Code2, ExternalLink, FileCode, Sparkles, Zap } from 'lucide-react';
 import { api, symbolLabel, type CodeMatch, type AgentQueryResponse } from '../api/client';
 import { useApi } from '../hooks/useApi';
 import { Loading, ErrorBox, EmptyState } from '../components/AsyncStates';
+import CodeViewerModal from '../components/CodeViewerModal';
 
 // Deterministic "keyword overlap" so the similarity score is explainable
 // (vector similarity vs. how many chunk keywords also appear in the code).
@@ -135,11 +135,6 @@ export default function PaperDetail() {
   const crossPaper = mappingState.data ? mappingState.data.paperScoped === false : false;
 
   const handleCloseModal = useCallback(() => setViewingCode(null), []);
-  const handleEditorMount: OnMount = useCallback((editor) => {
-    // Monaco can mount before its flex/grid parent has resolved a real
-    // height and miscalculate its size as 0 — force a re-layout once mounted.
-    requestAnimationFrame(() => editor.layout());
-  }, []);
 
   if (papersState.loading || chunksState.loading) {
     return <div className="page"><div className="container"><Loading message="논문을 불러오는 중..." padding={80} /></div></div>;
@@ -316,44 +311,7 @@ export default function PaperDetail() {
       </div>
 
       {/* Monaco Editor Modal */}
-      {viewingCode && (
-        <div className="modal-overlay" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>
-                <span style={{ color: 'var(--success-light)', fontFamily: 'var(--font-mono)' }}>
-                  {symbolLabel(viewingCode)}
-                </span>
-                <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginLeft: 8 }}>
-                  {viewingCode.repositoryName} / {viewingCode.filePath}
-                </span>
-              </h3>
-              <button className="modal-close" onClick={handleCloseModal}>
-                <X size={18} />
-              </button>
-            </div>
-            <div className="modal-body" style={{ height: 500 }}>
-              <Editor
-                height={500}
-                language="python"
-                theme="vs-dark"
-                value={viewingCode.codeContent}
-                onMount={handleEditorMount}
-                options={{
-                  readOnly: true,
-                  minimap: { enabled: false },
-                  fontSize: 14,
-                  fontFamily: "'JetBrains Mono', monospace",
-                  lineNumbers: (n: number) => String(n + (viewingCode.startLine ?? 1) - 1),
-                  scrollBeyondLastLine: false,
-                  padding: { top: 16 },
-                  renderLineHighlight: 'all',
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      {viewingCode && <CodeViewerModal code={viewingCode} onClose={handleCloseModal} />}
     </div>
   );
 }
