@@ -75,6 +75,10 @@ function buildGraph(mappings: MappingRow[]): { nodes: Node[]; edges: Edge[] } {
 
   const COLS = 3;          // 클러스터 그리드 열 수
   const CELL_W = 1050;     // 클러스터 간격 — 부채꼴 반지름 + 코드 노드 폭이 들어가는 크기
+  // ⚠️ 여유를 갉아먹는 건 논문 수가 아니라 "논문당 코드 수"다 (#58 리뷰 A 계산):
+  // 팬 5개 → ±60°, 세로 반경 329px, 행 간 여유 162px. 팬 7개면 spread 가 상한 170°에 닿아
+  // 세로 반경 378px, 행 간 여유 64px — 노드 높이(74px)보다 작아져 겹친다. 논문당 코드가
+  // 7개 이상이 되면 CELL_H 를 키우거나 spread 상한(아래 170)을 낮출 것.
   const CELL_H = 820;
   const RADIUS = 380;      // 허브(논문) → 코드 노드 거리
 
