@@ -6,6 +6,8 @@ import Papers from './pages/Papers';
 import PaperDetail from './pages/PaperDetail';
 import Agent from './pages/Agent';
 import Graph from './pages/Graph';
+import Upload from './pages/Upload';
+import Chat from './pages/Chat';
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/papers/:paperId" element={<PaperDetail />} />
         <Route path="/agent" element={<Agent />} />
         <Route path="/graph" element={<Graph />} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { BookOpen, Cpu, GitBranch, LayoutDashboard, Menu, Sparkles, X } from 'lucide-react';
+import { BookOpen, Cpu, GitBranch, LayoutDashboard, Menu, Sparkles, X, UploadCloud, MessageCircle } from 'lucide-react';
 
 const navItems = [
   { to: '/', end: true, icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/papers', end: false, icon: BookOpen, label: 'Papers' },
   { to: '/agent', end: false, icon: Sparkles, label: 'AI Agent' },
   { to: '/graph', end: false, icon: GitBranch, label: 'Graph' },
+  { to: '/chat', end: false, icon: MessageCircle, label: 'Chat' },
+  { to: '/upload', end: false, icon: UploadCloud, label: 'Upload' },
 ];
 
 export default function Header() {

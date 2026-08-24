@@ -155,6 +155,47 @@
 }
 ```
 
+### `POST /api/chat` (SSE)
+
+```jsonc
+// Request — 대화 전체를 클라이언트가 들고 온다 (서버 무상태). 마지막 user 메시지가 질문.
+{ "messages": [ { "role": "user", "content": "multi-head attention은 어느 코드에 구현돼 있어?" } ] }
+
+// Response: text/event-stream
+event: sources   data: [ { "paperId": 1, "paperTitle": "Attention Is All You Need", "chunkId": 19,
+                           "sectionTitle": "3.2.2 Multi-Head Attention", "score": 0.78,
+                           "codeRepository": "attention-is-all-you-need-pytorch",
+                           "codeSymbol": "MultiHeadAttention.forward", "codeFile": "transformer/SubLayers.py" } ]
+event: token     data: 멀티헤드      ← 이어서 여러 번
+event: done      data: { "latencyMs": 18230, "sources": 4 }
+event: error     data: <메시지>      ← 생성 실패 시 (done 대신)
+```
+
+마지막 user 메시지로 `SearchPaperChunk`(top 4)를 돌리고, 각 단락의 사전계산 1위 코드와 매핑 근거를
+[참고 자료]로 묶어 서비스 설명(화면·동작·수치)과 함께 시스템 프롬프트에 넣는다. 최근 10개 메시지만
+모델에 넘긴다. DB 에 쓰지 않는다. qwen3 의 `<think>` 블록은 서버에서 걷어내고 흘린다. 180초 타임아웃.
+
+### `POST /api/admin/upload` · `/ingest-json` · `GET /api/admin/upload/{id}`
+
+```jsonc
+// POST /api/admin/upload
+{ "arxivId": "1505.04597", "githubUrl": "https://github.com/milesial/Pytorch-UNet", "relationType": "OFFICIAL" }
+// POST /api/admin/upload/ingest-json?fileName=unet.json   본문 = ingest JSON (database/ingest_example.json 형식)
+
+// 응답 (둘 다) / GET /api/admin/upload/{id} 는 log 까지
+{ "id": "3f9a1c2e", "type": "arxiv", "label": "1505.04597 ← https://github.com/milesial/Pytorch-UNet",
+  "status": "RUNNING",                       // QUEUED | RUNNING | DONE | FAILED
+  "stage": "LATEX_SPLIT", "stageMessage": "qwen3 가 단락 경계 제안 — 섹션당 수십 초",
+  "stages": ["ARXIV_META","EPRINT","REPO_CLONE","CODE_BLOCKS","LATEX_SPLIT","INGEST","EMBEDDING","CURATION"],
+  "paperId": null, "chunks": null, "codeBlocks": null, "mappings": null, "error": null,
+  "createdAt": "…", "startedAt": "…", "finishedAt": null, "log": ["▶ ARXIV_META — …", "   U-Net: …"] }
+```
+
+작업은 한 번에 하나만 돈다(단일 워커). 파이썬 단계는 `scripts/upload_pipeline.py` 가 서브프로세스로
+돌며 `##STAGE` 줄로 단계를 보고하고, 임베딩·큐레이션은 백엔드 서비스가 이어서 수행한다. 작업 목록은
+메모리에만 있어 재기동하면 사라지지만 적재 결과는 DB 에 남는다. 같은 arXiv ID 재업로드는 upsert.
+JSON 경로는 `VALIDATE(ingest.py --dry-run) → INGEST → EMBEDDING → CURATION`.
+
 ### `POST /api/admin/curate-pending` (신규)
 
 아직 `paper_code_mappings`에 없는 chunk 전체를 대상으로 배치 큐레이션을 수행한다. 인증 없는 내부용 — 데모 리허설 전, 또는 새 논문/repo 승인 직후 수동 트리거.

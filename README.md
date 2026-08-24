@@ -131,7 +131,7 @@ curl -X POST localhost:8080/api/admin/curate-pending      #                  [�
 ```bash
 ./scripts/doctor.sh     # 도구·DB·모델·백엔드를 한 번에 점검하고, 빠진 것은 채우는 법을 알려줍니다
 ./scripts/smoke.sh      # 기동된 서버의 전체 API 를 한 번씩 호출 (8종)
-cd backend && ./mvnw test    # DB·Ollama 없이 전부 통과 (32개)
+cd backend && ./mvnw test    # DB·Ollama 없이 전부 통과 (46개)
 ```
 
 > **포트 5433 을 씁니다.** 로컬에 이미 PostgreSQL 이 5432 에 떠 있는 경우가 많아 옮겨
@@ -148,6 +148,12 @@ cd backend && ./mvnw test    # DB·Ollama 없이 전부 통과 (32개)
 > 로 진행 중인지 확인하세요. `curl` 을 Ctrl-C 해도 서버 배치는 멈추지 않습니다.
 
 ### 새 논문 적재하기
+
+화면에서: **Upload** 메뉴에 arXiv ID 와 GitHub 저장소 URL 을 넣으면 단락 분리(`latex2chunks.py`) →
+적재(`ingest.py`) → 임베딩 → 큐레이션까지 한 작업으로 돕니다(논문 한 편 10~30분, 진행 단계가 화면에
+보입니다). arXiv 에 LaTeX 소스가 있는 논문 + Python 저장소가 조건이고, 그 밖은 아래 JSON 경로로.
+
+스크립트로:
 
 ```bash
 ./scripts/reset_db.sh                                              # 스키마 초기화 (데모 데이터 제거)
@@ -169,6 +175,8 @@ python3 scripts/ingest.py database/ingest/<논문>.json --insert-mappings
 | PaperDetail | 단락 클릭 → 대응 코드 Top-5, Monaco 뷰어로 해당 줄 하이라이트 | `GET /api/papers/{id}/chunks`, `POST /api/mapping/search`, `POST /api/agent/query` |
 | Agent | 자연어 질의 → chunk 검색 → 매핑, 질문에 대한 AI 답변(opt-in), NL2SQL 메타데이터 조회 | `POST /api/papers/chunks/search`, `POST /api/agent/query`, `POST /api/agent/answer`, `POST /api/nl2sql` |
 | Graph | 논문–코드 연결을 React Flow 그래프로 | `GET /api/mappings?limit=60` |
+| Chat | 서비스·카탈로그 챗봇 — 질문마다 단락을 검색해 근거와 함께 스트리밍 답변 | `POST /api/chat` (SSE) |
+| Upload | arXiv ID + GitHub URL → 단락 분리·적재·임베딩·큐레이션 자동, ingest JSON 직접 업로드 | `POST /api/admin/upload`, `GET /api/admin/upload/{id}` |
 
 응답의 `precomputed` / `live` 배지는 그 결과가 사전계산된 매핑에서 왔는지, 그 자리에서
 Qwen3 를 호출한 것인지를 나타냅니다. 자세한 내용은 [frontend/README.md](frontend/README.md).
@@ -186,6 +194,10 @@ Qwen3 를 호출한 것인지를 나타냅니다. 자세한 내용은 [frontend/
 | `POST` | `/api/agent/query` | 사전계산 조회 + 라이브 폴백 |
 | `POST` | `/api/agent/answer` | 질문 텍스트에 대한 답 생성 — 매 호출 라이브, DB 저장 없음, 60초 타임아웃 |
 | `POST` | `/api/nl2sql` | 자연어 → read-only SQL 조회 |
+| `POST` | `/api/chat` | 챗봇 — 검색 기반(RAG) 스트리밍 답변, SSE |
+| `POST` | `/api/admin/upload` | 업로드 작업 생성 (arXiv + GitHub 자동 적재) |
+| `POST` | `/api/admin/upload/ingest-json` | 업로드 작업 생성 (ingest JSON) |
+| `GET` | `/api/admin/upload`, `/api/admin/upload/{id}` | 업로드 작업 목록·상태 |
 | `GET` | `/api/stats`, `/api/mappings` | 대시보드·그래프용 집계 |
 | `POST` | `/api/admin/curate-pending` | 큐레이션 배치 트리거 |
 | `GET` | `/api/admin/curate-status` | 배치 진행률 |
