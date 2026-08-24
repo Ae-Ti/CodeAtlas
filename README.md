@@ -131,7 +131,7 @@ curl -X POST localhost:8080/api/admin/curate-pending      #                  [�
 ```bash
 ./scripts/doctor.sh     # 도구·DB·모델·백엔드를 한 번에 점검하고, 빠진 것은 채우는 법을 알려줍니다
 ./scripts/smoke.sh      # 기동된 서버의 전체 API 를 한 번씩 호출 (8종)
-cd backend && ./mvnw test    # DB·Ollama 없이 전부 통과 (32개)
+cd backend && ./mvnw test    # DB·Ollama 없이 전부 통과 (42개)
 ```
 
 > **포트 5433 을 씁니다.** 로컬에 이미 PostgreSQL 이 5432 에 떠 있는 경우가 많아 옮겨

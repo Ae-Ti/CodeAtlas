@@ -214,6 +214,9 @@ export const api = {
 
   uploadJob: (id: string) => request<UploadJob>(`/api/admin/upload/${id}`),
 
+  /** 파이썬 단계 진행 중인 작업 취소 — 임베딩·큐레이션 단계는 중단 불가(canceled=false) */
+  uploadCancel: (id: string) => post<{ canceled: boolean }>(`/api/admin/upload/${id}/cancel`, {}),
+
   uploadJobs: () => request<UploadJob[]>('/api/admin/upload'),
 };
 
@@ -226,7 +229,7 @@ export interface UploadJob {
   id: string;
   type: 'arxiv' | 'json';
   label: string;
-  status: 'QUEUED' | 'RUNNING' | 'DONE' | 'FAILED';
+  status: 'QUEUED' | 'RUNNING' | 'DONE' | 'FAILED' | 'CANCELED';
   stage: string | null;
   stageMessage: string | null;
   stages: string[];

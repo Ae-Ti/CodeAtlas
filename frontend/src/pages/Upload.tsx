@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { UploadCloud, FileJson, Loader2, CheckCircle2, Circle, AlertCircle, ArrowRight, Clock } from 'lucide-react';
+import { UploadCloud, FileJson, Loader2, CheckCircle2, Circle, AlertCircle, ArrowRight, Clock, XCircle } from 'lucide-react';
 import { api, ApiError, type UploadJob } from '../api/client';
 import { ErrorBox } from '../components/AsyncStates';
 
@@ -22,7 +22,7 @@ function stageState(job: UploadJob, stage: string): 'done' | 'running' | 'failed
   const cur = job.stage ? job.stages.indexOf(job.stage) : -1;
   if (job.status === 'DONE') return 'done';
   if (idx < cur) return 'done';
-  if (idx === cur) return job.status === 'FAILED' ? 'failed' : 'running';
+  if (idx === cur) return job.status === 'FAILED' || job.status === 'CANCELED' ? 'failed' : 'running';
   return 'pending';
 }
 
@@ -33,7 +33,7 @@ function elapsed(from: string | null, to: string | null): string {
   return s < 60 ? `${s}초` : `${Math.floor(s / 60)}분 ${s % 60}초`;
 }
 
-function JobCard({ job }: { job: UploadJob }) {
+function JobCard({ job, onCancel }: { job: UploadJob; onCancel?: (id: string) => void }) {
   const logRef = useRef<HTMLPreElement>(null);
   useEffect(() => {
     if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
@@ -51,14 +51,20 @@ function JobCard({ job }: { job: UploadJob }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14, flexWrap: 'wrap' }}>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', fontWeight: 600 }}>{job.label}</span>
         <span className="badge" style={{
-          background: job.status === 'DONE' ? 'rgba(16,185,129,0.15)' : job.status === 'FAILED' ? 'rgba(245,158,11,0.15)' : 'rgba(59,130,246,0.15)',
-          color: job.status === 'DONE' ? 'var(--success-light)' : job.status === 'FAILED' ? 'var(--warning)' : 'var(--primary-light)',
+          background: job.status === 'DONE' ? 'rgba(16,185,129,0.15)' : job.status === 'RUNNING' || job.status === 'QUEUED' ? 'rgba(59,130,246,0.15)' : 'rgba(245,158,11,0.15)',
+          color: job.status === 'DONE' ? 'var(--success-light)' : job.status === 'RUNNING' || job.status === 'QUEUED' ? 'var(--primary-light)' : 'var(--warning)',
         }}>
           {job.status}
         </span>
         <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 4 }}>
           <Clock size={12} /> {elapsed(job.startedAt, job.finishedAt) || '대기 중'}
         </span>
+        {job.status === 'RUNNING' && onCancel && !['EMBEDDING', 'CURATION'].includes(job.stage ?? '') && (
+          <button className="btn btn-ghost" style={{ padding: '4px 10px', fontSize: '0.72rem' }}
+            onClick={e => { e.stopPropagation(); onCancel(job.id); }} title="임베딩·큐레이션 단계에서는 취소할 수 없습니다">
+            <XCircle size={12} /> 취소
+          </button>
+        )}
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
@@ -88,7 +94,7 @@ function JobCard({ job }: { job: UploadJob }) {
           </span>
         </div>
       )}
-      {job.status === 'FAILED' && (
+      {(job.status === 'FAILED' || job.status === 'CANCELED') && (
         <p style={{ display: 'flex', gap: 6, color: 'var(--warning)', fontSize: '0.82rem', marginBottom: 12 }}>
           <AlertCircle size={14} style={{ flexShrink: 0, marginTop: 1 }} /> {job.error}
         </p>
@@ -125,7 +131,7 @@ export default function Upload() {
         const j = await api.uploadJob(activeId);
         if (stop) return;
         setJobs(prev => prev.some(p => p.id === j.id) ? prev.map(p => (p.id === j.id ? j : p)) : [j, ...prev]);
-        if (j.status === 'DONE' || j.status === 'FAILED') return;
+        if (j.status !== 'RUNNING' && j.status !== 'QUEUED') return;
       } catch { /* 다음 tick 에 재시도 */ }
       if (!stop) timer = setTimeout(tick, 2000);
     };
@@ -241,7 +247,7 @@ export default function Upload() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {jobs.map(job => (
               <div key={job.id} onClick={() => setActiveId(job.id)} style={{ cursor: job.log.length ? 'default' : 'pointer' }}>
-                <JobCard job={job} />
+                <JobCard job={job} onCancel={id => { api.uploadCancel(id).catch(() => {}); setActiveId(id); }} />
               </div>
             ))}
           </div>

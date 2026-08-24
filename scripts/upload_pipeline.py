@@ -125,8 +125,11 @@ def parse_github(url):
 
 def clone_repo(url, dest):
     owner, name = parse_github(url)
-    r = subprocess.run(['git', 'clone', '--depth', '1', '--quiet', f'https://github.com/{owner}/{name}.git', dest],
-                       capture_output=True, text=True)
+    try:
+        r = subprocess.run(['git', 'clone', '--depth', '1', '--quiet', f'https://github.com/{owner}/{name}.git', dest],
+                           capture_output=True, text=True, timeout=600)
+    except subprocess.TimeoutExpired:
+        raise SystemExit('git clone 이 10분 안에 끝나지 않았습니다 — 저장소가 지나치게 크거나 네트워크 문제')
     if r.returncode:
         raise SystemExit(f'git clone 실패: {r.stderr.strip()[:300]}')
     commit = subprocess.run(['git', '-C', dest, 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip()

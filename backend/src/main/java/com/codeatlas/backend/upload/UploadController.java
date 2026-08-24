@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 업로드 페이지용 API. 인증 없는 내부용 — curate-pending 과 같은 전제(로컬 데모 환경).
@@ -52,6 +53,14 @@ public class UploadController {
     @PostMapping(value = "/api/admin/upload/ingest-json", consumes = "application/json")
     public JobView submitJson(@RequestBody String body, @RequestParam(required = false) String fileName) {
         return JobView.of(service.submitJson(fileName, body), false);
+    }
+
+    /** 파이썬 단계 진행 중인 작업 취소. 임베딩·큐레이션 단계는 중단 불가(곧 끝남) — canceled=false 로 응답. */
+    @PostMapping("/api/admin/upload/{id}/cancel")
+    public Map<String, Object> cancel(@PathVariable String id) {
+        service.get(id).orElseThrow(() -> new NotFoundException("업로드 작업을 찾을 수 없습니다: " + id));
+        boolean ok = service.cancel(id);
+        return Map.of("canceled", ok);
     }
 
     @GetMapping("/api/admin/upload/{id}")

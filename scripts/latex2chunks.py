@@ -306,7 +306,8 @@ def cmd_split(args):
             # 문단이 하나면 자를 곳이 없다 — 업로드 경로는 label·mappable 을 쓰지 않으므로
             # LLM 호출을 통째로 건너뛴다 (Acknowledgements 같은 짧은 섹션이 480초 타임아웃에
             # 걸려 업로드 전체를 20분 넘게 붙잡은 실측). 실험 경로(--paper-id)는 그대로 LLM 에 묻는다.
-            plan = {'chunks': [{'paragraphs': [1], 'label': title, 'mappable': None, 'symbols': []}]}
+            # label 을 title 로 두면 subsection == section 이 돼 임베딩 텍스트에 제목이 두 번 들어간다
+            plan = {'chunks': [{'paragraphs': [1], 'label': None, 'mappable': None, 'symbols': []}]}
         else:
             plan = propose_chunks(title, paras, symbols)
         for c in plan['chunks']:

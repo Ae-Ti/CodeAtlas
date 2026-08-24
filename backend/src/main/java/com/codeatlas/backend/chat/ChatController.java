@@ -78,6 +78,9 @@ public class ChatController {
     public record Source(Long paperId, String paperTitle, Long chunkId, String sectionTitle, double score,
                          String codeRepository, String codeSymbol, String codeFile) {}
 
+    /** 검색 1회 결과를 화면용(Source)과 프롬프트용(chunk 본문·매핑)이 같이 쓴다 — DB 왕복 중복 방지 (#54 리뷰) */
+    record Retrieved(Source source, ChunkResult chunk, PrecomputedMapping top) {}
+
     @PostMapping(value = "/api/chat", produces = "text/event-stream")
     public SseEmitter chat(@RequestBody ChatRequest request) {
         List<ChatMessage> history = request.messages() == null ? List.of() : request.messages();
@@ -92,19 +95,19 @@ public class ChatController {
         long t0 = System.currentTimeMillis();
 
         // 1) 검색 — 동기. 첫 이벤트로 근거를 먼저 내려 화면이 바로 "무엇을 읽고 있는지" 보여준다.
-        List<Source> sources;
+        List<Retrieved> retrieved;
         try {
-            sources = retrieve(question);
-            sendJson(emitter, "sources", sources);
+            retrieved = retrieve(question);
+            sendJson(emitter, "sources", retrieved.stream().map(Retrieved::source).toList());
         } catch (Exception e) {
             log.warn("챗봇 검색 실패 — 근거 없이 답합니다: {}", e.getMessage());
-            sources = List.of();
+            retrieved = List.of();
         }
 
         // 2) 생성 — 스트리밍. qwen3 의 <think> 블록은 흘리지 않는다.
-        List<Message> messages = buildMessages(history, sources);
+        List<Message> messages = buildMessages(history, retrieved);
         ThinkFilter filter = new ThinkFilter();
-        List<Source> finalSources = sources;
+        List<Retrieved> finalSources = retrieved;
         chatClient.prompt()
                 .messages(messages)
                 // qwen3 의 추론(think) 단계를 끈다 — 첫 토큰까지의 시간이 곧 챗봇의 체감 속도다.
@@ -139,21 +142,21 @@ public class ChatController {
 
     // ── 검색 ────────────────────────────────────────────────────
 
-    private List<Source> retrieve(String question) {
+    private List<Retrieved> retrieve(String question) {
         List<ChunkResult> chunks = chunkSearch.search(question, null, SOURCE_COUNT).stream()
                 .filter(c -> c.score() >= SOURCE_MIN_SCORE).toList();
         if (chunks.isEmpty()) {
             return List.of();
         }
         Map<Long, String> titles = paperTitles(chunks.stream().map(ChunkResult::paperId).distinct().toList());
-        List<Source> out = new ArrayList<>();
+        List<Retrieved> out = new ArrayList<>();
         for (ChunkResult c : chunks) {
             PrecomputedMapping top = mappingRead.findMappings(c.chunkId(), 1).stream().findFirst().orElse(null);
-            out.add(new Source(c.paperId(), titles.getOrDefault(c.paperId(), "논문 " + c.paperId()),
+            out.add(new Retrieved(new Source(c.paperId(), titles.getOrDefault(c.paperId(), "논문 " + c.paperId()),
                     c.chunkId(), c.sectionTitle(), c.score(),
                     top == null ? null : top.candidate().repositoryName(),
                     top == null ? null : symbolLabel(top),
-                    top == null ? null : top.candidate().filePath()));
+                    top == null ? null : top.candidate().filePath()), c, top));
         }
         return out;
     }
@@ -173,7 +176,7 @@ public class ChatController {
 
     // ── 프롬프트 ────────────────────────────────────────────────
 
-    private List<Message> buildMessages(List<ChatMessage> history, List<Source> sources) {
+    private List<Message> buildMessages(List<ChatMessage> history, List<Retrieved> sources) {
         List<Message> out = new ArrayList<>();
         out.add(new SystemMessage(systemPrompt(sources)));
         List<ChatMessage> recent = history.size() > HISTORY_LIMIT
@@ -190,7 +193,7 @@ public class ChatController {
         return out;
     }
 
-    private String systemPrompt(List<Source> sources) {
+    private String systemPrompt(List<Retrieved> sources) {
         Map<String, Object> stats = jdbc.queryForMap("""
                 SELECT (SELECT count(*) FROM papers) AS papers, (SELECT count(*) FROM paper_chunks) AS chunks,
                        (SELECT count(*) FROM repositories) AS repos, (SELECT count(*) FROM code_blocks) AS blocks,
@@ -198,12 +201,12 @@ public class ChatController {
                 """);
         StringBuilder refs = new StringBuilder();
         int i = 1;
-        for (Source s : sources) {
-            ChunkResult chunk = chunkSearch.getChunkById(s.paperId(), s.chunkId()).orElse(null);
-            if (chunk == null) continue;
+        for (Retrieved r : sources) {
+            Source s = r.source();
+            ChunkResult chunk = r.chunk();
             refs.append("[%d] 「%s」 §%s (유사도 %.2f)\n%s\n".formatted(
                     i, s.paperTitle(), s.sectionTitle(), s.score(), truncate(chunk.chunkText(), CHUNK_CHARS)));
-            PrecomputedMapping top = mappingRead.findMappings(s.chunkId(), 1).stream().findFirst().orElse(null);
+            PrecomputedMapping top = r.top();
             if (top != null) {
                 refs.append("  ↳ 매핑된 코드: %s / %s — %s\n%s\n".formatted(
                         top.candidate().repositoryName(), top.candidate().filePath(), symbolLabel(top),
@@ -240,8 +243,9 @@ public class ChatController {
                   read-only 트랜잭션, 노출 테이블은 메타데이터 3종(papers·repositories·paper_repositories).
                 - MCP 서버(SSE): SearchPaperChunk · FindCodeImplementation · QueryMetadataSQL · CurateContext.
                 - 모든 모델은 오픈웨이트 로컬 구동(qwen3:8b 생성, nomic-embed-text 임베딩, Ollama). 상용 AI API 호출 없음.
-                - 검색 품질(정답셋 315쌍, 논문 내 저장소 한정): Top-1 29.8%%, Top-3 53.3%%, Top-5 65.4%%, MRR@10 0.454.
-                  미매핑의 39.3%%는 저장소가 그 구현을 배포하지 않는 경우.
+                - 검색 품질: Top-1 29.8%%, Top-3 53.3%%, Top-5 65.4%%, MRR@10 0.454 — **제출 시점 논문 9편 기준
+                  정답셋 315쌍**으로 측정한 값. 이후 업로드로 카탈로그가 늘어도 재측정 전까지 이 수치는 그대로이므로,
+                  인용할 때는 "9편 기준 측정값"임을 함께 말한다. 미매핑의 39.3%%는 저장소가 그 구현을 배포하지 않는 경우(같은 측정).
                 - 새 논문 추가: Upload 화면(arXiv 에 LaTeX 소스가 있는 논문 + Python 저장소) 또는 ingest JSON 업로드.
 
                 [참고 자료] — 사용자의 마지막 질문으로 카탈로그에서 검색한 단락과 그 단락에 매핑된 코드
