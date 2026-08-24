@@ -138,6 +138,12 @@ cd backend && ./mvnw test    # DB·Ollama 없이 전부 통과 (46개)
 > 두었습니다. 바꾸려면 `docker-compose.yml` 과 `backend/src/main/resources/application.yml` 을
 > 함께 수정하세요.
 
+> **생성 모델을 바꾸려면** `CODEATLAS_LLM` 환경변수 하나로 백엔드(설명·챗봇·NL2SQL)와 업로드
+> 파이프라인(단락 분리)이 함께 바뀝니다 — 예: `CODEATLAS_LLM=hermes3:8b` (기본 `qwen3:8b`,
+> `ollama pull` 된 모델만). **Ollama 로컬 오픈웨이트 모델만** — 상용 API 는 이 프로젝트의 전제
+> (§운영규정 제9조)와 충돌합니다. 임베딩 모델(nomic-embed-text)은 저장된 벡터 공간과 묶여 있어
+> 바꿀 수 없습니다.
+
 > **다른 포트로 한 벌 더 띄우려면** (예: PR 검증용) 백엔드는 `--server.port=8081`, 프론트는
 > `VITE_API_TARGET=http://localhost:8081 npm run dev -- --port 5174`. 백엔드 CORS 는 기본값이
 > `localhost` 전 포트 허용이라 추가 설정이 없고, 좁히려면 `CODEATLAS_CORS_ALLOWED_ORIGINS` 로 덮어씁니다.
