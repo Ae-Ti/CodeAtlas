@@ -47,7 +47,14 @@ public class ChatController {
 
     private static final Logger log = LoggerFactory.getLogger(ChatController.class);
     private static final int SOURCE_COUNT = 4;
-    /** 이 아래 유사도의 단락은 근거로 쓰지 않는다 — 서비스 사용법 질문에 엉뚱한 논문이 인용되는 것 방지 */
+    /**
+     * 이 아래 유사도의 단락은 근거로 쓰지 않는다.
+     *
+     * 0.65 로 올렸다가 되돌렸다(#55 리뷰) — A 의 20문항 실측에서 서비스 질문 최고점 0.677,
+     * 논문 질문 최저점 0.605 로 분포가 겹쳐 어디를 잘라도 양쪽에서 틀린다. 점수는 "논문 단락과
+     * 닮았는가"를 재지 "논문에 대한 질문인가"를 재지 않는다. 서비스 질문에 근거가 붙는 문제는
+     * 임계값이 아니라 렌더러의 결정적 [n] 필터(프론트)가 막는다.
+     */
     private static final double SOURCE_MIN_SCORE = 0.60;
     private static final int HISTORY_LIMIT = 10;        // 최근 N 개 메시지만 모델에 넘긴다
     private static final int CHUNK_CHARS = 700;          // 참고 자료 chunk 본문 상한 — 프롬프트 평가 시간이 첫 토큰 지연의 절반
@@ -250,6 +257,10 @@ public class ChatController {
 
                 [참고 자료] — 사용자의 마지막 질문으로 카탈로그에서 검색한 단락과 그 단락에 매핑된 코드
                 %s
+
+                인용 규칙(반드시): [n] 은 그 번호의 참고 자료 내용을 실제로 답에 사용한 문장에만 붙인다.
+                [서비스 설명]에서 나온 내용(사용법·화면·동작·수치)에는 어떤 경우에도 [n] 을 붙이지 않는다.
+                참고 자료가 질문과 무관하면 없는 것처럼 답하고 [n] 을 쓰지 않는다.
                 """.formatted(stats.get("papers"), stats.get("chunks"), stats.get("repos"), stats.get("blocks"),
                 stats.get("mappings"), refs.isEmpty() ? "(검색 결과 없음)" : refs.toString());
     }
