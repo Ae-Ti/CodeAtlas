@@ -34,6 +34,11 @@ import urllib.request
 
 OLLAMA = os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
 MODEL = os.environ.get('CODEATLAS_LLM', 'qwen3:8b')
+# 호출당 LLM 타임아웃. 기본 480초는 실험 경로(#48) 기준값이고, 업로드 파이프라인은
+# 150초로 줄여서 넘긴다(upload_pipeline.py) — 폴백(문단=chunk)이 품질 손실이 아니라는 것을
+# §5.1 IoU 재측정이 이미 보여줬기 때문(문단 분할 0.822 > LLM 병합 0.701). 그렇다면 한 섹션에
+# 480×3 = 24분을 기다릴 근거가 없다 — 150×3 + 백오프 = 8분이면 폴백으로 떨어진다.
+LLM_TIMEOUT = int(os.environ.get('CODEATLAS_LLM_TIMEOUT', '480'))
 
 
 # ── LaTeX 전처리 (순수 코드 — LLM 없음) ──────────────────────────────
@@ -224,7 +229,7 @@ def ollama_generate(prompt):
                          # 줄이고 "동일 세션 안에서는 결정적"을 코드로 뒷받침한다.
                          'options': {'temperature': 0, 'seed': 0}}).encode(),
         headers={'Content-Type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=480) as resp:
+    with urllib.request.urlopen(req, timeout=LLM_TIMEOUT) as resp:
         text = json.loads(resp.read())['response']
     text = re.sub(r'<think>.*?</think>', '', text, flags=re.S)
     # 모델이 JSON 뒤에 설명을 덧붙이는 경우가 있어 탐욕 매칭 대신
