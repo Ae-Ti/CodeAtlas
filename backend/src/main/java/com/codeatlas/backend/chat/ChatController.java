@@ -48,11 +48,14 @@ public class ChatController {
     private static final Logger log = LoggerFactory.getLogger(ChatController.class);
     private static final int SOURCE_COUNT = 4;
     /**
-     * 이 아래 유사도의 단락은 근거로 쓰지 않는다 — 서비스 사용법 질문에 엉뚱한 논문이 인용되는 것 방지.
-     * 실측: 서비스 질문("새 논문은 어떻게 추가해?")의 최고점이 0.615, 한국어 논문 질문의 정상 매칭은
-     * 0.68 이상 — 0.60~0.65 구간은 노이즈였다 (0.60 하한에서 ViT 단락이 업로드 안내 답변에 인용된 사례).
+     * 이 아래 유사도의 단락은 근거로 쓰지 않는다.
+     *
+     * 0.65 로 올렸다가 되돌렸다(#55 리뷰) — A 의 20문항 실측에서 서비스 질문 최고점 0.677,
+     * 논문 질문 최저점 0.605 로 분포가 겹쳐 어디를 잘라도 양쪽에서 틀린다. 점수는 "논문 단락과
+     * 닮았는가"를 재지 "논문에 대한 질문인가"를 재지 않는다. 서비스 질문에 근거가 붙는 문제는
+     * 임계값이 아니라 렌더러의 결정적 [n] 필터(프론트)가 막는다.
      */
-    private static final double SOURCE_MIN_SCORE = 0.65;
+    private static final double SOURCE_MIN_SCORE = 0.60;
     private static final int HISTORY_LIMIT = 10;        // 최근 N 개 메시지만 모델에 넘긴다
     private static final int CHUNK_CHARS = 700;          // 참고 자료 chunk 본문 상한 — 프롬프트 평가 시간이 첫 토큰 지연의 절반
     private static final int CODE_CHARS = 450;           // 참고 자료 코드 상한

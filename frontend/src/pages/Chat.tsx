@@ -78,6 +78,18 @@ async function streamChat(
   }
 }
 
+/**
+ * 존재하는 근거([1..n])를 가리키지 않는 [n] 마커를 본문에서 지운다 — 근거가 0개인데 모델이
+ * 관성으로 붙인 [1] 같은 댕글링 인용이 8회 중 3회 관찰됐다(#55 리뷰 A 실측). 프롬프트 지시는
+ * 모델이 어기므로, 화면에 못 박는 이 필터가 유일하게 결정적인 층이다.
+ */
+function stripDanglingCitations(text: string, sourceCount: number): string {
+  return text.replace(/\s?\[(\d+)\]/g, (m, d) => {
+    const n = Number(d);
+    return n >= 1 && n <= sourceCount ? m : '';
+  });
+}
+
 /** 답변에 섞여 오는 최소한의 마크다운(코드 펜스·인라인 코드·굵게)만 렌더링한다 */
 function renderLite(text: string): ReactNode[] {
   const out: ReactNode[] = [];
@@ -203,7 +215,7 @@ export default function Chat() {
                     {m.sources ? `근거 ${m.sources.length}개를 읽고 답을 쓰는 중…` : '카탈로그에서 관련 단락을 찾는 중…'}
                   </span>
                 )}
-                {renderLite(m.role === 'assistant' && !m.streaming && !(m.sources?.length) ? m.content.replace(/\s?\[\d+\]/g, '') : m.content)}
+                {renderLite(m.role === 'assistant' && !m.streaming ? stripDanglingCitations(m.content, m.sources?.length ?? 0) : m.content)}
                 {m.error && (
                   <p style={{ display: 'flex', gap: 6, color: 'var(--warning)', fontSize: '0.82rem', marginTop: 6 }}>
                     <AlertCircle size={14} style={{ flexShrink: 0, marginTop: 2 }} /> {m.error}
