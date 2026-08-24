@@ -22,7 +22,12 @@ spring:
         pull-model-strategy: never
       chat:
         options:
-          model: qwen3:8b
+          # 생성(chat) 모델은 CODEATLAS_LLM 하나로 바꾼다 — 파이썬 스크립트(latex2chunks 등)도
+          # 같은 환경변수를 읽으므로 백엔드에 걸어두면 업로드 파이프라인까지 함께 바뀐다.
+          #   예) CODEATLAS_LLM=hermes3:8b ./mvnw spring-boot:run
+          # ⚠️ Ollama 로컬(오픈웨이트) 모델만 — 상용 API 는 운영규정 제9조·README 서술과 충돌.
+          # ⚠️ 임베딩(nomic-embed-text)은 바꾸면 안 된다 — 저장된 벡터 전체와 공간이 어긋난다.
+          model: ${CODEATLAS_LLM:qwen3:8b}
           temperature: 0.3   # 설명 생성이라 과장된 답변 방지 위해 낮게 설정
       embedding:
         options:

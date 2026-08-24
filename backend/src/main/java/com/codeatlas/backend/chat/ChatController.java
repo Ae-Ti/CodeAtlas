@@ -59,12 +59,19 @@ public class ChatController {
     private final JdbcTemplate jdbc;
     private final ChatClient chatClient;
 
+    /** think 단계가 있는 모델 계열 — 이들에게만 disableThinking 을 보낸다 (없는 모델에 보내면 Ollama 가 400) */
+    private static final java.util.regex.Pattern THINKING_MODELS = java.util.regex.Pattern.compile("qwen3|deepseek-r1|gpt-oss");
+
+    private final boolean thinkingModel;
+
     public ChatController(PaperChunkSearchPort chunkSearch, MappingReadPort mappingRead,
-                          JdbcTemplate jdbc, ChatClient.Builder chatClientBuilder) {
+                          JdbcTemplate jdbc, ChatClient.Builder chatClientBuilder,
+                          @org.springframework.beans.factory.annotation.Value("${spring.ai.ollama.chat.options.model}") String chatModel) {
         this.chunkSearch = chunkSearch;
         this.mappingRead = mappingRead;
         this.jdbc = jdbc;
         this.chatClient = chatClientBuilder.build();
+        this.thinkingModel = THINKING_MODELS.matcher(chatModel).find();
     }
 
     public record ChatMessage(String role, String content) {}
@@ -108,12 +115,14 @@ public class ChatController {
         List<Message> messages = buildMessages(history, retrieved);
         ThinkFilter filter = new ThinkFilter();
         List<Retrieved> finalSources = retrieved;
-        chatClient.prompt()
-                .messages(messages)
-                // qwen3 의 추론(think) 단계를 끈다 — 첫 토큰까지의 시간이 곧 챗봇의 체감 속도다.
-                // 대화 답변은 추론 없이도 충분하고, 근거는 프롬프트에 이미 들어 있다.
-                .options(OllamaChatOptions.builder().disableThinking())
-                .stream()
+        // 추론(think) 단계를 끈다 — 첫 토큰까지의 시간이 곧 챗봇의 체감 속도다. 대화 답변은 추론
+        // 없이도 충분하고, 근거는 프롬프트에 이미 들어 있다. think 가 없는 모델(CODEATLAS_LLM 로
+        // 교체한 경우)에는 이 옵션 자체를 보내지 않는다 — 보내면 Ollama 가 400 으로 거절한다.
+        var spec = chatClient.prompt().messages(messages);
+        if (thinkingModel) {
+            spec = spec.options(OllamaChatOptions.builder().disableThinking());
+        }
+        spec.stream()
                 .content()
                 .timeout(Duration.ofMillis(STREAM_TIMEOUT_MS))
                 .subscribe(
