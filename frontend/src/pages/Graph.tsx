@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ReactFlow,
@@ -56,7 +56,7 @@ function edgeColor(score: number) {
   return score > HIGH ? '#10b981' : score > MID ? '#06b6d4' : '#64748b';
 }
 
-function buildGraph(mappings: MappingRow[]): { nodes: Node[]; edges: Edge[] } {
+function buildGraph(mappings: MappingRow[], focusPaperId: number | null): { nodes: Node[]; edges: Edge[] } {
   // 논문별 클러스터(별자리) 배치 — #55 리뷰에서 A 확인한 최소 범위.
   // 이전의 2열(bipartite) 배치는 코드 노드가 도착 순서대로 오른쪽 열에 쌓여, 한 논문의
   // 코드가 열 전체에 흩어지고 모든 엣지가 길게 교차했다(논문 9편·60엣지에서 이미 실체가
@@ -67,11 +67,15 @@ function buildGraph(mappings: MappingRow[]): { nodes: Node[]; edges: Edge[] } {
   const nodes: Node[] = [];
   const edges: Edge[] = [];
 
+  // 포커스 모드(논문 칩 선택): 그 논문 클러스터 하나만 — 전체 뷰는 구조를, 포커스는 읽기를 맡는다.
+  // 전체 뷰에서 노드·라벨이 작아 안 읽히는 문제(B 제보)의 답이 줌이 아니라 이 분리다.
+  const shown = focusPaperId == null ? mappings : mappings.filter(m => m.paperId === focusPaperId);
   const byPaper = new Map<number, MappingRow[]>();
-  for (const m of mappings) {
+  for (const m of shown) {
     if (!byPaper.has(m.paperId)) byPaper.set(m.paperId, []);
     byPaper.get(m.paperId)!.push(m);
   }
+  const focused = focusPaperId != null;
 
   const COLS = 3;          // 클러스터 그리드 열 수
   const CELL_W = 1050;     // 클러스터 간격 — 부채꼴 반지름 + 코드 노드 폭이 들어가는 크기
@@ -128,7 +132,8 @@ function buildGraph(mappings: MappingRow[]): { nodes: Node[]; edges: Edge[] } {
           stroke: edgeColor(m.similarityScore),
           strokeWidth: Math.max(1, m.similarityScore * 3),
         },
-        label: m.similarityScore.toFixed(2),
+        // 유사도 숫자는 포커스 모드에서만 — 전체 뷰에서는 라벨 60개가 노이즈의 절반이다
+        label: focused ? m.similarityScore.toFixed(2) : undefined,
         labelStyle: { fill: '#94a3b8', fontSize: 10, fontFamily: "'JetBrains Mono'" },
         labelBgStyle: { fill: '#1e293b', fillOpacity: 0.9 },
         labelBgPadding: [4, 4] as [number, number],
@@ -142,8 +147,15 @@ function buildGraph(mappings: MappingRow[]): { nodes: Node[]; edges: Edge[] } {
 export default function Graph() {
   const navigate = useNavigate();
   const { data, loading, error, reload } = useApi(() => api.mappings(60), []);
+  const [focusPaperId, setFocusPaperId] = useState<number | null>(null);
 
-  const built = useMemo(() => buildGraph(data ?? []), [data]);
+  const papers = useMemo(() => {
+    const seen = new Map<number, string>();
+    for (const m of data ?? []) if (!seen.has(m.paperId)) seen.set(m.paperId, m.paperTitle);
+    return [...seen.entries()];
+  }, [data]);
+
+  const built = useMemo(() => buildGraph(data ?? [], focusPaperId), [data, focusPaperId]);
   const [nodes, setNodes, onNodesChange] = useNodesState(built.nodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(built.edges);
 
@@ -182,8 +194,22 @@ export default function Graph() {
         )}
 
         {data && data.length > 0 && (
+          <>
+          <div className="query-examples" style={{ marginBottom: 12 }}>
+            <button className="query-example-btn" onClick={() => setFocusPaperId(null)}
+              style={focusPaperId == null ? { borderColor: 'var(--primary)', color: 'var(--primary-light)' } : undefined}>
+              전체
+            </button>
+            {papers.map(([id, title]) => (
+              <button key={id} className="query-example-btn" onClick={() => setFocusPaperId(id)}
+                style={focusPaperId === id ? { borderColor: 'var(--primary)', color: 'var(--primary-light)' } : undefined}>
+                {title.length > 22 ? title.slice(0, 22) + '…' : title}
+              </button>
+            ))}
+          </div>
           <div className="graph-container">
             <ReactFlow
+              key={focusPaperId ?? 'all'}
               nodes={nodes}
               edges={edges}
               onNodesChange={onNodesChange}
@@ -232,6 +258,7 @@ export default function Graph() {
               </div>
             </div>
           </div>
+          </>
         )}
       </div>
     </div>
