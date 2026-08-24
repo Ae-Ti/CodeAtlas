@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Sparkles, Send, Clock, CheckCircle2, Loader2, Database, Filter, MessageSquare, AlertCircle, Code2, Zap, FileCode } from 'lucide-react';
-import { api, symbolLabel, ApiError, type AgentQueryResponse, type NlSqlResult, type ToolTiming } from '../api/client';
+import { api, symbolLabel, ApiError, type AgentAnswerResult, type AgentQueryResponse, type CodeCandidate, type NlSqlResult, type ToolTiming } from '../api/client';
 import { useAnimateNumber } from '../hooks/useAnimateNumber';
 import { ErrorBox } from '../components/AsyncStates';
+import CodeViewerModal from '../components/CodeViewerModal';
 
 const exampleQueries = [
   'multi-head attention은 코드로 어떻게 구현됐어?',
@@ -12,7 +13,7 @@ const exampleQueries = [
 
 const exampleSqlQueries = [
   'star 수 상위 3개 repository 알려줘',
-  'NLP 논문 제목 목록',
+  '2020년 이후 발표된 논문의 제목과 발표일',
   '논문별로 연결된 repository 개수',
 ];
 
@@ -79,6 +80,84 @@ function TaccFunnel({ initial, removed, selected }: { initial: number; removed: 
   );
 }
 
+/**
+ * 질문 텍스트에 실제로 답하는 opt-in 경로.
+ *
+ * /api/agent/query 의 설명은 chunk↔코드 매핑 근거라 질문이 달라도 같은 chunk면
+ * 같은 문장이 나온다 — 그 간극을 이 패널이 채운다 (#51 리뷰 합의).
+ * 버튼을 눌렀을 때만 Qwen3를 라이브 호출하므로 사전계산 0.049초 경로는 그대로고,
+ * 결과는 위의 사전계산 설명을 덮지 않고 이 자리에 live 배지로 따로 표시된다.
+ */
+function AnswerPanel({ query, paperId, chunkId }: { query: string; paperId: number; chunkId: number }) {
+  const [state, setState] = useState<{ data: AgentAnswerResult | null; loading: boolean; error: string | null }>(
+    { data: null, loading: false, error: null });
+
+  // 질문이나 chunk가 바뀌면 이전 답변은 그 질문의 것이므로 비운다
+  useEffect(() => {
+    setState({ data: null, loading: false, error: null });
+  }, [query, paperId, chunkId]);
+
+  const generate = async () => {
+    setState({ data: null, loading: true, error: null });
+    try {
+      setState({ data: await api.agentAnswer(query, paperId, chunkId), loading: false, error: null });
+    } catch (e) {
+      setState({ data: null, loading: false, error: e instanceof ApiError ? e.message : String(e) });
+    }
+  };
+
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div className="agent-section-title">
+        <MessageSquare size={14} /> 질문에 대한 AI 답변
+        <span className="badge" style={{ marginLeft: 8, background: 'rgba(245,158,11,0.15)', color: 'var(--warning)' }}>
+          live 생성
+        </span>
+      </div>
+
+      {state.loading ? (
+        <div className="glass-card" style={{ padding: 16 }}>
+          <p style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+            <Loader2 size={14} className="spinning" />
+            Qwen3가 질문에 대한 답을 생성하는 중입니다 — 보통 10~40초, 60초를 넘기면 중단됩니다.
+          </p>
+        </div>
+      ) : state.error ? (
+        <div className="glass-card" style={{ padding: 16 }}>
+          <p style={{ display: 'flex', gap: 6, color: 'var(--warning)', fontSize: '0.82rem', marginBottom: 8 }}>
+            <AlertCircle size={14} style={{ flexShrink: 0, marginTop: 1 }} />
+            생성 실패 — {state.error}
+          </p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginBottom: 10 }}>
+            위의 사전계산 결과는 그대로 유효합니다.
+          </p>
+          <button className="btn btn-ghost" onClick={generate} style={{ fontSize: '0.78rem', padding: '6px 12px' }}>
+            다시 시도
+          </button>
+        </div>
+      ) : state.data ? (
+        <>
+          <div className="glass-card ai-response" style={{ marginBottom: 8 }}>{state.data.answer}</div>
+          <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+            이 답변은 방금 Qwen3가 생성한 것입니다 ({(state.data.latencyMs / 1000).toFixed(1)}초).
+            사전계산된 매핑 설명과 달리 DB에 저장되지 않습니다.
+          </p>
+        </>
+      ) : (
+        <div className="glass-card" style={{ padding: 16 }}>
+          <button className="btn btn-primary" onClick={generate} style={{ fontSize: '0.82rem', padding: '8px 16px', marginBottom: 8 }}>
+            <Sparkles size={14} /> 이 질문에 대한 AI 답변 생성
+          </button>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', lineHeight: 1.6 }}>
+            위 근거는 사전계산된 매핑 설명이라 질문이 달라도 같은 섹션이면 같은 문장이 나옵니다.
+            질문 자체에 대한 답은 버튼을 누르면 Qwen3가 지금 생성합니다 — 보통 10~40초.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Nl2SqlPanel() {
   const [sqlQuery, setSqlQuery] = useState('');
   const [result, setResult] = useState<NlSqlResult | null>(null);
@@ -118,6 +197,12 @@ function Nl2SqlPanel() {
           {loading ? <Loader2 size={16} className="spinning" /> : <Send size={16} />}
         </button>
       </div>
+      {loading && (
+        <p style={{ color: 'var(--text-tertiary)', fontSize: '0.78rem', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <Loader2 size={12} className="spinning" />
+          Qwen3가 SQL을 생성해 실행하는 중입니다 — 보통 10~30초, 길면 1분 걸립니다.
+        </p>
+      )}
       <div className="query-examples" style={{ marginBottom: 12 }}>
         {exampleSqlQueries.map(q => (
           <button key={q} className="query-example-btn" onClick={() => run(q)}>{q}</button>
@@ -169,12 +254,16 @@ export default function Agent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [runId, setRunId] = useState(0);
+  const [viewingCode, setViewingCode] = useState<CodeCandidate | null>(null);
+  // 입력창(query)은 제출 후에도 편집될 수 있으므로, 답변 생성은 제출된 질문에 고정한다
+  const [submittedQuery, setSubmittedQuery] = useState('');
 
   const handleSubmit = async (q?: string) => {
     const queryText = (q ?? query).trim();
     if (!queryText) return;
 
     setQuery(queryText);
+    setSubmittedQuery(queryText);
     setIsLoading(true);
     setError(null);
     setResult(null);
@@ -341,12 +430,23 @@ export default function Agent() {
                   Qwen3는 1위 코드에 대해서만 근거를 생성합니다. 2위 이하는 pgvector 유사도 순위입니다.
                 </p>
 
+                <AnswerPanel
+                  query={submittedQuery}
+                  paperId={result.queryChunk.paperId}
+                  chunkId={result.queryChunk.chunkId}
+                />
+
                 <div className="agent-section-title">
                   <Code2 size={14} /> Selected Code ({result.results.length})
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {result.results.map((code, i) => (
-                    <div key={code.codeBlockId} className="glass-card" style={{ padding: 16 }}>
+                    <div
+                      key={code.codeBlockId}
+                      className="glass-card"
+                      style={{ padding: 16, cursor: 'pointer' }}
+                      onClick={() => setViewingCode(code)}
+                    >
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                         <FileCode size={12} color="var(--success-light)" />
                         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--success-light)', fontWeight: 600 }}>
@@ -361,8 +461,11 @@ export default function Agent() {
                           {code.similarityScore.toFixed(2)}
                         </span>
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
-                        {code.repositoryName} / {code.filePath}
+                      <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+                        <span>{code.repositoryName} / {code.filePath}</span>
+                        <span style={{ marginLeft: 'auto', color: 'var(--primary-light)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                          <Code2 size={11} /> 코드 보기
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -389,6 +492,8 @@ export default function Agent() {
           </div>
         )}
       </div>
+
+      {viewingCode && <CodeViewerModal code={viewingCode} onClose={() => setViewingCode(null)} />}
 
       <style>{`
         .spinning {

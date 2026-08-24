@@ -29,6 +29,13 @@ public class ApiExceptionHandler {
         return body(HttpStatus.BAD_REQUEST, "BAD_REQUEST", e.getMessage());
     }
 
+    /** LLM 라이브 생성이 하드 타임아웃을 넘김 — 프론트는 이걸 받아 실패 카드로 떨어집니다. */
+    @ExceptionHandler(LlmTimeoutException.class)
+    public ResponseEntity<Map<String, String>> handleLlmTimeout(LlmTimeoutException e) {
+        log.warn("LLM 생성 타임아웃: {}", e.getMessage());
+        return body(HttpStatus.GATEWAY_TIMEOUT, "LLM_TIMEOUT", e.getMessage());
+    }
+
     /** Ollama 미기동 등 외부 모델 서버 접속 실패 — 데모 중 원인을 바로 알 수 있게 503으로 구분합니다. */
     @ExceptionHandler(ResourceAccessException.class)
     public ResponseEntity<Map<String, String>> handleModelUnavailable(ResourceAccessException e) {

@@ -169,7 +169,7 @@ python3 scripts/ingest.py database/ingest/<논문>.json --insert-mappings
 | Dashboard | 적재 현황, 최근 매핑 | `GET /api/stats`, `GET /api/mappings` |
 | Papers | 논문 목록 | `GET /api/papers` |
 | PaperDetail | 단락 클릭 → 대응 코드 Top-5, Monaco 뷰어로 해당 줄 하이라이트 | `GET /api/papers/{id}/chunks`, `POST /api/mapping/search`, `POST /api/agent/query` |
-| Agent | 자연어 질의 → chunk 검색 → 매핑, NL2SQL 메타데이터 조회 | `POST /api/papers/chunks/search`, `POST /api/agent/query`, `POST /api/nl2sql` |
+| Agent | 자연어 질의 → chunk 검색 → 매핑, 질문에 대한 AI 답변(opt-in), NL2SQL 메타데이터 조회 | `POST /api/papers/chunks/search`, `POST /api/agent/query`, `POST /api/agent/answer`, `POST /api/nl2sql` |
 | Graph | 논문–코드 연결을 React Flow 그래프로 | `GET /api/mappings?limit=60` |
 | Chat | 서비스·카탈로그 챗봇 — 질문마다 단락을 검색해 근거와 함께 스트리밍 답변 | `POST /api/chat` (SSE) |
 | Upload | arXiv ID + GitHub URL → 단락 분리·적재·임베딩·큐레이션 자동, ingest JSON 직접 업로드 | `POST /api/admin/upload`, `GET /api/admin/upload/{id}` |
@@ -188,6 +188,7 @@ Qwen3 를 호출한 것인지를 나타냅니다. 자세한 내용은 [frontend/
 | `POST` | `/api/papers/chunks/search` | 자연어 → 단락 벡터 검색 |
 | `POST` | `/api/mapping/search` | 단락 → 코드 Top-K (AI 설명 없음) |
 | `POST` | `/api/agent/query` | 사전계산 조회 + 라이브 폴백 |
+| `POST` | `/api/agent/answer` | 질문 텍스트에 대한 답 생성 — 매 호출 라이브, DB 저장 없음, 60초 타임아웃 |
 | `POST` | `/api/nl2sql` | 자연어 → read-only SQL 조회 |
 | `POST` | `/api/chat` | 챗봇 — 검색 기반(RAG) 스트리밍 답변, SSE |
 | `POST` | `/api/admin/upload` | 업로드 작업 생성 (arXiv + GitHub 자동 적재) |
