@@ -36,8 +36,10 @@ server:
 
 codeatlas:
   cors:
-    # 프론트(vite dev/preview) 연동용
-    allowed-origins: http://localhost:5173,http://localhost:4173
+    # 프론트(vite dev/preview) 연동용. 포트 패턴 [*] 이라 5173 이 아닌 포트로 띄워도 된다 —
+    # 5174 로 띄운 프론트가 POST 마다 403 "Invalid CORS request" 를 받은 사례(#51 리뷰 검증 중).
+    # vite 프록시를 거쳐도 브라우저의 Origin 헤더가 그대로 전달되므로 여기서 허용돼야 한다.
+    allowed-origins: ${CODEATLAS_CORS_ALLOWED_ORIGINS:http://localhost:[*],http://127.0.0.1:[*]}
   embedding:
     # true면 기동 시 embedding이 NULL인 paper_chunks/code_blocks를 Ollama로 채웁니다.
     # A의 임베딩 파이프라인이 완성되면 false로 두세요.
