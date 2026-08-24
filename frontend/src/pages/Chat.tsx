@@ -101,11 +101,13 @@ function renderLite(text: string): ReactNode[] {
   return out;
 }
 
-function SourceChips({ sources }: { sources: ChatSource[] }) {
-  if (!sources.length) return null;
+/** 답변 본문이 실제로 인용한 [n] 의 근거만 보여준다 — 검색은 됐지만 안 쓴 단락은 숨긴다 */
+function SourceChips({ sources, content }: { sources: ChatSource[]; content: string }) {
+  const cited = sources.map((s, i) => [s, i] as const).filter(([, i]) => content.includes(`[${i + 1}]`));
+  if (!cited.length) return null;
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
-      {sources.map((s, i) => (
+      {cited.map(([s, i]) => (
         <Link key={s.chunkId} to={`/papers/${s.paperId}?chunkId=${s.chunkId}`} className="query-example-btn"
           style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.72rem' }}
           title={`유사도 ${s.score.toFixed(2)}${s.codeSymbol ? ` · ${s.codeRepository} / ${s.codeFile}` : ''}`}>
@@ -207,10 +209,10 @@ export default function Chat() {
                     <AlertCircle size={14} style={{ flexShrink: 0, marginTop: 2 }} /> {m.error}
                   </p>
                 )}
-                {m.role === 'assistant' && !m.streaming && m.sources && <SourceChips sources={m.sources} />}
+                {m.role === 'assistant' && !m.streaming && m.sources && <SourceChips sources={m.sources} content={m.content} />}
                 {m.role === 'assistant' && m.latencyMs != null && (
                   <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: 6 }}>
-                    {(m.latencyMs / 1000).toFixed(1)}초 · 근거 {m.sources?.length ?? 0}개 · 저장되지 않음
+                    {(m.latencyMs / 1000).toFixed(1)}초 · 인용 근거 {(m.sources ?? []).filter((_, i) => m.content.includes(`[${i + 1}]`)).length}개 · 저장되지 않음
                   </div>
                 )}
               </div>
