@@ -201,6 +201,8 @@ def split_chunks(src_dir, blocks, work):
         json.dump([{'name': f"{b['parentSymbolName']}.{b['symbolName']}" if b['parentSymbolName'] else b['symbolName'],
                     'file': b['filePath'], 'type': b['symbolType']} for b in blocks], f)
     out = os.path.join(work, 'auto_chunks.json')
+    # LLM 타임아웃 150초 — 실험 경로의 480초와 분리 (근거는 latex2chunks.LLM_TIMEOUT 주석)
+    os.environ.setdefault('CODEATLAS_LLM_TIMEOUT', '150')
     run_streaming([sys.executable, os.path.join(HERE, 'latex2chunks.py'), 'split', src_dir,
                    '--symbols-json', symbols_path, '--single-para-no-llm', '--out', out], 'latex2chunks 실패')
     return json.load(open(out))['chunks']
