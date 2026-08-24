@@ -70,22 +70,35 @@ public class OverviewController {
                 toInt(row.get("mappings")));
     }
 
-    /** 사전계산된 매핑을 유사도 높은 순으로. limit은 그래프가 감당할 수 있는 범위로 제한합니다. */
+    /**
+     * 사전계산된 매핑을 논문별로 고르게 섞어서 반환합니다. limit은 그래프가 감당할 수 있는 범위로 제한합니다.
+     * 전체 유사도순으로만 자르면 상위권이 소수 논문에 쏠려(실측: 상위 60건이 9편 중 4편)
+     * 나머지 논문이 그래프·대시보드에 아예 등장하지 않는다 — 논문별 순위를 1차 정렬로 두어
+     * 모든 논문의 1위 매핑이 어떤 논문의 2위보다 먼저 나오게 한다.
+     */
     @GetMapping("/api/mappings")
     public List<MappingRow> mappings(@RequestParam(defaultValue = "50") int limit) {
         int bounded = Math.max(1, Math.min(limit, 500));
         return jdbcTemplate.query("""
-                SELECT p.id AS paper_id, p.title,
-                       m.paper_chunk_id, pc.section_title,
-                       m.code_block_id, r.repository_name, cb.file_path,
-                       cb.symbol_name, cb.parent_symbol_name,
-                       m.similarity_score, m.is_verified
-                FROM paper_code_mappings m
-                JOIN paper_chunks pc ON pc.id = m.paper_chunk_id
-                JOIN papers p        ON p.id  = pc.paper_id
-                JOIN code_blocks cb  ON cb.id = m.code_block_id
-                JOIN repositories r  ON r.id  = cb.repository_id
-                ORDER BY m.similarity_score DESC NULLS LAST, m.paper_chunk_id
+                SELECT paper_id, title, paper_chunk_id, section_title,
+                       code_block_id, repository_name, file_path,
+                       symbol_name, parent_symbol_name, similarity_score, is_verified
+                FROM (
+                    SELECT p.id AS paper_id, p.title,
+                           m.paper_chunk_id, pc.section_title,
+                           m.code_block_id, r.repository_name, cb.file_path,
+                           cb.symbol_name, cb.parent_symbol_name,
+                           m.similarity_score, m.is_verified,
+                           row_number() OVER (PARTITION BY p.id
+                                              ORDER BY m.similarity_score DESC NULLS LAST,
+                                                       m.paper_chunk_id) AS paper_rank
+                    FROM paper_code_mappings m
+                    JOIN paper_chunks pc ON pc.id = m.paper_chunk_id
+                    JOIN papers p        ON p.id  = pc.paper_id
+                    JOIN code_blocks cb  ON cb.id = m.code_block_id
+                    JOIN repositories r  ON r.id  = cb.repository_id
+                ) ranked
+                ORDER BY paper_rank, similarity_score DESC NULLS LAST, paper_chunk_id
                 LIMIT ?
                 """, MAPPING_MAPPER, bounded);
     }

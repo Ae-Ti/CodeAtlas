@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Sparkles, Send, Clock, CheckCircle2, Loader2, Database, Filter, MessageSquare, AlertCircle, Code2, Zap, FileCode } from 'lucide-react';
-import { api, symbolLabel, ApiError, type AgentQueryResponse, type NlSqlResult, type ToolTiming } from '../api/client';
+import { api, symbolLabel, ApiError, type AgentQueryResponse, type CodeCandidate, type NlSqlResult, type ToolTiming } from '../api/client';
 import { useAnimateNumber } from '../hooks/useAnimateNumber';
 import { ErrorBox } from '../components/AsyncStates';
+import CodeViewerModal from '../components/CodeViewerModal';
 
 const exampleQueries = [
   'multi-head attention은 코드로 어떻게 구현됐어?',
@@ -12,7 +13,7 @@ const exampleQueries = [
 
 const exampleSqlQueries = [
   'star 수 상위 3개 repository 알려줘',
-  'NLP 논문 제목 목록',
+  '2020년 이후 발표된 논문의 제목과 발표일',
   '논문별로 연결된 repository 개수',
 ];
 
@@ -118,6 +119,12 @@ function Nl2SqlPanel() {
           {loading ? <Loader2 size={16} className="spinning" /> : <Send size={16} />}
         </button>
       </div>
+      {loading && (
+        <p style={{ color: 'var(--text-tertiary)', fontSize: '0.78rem', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <Loader2 size={12} className="spinning" />
+          Qwen3가 SQL을 생성해 실행하는 중입니다 — 보통 10~30초, 길면 1분 걸립니다.
+        </p>
+      )}
       <div className="query-examples" style={{ marginBottom: 12 }}>
         {exampleSqlQueries.map(q => (
           <button key={q} className="query-example-btn" onClick={() => run(q)}>{q}</button>
@@ -169,6 +176,7 @@ export default function Agent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [runId, setRunId] = useState(0);
+  const [viewingCode, setViewingCode] = useState<CodeCandidate | null>(null);
 
   const handleSubmit = async (q?: string) => {
     const queryText = (q ?? query).trim();
@@ -346,7 +354,12 @@ export default function Agent() {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {result.results.map((code, i) => (
-                    <div key={code.codeBlockId} className="glass-card" style={{ padding: 16 }}>
+                    <div
+                      key={code.codeBlockId}
+                      className="glass-card"
+                      style={{ padding: 16, cursor: 'pointer' }}
+                      onClick={() => setViewingCode(code)}
+                    >
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                         <FileCode size={12} color="var(--success-light)" />
                         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--success-light)', fontWeight: 600 }}>
@@ -361,8 +374,11 @@ export default function Agent() {
                           {code.similarityScore.toFixed(2)}
                         </span>
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
-                        {code.repositoryName} / {code.filePath}
+                      <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+                        <span>{code.repositoryName} / {code.filePath}</span>
+                        <span style={{ marginLeft: 'auto', color: 'var(--primary-light)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                          <Code2 size={11} /> 코드 보기
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -389,6 +405,8 @@ export default function Agent() {
           </div>
         )}
       </div>
+
+      {viewingCode && <CodeViewerModal code={viewingCode} onClose={() => setViewingCode(null)} />}
 
       <style>{`
         .spinning {
