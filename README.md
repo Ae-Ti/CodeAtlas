@@ -401,13 +401,13 @@ MCP tool 코드는 손대지 않습니다.
 | LICENSE (MIT) | [LICENSE](LICENSE) | ✅ |
 | AI 모델 활용 명세 | [docs/AI_모델_활용_명세.md](docs/AI_모델_활용_명세.md) | ✅ |
 | README (실행 가능 수준) | 본 문서 | ✅ |
-| 결과보고서 | — | 작성 예정 |
-| 시연영상 (3분 이내) | — | 촬영 예정 |
+| 결과보고서 | [docs/결과보고서.md](docs/결과보고서.md) | ✅ |
+| 시연영상 (3분 이내) | [youtu.be/8EQz5crZLIM](https://youtu.be/8EQz5crZLIM) | ✅ |
 | SBOM / 오픈소스SW 목록 | [docs/오픈소스SW_목록.md](docs/오픈소스SW_목록.md) · [sbom/](sbom/) | ✅ |
-| CONTRIBUTING.md | — | 작성 예정 |
+| CONTRIBUTING.md | [CONTRIBUTING.md](CONTRIBUTING.md) | ✅ |
 | `seed_dump.sql` / `seed_manifest.csv` | [database/](database/) | ✅ |
 | 확장 기능·발전 방향 | [docs/CodeAtlas_확장기능.md](docs/CodeAtlas_확장기능.md) | ✅ |
-| 데모 시나리오 | `docs/demo-scenario.md` | 작성 예정 |
-| 정부 지원사업 중복수혜 여부 확인서 | — | 해당 여부 확인 중 |
+| 데모 시나리오 | [docs/demo-scenario.md](docs/demo-scenario.md) | ✅ |
+| 정부 지원사업 중복수혜 여부 확인서 | — | 해당 없음 |
 
 진행 상황은 [Issues](https://github.com/Ae-Ti/CodeAtlas/issues) 에서 추적합니다.
