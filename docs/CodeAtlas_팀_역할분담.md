@@ -224,7 +224,6 @@ backend/src/.../agent
 backend/src/.../nl2sql
 backend/src/.../tacc
 backend/src/.../mcp
-docs/demo-scenario.md
 ```
 
 ### 공동 관리

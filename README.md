@@ -407,7 +407,6 @@ MCP tool 코드는 손대지 않습니다.
 | CONTRIBUTING.md | [CONTRIBUTING.md](CONTRIBUTING.md) | ✅ |
 | `seed_dump.sql` / `seed_manifest.csv` | [database/](database/) | ✅ |
 | 확장 기능·발전 방향 | [docs/CodeAtlas_확장기능.md](docs/CodeAtlas_확장기능.md) | ✅ |
-| 데모 시나리오 | [docs/demo-scenario.md](docs/demo-scenario.md) | ✅ |
 | 정부 지원사업 중복수혜 여부 확인서 | — | 해당 없음 |
 
 진행 상황은 [Issues](https://github.com/Ae-Ti/CodeAtlas/issues) 에서 추적합니다.

@@ -54,7 +54,7 @@
 | `backend/src/main/java/**/agent/**`, `**/mcp/**`, `**/nl2sql/**`, `**/embedding/**` | **B** |
 | `frontend/**` | **B** |
 | `database/Script-*.sql`, `database/seed_demo.sql` | **B** |
-| `docs/api-spec.md`, `docs/backend-setup.md`, `docs/demo-scenario.md`, `docs/AI_모델_활용_명세.md` | **B** |
+| `docs/api-spec.md`, `docs/backend-setup.md`, `docs/AI_모델_활용_명세.md` | **B** |
 | `docs/A_논문DB구축_가이드.md`, `docs/data-pipeline-guide.md` | **B** — A 가 실제 사용자라 바꿀 일이 생기면 PR |
 | `docs/CodeAtlas_기획서.md`, `docs/CodeAtlas_팀_역할분담.md`, `README.md` | **공동** — 상대에게 알리고 수정 |
 | 위에 없는 `docs/**`, 날짜별 정리 문서 | **작성자** — `git log --diff-filter=A -- <파일>` 로 확인 |
